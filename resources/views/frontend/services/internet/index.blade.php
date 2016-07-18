@@ -5,14 +5,14 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus facere id in officiis quidem! Ab accusantium architecto, est eum exercitationem expedita fugit iste nemo quibusdam sint sunt suscipit voluptatem! Aliquid.</p>
         </div>
         <div class="uk-width-3-10">
-            <img src="{{ asset('assets/img/service_package_1_1.jpg') }}">
+            <img src="{{ asset('assets/frontend/img/service_package_1_1.jpg') }}">
         </div>
     </div>
     
 </div>
 <ul class="uk-tab bl-tab" data-uk-tab="{connect:'#service-internet'}">
-    <li class="uk-active"><a href="javascript:void(0);"><img src="{{ asset('/assets/img/broad_wifi.png') }}"> </a></li>
-    <li><a href="javascript:void(0);"><img src="{{ asset('/assets/img/broad_fiber.png') }}"></a></li>
+    <li class="uk-active"><a href="javascript:void(0);"><img src="{{ asset('/assets/frontend/img/broad_wifi.png') }}"> </a></li>
+    <li><a href="javascript:void(0);"><img src="{{ asset('/assets/frontend/img/broad_fiber.png') }}"></a></li>
 </ul>
 <ul class="uk-switcher bl-switcher" id="service-internet">
     <li class="uk-text-center">
@@ -23,7 +23,7 @@
                         <h3>My Choice</h3>
                     </div>
                     <div class="uk-width-1-1 bl-package-featured-image">
-                        <img src="{{ asset('/assets/img/service_package_1.jpg') }}">
+                        <img src="{{ asset('assets/frontend/img/service_package_1.jpg') }}">
                     </div>
                     <div class="uk-width-1-1 bl-package-price">
                         <span>2000</span>
@@ -52,7 +52,7 @@
                         <h3>My Choice</h3>
                     </div>
                     <div class="uk-width-1-1 bl-package-featured-image">
-                        <img src="{{ asset('/assets/img/service_package_1.jpg') }}">
+                        <img src="{{ asset('assets/frontend/img/service_package_1.jpg') }}">
                     </div>
                     <div class="uk-width-1-1 bl-package-price">
                         <span>2000</span>
@@ -81,7 +81,7 @@
                         <h3>My Choice +</h3>
                     </div>
                     <div class="uk-width-1-1 bl-package-featured-image">
-                        <img src="{{ asset('/assets/img/service_package_3.jpg') }}">
+                        <img src="{{ asset('assets/frontend/img/service_package_3.jpg') }}">
                     </div>
                     <div class="uk-width-1-1 bl-package-price">
                         <span>2000</span>
