@@ -1,0 +1,281 @@
+body {
+  color: #333; }
+
+.bl-btn-outline {
+  padding: 5px 25px;
+  border-radius: 0;
+  background-color: transparent;
+  border: 2px solid #eee;
+  color: #eee; }
+
+input {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: 0px 2px #eee !important;
+  margin-bottom: 15px !important;
+  color: #eee !important; }
+  input:hover, input:active, input:focus {
+    box-shadow: 0px 2px #e76724 !important; }
+
+.uk-text-center input {
+  text-align: center; }
+
+.bl-btn-outline:hover {
+  border: 2px solid #e76724;
+  color: #eee;
+  background-color: #e76724; }
+
+::-moz-selection {
+  background: #e76724;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #e76724;
+  color: #fff;
+  text-shadow: none; }
+
+.navbar-brand img {
+  width: 150px; }
+
+.uk-navbar {
+  background: white; }
+
+.bl-navbar-overlay:not(.uk-active) {
+  position: absolute;
+  z-index: 1;
+  width: 100%; }
+
+.bl-navbar-transparent.uk-navbar {
+  background: none; }
+
+.uk-navbar-brand {
+  box-sizing: border-box;
+  display: block;
+  height: 80px;
+  padding: 0 15px;
+  float: left; }
+
+.uk-navbar-nav li:hover a {
+  background-color: transparent;
+  color: #e76724;
+  outline: none; }
+
+.uk-navbar-nav li.uk-active a {
+  background-color: transparent;
+  color: #e76724; }
+
+.uk-navbar-nav li a {
+  display: block;
+  height: 80px;
+  padding: 0 15px;
+  line-height: 80px;
+  color: #adadad; }
+  .uk-navbar-nav li a:focus {
+    background-color: transparent;
+    color: #e76724;
+    outline: none; }
+
+.bl-navbar-contrast .uk-navbar-nav li.uk-active a, .bl-navbar-contrast .uk-navbar-nav li:hover a, .bl-navbar-contrast .uk-navbar-nav li.uk-open a {
+  color: #e76724;
+  background: none; }
+
+.bl-navbar-contrast .uk-navbar-nav li a {
+  color: rgba(255, 255, 255, 0.7); }
+  .bl-navbar-contrast .uk-navbar-nav li a:focus {
+    color: #e76724; }
+
+.bl-text-light {
+  color: #eee; }
+  .bl-text-light h1, .bl-text-light h2, .bl-text-light h3, .bl-text-light h4, .bl-text-light h5, .bl-text-light h6 {
+    color: #eee; }
+
+.bl-text-dark {
+  color: #333; }
+  .bl-text-dark h1, .bl-text-dark h2, .bl-text-dark h3, .bl-text-dark h4, .bl-text-dark h5, .bl-text-dark h6 {
+    color: #333; }
+
+.uk-block-primary {
+  background: #e76724; }
+
+.uk-block h1 {
+  font-size: 3em;
+  margin: 0.6em 0 1em; }
+
+.height-1 {
+  min-height: 100px; }
+
+.height-2 {
+  min-height: 200px; }
+
+.height-3 {
+  min-height: 300px; }
+
+.height-4 {
+  min-height: 400px; }
+
+.height-5 {
+  min-height: 500px; }
+
+.tile {
+  height: 150px;
+  width: 150px;
+  background: rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  box-shadow: 0 6px 4px -6px #777; }
+  .tile:hover {
+    background: rgba(255, 255, 255, 0.6); }
+
+.image-xs {
+  max-height: 50px; }
+
+#slider .main-slider {
+  margin-top: 60px; }
+
+#slider .images .image {
+  position: absolute;
+  max-width: 1000px;
+  margin: auto;
+  left: 0;
+  right: 0; }
+  #slider .images .image img {
+    width: 60%; }
+
+#slider a {
+  color: #e76724; }
+
+#our-services {
+  background-position: 50% -100px;
+  transition: background 1s; }
+  #our-services button {
+    background: transparent;
+    color: #eee; }
+    #our-services button span {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      height: 116px;
+      line-height: 116px; }
+    #our-services button img {
+      display: block; }
+  #our-services li.uk-active button {
+    color: #e76724; }
+  #our-services .pe {
+    font-size: 5em; }
+
+#clients {
+  background-size: cover;
+  background: #d8d8d8 fixed; }
+  #clients img {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -o-filter: grayscale(100%); }
+    #clients img:hover {
+      filter: grayscale(0%);
+      -webkit-filter: grayscale(0%);
+      -o-filter: grayscale(0%); }
+
+#news .uk-subnav-pill .uk-active * {
+  background: #e76724; }
+
+#footer .logo img {
+  height: 200px; }
+
+#footer .top-footer {
+  margin: 35px 0; }
+
+#footer ul {
+  list-style: none;
+  display: inline; }
+  #footer ul a {
+    color: #eee;
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.1); }
+    #footer ul a:hover {
+      color: #e76724; }
+
+#footer .social {
+  padding: 30px 0; }
+  #footer .social a {
+    color: #eee;
+    background: #e76724; }
+
+.bl-block-footer {
+  padding: 10px 0; }
+
+.banner {
+  background-size: cover;
+  background-repeat: no-repeat; }
+  .banner h1 {
+    font-size: 4em;
+    text-shadow: 0 0 5px black; }
+
+.services .uk-tab a {
+  text-transform: uppercase; }
+
+.bl-icon-description {
+  position: relative; }
+  .bl-icon-description a {
+    display: inline-block;
+    position: absolute; }
+  .bl-icon-description p {
+    padding-left: 50px; }
+
+ul.bl-tab {
+  border-bottom: 2px solid #eee; }
+  ul.bl-tab > li {
+    margin-bottom: -2px; }
+    ul.bl-tab > li > a {
+      color: #333;
+      padding: 20px;
+      font-size: 1.2em; }
+      ul.bl-tab > li > a:hover {
+        padding: 20px !important; }
+  ul.bl-tab > li.uk-active > a {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    color: #e76724;
+    border-bottom: 2px solid #e76724; }
+
+.bl-switcher {
+  margin: 30px 0; }
+
+.bl-package {
+  font-size: 1.3em; }
+  .bl-package h3, .bl-package p, .bl-package button {
+    padding: 10px; }
+  .bl-package .bl-package-title h3 {
+    background-color: #0c94dc;
+    padding: 10px 0;
+    margin: 0 0 2px 0;
+    font-size: 1.3em;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: normal; }
+  .bl-package .bl-package-featured-image img {
+    width: 100%; }
+  .bl-package .bl-package-price span {
+    padding: 9px 0;
+    display: block;
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: 500;
+    background: #cd4078; }
+
+@media (max-width: 767px) {
+  #our-services .pe {
+    font-size: 3em; }
+  .tile {
+    height: 100px;
+    width: 100px; }
+  .images {
+    text-align: center; }
+  .subtitle {
+    text-align: center; } }
+
+/*# sourceMappingURL=app.css.map */
