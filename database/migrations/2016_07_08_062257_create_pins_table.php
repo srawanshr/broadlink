@@ -13,6 +13,7 @@ class CreatePinsTable extends Migration
     public function up()
     {
         Schema::create('pins', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('sno')->unique();
             $table->bigInteger('pin')->unique();

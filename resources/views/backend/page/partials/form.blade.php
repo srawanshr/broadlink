@@ -5,7 +5,12 @@
         <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <h3 class="heading_b uk-margin-bottom">Create Page</h3>
+                    <h3 class="heading_b uk-margin-bottom">
+                        {{ $title }}
+                        <div class="uk-float-right">
+                            <a href="{{ route('admin::page.index') }}" class="md-btn md-btn-primary">all pages</a>
+                        </div>
+                    </h3>
                     <div class="uk-form-row">
                         <label>Title</label>
                         {{ Form::text( 'title', old('title'), [ 'id' => 'page_title', 'class' => 'md-input', 'required' ] ) }}

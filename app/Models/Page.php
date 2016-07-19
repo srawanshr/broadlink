@@ -6,8 +6,8 @@ use App\Services\Parsedowner;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model
-{
+class Page extends Model {
+
     use SoftDeletes;
 
     /**
@@ -33,7 +33,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $dates = [ 'deleted_at' ];
+    protected $dates = ['deleted_at'];
 
     /**
      * The morph class name for this model.
@@ -51,7 +51,8 @@ class Page extends Model
     {
         $this->attributes['title'] = $value;
 
-        if (!$this->exists) {
+        if (!$this->exists)
+        {
             $this->setUniqueSlug($value, '');
         }
     }
@@ -66,8 +67,10 @@ class Page extends Model
     {
         $slug = str_slug($title . '-' . $extra);
 
-        if (static::whereSlug($slug)->exists()) {
+        if (static::withTrashed()->whereSlug($slug)->exists())
+        {
             $this->setUniqueSlug($title, $extra + 1);
+
             return;
         }
 
@@ -90,6 +93,7 @@ class Page extends Model
      * Scope a query to draft or non pages.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param bool $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDraft($query, $type = true)
@@ -101,6 +105,7 @@ class Page extends Model
      * Scope a query to primary or non primary pages.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param bool $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePrimary($query, $type = true)
@@ -139,12 +144,12 @@ class Page extends Model
      */
     public function delete(array $options = array())
     {
-        if(!$this->banners->isEmpty()) {
-
-            foreach($this->banners as $banner) {
+        if (!$this->banners->isEmpty())
+        {
+            foreach ($this->banners as $banner)
+            {
                 $banner->delete();
             }
-
         }
 
         return parent::delete($options);

@@ -62,7 +62,7 @@ $router->group([
     Route::group([ 'as' => 'banner.' ], function() {
         Route::get('banner', 'BannerController@index')->name('index');
         Route::post('banner', 'BannerController@store')->name('store');
-        Route::post('banner/delete', 'BannerController@destroy')->name('destroy');
+        Route::delete('banner/{banner_id}', 'BannerController@destroy')->name('destroy');
     });
 
     /*
@@ -74,14 +74,29 @@ $router->group([
         Route::get('/', 'PageController@index')->name('index');
         Route::get('create', 'PageController@create')->name('create');
         Route::post('/', 'PageController@store')->name('store');
-        Route::get('{page_slug}', 'PageController@edit')->name('edit');
+        Route::get('{page_slug}/edit', 'PageController@edit')->name('edit');
         Route::put('{page_slug}', 'PageController@update')->name('update');
         Route::delete('{page_slug}', 'PageController@destroy')->name('destroy');
 
         Route::get('{page_slug}/sub-page/create', 'SubPageController@create')->name('sub.create');
         Route::post('{page_slug}/sub-page', 'SubPageController@store')->name('sub.store');
-        Route::get('{page_slug}/sub-page/{sub_page_slug}', 'SubPageController@edit')->name('sub.edit');
+        Route::get('{page_slug}/sub-page/{sub_page_slug}/edit', 'SubPageController@edit')->name('sub.edit');
         Route::put('{page_slug}/sub-page/{sub_page_slug}', 'SubPageController@update')->name('sub.update');
+        Route::delete('{page_slug}/sub-page/{sub_page_slug}', 'SubPageController@destroy')->name('sub.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Service Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'service', 'as' => 'service.' ], function () {
+        Route::get('/', 'ServiceController@index')->name('index');
+        Route::get('create', 'ServiceController@create')->name('create');
+        Route::post('/', 'ServiceController@store')->name('store');
+        Route::get('{service_slug}/edit', 'ServiceController@edit')->name('edit');
+        Route::put('{service_slug}', 'ServiceController@update')->name('update');
+        Route::delete('{service_slug}', 'ServiceController@destroy')->name('destroy');
     });
 
     /*

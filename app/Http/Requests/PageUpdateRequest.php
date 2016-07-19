@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PageUpdateRequest extends Request
-{
+class PageUpdateRequest extends Request {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,21 +24,21 @@ class PageUpdateRequest extends Request
     public function rules()
     {
         return [
-            'title'             => 'required',
-            'content_raw'       => 'required',
-            'view'              => 'required',
-            'is_draft'          => 'boolean'
+            'title'       => 'required',
+            'content_raw' => 'required',
+            'view'        => 'required',
+            'is_draft'    => 'boolean'
         ];
     }
 
     /**
-     * Return the fields and values to create a new page from
+     * Return the fields and values to update a page from
      */
     public function pageFillData()
     {
         $inputs = $this->all();
 
-        $inputs[ 'is_draft' ] = $this->get( 'is_draft', false );
+        $inputs['is_draft'] = $this->get('is_draft', false);
 
         return $inputs;
     }

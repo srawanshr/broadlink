@@ -14,8 +14,25 @@ return [
 
     'image' => [
 
-        'Admin' => 'images/profile-pictures/',
-        'Page'  => 'images/page-pictures/',
+        'Admin'   => 'images/profile-pictures/',
+        'Page'    => 'images/page-pictures/',
+        'Service' => 'images/service-pictures/'
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Icon Paths
+    |--------------------------------------------------------------------------
+    |
+    | These values determine the icon upload location for various models.
+    | Paths should be finished with '/'
+    |
+    */
+
+    'icon' => [
+
+        'Service' => 'images/icons/service-icons/'
 
     ],
 
@@ -32,7 +49,7 @@ return [
     'placeholder' => [
 
         'default' => 'assets/shared/img/placeholder.jpg',
-        'avatar'  => 'assets/backend/img/avatars/user@2x.png',
+        'avatar'  => 'assets/backend/img/avatars/avatar_11_tn.png',
 
     ]
 ];

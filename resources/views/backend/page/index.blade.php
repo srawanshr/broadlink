@@ -33,10 +33,10 @@
                                                 <td class="uk-text-nowrap uk-text-center">{{ $page->author->display_name }}</td>
                                                 <td class="uk-text-nowrap uk-text-center"><span class="uk-badge uk-badge-{{ $page->is_draft ? 'Default' : 'Success' }}">{{ $page->is_draft ? 'Draft' : 'Published' }}</span></td>
                                                 <td class="uk-text-nowrap uk-text-center">
-                                                    <a href="{{ route('admin::page.sub.create', $page->id) }}" data-uk-tooltip="{pos:'left'}" title="New Subpage">
+                                                    <a href="{{ route('admin::page.sub.create', $page->slug) }}" data-uk-tooltip="{pos:'left'}" title="New Subpage">
                                                         <i class="material-icons md-24">&#xE7F9;</i>
                                                     </a>
-                                                    <a href="{{ route('admin::page.edit', $page->id) }}" data-uk-tooltip="{pos:'left'}" title="Edit Page">
+                                                    <a href="{{ route('admin::page.edit', $page->slug) }}" data-uk-tooltip="{pos:'left'}" title="Edit Page">
                                                         <i class="material-icons md-24">&#xE254;</i>
                                                     </a>
                                                     @unless($page->is_primary)
@@ -49,14 +49,14 @@
                                             @foreach($page->subPages as $sub)
                                                 <tr>
                                                     <td class="uk-text-large uk-text-nowrap">{{ $sub->title }}</td>
-                                                    <td class="uk-text-nowrap">Sub Page</td>
-                                                    <td class="uk-text-nowrap">{{ $sub->author->display_name }}</td>
-                                                    <td class="uk-text-nowrap"><span class="uk-badge uk-badge-{{ $sub->is_draft ? 'Default' : 'Success' }}">{{ $sub->is_draft ? 'Draft' : 'Published' }}</span></td>
-                                                    <td class="uk-text-nowrap">
-                                                        <a href="{{ route('admin::page.sub.edit', $page->id, $sub->id) }}" data-uk-tooltip="{pos:'left'}" title="Edit Sub Page">
+                                                    <td class="uk-text-nowrap uk-text-center">Sub Page</td>
+                                                    <td class="uk-text-nowrap uk-text-center">{{ $sub->author->display_name }}</td>
+                                                    <td class="uk-text-nowrap uk-text-center"><span class="uk-badge uk-badge-{{ $sub->is_draft ? 'Default' : 'Success' }}">{{ $sub->is_draft ? 'Draft' : 'Published' }}</span></td>
+                                                    <td class="uk-text-nowrap uk-text-center">
+                                                        <a href="{{ route('admin::page.sub.edit', [$page->slug, $sub->slug]) }}" data-uk-tooltip="{pos:'left'}" title="Edit Sub Page">
                                                             <i class="material-icons md-24">&#xE254;</i>
                                                         </a>
-                                                        <a class="item_delete" data-source="{{ route('admin::page.sub.destroy', $page->slug, $sub->slug) }}" data-uk-tooltip="{pos:'left'}" title="Delete Sub Page">
+                                                        <a class="item_delete" data-source="{{ route('admin::page.sub.destroy', [$page->slug, $sub->slug]) }}" data-uk-tooltip="{pos:'left'}" title="Delete Sub Page">
                                                             <i class="material-icons md-24">&#xE872;</i>
                                                         </a>
                                                     </td>
@@ -107,7 +107,7 @@
                         },
                         error: function (response) {
                             
-                            UIkit.model.alert('Remove failed!');
+                            UIkit.modal.alert('Remove failed!');
 
                         }
                     });

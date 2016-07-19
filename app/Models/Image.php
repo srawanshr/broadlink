@@ -48,7 +48,7 @@ class Image extends Model
      */
     public function removeImage()
     {
-        if ( !is_null( $this->path ) && file_exists( $this->path ) && $this->path != "" )
+        if ( !empty( $this->path ) && file_exists( $this->path ) )
             unlink($this->path);
     }
 
@@ -59,7 +59,7 @@ class Image extends Model
      */
     public function resize($w = null, $h = null)
     {
-        if ( empty( $this->path ) or !file_exists( $this->path ) ) {
+        if ( empty( $this->path ) or !file_exists( ltrim($this->path, '/') ) ) {
 
             return config('paths.placeholder.default');
 
@@ -77,7 +77,7 @@ class Image extends Model
     {
         $class = $this->imageable_type;
 
-        if ( $class == "" or is_null($class) ) return self::IMAGE_PATH;
+        if ( empty($class) ) return self::IMAGE_PATH;
 
         return ltrim(config('paths.image.'.$class), '/');
     }
@@ -91,7 +91,7 @@ class Image extends Model
     {
         if ( empty( $this->path ) or !file_exists( ltrim($this->path, '/') ) ) {
 
-            return config('paths.placeholder.default');
+            return config('paths.placeholder.avatar');
 
         } else {
 

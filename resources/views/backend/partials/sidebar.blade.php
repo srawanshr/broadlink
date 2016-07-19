@@ -26,23 +26,29 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('admin::banner.index') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE3F4;</i></span>
-                    <span class="menu_title">Banners</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('admin::page.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE051;</i></span>
                     <span class="menu_title">Pages</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ url('/admin/upload') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE8A7;</i></span>
-                    <span class="menu_title">Uploads</span>
+            <li >
+                <a href="{{ route('admin::service.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xEB49;</i></span>
+                    <span class="menu_title">Services</span>
                 </a>
             </li>
+            {{--<li>--}}
+                {{--<a href="{{ route('admin::banner.index') }}">--}}
+                    {{--<span class="menu_icon"><i class="material-icons">&#xE3F4;</i></span>--}}
+                    {{--<span class="menu_title">Banners</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ url('/admin/upload') }}">--}}
+                    {{--<span class="menu_icon"><i class="material-icons">&#xE8A7;</i></span>--}}
+                    {{--<span class="menu_title">Uploads</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
             <li >
                 <a href="{{ route('admin::user.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE7FB;</i></span>

@@ -15,6 +15,7 @@ function seoUrl($string)
     $string = preg_replace("/[\s-]+/", " ", $string);
     // Convert whitespaces and underscores to dashes
     $string = preg_replace("/[\s_]/", "-", $string);
+
     return $string;
 }
 
@@ -29,6 +30,7 @@ function human_filesize($bytes, $decimals = 2)
 {
     $size = ['B', 'kB', 'MB', 'GB', 'TB', 'PB'];
     $factor = floor((strlen($bytes) - 1) / 3);
+
     return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
 
@@ -62,12 +64,15 @@ function checked($value)
  */
 function page_image($value = null)
 {
-    if (empty($value)) {
+    if (empty($value))
+    {
         $value = config('website.page_image');
     }
-    if (!starts_with($value, 'http') && $value[0] !== '/') {
+    if ( ! starts_with($value, 'http') && $value[0] !== '/')
+    {
         $value = config('website.uploads.webpath') . '/' . $value;
     }
+
     return $value;
 }
 
@@ -90,11 +95,27 @@ function cleanFileName($file)
  * @param mixed $path
  * @return string
  */
-function thumbnail( $path, array $wh = array() )
+function thumbnail($path, array $wh = array())
 {
-    if(empty($wh)) $wh = [ 'width' => 150, 'height' => 150 ];
+    if (empty($wh)) $wh = ['width' => 150, 'height' => 150];
 
     $thumbnail = \App\Services\ImageManager::getThumbnail($wh['width'], $wh['height'], $path);
 
     return $thumbnail;
+}
+
+/**
+ * @param $guard
+ * @param $width
+ * @return mixed
+ */
+function user_avatar($guard, $width)
+{
+    if ($image = auth()->guard($guard)->user()->image)
+    {
+        return asset($image->thumbnail($width, $width));
+    } else
+    {
+        return asset(config('paths.placeholder.avatar'));
+    }
 }

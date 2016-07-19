@@ -17,12 +17,12 @@
                     <li><a href="#" id="full_screen_toggle" class="user_action_icon uk-visible-large"><i class="material-icons md-24 md-light">&#xE5D0;</i></a></li>
                     <li><a href="#" id="main_search_btn" class="user_action_icon"><i class="material-icons md-24 md-light">&#xE8B6;</i></a></li>
                     <li data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
-                        <a href="#" class="user_action_image"><img class="md-user-image" src="{{ asset('assets/backend/img/avatars/avatar_11_tn.png') }}" alt=""/></a>
+                        <a href="#" class="user_action_image"><img class="md-user-image" src="{{ user_avatar('admin', 34) }}" alt=""/></a>
                         <div class="uk-dropdown uk-dropdown-small">
                             <ul class="uk-nav js-uk-prevent">
                                 <li><a href="page_user_profile.html">My profile</a></li>
                                 <li><a href="page_settings.html">Settings</a></li>
-                                <li><a href="login.html">Logout</a></li>
+                                <li><a href="{{ url('admin/logout') }}">Logout</a></li>
                             </ul>
                         </div>
                     </li>

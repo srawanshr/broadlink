@@ -9,7 +9,7 @@
     <div id="page_content">
         <div id="page_content_inner">
             {{ Form::open([ 'route' => 'admin::page.store', 'class' => 'uk-form-stacked', 'id' => 'page_create_form' ]) }}
-                @include('backend.page.partials.form')
+                @include('backend.page.partials.form', [ 'title' => 'Create Page' ])
             {{ Form::close() }}
         </div>
     </div>

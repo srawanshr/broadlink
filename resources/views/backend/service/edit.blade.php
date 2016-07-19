@@ -1,6 +1,6 @@
 @extends('backend.layout')
 
-@section('title', 'Page')
+@section('title', 'Service')
 
 @push('styles')
     <link href="{{ asset('assets/backend/skins/dropify/css/dropify.css') }}" rel="stylesheet" type="text/css" />
@@ -9,8 +9,7 @@
 @section('content')
     <div id="page_content">
         <div id="page_content_inner">
-            @include('backend.partials.errors')
-            @include('backend.page.partials.edit-form', [ 'title' => 'Edit Page', 'banners' => true ])
+            @include('backend.service.partials.edit-form', [ 'title' => 'Edit Service', 'banners' => true ])
         </div>
     </div>
 @stop

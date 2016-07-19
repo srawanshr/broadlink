@@ -24,12 +24,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
-
         parent::boot($router);
 
         $router->bind( 'page_slug', function ( $slug ) {
             return \App\Models\Page::where( 'slug', $slug )->first();
+        });
+
+        $router->bind( 'sub_page_slug', function ( $slug ) {
+            return \App\Models\SubPage::where( 'slug', $slug )->first();
+        });
+
+        $router->bind( 'service_slug', function ( $slug ) {
+            return \App\Models\Service::where( 'slug', $slug )->first();
+        });
+
+        $router->bind( 'banner_id', function ( $id ) {
+            return \App\Models\Image::find($id);
         });
     }
 

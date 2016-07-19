@@ -1,138 +1,84 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
 
+use App\Http\Requests\SubPageCreateRequest;
+use App\Http\Requests\SubPageUpdateRequest;
+use App\Models\Page;
 use App\Http\Requests;
+use App\Models\SubPage;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-use App\Models\SubPage;
-use Illuminate\Support\Facades\Auth;
-
-class SubPageController extends Controller
-{
-    protected $user;
+class SubPageController extends Controller {
 
     /**
-     * SubPageController constructor.
-     */
-    public function __construct()
-    {
-        $this->user = Auth::user();
-    }
-
-    /**
+     * @param Page $page
      * @return mixed
      */
-    public function index()
+    public function create(Page $page)
     {
-        if (!$this->user->can('read.cms')) return redirect()->route('errors', '401');
-
-        $raw = SubPage::all();
-
-        $filtered = $raw->filter(function ($item) {
-            return $item->subpageable->country_id == country()->id;
-        });
-
-        $subPages = new Paginator($filtered, $filtered->count(), 15);
-
-        return view('admin.pages.subpages.index', compact('subPages'));
+        return view('backend.page.sub.create', compact('page'));
     }
 
     /**
-     * @return mixed
+     * @param Page $page
+     * @param SubPageCreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function store(Page $page, SubPageCreateRequest $request)
     {
-        if (!$this->user->can('create.cms')) return redirect()->route('errors', '401');
+        $subPage = SubPage::create($request->subPageFillData($page->id));
 
-        $pages = $this->pages();
-
-        return view('admin.pages.subpages.create', compact('pages'));
+        return redirect()
+            ->route('admin::page.sub.edit', $page->slug, $subPage->slug)
+            ->with('success', trans('messages.create_success', ['entity' => 'Sub Page']));
     }
 
     /**
-     * @param null $page
-     * @return array
+     * @param Page $page
+     * @param SubPage $subPage
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function pages($page = null)
+    public function edit(Page $page, SubPage $subPage)
     {
-        $pages = [
-            'HomePage' => 'Home Page',
-            'AboutPage' => 'About Page',
-            'ContactPage' => 'Contact Page',
-        ];
+        return view('backend.page.sub.edit', compact('page', 'subPage'));
+    }
 
-        if ($page) {
-            return country()->$page;
-        } else {
-            return $pages;
+    /**
+     * @param Page $page
+     * @param SubPage $subPage
+     * @param SubPageUpdateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Page $page, SubPage $subPage, SubPageUpdateRequest $request)
+    {
+        $subPage->update($request->subPageFillData($page->id));
+
+        return redirect()
+            ->back()
+            ->with('success', trans('messages.update_success', ['entity' => 'Sub Page']));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Page $page
+     * @param SubPage $subPage
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Page $page, SubPage $subPage)
+    {
+        if ($subPage->delete())
+        {
+            return response()->json([
+                'Result' => 'OK'
+            ]);
         }
-    }
 
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function store(Request $request)
-    {
-        if (!$this->user->can('create.cms')) return redirect()->route('errors', '401');
-
-        $inputs = $request->all();
-        $inputs['slug'] = str_slug($inputs['title']);
-
-        $page = $this->pages($inputs['page_id']);
-
-        $page->subPages()->create($inputs);
-
-        return redirect()->back()->with('success', 'Sub page created!');
-    }
-
-    /**
-     * @param SubPage $subPage
-     * @return mixed
-     */
-    public function edit(SubPage $subPage)
-    {
-        if (!$this->user->can('update.cms')) return redirect()->route('errors', '401');
-
-        $pages = $this->pages();
-
-        return view('admin.pages.subpages.edit', compact('pages', 'subPage'));
-    }
-
-    /**
-     * @param Request $request
-     * @param SubPage $subPage
-     * @return mixed
-     */
-    public function update(Request $request, SubPage $subPage)
-    {
-        if (!$this->user->can('update.cms')) return redirect()->route('errors', '401');
-
-        $inputs = $request->except(['_token', '_method', 'page_id']);
-        $inputs['slug'] = str_slug($inputs['title']);
-
-        $page = $this->pages($request->get('page_id'));
-
-        $page->subPages()->update($inputs);
-
-        return redirect()->route('admin.subpage.edit', $inputs['slug'])->withSuccess('Sub page updated!');
-    }
-
-    /**
-     * @param SubPage $subPage
-     * @return mixed
-     * @throws \Exception
-     */
-    public function destroy(SubPage $subPage)
-    {
-        if (!$this->user->can('delete.cms')) return redirect()->route('errors', '401');
-
-        $subPage->delete();
-
-        return redirect()->back()->with('success', 'Sub Page deleted!');
+        return response()->json([
+            'Result' => 'Error'
+        ], 500);
     }
 }

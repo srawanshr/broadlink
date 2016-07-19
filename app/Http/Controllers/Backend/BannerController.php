@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Service;
 use DB;
 use App\Models\Page;
 use App\Models\Image;
@@ -10,50 +11,55 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerUploadRequest;
 
-class BannerController extends Controller
-{
+class BannerController extends Controller {
+
     /**
      * @return mixed
      */
     public function index()
     {
         $pages = Page::draft(false)->get();
-        
-        return view('backend.banner.index', compact('pages'));
+
+        $services = Service::active(true)->get();
+
+        return view('backend.banner.index', compact('pages', 'services'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Request\BannerUploadRequest  $request
+     * @param \App\Http\Requests\BannerUploadRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(BannerUploadRequest $request)
     {
-        $page = Page::findOrFail($request->get('page'));
+        $model = $this->getRequiredModel($request);
 
-        DB::transaction(function() use($request, $page) {
+        if ( ! $model) return redirect()->back()->withError(trans('messages.upload_error'));
 
+        DB::transaction(function () use ($request, $model)
+        {
             $image = $request->file('banner');
 
-            $page->banners()->create([ 'name' => cleanFileName($image) ])->upload($image);
+            $model->banners()->create(['name' => cleanFileName($image)])->upload($image);
 
         });
 
-        return redirect()->back()->withSuccess( trans('messages.upload_success', [ 'entity' => 'Banner'] ) );
+        return redirect()->back()->withSuccess(trans('messages.upload_success', ['entity' => 'Banner']));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Requests $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {        
+    {
         $banner = Image::find($request->get('id'));
 
-        if($banner->delete()) {
+        if ($banner->delete())
+        {
             return response()->json([
                 'Result' => 'OK'
             ]);
@@ -62,5 +68,25 @@ class BannerController extends Controller
         return response()->json([
             'Result' => 'Error'
         ], 500);
+    }
+
+    /**
+     * @param BannerUploadRequest $request
+     * @return mixed
+     */
+    public function getRequiredModel(BannerUploadRequest $request)
+    {
+        if ($request->has('page'))
+        {
+            $model = Page::findOrFail($request->get('page'));
+        } elseif ($request->has('service'))
+        {
+            $model = Service::findOrFail($request->get('service'));
+        } else
+        {
+            return false;
+        }
+
+        return $model;
     }
 }

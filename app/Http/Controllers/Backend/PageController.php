@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Page;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Services\UploadsManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PageCreateRequest;
 use App\Http\Requests\PageUpdateRequest;
 
-class PageController extends Controller
-{
+class PageController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +36,7 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Request\PageCreateRequest  $request
+     * @param \App\Http\Requests\PageCreateRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(PageCreateRequest $request)
@@ -46,7 +45,7 @@ class PageController extends Controller
 
         return redirect()
             ->route('admin::page.edit', $page->slug)
-            ->withSuccess( trans( 'messages.create_success', [ 'entity' => 'Page' ] ) );
+            ->with('success', trans('messages.create_success', ['entity' => 'Page']));
     }
 
     /**
@@ -67,12 +66,11 @@ class PageController extends Controller
      */
     public function update(PageUpdateRequest $request, Page $page)
     {
-        dd($page);
         $page->update($request->pageFillData());
 
         return redirect()
             ->back()
-            ->with('success', trans( 'messages.update_success', [ 'entity' => 'Page' ] ) );
+            ->with('success', trans('messages.update_success', ['entity' => 'Page']));
     }
 
     /**
@@ -83,7 +81,8 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        if($page->delete()) {
+        if ($page->delete())
+        {
             return response()->json([
                 'Result' => 'OK'
             ]);
