@@ -1,0 +1,149 @@
+<?php
+
+namespace App\Models;
+
+use App\Services\Parsedowner;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Service extends Model {
+
+    use SoftDeletes;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'meta_description', 'description_raw', 'description_html', 'order', 'is_active'
+    ];
+
+    /**
+     * The attributes that should be typecast into boolean.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
+    /**
+     * The morph class name for this model.
+     *
+     * @var array
+     */
+    protected $morphClass = 'Service';
+
+    /**
+     * Set the title attribute and the slug.
+     *
+     * @param string $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+
+        if ( ! $this->exists)
+        {
+            $this->setUniqueSlug($value, '');
+        }
+    }
+
+    /**
+     * Recursive routine to set a unique slug.
+     *
+     * @param $name
+     * @param mixed $extra
+     * @internal param string $title
+     */
+    protected function setUniqueSlug($name, $extra)
+    {
+        $slug = str_slug($name . '-' . $extra);
+
+        if (static::withTrashed()->whereSlug($slug)->exists())
+        {
+            $this->setUniqueSlug($name, $extra + 1);
+
+            return;
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+    /**
+     * Set the HTML content automatically when the raw description is set.
+     *
+     * @param string $value
+     */
+    public function setDescriptionRawAttribute($value)
+    {
+        $markdown = new Parsedowner();
+        $this->attributes['description_raw'] = $value;
+        $this->attributes['description_html'] = $markdown->toHTML($value);
+    }
+
+    /**
+     * Set the order attribute.
+     *
+     * @param string $value
+     */
+    public function setOrderAttribute($value)
+    {
+        if ( ! $this->exists && empty($value))
+            $this->attributes['order'] = static::max('order') + 1;
+        else
+            $this->attributes['order'] = $value;
+    }
+
+    /**
+     * Scope a query to draft or non pages.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param bool $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query, $type = true)
+    {
+        return $query->whereIsActive($type);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function banners()
+    {
+        return $this->morphMany('App\Models\Image', 'imageable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function icon()
+    {
+        return $this->morphOne('App\Models\Icon', 'iconable');
+    }
+
+    /**
+     * @param array $options
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function delete(array $options = array())
+    {
+        if ( ! $this->banners->isEmpty())
+        {
+            foreach ($this->banners as $banner)
+            {
+                $banner->delete();
+            }
+        }
+
+        if ( ! empty($this->icon))
+        {
+            $this->icon->delete();
+        }
+
+        return parent::delete($options);
+    }
+}
