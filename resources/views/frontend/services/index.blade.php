@@ -1,13 +1,13 @@
-@extends('layouts.master')
+@extends('frontend.layouts.master')
 
 @section('title', 'Broadlink :: Services')
 
 @section('header')
-    {{ Html::style('assets/css/style.css')}}
+    {{ Html::style('assets/frontend/css/style.css')}}
 @stop
 
 @section('body')
-    @include('partials.banner')
+    @include('frontend.partials.banner')
     <section class="uk-block services uk-block-default">
         <div class="uk-container uk-container-center">
             <ul class="uk-tab bl-tab" data-uk-tab="{connect:'#services'}">
@@ -17,7 +17,7 @@
                 <li><a href="javascript:void(0);">bundle</a></li>
             </ul>
             <ul class="uk-switcher bl-switcher" id="services">
-                <li>@include('services.internet.index')</li>
+                <li>@include('frontend.services.internet.index')</li>
                 <li>b</li>
                 <li>c</li>
                 <li>d</li>
