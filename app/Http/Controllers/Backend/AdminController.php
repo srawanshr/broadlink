@@ -90,7 +90,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Requests $request
+     * @param Requests|Request $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
@@ -114,6 +114,7 @@ class AdminController extends Controller
     /**
      * Process datatables ajax request.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function adminList(Request $request)

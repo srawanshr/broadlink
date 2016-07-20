@@ -97,6 +97,22 @@ $router->group([
         Route::get('{service_slug}/edit', 'ServiceController@edit')->name('edit');
         Route::put('{service_slug}', 'ServiceController@update')->name('update');
         Route::delete('{service_slug}', 'ServiceController@destroy')->name('destroy');
+        Route::post('sort/order', 'ServiceController@updateSortOrder')->name('sort.order');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Plan Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'plan', 'as' => 'plan.' ], function () {
+        Route::get('/', 'PlanController@index')->name('index');
+        Route::get('create', 'PlanController@create')->name('create');
+        Route::post('/', 'PlanController@store')->name('store');
+        Route::get('{plan_slug}/edit', 'PlanController@edit')->name('edit');
+        Route::put('{plan_slug}', 'PlanController@update')->name('update');
+        Route::delete('{plan_slug}', 'PlanController@destroy')->name('destroy');
+        Route::post('sort/order', 'PlanController@updateSortOrder')->name('sort.order');
     });
 
     /*

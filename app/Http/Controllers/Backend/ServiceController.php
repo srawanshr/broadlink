@@ -16,7 +16,7 @@ class ServiceController extends Controller {
      */
     public function index()
     {
-        $services = Service::all();
+        $services = Service::orderBy('order')->get();
 
         return view('backend.service.index', compact('services'));
     }
@@ -60,7 +60,7 @@ class ServiceController extends Controller {
     {
         $service->update($request->serviceFillData());
 
-        return redirect()->back()->with('success', trans('messages.update_success', [ 'entity' => 'Service']));
+        return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Service']));
     }
 
     /**
@@ -79,5 +79,26 @@ class ServiceController extends Controller {
         return response()->json([
             'Result' => 'Error'
         ], 500);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateSortOrder(Request $request)
+    {
+        $order = $request->get('order');
+
+        foreach ($order as $order => $id)
+        {
+            $service = Service::findOrFail($id);
+            $service->order = $order;
+            $service->save();
+        }
+
+        return response()->json([
+            'Result'  => 'OK',
+            'Message' => trans('messages.update_success', ['entity' => 'Order'])
+        ]);
     }
 }

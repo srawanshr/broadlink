@@ -1,7 +1,7 @@
 <script>
     function setActiveLink() {
         var requestUrl = "{{ Request::url() }}";
-        var $activeLink = $("#sidebar_main a[href='" + requestUrl + "']");
+        var $activeLink = $("#sidebar_main").find("a[href='" + requestUrl + "']");
 
         $activeLink.closest('li').addClass('current_section');
 
@@ -16,14 +16,14 @@
     }
 
     function showNotify(status, message) {
-        thisNotify = UIkit.notify({
+        var thisNotify = UIkit.notify({
             message: message,
             status: status,
             timeout: 5000,
             group: status,
             pos: 'top-right',
-            onClose: function() {
-                $body.find('.md-fab-wrapper').css('margin-bottom','');
+            onClose: function () {
+                $body.find('.md-fab-wrapper').css('margin-bottom', '');
             }
         });
         if(

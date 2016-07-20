@@ -5,27 +5,34 @@
 @section('content')
     <div id="page_content">
         <div id="page_content_inner">
-            <h3 class="heading_b uk-margin-bottom">All Pages</h3>
+            <h3 class="heading_b uk-margin-bottom">All Services</h3>
 
             <div class="md-card">
                 <div class="md-card-content">
                     <div class="uk-grid" data-uk-grid-margin>
                         <div class="uk-width-1-1">
                             <div class="uk-overflow-container">
-                                <table id="dt_default" class="uk-table">
+                                <table id="dt_default" class="uk-table" data-sort-order-url="{{ route('admin::service.sort.order') }}">
                                     <thead>
                                     <tr>
+                                        <th class="uk-width-1-6 uk-text-center"><i class="material-icons">&#xE164;</i></th>
                                         <th class="uk-width-2-6">Name</th>
-                                        <th class="uk-width-1-6 uk-text-center">Order</th>
                                         <th class="uk-width-1-6 uk-text-center">Status</th>
                                         <th class="uk-width-2-6 uk-text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($services as $service)
+                                    @foreach($services as $key => $service)
                                         <tr>
+                                            <td class="uk-text-center sort_item" data-id="{{ $service->id }}">
+                                                <a class="move_item_up" data-uk-tooltip="{pos:'left'}" title="Move Up">
+                                                    <i class="material-icons md-24">&#xE5C7;</i>
+                                                </a>
+                                                <a class="move_item_down" data-uk-tooltip="{pos:'right'}" title="Move Down">
+                                                    <i class="material-icons md-24">&#xE5C5;</i>
+                                                </a>
+                                            </td>
                                             <td class="uk-text-large uk-text-nowrap">{{ $service->name }}</td>
-                                            <td class="uk-text-nowrap uk-text-center">{{ $service->order }}</td>
                                             <td class="uk-text-nowrap uk-text-center">
                                                 <span class="uk-badge uk-badge-{{ $service->is_active ? 'Success' : 'Default' }}">
                                                     {{ $service->is_active ? 'Active' : 'Passive' }}
@@ -73,25 +80,58 @@
 
     <script>
         $(document).ready(function () {
+            function updateSortOrder() {
+                var order = getOrder();
+                $.ajax({
+                    type: 'post',
+                    url: $('#dt_default').data('sort-order-url'),
+                    data: {order: order},
+                    success:function (response) {
+                        showNotify('success', response.Message);
+                    },
+                    error: function () {
+                        UIkit.modal.alert('Order update failed!');
+                    }
+                });
+            }
+
+            function getOrder() {
+                var order = [];
+                $.each($('.sort_item'), function (index, value) {
+                    order[index] = $(value).data('id');
+                });
+                return order;
+            }
+
+            $(document).on('click', '.move_item_up,.move_item_down', function(){
+                var row = $(this).parents("tr:first");
+                if ($(this).is('.move_item_up')) {
+                    row.insertBefore(row.prev());
+                } else if ($(this).is('.move_item_down')) {
+                    row.insertAfter(row.next());
+                }
+                updateSortOrder();
+            });
+
+            function deleteItem(item) {
+                $.ajax({
+                    type: 'post',
+                    url: item.data('source'),
+                    data: {_method: 'delete'},
+                    success: function () {
+                        location.reload();
+                    },
+                    error: function () {
+                        UIkit.modal.alert('Remove failed!');
+                    }
+                });
+            }
+
             $(document).on('click', '.item_delete', function() {
-                var p = $(this);
+                var item = $(this);
 
                 UIkit.modal.confirm('Are you sure?', function() {
-                    $.ajax({
-                        type: 'post',
-                        url: p.data('source'),
-                        data: { _method: 'delete' },
-                        success: function (response) {
-
-                            location.reload();
-
-                        },
-                        error: function (response) {
-
-                            UIkit.modal.alert('Remove failed!');
-
-                        }
-                    });
+                    deleteItem(item);
                 });
             });
         });

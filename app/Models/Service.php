@@ -125,6 +125,14 @@ class Service extends Model {
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function plans()
+    {
+        return $this->hasMany('App\Models\Plan');
+    }
+
+    /**
      * @param array $options
      * @return bool|null|void
      * @throws \Exception

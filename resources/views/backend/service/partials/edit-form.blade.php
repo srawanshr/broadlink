@@ -48,8 +48,8 @@
                 <div class="uk-grid">
                     <div class="uk-width-medium-1-2">
                         <div class="uk-form-row">
-                            {{ Form::checkbox('is_active', true, old('is_active'), [ 'id' => 'service_draft', 'data-switchery' ] ) }}
-                            <label for="user_edit_active" class="inline-label">Active</label>
+                            {{ Form::checkbox('is_active', true, old('is_active'), [ 'id' => 'service_is_active', 'data-switchery' ] ) }}
+                            <label for="service_is_active" class="inline-label">Active</label>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-2">

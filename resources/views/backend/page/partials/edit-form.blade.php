@@ -48,8 +48,8 @@
                 <div class="uk-grid">
                     <div class="uk-width-medium-1-2">
                         <div class="uk-form-row">
-                            {{ Form::checkbox('is_draft', true, old('is_draft'), [ 'id' => 'page_draft', 'data-switchery' ] ) }}
-                            <label for="user_edit_active" class="inline-label">Draft</label>
+                            {{ Form::checkbox('is_draft', true, old('is_draft'), [ 'id' => 'page_is_draft', 'data-switchery' ] ) }}
+                            <label for="page_is_draft" class="inline-label">Draft</label>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-2">

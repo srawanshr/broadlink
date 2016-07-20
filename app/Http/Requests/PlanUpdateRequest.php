@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ServiceUpdateRequest extends Request
+class PlanUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class ServiceUpdateRequest extends Request
     public function rules()
     {
         return [
+            'service_id'       => 'exists:services,id',
             'name'             => 'required',
             'meta_description' => 'required',
             'description_raw'  => 'required',
+            'image'            => 'image|max:2048',
             'is_active'        => 'boolean'
         ];
     }
@@ -34,7 +36,7 @@ class ServiceUpdateRequest extends Request
     /**
      * @return array
      */
-    public function serviceFillData()
+    public function planFillData()
     {
         $inputs = $this->all();
 

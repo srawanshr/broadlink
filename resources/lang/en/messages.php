@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'empty'          => 'No :name available.',
+    'empty'          => 'No :entity available.',
     'create_success' => 'New :entity has been created.',
     'update_success' => ':entity has been updated.',
     'delete_success' => ':entity has been deleted.',

@@ -32,8 +32,14 @@
                 </a>
             </li>
             <li >
+                <a href="{{ route('admin::plan.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE8EB;</i></span>
+                    <span class="menu_title">Plans</span>
+                </a>
+            </li>
+            <li >
                 <a href="{{ route('admin::service.index') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xEB49;</i></span>
+                    <span class="menu_icon"><i class="material-icons">&#xE553;</i></span>
                     <span class="menu_title">Services</span>
                 </a>
             </li>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\App\Models;
+namespace App\Models;
 
 use App\Services\Parsedowner;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategory extends Model {
+class Plan extends Model {
 
     /**
      * The attributes that are mass assignable.
@@ -13,7 +13,16 @@ class ProductCategory extends Model {
      * @var array
      */
     protected $fillable = [
-        'service_id', 'name', 'meta_description', 'description_raw', 'description_html', 'order'
+        'service_id', 'name', 'meta_description', 'description_raw', 'description_html', 'order', 'is_active'
+    ];
+
+    /**
+     * The attributes that should be typecast into boolean.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 
     /**
@@ -21,7 +30,7 @@ class ProductCategory extends Model {
      *
      * @var array
      */
-    protected $morphClass = 'ProductCategory';
+    protected $morphClass = 'Plan';
 
     /**
      * Set the title attribute and the slug.
@@ -32,7 +41,7 @@ class ProductCategory extends Model {
     {
         $this->attributes['name'] = $value;
 
-        if (!$this->exists)
+        if ( ! $this->exists)
         {
             $this->setUniqueSlug($value, '');
         }
@@ -72,6 +81,18 @@ class ProductCategory extends Model {
     }
 
     /**
+     * Scope a query to draft or non pages.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param bool $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query, $type = true)
+    {
+        return $query->whereIsActive($type);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function service()
@@ -85,5 +106,28 @@ class ProductCategory extends Model {
     public function products()
     {
         return $this->hasMany('App\Models\Product');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    /**
+     * @param array $options
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function delete(array $options = array())
+    {
+        if ( ! empty($this->image))
+        {
+            $this->image->delete();
+        }
+
+        return parent::delete($options);
     }
 }

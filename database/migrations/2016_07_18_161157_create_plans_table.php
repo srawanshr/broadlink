@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductCategoriesTable extends Migration {
+class CreatePlansTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateProductCategoriesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('product_categories', function (Blueprint $table)
+        Schema::create('plans', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -23,6 +23,7 @@ class CreateProductCategoriesTable extends Migration {
             $table->text('description_raw');
             $table->text('description_html');
             $table->integer('order');
+            $table->boolean('is_active')->default(0);
             $table->foreign('service_id')
                 ->references('id')
                 ->on('services')
@@ -38,6 +39,6 @@ class CreateProductCategoriesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('product_categories');
+        Schema::drop('plans');
     }
 }

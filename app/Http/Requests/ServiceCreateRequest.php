@@ -31,6 +31,9 @@ class ServiceCreateRequest extends Request {
         ];
     }
 
+    /**
+     * @return array
+     */
     public function serviceFillData()
     {
         $inputs = $this->all();
