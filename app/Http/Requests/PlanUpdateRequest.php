@@ -24,7 +24,7 @@ class PlanUpdateRequest extends Request
     public function rules()
     {
         return [
-            'service_id'       => 'exists:services,id',
+            'service_id'       => 'required|exists:services,id',
             'name'             => 'required',
             'meta_description' => 'required',
             'description_raw'  => 'required',

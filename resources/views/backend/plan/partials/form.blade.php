@@ -1,3 +1,4 @@
+@include('backend.partials.errors')
 <input type="hidden" name="order" value="" />
 <div class="uk-grid" data-uk-grid-margin>
     <div class="uk-width-large-7-10">
@@ -70,7 +71,7 @@
                     <div class="uk-width-1-1">
                         @foreach($services as $id => $name)
                             <p>
-                                {{ Form::radio('service_id', $id, old('service_id'), ['id' => 'plan_service_id_'.$id, 'data-md-icheck' ]) }}
+                                {{ Form::radio('service_id', $id, old('service_id'), [ 'id' => 'plan_service_id_'.$id, 'data-md-icheck', 'required' ]) }}
                                 <label for="plan_service_id_{{ $id }}" class="inline-label">{{ $name }}</label>
                             </p>
                         @endforeach
@@ -90,9 +91,9 @@
                 <div class="uk-grid" data-uk-grid-margin="10">
                     <div class="uk-width-1-1">
                         @if(isset($plan) && ! is_null($plan->image))
-                            <input type="file" name="image" id="image_file" class="dropify" data-default-file="{{ asset($plan->image->thumbnail(260,198)) }}"/>
+                            <input type="file" name="image" id="image_file" class="dropify" data-default-file="{{ asset($plan->image->thumbnail(260,198)) }}" />
                         @else
-                            <input type="file" name="image" id="image_file" class="dropify" required/>
+                            <input type="file" name="image" id="image_file" class="dropify" />
                         @endif
                     </div>
                 </div>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use DB;
 use App\Models\Plan;
 use App\Http\Requests;
 use App\Models\Service;
-use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PlanUpdateRequest;
 use App\Http\Requests\PlanCreateRequest;
+use App\Http\Requests\PlanUpdateRequest;
 
 class PlanController extends Controller {
 
@@ -19,7 +19,6 @@ class PlanController extends Controller {
     public function index()
     {
         $plans = Plan::orderBy('order')->get();
-
 
         return view('backend.plan.index', compact('plans'));
     }

@@ -12,7 +12,7 @@
         <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
         @yield('og-description')
 
-        <title>{{ config('website.title') }} @yield('title')</title>
+        <title>{{ config('website.title') }} - @yield('title')</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="{{ asset('assets/backend/img/favicon-16x16.png') }}" sizes="16x16">
