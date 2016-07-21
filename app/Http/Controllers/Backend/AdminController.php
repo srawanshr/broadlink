@@ -8,7 +8,6 @@ use Datatables;
 use App\Models\Admin;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Jobs\AdminFormFields;
 use App\Services\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCreateRequest;

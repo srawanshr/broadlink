@@ -48,7 +48,7 @@ class PinController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Request\PinImportRequest  $request
+     * @param PinImportRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(PinImportRequest $request)

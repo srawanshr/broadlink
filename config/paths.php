@@ -17,7 +17,8 @@ return [
         'Admin'   => 'images/profile-pictures/',
         'Page'    => 'images/page-pictures/',
         'Service' => 'images/service-pictures/',
-        'Plan'    => 'images/plan-pictures/'
+        'Plan'    => 'images/plan-pictures/',
+        'Product' => 'images/product-pictures/'
 
     ],
 

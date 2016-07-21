@@ -23,6 +23,7 @@ elixir(function(mix) {
 
     mix.scripts(['pages/login.js'], 'public/assets/backend/js/pages/login.min.js')
        .scripts(['pages/forms_wysiwyg.js'], 'public/assets/backend/js/pages/forms_wysiwyg.min.js')
+       .scripts(['pages/plugins_datatables.js'], 'public/assets/backend/js/pages/plugins_datatables.min.js')
        .scripts(['pages/forms_file_input.js'], 'public/assets/backend/js/pages/forms_file_input.min.js');
 	/*
 	 |--------------------------------------------------------------------------

@@ -29,15 +29,11 @@
                         type: 'post',
                         url: p.data('source'),
                         data: { _method: 'delete' },
-                        success: function (response) {
-
+                        success: function () {
                             location.reload();
-
                         },
-                        error: function (response) {
-
+                        error: function () {
                             UIkit.model.alert('Remove failed!');
-
                         }
                     });
                 });

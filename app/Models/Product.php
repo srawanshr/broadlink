@@ -1,7 +1,8 @@
 <?php
 
-namespace App\App\Models;
+namespace App\Models;
 
+use App\Services\Parsedowner;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -12,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_category_id', 'name', 'meta_description', 'description_raw', 'description_html', 'price', 'order', 'is_active'
+        'plan_id', 'name', 'description_raw', 'description_html', 'price', 'order', 'is_active'
     ];
 
     /**
@@ -29,7 +30,7 @@ class Product extends Model
      *
      * @var array
      */
-    protected $morphClass = 'Service';
+    protected $morphClass = 'Product';
 
     /**
      * Set the title attribute and the slug.
@@ -56,7 +57,7 @@ class Product extends Model
     {
         $slug = str_slug($name . '-' . $extra);
 
-        if (static::withTrashed()->whereSlug($slug)->exists()) {
+        if (static::whereSlug($slug)->exists()) {
             $this->setUniqueSlug($name, $extra + 1);
             return;
         }
@@ -77,6 +78,15 @@ class Product extends Model
     }
 
     /**
+     * Append service id to JSON form
+     * @return string
+     */
+    public function getServiceIdAttribute()
+    {
+        return $this->plan->service->id;
+    }
+
+    /**
      * Scope a query to draft or non pages.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -91,8 +101,16 @@ class Product extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    public function plan()
     {
-        return $this->belongsTo('App\Models\ProductCategory', 'product_category_id');
+        return $this->belongsTo('App\Models\Plan');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 }

@@ -74,7 +74,7 @@
     </div>
 
     <div class="md-fab-wrapper">
-        <a class="md-fab md-fab-accent" href="{{ route('admin::page.create') }}" id="pageAdd">
+        <a class="md-fab md-fab-accent" href="{{ route('admin::page.create') }}" id="pageAdd" data-uk-tooltip="{pos:'up'}" title="Create Page">
             <i class="material-icons">&#xE145;</i>
         </a>
     </div>

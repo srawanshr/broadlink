@@ -31,6 +31,12 @@
                     <span class="menu_title">Pages</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin::product.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE8F6;</i></span>
+                    <span class="menu_title">Products</span>
+                </a>
+            </li>
             <li >
                 <a href="{{ route('admin::plan.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE8EB;</i></span>

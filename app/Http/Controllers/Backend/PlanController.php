@@ -30,9 +30,6 @@ class PlanController extends Controller {
     {
         $services = $this->getServicesList();
 
-        if ($services->isEmpty())
-            return redirect()->route('admin::service.create')->with('warning', trans('messages.empty', ['entity' => 'Services']));
-
         return view('backend.plan.create', compact('services'));
     }
 

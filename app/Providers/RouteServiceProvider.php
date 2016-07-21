@@ -42,6 +42,10 @@ class RouteServiceProvider extends ServiceProvider
             return \App\Models\Plan::where( 'slug', $slug )->first();
         });
 
+        $router->bind( 'product_slug', function ( $slug ) {
+            return \App\Models\Product::where( 'slug', $slug )->first();
+        });
+
         $router->bind( 'banner_id', function ( $id ) {
             return \App\Models\Image::find($id);
         });

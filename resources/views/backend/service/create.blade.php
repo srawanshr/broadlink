@@ -16,8 +16,6 @@
 @stop
 
 @push('scripts')
-<!-- tinymce -->
-<script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-
-<script src="{{ asset('assets/backend/js/pages/forms_wysiwyg.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/pages/forms_wysiwyg.min.js') }}"></script>
 @endpush

@@ -15,15 +15,18 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('product_category_id')->unsigned();
+            $table->integer('plan_id')->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('meta_description');
             $table->text('description_raw');
             $table->text('description_html');
             $table->float('price');
             $table->integer('order');
             $table->boolean('is_active')->default(false);
+            $table->foreign('plan_id')
+                ->references('id')
+                ->on('plans')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }

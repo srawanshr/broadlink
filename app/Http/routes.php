@@ -117,6 +117,21 @@ $router->group([
 
     /*
     |--------------------------------------------------------------------------
+    | Product Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'product', 'as' => 'product.' ], function () {
+        Route::get('/', 'ProductController@index')->name('index');
+        Route::get('create', 'ProductController@create')->name('create');
+        Route::post('/', 'ProductController@store')->name('store');
+        Route::get('{product_slug}/edit', 'ProductController@edit')->name('edit');
+        Route::put('{product_slug}', 'ProductController@update')->name('update');
+        Route::delete('{product_slug}', 'ProductController@destroy')->name('destroy');
+        Route::post('sort/order', 'ProductController@updateSortOrder')->name('sort.order');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | Asset Management Routes
     |--------------------------------------------------------------------------
     */
@@ -141,6 +156,7 @@ $router->group([
     'as' => 'admin::'
 ], function () {
     Route::get('file', 'UploadController@fileList')->name('file.list');
+    Route::post('pin', 'PinController@pinList')->name('pin.list');
     Route::post('admin-user', 'AdminController@adminList')->name('user.list');
 });
 
