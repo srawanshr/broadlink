@@ -23,7 +23,7 @@
     </div>
 
     <div class="md-fab-wrapper">
-        <a class="md-fab md-fab-accent" href="#" id="recordAdd">
+        <a class="md-fab md-fab-accent" href="#" id="recordAdd" data-uk-tooltip="{pos:'left'}" title="Create User">
             <i class="material-icons">&#xE145;</i>
         </a>
     </div>

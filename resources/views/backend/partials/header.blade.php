@@ -20,7 +20,7 @@
                         <a href="#" class="user_action_image"><img class="md-user-image" src="{{ user_avatar('admin', 34) }}" alt=""/></a>
                         <div class="uk-dropdown uk-dropdown-small">
                             <ul class="uk-nav js-uk-prevent">
-                                <li><a href="page_user_profile.html">My profile</a></li>
+                                <li><a href="{{ route('admin::user.show', auth()->guard('admin')->user()->slug) }}">My profile</a></li>
                                 <li><a href="page_settings.html">Settings</a></li>
                                 <li><a href="{{ url('admin/logout') }}">Logout</a></li>
                             </ul>

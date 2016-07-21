@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AdminUpdateRequest extends Request {
+class AdminProfileUpdateRequest extends Request {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,7 @@ class AdminUpdateRequest extends Request {
     public function rules()
     {
         return [
-            'email'      => 'required|email|unique:admins,email,' . $this->id,
-            'username'   => 'required|unique:admins,username,' . $this->id,
-            'first_name' => 'required',
-            'last_name'  => 'required',
+            'email'      => 'required|email|unique:admins,email,' . $this->user_slug->id,
             'password'   => 'min:8|confirmed',
             'image'      => 'image|max:1024'
         ];
@@ -37,7 +34,6 @@ class AdminUpdateRequest extends Request {
     public function adminFillData()
     {
         $data = [
-            'username'   => $this->username,
             'email'      => $this->email,
             'first_name' => $this->first_name,
             'last_name'  => $this->last_name,

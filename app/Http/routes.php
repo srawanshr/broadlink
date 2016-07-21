@@ -41,6 +41,8 @@ $router->group([
         Route::post('user', 'AdminController@store')->name('store');
         Route::post('user/update', 'AdminController@update')->name('update');
         Route::post('user/delete', 'AdminController@destroy')->name('destroy');
+        Route::get('user/{user_slug}', 'AdminController@show')->name('show');
+        Route::put('user/{user_slug}', 'AdminController@updateProfile')->name('profile.update');
     });
 
     /*

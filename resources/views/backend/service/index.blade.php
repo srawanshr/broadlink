@@ -62,7 +62,7 @@
     </div>
 
     <div class="md-fab-wrapper">
-        <a class="md-fab md-fab-accent" href="{{ route('admin::service.create') }}" id="serviceAdd">
+        <a class="md-fab md-fab-accent" href="{{ route('admin::service.create') }}" id="serviceAdd" data-uk-tooltip="{pos:'left'}" title="Create Service">
             <i class="material-icons">&#xE145;</i>
         </a>
     </div>

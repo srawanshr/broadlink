@@ -18,9 +18,9 @@ class PlanController extends Controller {
      */
     public function index()
     {
-        $plans = Plan::orderBy('order')->get();
+        $servicePlans = Plan::orderBy('order')->get()->groupBy('service.name');
 
-        return view('backend.plan.index', compact('plans'));
+        return view('backend.plan.index', compact('servicePlans'));
     }
 
     /**

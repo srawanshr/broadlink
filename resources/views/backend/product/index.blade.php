@@ -61,7 +61,7 @@
     </div>
 
     <div class="md-fab-wrapper">
-        <a class="md-fab md-fab-accent" href="{{ route('admin::product.create') }}" id="productAdd" data-uk-tooltip="{pos:'up'}" title="Add Product">
+        <a class="md-fab md-fab-accent" href="{{ route('admin::product.create') }}" id="productAdd" data-uk-tooltip="{pos:'left'}" title="Add Product">
             <i class="material-icons">&#xE145;</i>
         </a>
     </div>

@@ -10,8 +10,11 @@ $(function() {
 altair_datatables = {
     dt_default: function() {
         var $dt_default = $('.uk-table');
+        var paging = $dt_default.data('paging') ? $dt_default.data('paging') : true;
         if($dt_default.length) {
-            $dt_default.DataTable();
+            $dt_default.DataTable({
+                paging: paging
+            });
         }
     }
     // dt_scroll: function() {
