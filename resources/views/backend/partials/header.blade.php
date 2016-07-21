@@ -21,7 +21,7 @@
                         <div class="uk-dropdown uk-dropdown-small">
                             <ul class="uk-nav js-uk-prevent">
                                 <li><a href="{{ route('admin::user.show', auth()->guard('admin')->user()->slug) }}">My profile</a></li>
-                                <li><a href="page_settings.html">Settings</a></li>
+                                <li><a href="{{ route('admin::setting') }}">Settings</a></li>
                                 <li><a href="{{ url('admin/logout') }}">Logout</a></li>
                             </ul>
                         </div>

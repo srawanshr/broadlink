@@ -26,10 +26,12 @@ $router->group([
 ], function () {
     /*
     |--------------------------------------------------------------------------
-    | Admin Dashboard Routes
+    | Various Admin Routes
     |--------------------------------------------------------------------------
     */
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('settings', 'SettingController@index')->name('setting');
+    Route::put('settings', 'SettingController@update')->name('setting.update');
 
     /*
     |--------------------------------------------------------------------------
@@ -134,6 +136,18 @@ $router->group([
 
     /*
     |--------------------------------------------------------------------------
+    | Contact CRUD Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'as' => 'contact.' ], function() {
+        Route::get('contact', 'ContactController@index')->name('index');
+        Route::post('contact', 'ContactController@store')->name('store');
+        Route::post('contact/update', 'ContactController@update')->name('update');
+        Route::post('contact/delete', 'ContactController@destroy')->name('destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | Asset Management Routes
     |--------------------------------------------------------------------------
     */
@@ -160,6 +174,7 @@ $router->group([
     Route::get('file', 'UploadController@fileList')->name('file.list');
     Route::post('pin', 'PinController@pinList')->name('pin.list');
     Route::post('admin-user', 'AdminController@adminList')->name('user.list');
+    Route::post('contact', 'ContactController@contactList')->name('contact.list');
 });
 
 /*

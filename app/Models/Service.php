@@ -97,7 +97,7 @@ class Service extends Model {
     }
 
     /**
-     * Scope a query to draft or non pages.
+     * Scope a query to get active or non services.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param bool $type

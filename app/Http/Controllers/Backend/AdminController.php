@@ -49,11 +49,9 @@ class AdminController extends Controller {
     {
         $admin = DB::transaction(function () use ($request)
         {
-
             $admin = $this->admin->create($request->adminFillData());
 
             return $admin;
-
         });
 
         return response()->json([
@@ -91,12 +89,7 @@ class AdminController extends Controller {
 
         DB::transaction(function () use ($admin)
         {
-
-            if ($admin->image)
-                $admin->image->delete();
-
             $admin->delete();
-
         });
 
         return response()->json([

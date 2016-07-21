@@ -7,13 +7,13 @@
     altair_crud_table = {
         init: function() {
 
-            $('#admin_crud').jtable({
-                title: 'All Users',
+            $('#contact_crud').jtable({
+                title: 'All Contacts',
                 paging: true, //Enable paging
                 pageSize: 10, //Set page size (default: 10)
                 addRecordButton: $('#recordAdd'),
                 deleteConfirmation: function(data) {
-                    data.deleteConfirmMessage = 'Are you sure to delete user ' + data.record.username + '?';
+                    data.deleteConfirmMessage = 'Are you sure to delete contact ' + data.record.name + '?';
                 },
                 formCreated: function(event, data) {
                     // replace click event on some clickable elements
@@ -84,10 +84,10 @@
                     altair_md.inputs();
                 },
                 actions: {
-                    listAction: '{{ route('admin::user.list') }}',
-                    createAction: '{{ route('admin::user.store') }}',
-                    updateAction: '{{ route('admin::user.update') }}',
-                    deleteAction: '{{ route('admin::user.destroy') }}',
+                    listAction: '{{ route('admin::contact.list') }}',
+                    createAction: '{{ route('admin::contact.store') }}',
+                    updateAction: '{{ route('admin::contact.update') }}',
+                    deleteAction: '{{ route('admin::contact.destroy') }}',
                 },
                 fields: {
                     id: {
@@ -97,50 +97,29 @@
                         list: false,
                         visibility: 'hidden'
                     },
-                    first_name: {
-                        title: 'First Name*'
+                    type: {
+                        title: 'Type*',
+                        type: 'select',
+                        options: { 0 : 'Branch', 1: 'Distributor', 2: 'Reseller'}
                     },
-                    last_name: {
-                        title: 'Last Name*'
+                    name: {
+                        title: 'Name*'
                     },
                     address: {
-                        title: 'Address',
-                        display: function(data) {
-                            return data.record.address ? data.record.address : '-';
-                        }
+                        title: 'Address*'
                     },
                     phone: {
-                        title: 'Phone',
-                        display: function(data) {
-                            return data.record.phone ? data.record.phone  : '-';
-                        }
-                    },
-                    username: {
-                        title: 'Username*'
+                        title: 'Phone*'
                     },
                     email: {
-                        title: 'Email*',
-                        type: 'email'
+                        title: 'Email',
+                        type: 'email',
+                        display: function(data) {
+                            return data.record.email ? data.record.email : '-';
+                        }
                     },
-                    password: {
-                        title: 'Password*',
-                        type: 'password',
-                        edit: false,
-                        list: false
-                    },
-                    password_confirmation: {
-                        title: 'Password Confirmation*',
-                        type: 'password',
-                        edit: false,
-                        list: false
-                    },
-                    is_active: {
-                        title: 'Status*',
-                        create: false,
-                        edit: true,
-                        type: 'checkbox',
-                        values: { 'false': 'Passive', 'true': 'Active' },
-                        defaultValue: 'true'
+                    description: {
+                        title: 'Description'
                     }
                 }
             }).jtable('load');
@@ -152,7 +131,6 @@
                 .addClass('md-btn md-btn-flat')
                 .off('mouseenter focus');
             $('#AddRecordDialogSaveButton,#EditDialogSaveButton,#DeleteDialogButton').addClass('md-btn-flat-primary');
-
         }
     };
 </script>

@@ -87,7 +87,7 @@ class Product extends Model
     }
 
     /**
-     * Scope a query to draft or non pages.
+     * Scope a query to active or non product.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param bool $type

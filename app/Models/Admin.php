@@ -123,7 +123,8 @@ class Admin extends Authenticatable
      */
     public function delete(array $options = array())
     {
-        $this->image->delete();
+        if($this->image)
+            $this->image->delete();
 
         return parent::delete($options);
     }

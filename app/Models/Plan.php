@@ -81,7 +81,7 @@ class Plan extends Model {
     }
 
     /**
-     * Scope a query to draft or non pages.
+     * Scope a query to active or non plans.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param bool $type

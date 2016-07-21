@@ -62,6 +62,12 @@
                 {{--</a>--}}
             {{--</li>--}}
             <li >
+                <a href="{{ route('admin::contact.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE0BA;</i></span>
+                    <span class="menu_title">Contacts</span>
+                </a>
+            </li>
+            <li >
                 <a href="{{ route('admin::user.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE7FB;</i></span>
                     <span class="menu_title">Users</span>
