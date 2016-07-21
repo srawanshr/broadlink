@@ -100,7 +100,7 @@
                     type: {
                         title: 'Type*',
                         type: 'select',
-                        options: { 0 : 'Branch', 1: 'Distributor', 2: 'Reseller'}
+                        options: '{{ route('admin::contact.type.list') }}'
                     },
                     name: {
                         title: 'Name*'
@@ -119,7 +119,10 @@
                         }
                     },
                     description: {
-                        title: 'Description'
+                        title: 'Description',
+                        display: function(data) {
+                            return data.record.description ? data.record.description : '-';
+                        }
                     }
                 }
             }).jtable('load');

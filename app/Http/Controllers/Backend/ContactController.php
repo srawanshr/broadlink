@@ -10,8 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactCreateRequest;
 use App\Http\Requests\ContactUpdateRequest;
 
-class ContactController extends Controller
-{
+class ContactController extends Controller {
 
     protected $contact;
 
@@ -111,6 +110,24 @@ class ContactController extends Controller
             'Result'           => 'OK',
             'TotalRecordCount' => $data->count(),
             'Records'          => $data->get()->toArray()
+        ]);
+    }
+
+    public function contactTypeList()
+    {
+        $types = $this->contact->getTypes();
+
+        $contactTypes = [];
+        foreach ($types as $value => $type) {
+            $contactTypes[$value] = [
+                'DisplayText' => ucwords($type),
+                'Value'       => $value
+            ];
+        }
+
+        return response()->json([
+            'Result'  => 'OK',
+            'Options' => $contactTypes
         ]);
     }
 }

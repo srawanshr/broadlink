@@ -175,6 +175,7 @@ $router->group([
     Route::post('pin', 'PinController@pinList')->name('pin.list');
     Route::post('admin-user', 'AdminController@adminList')->name('user.list');
     Route::post('contact', 'ContactController@contactList')->name('contact.list');
+    Route::post('contact-type', 'ContactController@contactTypeList')->name('contact.type.list');
 });
 
 /*
