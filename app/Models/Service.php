@@ -50,6 +50,11 @@ class Service extends Model {
         }
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Recursive routine to set a unique slug.
      *

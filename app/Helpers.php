@@ -119,3 +119,8 @@ function user_avatar($guard, $width)
         return asset(config('paths.placeholder.avatar'));
     }
 }
+
+function services()
+{
+    return App\Models\Service::active()->get();
+}

@@ -9,13 +9,12 @@
                     <a href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="uk-parent" data-uk-dropdown>
-                    <a href="##">Services</a>
+                    <a href="##" class="hover-to-click">Services</a>
                     <div class="uk-dropdown uk-dropdown-navbar">
                         <ul class="uk-nav uk-nav-navbar">
-                            <li><a href="{{ route('service::show', 'internet') }}">Internet</a></li>
-                            <li><a href="{{ route('service::show', 'broadtel') }}">Broadtel</a></li>
-                            <li><a href="{{ route('service::show', 'broadtv') }}">BroadTV</a></li>
-                            <li><a href="{{ route('service::show', 'bundle') }}">Bundle</a></li>
+                            @foreach(services() as $service)
+                                <li><a href="{{ route('service::show', $service->slug) }}">{{ $service->name }}</a></li>
+                            @endforeach
                         </ul>
                         {{-- <div class="uk-grid uk-dropdown-grid">
                             <div class="uk-width-medium-1-3">
@@ -36,8 +35,8 @@
                         </div> --}}
                     </div>
                 </li>
-                <li><a href="#">Help Center</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="{{ route('help::index') }}">Help Center</a></li>
+                <li><a href="{{ route('contact::index') }}">Contact Us</a></li>
             </ul>
             <a href="#" class="uk-navbar-toggle uk-visible-small"></a>
         </div>

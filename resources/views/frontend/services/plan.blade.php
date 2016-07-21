@@ -1,11 +1,10 @@
 <div>
     <div class="uk-grid">
         <div class="uk-width-7-10">
-            <h2>ONLINE OFFER, SAVE RS 500!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus facere id in officiis quidem! Ab accusantium architecto, est eum exercitationem expedita fugit iste nemo quibusdam sint sunt suscipit voluptatem! Aliquid.</p>
+            {!! $plan->description_html !!}
         </div>
         <div class="uk-width-3-10">
-            <img src="{{ asset('assets/frontend/img/service_package_1_1.jpg') }}">
+            <img src="{{ asset($plan->image->thumbnail(300,200)) }}">
         </div>
     </div>
     
