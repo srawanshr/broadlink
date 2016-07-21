@@ -1,12 +1,9 @@
 body {
-  color: #333; }
+  color: #333;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-.bl-btn-outline {
-  padding: 5px 25px;
-  border-radius: 0;
-  background-color: transparent;
-  border: 2px solid #eee;
-  color: #eee; }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 input {
   background: transparent !important;
@@ -19,11 +16,6 @@ input {
 
 .uk-text-center input {
   text-align: center; }
-
-.bl-btn-outline:hover {
-  border: 2px solid #e76724;
-  color: #eee;
-  background-color: #e76724; }
 
 ::-moz-selection {
   background: #e76724;
@@ -39,7 +31,8 @@ input {
   width: 150px; }
 
 .uk-navbar {
-  background: white; }
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); }
 
 .bl-navbar-overlay:not(.uk-active) {
   position: absolute;
@@ -56,25 +49,33 @@ input {
   padding: 0 15px;
   float: left; }
 
-.uk-navbar-nav li:hover a {
+.uk-navbar-nav > li:hover > a {
   background-color: transparent;
   color: #e76724;
   outline: none; }
 
-.uk-navbar-nav li.uk-active a {
+.uk-navbar-nav > li.uk-active a {
   background-color: transparent;
   color: #e76724; }
 
-.uk-navbar-nav li a {
+.uk-navbar-nav > li > a {
   display: block;
   height: 80px;
   padding: 0 15px;
   line-height: 80px;
-  color: #adadad; }
-  .uk-navbar-nav li a:focus {
+  font-size: 1.3em;
+  color: #eee; }
+  .uk-navbar-nav > li > a:focus {
     background-color: transparent;
     color: #e76724;
     outline: none; }
+
+.uk-navbar-nav > li .uk-dropdown {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 3px; }
+  .uk-navbar-nav > li .uk-dropdown > ul > li > a:focus, .uk-navbar-nav > li .uk-dropdown > ul > li > a:hover, .uk-navbar-nav > li .uk-dropdown > ul > li > a:active {
+    color: #eee;
+    background: #e76724; }
 
 .bl-navbar-contrast .uk-navbar-nav li.uk-active a, .bl-navbar-contrast .uk-navbar-nav li:hover a, .bl-navbar-contrast .uk-navbar-nav li.uk-open a {
   color: #e76724;
@@ -85,15 +86,34 @@ input {
   .bl-navbar-contrast .uk-navbar-nav li a:focus {
     color: #e76724; }
 
+.bl-btn-outline {
+  padding: 5px 25px;
+  border-radius: 0;
+  background-color: transparent; }
+
 .bl-text-light {
   color: #eee; }
   .bl-text-light h1, .bl-text-light h2, .bl-text-light h3, .bl-text-light h4, .bl-text-light h5, .bl-text-light h6 {
     color: #eee; }
+  .bl-text-light .bl-btn-outline {
+    border: 2px solid #eee;
+    color: #eee; }
+    .bl-text-light .bl-btn-outline:hover {
+      border: 2px solid #e76724;
+      color: #eee;
+      background-color: #e76724; }
 
 .bl-text-dark {
   color: #333; }
   .bl-text-dark h1, .bl-text-dark h2, .bl-text-dark h3, .bl-text-dark h4, .bl-text-dark h5, .bl-text-dark h6 {
     color: #333; }
+  .bl-text-dark .bl-btn-outline {
+    border: 2px solid #333;
+    color: #333; }
+    .bl-text-dark .bl-btn-outline:hover {
+      border: 2px solid #e76724;
+      color: #eee;
+      background-color: #e76724; }
 
 .uk-block-primary {
   background: #e76724; }
@@ -146,24 +166,9 @@ input {
 #slider a {
   color: #e76724; }
 
-#our-services {
-  background-position: 50% -100px;
-  transition: background 1s; }
-  #our-services button {
-    background: transparent;
-    color: #eee; }
-    #our-services button span {
-      display: block;
-      margin-bottom: 10px;
-      width: 100%;
-      height: 116px;
-      line-height: 116px; }
-    #our-services button img {
-      display: block; }
-  #our-services li.uk-active button {
-    color: #e76724; }
-  #our-services .pe {
-    font-size: 5em; }
+#our-services .bl-service-description {
+  background: #f8f8f8;
+  padding: 0 100px; }
 
 #clients {
   background-size: cover;
@@ -177,11 +182,14 @@ input {
       -webkit-filter: grayscale(0%);
       -o-filter: grayscale(0%); }
 
+#customers .bl-quote-slider {
+  padding-top: 35px; }
+
 #news .uk-subnav-pill .uk-active * {
   background: #e76724; }
 
 #footer .logo img {
-  height: 200px; }
+  height: 150px; }
 
 #footer .top-footer {
   margin: 35px 0; }
@@ -191,7 +199,6 @@ input {
   display: inline; }
   #footer ul a {
     color: #eee;
-    display: block;
     padding: 10px 0;
     border-bottom: 1px solid rgba(238, 238, 238, 0.1); }
     #footer ul a:hover {
@@ -202,6 +209,15 @@ input {
   #footer .social a {
     color: #eee;
     background: #e76724; }
+
+#footer .uk-panel .uk-panel-title {
+  color: #666666; }
+
+#footer .divider {
+  border-color: rgba(238, 238, 238, 0.1); }
+
+#footer .bl-copyrights a {
+  color: #666666; }
 
 .bl-block-footer {
   padding: 10px 0; }

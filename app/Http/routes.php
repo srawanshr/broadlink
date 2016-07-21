@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 */
 Route::get('/', 'Frontend\FrontController@index')->name('index');
-Route::get('/services', 'Frontend\ServiceController@index');
+Route::get('/services/{service}', 'Frontend\ServiceController@show')->name('service::show');
 
 /*
 |--------------------------------------------------------------------------
