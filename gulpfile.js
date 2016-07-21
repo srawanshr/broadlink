@@ -36,6 +36,7 @@ elixir(function(mix) {
 		   'vendors/uikit/uikit.min.css',
 		   'vendors/uikit/components/sticky.css',
 		   'vendors/uikit/components/slider.css',
+		   'vendors/uikit/components/accordion.css',
 		   'vendors/icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css',
 		   'vendors/icon-font-7/pe-icon-7-stroke/css/helper.css'
 	   ], 'public/assets/frontend/css/dep.css')
@@ -45,6 +46,7 @@ elixir(function(mix) {
 		   'vendors/uikit/components/sticky.js',
 		   'vendors/uikit/components/parallax.js',
 		   'vendors/uikit/components/slider.js',
+		   'vendors/uikit/components/accordion.js',
 		   'vendors/greensock-js/src/minified/TweenMax.min.js',
 		   'vendors/jquery-parallax/jquery-parallax.js'
 	   ], 'public/assets/frontend/js/dep.js');

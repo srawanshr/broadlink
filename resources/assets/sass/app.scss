@@ -13,12 +13,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-input {
+input, textarea {
   background: transparent !important;
   border: 0 !important;
   box-shadow: 0px 2px $text-color-light !important;
   margin-bottom: 15px !important;
-  color: $text-color-light !important;
   &:hover, &:active, &:focus {
     box-shadow: 0px 2px $primary-color !important;
   }
@@ -240,7 +239,7 @@ input {
 #our-services {
 	.bl-service-description {
 		background: #f8f8f8;
-		padding: 0 100px;
+		padding: 60px 100px;
 	}
 }
 
@@ -315,6 +314,9 @@ input {
     a {
       color: lighten($text-color, 20);
     }
+  }
+  input {
+    color: $text-color-light !important;
   }
 }
 
@@ -415,11 +417,6 @@ ul.bl-tab {
 @media(max-width: 767px) {
   #our-services .pe {
     font-size: 3em;
-  }
-
-  .tile {
-    height: 100px;
-    width: 100px;
   }
 
   .images {

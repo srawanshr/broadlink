@@ -5,13 +5,12 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-input {
+input, textarea {
   background: transparent !important;
   border: 0 !important;
   box-shadow: 0px 2px #eee !important;
-  margin-bottom: 15px !important;
-  color: #eee !important; }
-  input:hover, input:active, input:focus {
+  margin-bottom: 15px !important; }
+  input:hover, input:active, input:focus, textarea:hover, textarea:active, textarea:focus {
     box-shadow: 0px 2px #e76724 !important; }
 
 .uk-text-center input {
@@ -168,7 +167,7 @@ input {
 
 #our-services .bl-service-description {
   background: #f8f8f8;
-  padding: 0 100px; }
+  padding: 60px 100px; }
 
 #clients {
   background-size: cover;
@@ -218,6 +217,9 @@ input {
 
 #footer .bl-copyrights a {
   color: #666666; }
+
+#footer input {
+  color: #eee !important; }
 
 .bl-block-footer {
   padding: 10px 0; }
@@ -286,9 +288,6 @@ ul.bl-tab {
 @media (max-width: 767px) {
   #our-services .pe {
     font-size: 3em; }
-  .tile {
-    height: 100px;
-    width: 100px; }
   .images {
     text-align: center; }
   .subtitle {
