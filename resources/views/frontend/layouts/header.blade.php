@@ -3,23 +3,37 @@
         <a class="uk-navbar-brand">
             <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}" class="uk-responsive-height">
         </a>
-        <div class="uk-navbar-flip">
+        <div class="uk-navbar-flip" id="bl-navbar">
             <ul class="uk-navbar-nav uk-hidden-small">
                 <li class="uk-active">
                     <a href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="uk-parent" data-uk-dropdown>
-                    <a href="{{ url('/services') }}">Services</a>
+                    <a href="##">Services</a>
                     <div class="uk-dropdown uk-dropdown-navbar">
                         <ul class="uk-nav uk-nav-navbar">
-                            <li><a href="#">Item</a></li>
-                            <li><a href="#">Another item</a></li>
-                            <li class="uk-nav-header">Header</li>
-                            <li><a href="#">Item</a></li>
-                            <li><a href="#">Another item</a></li>
-                            <li class="uk-nav-divider"></li>
-                            <li><a href="#">Separated item</a></li>
+                            <li><a href="{{ route('service::show', 'internet') }}">Internet</a></li>
+                            <li><a href="{{ route('service::show', 'broadtel') }}">Broadtel</a></li>
+                            <li><a href="{{ route('service::show', 'broadtv') }}">BroadTV</a></li>
+                            <li><a href="{{ route('service::show', 'bundle') }}">Bundle</a></li>
                         </ul>
+                        {{-- <div class="uk-grid uk-dropdown-grid">
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-panel">
+                                    1
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-panel">
+                                    2   
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-panel">
+                                    3
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
                 </li>
                 <li><a href="#">Help Center</a></li>

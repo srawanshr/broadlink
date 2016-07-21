@@ -5,6 +5,7 @@
     <title>@yield('title')</title>
     {{ Html::style('assets/frontend/css/dep.css') }}
     {{ Html::style('assets/frontend/css/app.css') }}
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     @yield('header')
 </head>
 <body>
