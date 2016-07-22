@@ -34,7 +34,7 @@ class Setting extends Model
      */
     public function scopeFetch($query, $slug)
     {
-        return $query->whereSlug($slug)->first()->value;
+        return $query->whereSlug($slug);
     }
 
     /**

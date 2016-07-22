@@ -76,6 +76,21 @@ class SettingsTableSeeder extends Seeder {
                 'slug'  => 'phone-technical-support',
                 'name'  => 'Phone Technical Support',
                 'value' => '9801453020'
+            ],
+            [
+                'slug'  => 'facebook',
+                'name'  => 'Facebook',
+                'value' => 'https://www.facebook.com/broadlink'
+            ],
+            [
+                'slug'  => 'twitter',
+                'name'  => 'Twitter',
+                'value' => 'https://www.twitter.com'
+            ],
+            [
+                'slug'  => 'google-plus',
+                'name'  => 'Google Plus',
+                'value' => 'https://www.google.com'
             ]
         ]);
     }
