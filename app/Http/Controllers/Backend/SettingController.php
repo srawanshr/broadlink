@@ -9,13 +9,40 @@ use App\Http\Controllers\Controller;
 
 class SettingController extends Controller {
 
+    protected $setting;
+
+    /**
+     * SettingController constructor.
+     * @param Setting $setting
+     */
+    public function __construct(Setting $setting)
+    {
+        $this->setting = $setting;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $settings = Setting::all();
+        $settings = $this->setting->all();
 
         return view('backend.setting.index', compact('settings'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request)
+    {
+        foreach ($request->get('setting') as $slug => $value)
+        {
+            $setting = $this->setting->fetch(str_slug($slug))->first();
+
+            if ($setting) $setting->update(['value' => $value]);
+        }
+
+        return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Setting']));
     }
 }

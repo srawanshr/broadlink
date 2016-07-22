@@ -120,7 +120,21 @@ function user_avatar($guard, $width)
     }
 }
 
+/**
+ * @return mixed
+ */
 function services()
 {
     return App\Models\Service::active()->get();
+}
+
+/**
+ * @param $query
+ * @return mixed
+ */
+function setting($query)
+{
+    $setting = \App\Models\Setting::fetch($query)->first();
+
+    return  $setting ? $setting->value : null;
 }
