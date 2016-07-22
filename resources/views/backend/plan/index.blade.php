@@ -7,7 +7,7 @@
         <div id="page_content_inner">
             <h3 class="heading_b uk-margin-bottom">All Plans</h3>
             <span id="sort_url" class="hidden" data-source="{{ route('admin::plan.sort.order') }}"></span>
-            @foreach($servicePlans as $service => $plans)
+            @forelse($servicePlans as $service => $plans)
                 <div class="md-card">
                     <div class="md-card-toolbar">
                         <h4 class="md-card-toolbar-heading-text">
@@ -63,7 +63,13 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="md-card">
+                    <div class="md-card-content">
+                        <h4 class="heading_b uk-text-center">{{ trans('messages.empty', ['entity' => 'services']) }}</h4>
+                    <div>
+                </div>
+            @endforelse
         </div>
     </div>
 
