@@ -33,7 +33,7 @@
                                 </h2>
                             </div>
                             <div class="md-fab-wrapper">
-                                <button type="submit" class="md-fab md-fab-accent" id="planAdd"  data-uk-tooltip="{cls:'uk-tooltip-small',pos:'left'}" title="Save">
+                                <button type="submit" class="md-fab md-fab-accent" id="profileSave"  data-uk-tooltip="{cls:'uk-tooltip-small',pos:'left'}" title="Save Profile">
                                     <i class="material-icons md-color-white">&#xE161;</i>
                                 </button>
                             </div>

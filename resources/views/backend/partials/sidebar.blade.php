@@ -72,6 +72,10 @@
                     <span class="menu_icon"><i class="material-icons">&#xE8C0;</i></span>
                     <span class="menu_title">Settings</span>
                 </a>
+                {{--<ul>--}}
+                    {{--<li><a href="{{ route('admin::setting') }}">General</a></li>--}}
+                    {{--<li><a href="{{ route('admin::menu') }}">Menu</a></li>--}}
+                {{--</ul>--}}
             </li>
             <li >
                 <a href="{{ route('admin::user.index') }}">

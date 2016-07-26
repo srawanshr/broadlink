@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\AdminProfileUpdateRequest;
 use DB;
 use Auth;
 use Datatables;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCreateRequest;
 use App\Http\Requests\AdminUpdateRequest;
+use App\Http\Requests\AdminProfileUpdateRequest;
 
 class AdminController extends Controller {
 

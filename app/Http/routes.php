@@ -34,6 +34,8 @@ $router->group([
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('settings', 'SettingController@index')->name('setting');
     Route::put('settings', 'SettingController@update')->name('setting.update');
+    Route::get('menu', 'MenuController@index')->name('menu');
+    Route::put('menu', 'MenuController@update')->name('menu.update');
 
     /*
     |--------------------------------------------------------------------------
