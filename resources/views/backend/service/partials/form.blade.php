@@ -4,13 +4,38 @@
         <div class="uk-grid uk-grid-width-1-1" data-uk-grid="{gutter:24}">
             <div>
                 <div class="md-card">
-                    <div class="md-card-content">
-                        <h3 class="heading_b uk-margin-bottom">
-                            {{ $title }}
-                            <div class="uk-float-right">
-                                <a href="{{ route('admin::service.index') }}" class="md-btn md-btn-primary">all services</a>
+                    <div class="user_heading" data-uk-sticky="{ top: 48, media: 960 }">
+                        <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail">
+                                <img src="{{ service_icon() }}" alt="user avatar"/>
                             </div>
-                        </h3>
+                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                            <div class="service_avatar_controls">
+                                    <span class="btn-file">
+                                        <span class="fileinput-new"><i class="material-icons">&#xE2C6;</i></span>
+                                        <span class="fileinput-exists"><i class="material-icons">&#xE86A;</i></span>
+                                        <input type="file" name="icon" id="service_edit_avatar_control">
+                                    </span>
+                                <a href="#" class="btn-file fileinput-exists" data-dismiss="fileinput"><i class="material-icons">&#xE5CD;</i></a>
+                            </div>
+                        </div>
+                        <div class="user_heading_content">
+                            <div class="uk-grid">
+                                <div class="uk-width-1-2 uk-padding-remove">
+                                    <h2 class="heading_b">
+                                        <span class="uk-text-truncate">{{ $title }}</span>
+                                        <span class="sub-heading"><i class="material-icons md-color-white">&#xE317;</i>Upload Icon</span>
+                                    </h2>
+                                </div>
+                                <div class="uk-width-1-2">
+                                    <span class="uk-float-right">
+                                        <a href="{{ route('admin::service.index') }}" class="md-btn md-btn-default">all services</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-card-content">
                         <div class="uk-form-row">
                             <label>Title</label>
                             {{ Form::text( 'name', old('name'), [ 'id' => 'service_name', 'class' => 'md-input', 'required' ] ) }}

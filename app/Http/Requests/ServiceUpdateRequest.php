@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ServiceUpdateRequest extends Request
-{
+class ServiceUpdateRequest extends Request {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,7 +27,8 @@ class ServiceUpdateRequest extends Request
             'name'             => 'required',
             'meta_description' => 'required',
             'description_raw'  => 'required',
-            'is_active'        => 'boolean'
+            'is_active'        => 'boolean',
+            'icon'             => 'image|max:1024'
         ];
     }
 
@@ -38,7 +39,7 @@ class ServiceUpdateRequest extends Request
     {
         $inputs = $this->all();
 
-        $inputs[ 'is_active' ] = $this->get( 'is_active', false );
+        $inputs['is_active'] = $this->get('is_active', false);
 
         return $inputs;
     }

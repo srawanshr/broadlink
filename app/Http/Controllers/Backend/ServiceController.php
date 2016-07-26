@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use DB;
 use App\Http\Requests;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -35,7 +36,18 @@ class ServiceController extends Controller {
      */
     public function store(ServiceCreateRequest $request)
     {
-        $service = Service::create($request->serviceFillData());
+        $service = DB::transaction(function () use ($request)
+        {
+            $service = Service::create($request->serviceFillData());
+
+            if ($request->hasFile('icon'))
+            {
+                $icon = $request->file('icon');
+                $service->icon()->create(['name' => cleanFileName($icon)])->upload($icon);
+            }
+
+            return $service;
+        });
 
         return redirect()
             ->route('admin::service.edit', $service->slug)
@@ -58,7 +70,23 @@ class ServiceController extends Controller {
      */
     public function update(Service $service, ServiceUpdateRequest $request)
     {
-        $service->update($request->serviceFillData());
+        DB::transaction(function () use ($service, $request)
+        {
+            $service->update($request->serviceFillData());
+
+            if ($request->hasFile('icon'))
+            {
+                $icon = $request->file('icon');
+
+                if ($service->icon)
+                {
+                    $service->icon->upload($icon);
+                } else
+                {
+                    $service->icon()->create(['name' => cleanFileName($icon)])->upload($icon);
+                }
+            }
+        });
 
         return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Service']));
     }

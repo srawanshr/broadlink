@@ -121,6 +121,21 @@ function user_avatar($guard, $width)
 }
 
 /**
+ * @param null $service
+ * @param int $width
+ * @return string
+ */
+function service_icon($service = null, $width = 78)
+{
+    if ($service)
+    {
+        if ($service->icon) return asset($service->icon->thumbnail($width, $width));
+    }
+
+    return asset(config('paths.placeholder.service'));
+}
+
+/**
  * @return mixed
  */
 function services()
@@ -136,5 +151,5 @@ function setting($query)
 {
     $setting = \App\Models\Setting::fetch($query)->first();
 
-    return  $setting ? $setting->value : null;
+    return $setting ? $setting->value : null;
 }

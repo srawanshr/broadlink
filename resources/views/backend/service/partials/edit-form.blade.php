@@ -1,17 +1,42 @@
-{{ Form::model($service, [ 'route' => [ 'admin::service.update', $service->slug ], 'id' => 'service_edit_form', 'method' => 'put' ]) }}
+{{ Form::model($service, [ 'route' => [ 'admin::service.update', $service->slug ], 'id' => 'service_edit_form', 'method' => 'put', 'files' => true ]) }}
 <input type="hidden" name="order" value="" />
 <div class="uk-grid" data-uk-grid-margin>
     <div class="uk-width-large-7-10">
         <div class="uk-grid uk-grid-width-1-1" data-uk-grid="{gutter:24}">
             <div>
                 <div class="md-card">
-                    <div class="md-card-content">
-                        <h3 class="heading_b uk-margin-bottom">
-                            {{ $title }}
-                            <div class="uk-float-right">
-                                <a href="{{ route('admin::service.index') }}" class="md-btn md-btn-primary">all services</a>
+                    <div class="user_heading" data-uk-sticky="{ top: 48, media: 960 }">
+                        <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail">
+                                <img src="{{ service_icon($service) }}" alt="user avatar"/>
                             </div>
-                        </h3>
+                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                            <div class="service_avatar_controls">
+                                    <span class="btn-file">
+                                        <span class="fileinput-new"><i class="material-icons">&#xE2C6;</i></span>
+                                        <span class="fileinput-exists"><i class="material-icons">&#xE86A;</i></span>
+                                        <input type="file" name="icon" id="service_edit_avatar_control">
+                                    </span>
+                                <a href="#" class="btn-file fileinput-exists" data-dismiss="fileinput"><i class="material-icons">&#xE5CD;</i></a>
+                            </div>
+                        </div>
+                        <div class="user_heading_content">
+                            <div class="uk-grid">
+                                <div class="uk-width-1-2 uk-padding-remove">
+                                    <h2 class="heading_b">
+                                        <span class="uk-text-truncate">{{ $title }}</span>
+                                        <span class="sub-heading">{{ $service->name }}</span>
+                                    </h2>
+                                </div>
+                                <div class="uk-width-1-2">
+                                    <span class="uk-float-right">
+                                        <a href="{{ route('admin::service.index') }}" class="md-btn md-btn-default">all services</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-card-content">
                         <div class="uk-form-row">
                             <label>Title</label>
                             {{ Form::text( 'name', old('name'), [ 'id' => 'service_name', 'class' => 'md-input', 'required' ] ) }}
@@ -64,7 +89,7 @@
         <div class="md-card">
             <div class="md-card-toolbar">
                 <h3 class="md-card-toolbar-heading-text">
-                    Service: {{ ucwords($service->name) }}
+                    Banner: {{ ucwords($service->name) }}
                 </h3>
             </div>
             <div class="md-card-content">
