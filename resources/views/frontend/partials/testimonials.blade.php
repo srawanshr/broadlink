@@ -12,11 +12,11 @@
                 <img src="{{ asset('/assets/frontend/img/happy-img.png') }}" alt="">
             </div>
             <div class="uk-width-medium-1-3 uk-text-medium-right uk-text-center-small" data-uk-scrollspy="{cls:'uk-animation-slide-right', topoffset: -100, repeat: true}">
-                <div data-uk-slider>
+                <div data-uk-slider class="uk-slidenav-position">
                     <div class="uk-slider-container bl-quote-slider">
                         <ul class="uk-slider uk-grid-width-small-1-1">
                             <li>
-                                <div class="quote-author">
+                                <div class="quote-author uk-text-center">
                                     <img alt="Author" class="image-xs" src="{{ asset('assets/frontend/img/avatar3.png') }}">
                                     <h6 class="uppercase mb0">Natasha Canter</h6>
                                     <span>Vault</span>
@@ -24,7 +24,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="quote-author">
+                                <div class="quote-author uk-text-center">
                                     <img alt="Author" class="image-xs" src="{{ asset('assets/frontend/img/avatar4.png') }}">
                                     <h6 class="uppercase mb0">Natasha Canter</h6>
                                     <span>Vault</span>
@@ -32,7 +32,9 @@
                                 </div>
                             </li>
                         </ul>
-                    </div><!--end of row-->
+                    </div>
+                    <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+                    <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
                 </div>
             </div>
         </div>
