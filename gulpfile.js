@@ -36,6 +36,7 @@ elixir(function(mix) {
 		   'vendors/uikit/uikit.min.css',
 		   'vendors/uikit/components/sticky.css',
 		   'vendors/uikit/components/slider.css',
+		   'vendors/uikit/components/slidenav.css',
 		   'vendors/uikit/components/accordion.css',
 		   'vendors/icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css',
 		   'vendors/icon-font-7/pe-icon-7-stroke/css/helper.css'

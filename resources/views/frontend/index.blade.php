@@ -28,6 +28,18 @@
             $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function(event, element){
                 $('#our-services').css('background',"url('" + $(element).data('bg') +"')");
             });
+
+            $(document).on('mouseover', '.hover-to-click', function() {
+                $(this).trigger('click');
+            });
+
+            //center align slider images
+            // $(window).on('load resize', function(){
+            //     $images = $('.image');
+            //     var heignt = $images.height();
+            //     $images.css('margin-top','-'+(height/2)+'px');
+
+            // });
         });
     </script>
 @stop
