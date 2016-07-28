@@ -9,10 +9,6 @@ body {
   line-height: 1.5em; }
 
 .full-height {
-  /* min-height: 100%;
-  // clear:both;
-  // width:inherit;
-  // height:100vh;*/
   height: 680px; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -248,13 +244,23 @@ h3 {
   .bl-button-image:hover {
     background-color: transparent; }
 
-#our-services {
+#news {
   background-position: 50% -100px;
-  transition: background 1s; }
-  #our-services li.uk-active button {
+  transition: background 1s;
+  animation: sks 15s infinite; }
+  #news li.uk-active button {
     color: #e76724; }
-  #our-services .pe {
+  #news .pe {
     font-size: 5em; }
+
+@keyframes sks {
+  0% {
+    background-position: 50% -100px; }
+  80% {
+    background-position: 25% -100px;
+    animation-timing-function: ease-in; }
+  0% {
+    background-position: 50% -100px; } }
 
 #clients {
   background-size: cover;
@@ -271,27 +277,27 @@ h3 {
 #customers .bl-quote-slider {
   padding-top: 35px; }
 
-#news {
+#our-services {
   padding: 0; }
-  #news #news-switcher {
+  #our-services #service-switcher {
     clear: both;
     background-color: #83c42c;
     border-top: 2px solid #75af27;
     margin-top: -1px; }
-    #news #news-switcher .uk-container {
+    #our-services #service-switcher .uk-container {
       padding: 60px 0; }
-  #news .uk-tab {
+  #our-services .uk-tab {
     border: 0; }
-    #news .uk-tab li.uk-active {
+    #our-services .uk-tab li.uk-active {
       border-bottom: 0;
       margin-bottom: -2px; }
-      #news .uk-tab li.uk-active a {
+      #our-services .uk-tab li.uk-active a {
         background-color: #83c42c;
         border-top: 2px solid #75af27;
         border-right: 2px solid #75af27;
         border-left: 2px solid #75af27;
         color: #eee; }
-    #news .uk-tab a {
+    #our-services .uk-tab a {
       border-top: 2px solid transparent;
       border-right: 2px solid transparent;
       border-left: 2px solid transparent;
@@ -302,7 +308,7 @@ h3 {
       padding-left: 40px;
       padding-right: 40px;
       background-color: transparent; }
-  #news .uk-subnav-pill .uk-active * {
+  #our-services .uk-subnav-pill .uk-active * {
     background: #e76724; }
 
 #footerWrapper {
@@ -400,10 +406,10 @@ h3 {
   text-transform: uppercase; }
 
 .bl-icon-description {
-  position: relative; }
-  .bl-icon-description a {
-    display: inline-block;
-    position: absolute; }
+  position: relative;
+  margin: 15px a;
+    margin-display: inline-block;
+    margin-position: absolute; }
   .bl-icon-description p {
     padding-left: 50px; }
 
@@ -470,8 +476,14 @@ ul.bl-tab {
   float: left;
   font-style: normal; }
 
+.bl-icon-button:hover {
+  background: #f1f1f1; }
+
+.bl-grid-medium > * {
+  padding: 10px; }
+
 @media (max-width: 767px) {
-  #our-services .pe {
+  #news .pe {
     font-size: 3em; }
   #slider .images {
     text-align: center;

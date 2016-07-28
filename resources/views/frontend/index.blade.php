@@ -4,6 +4,12 @@
 
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
+    <style>
+        body:after{
+            position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+            content: url({{ asset('assets/frontend/img/bg-broadtv.jpg') }}) url({{ asset('assets/frontend/img/bg-internet.jpg') }}) url({{ asset('assets/frontend/img/bg-broadtel.jpg') }}) url({{ asset('assets/frontend/img/bg-bundle.jpg') }});
+        }
+    </style>
 @stop
 
 @section('body')
@@ -26,20 +32,12 @@
             });
 
             $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function(event, element){
-                $('#our-services').css('background',"url('" + $(element).data('bg') +"')");
+                $('#news').css('background-image',"url('" + $(element).data('bg') +"')");
             });
 
             $(document).on('mouseover', '.hover-to-click', function() {
                 $(this).trigger('click');
             });
-
-            //center align slider images
-            // $(window).on('load resize', function(){
-            //     $images = $('.image');
-            //     var heignt = $images.height();
-            //     $images.css('margin-top','-'+(height/2)+'px');
-
-            // });
         });
     </script>
 @stop

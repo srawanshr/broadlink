@@ -16,16 +16,8 @@ body {
 }
 
 .full-height {
-  /* min-height: 100%;
-  // clear:both;
-  // width:inherit;
-  // height:100vh;*/
   height: 680px;
 }
-
-// .full-height {
-//   height:100vh;
-// }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -343,9 +335,10 @@ h3 {
   }
 }
 
-#our-services {
+#news {
   background-position: 50% -100px;
   transition: background 1s;
+  animation: sks 15s infinite;
 
   li.uk-active {
     button {
@@ -356,6 +349,19 @@ h3 {
   .pe {
     font-size: 5em;
   }
+}
+
+@keyframes sks {
+    0% {
+      background-position: 50% -100px;
+    }
+    80% {
+      background-position: 25% -100px;
+      animation-timing-function: ease-in;
+    }
+    0% {
+      background-position: 50% -100px;
+    }
 }
 
 #clients {
@@ -379,9 +385,9 @@ h3 {
   }
 }
 
-#news {
+#our-services {
   padding: 0;
-  #news-switcher {
+  #service-switcher {
     clear: both;
     background-color: $green;
     border-top: 2px solid darken($green, 5);
@@ -552,6 +558,7 @@ h3 {
 
 .bl-icon-description {
   position: relative;
+  margin: 15px
   a {
     display: inline-block;
     position: absolute;
@@ -653,10 +660,17 @@ ul.bl-tab {
     float: left;
     font-style: normal;
   }
+  &:hover {
+    background: #f1f1f1;
+  }
 }
 
+ .bl-grid-medium > * {
+  padding: 10px;
+ }
+
 @media(max-width: 767px) {
-  #our-services .pe {
+  #news .pe {
     font-size: 3em;
   }
   

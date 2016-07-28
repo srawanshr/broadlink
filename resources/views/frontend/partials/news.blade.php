@@ -1,4 +1,4 @@
-<section id="our-services" class="uk-block uk-block-default uk-text-center">
+<section id="news" class="uk-block uk-block-default uk-text-center">
     <div class="uk-container uk-container-center bl-text-light">
         <div class="uk-grid">
             <div class="uk-width-medium-6-10 uk-push-2-10">
