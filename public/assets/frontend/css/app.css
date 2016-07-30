@@ -14,7 +14,7 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-section > h1 {
+section:not(.banner) > h1 {
   background: url(/assets/frontend/img/border_img2.png) no-repeat bottom center;
   padding: 0 0 35px 0; }
 
@@ -56,10 +56,10 @@ input, textarea {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; }
   #bl-navbar .uk-dropdown {
-    padding: 40px;
+    padding: 20px;
     border: 5px solid white;
     background-color: #f1f1f1;
-    top: 45px !important; }
+    top: 58px !important; }
     #bl-navbar .uk-dropdown .uk-panel {
       background: white; }
   #bl-navbar .callout {
@@ -104,23 +104,25 @@ input, textarea {
   padding: 0 15px;
   float: left; }
 
-.uk-navbar-nav > li:hover > a {
+.uk-navbar-nav > li.uk-open > a {
+  color: #e76724;
+  background-color: transparent;
+  border-bottom: 3px solid #e76724; }
+
+.uk-navbar-nav > li:hover > a, .uk-navbar-nav > li.uk-active > a {
   background-color: transparent;
   color: #e76724;
-  outline: none; }
-
-.uk-navbar-nav > li.uk-active a {
-  background-color: transparent;
-  color: #e76724; }
+  outline: none;
+  border-bottom: 3px solid #e76724; }
 
 .uk-navbar-nav > li > a {
   display: block;
   padding: 10px 15px;
   box-sizing: initial;
   font-size: 1em;
-  color: #eee; }
+  color: #e76724;
+  background-color: transparent; }
   .uk-navbar-nav > li > a:focus {
-    background-color: transparent;
     color: #e76724;
     outline: none; }
 
@@ -131,14 +133,12 @@ input, textarea {
     color: #eee;
     background: #e76724; }
 
-.bl-navbar-contrast .uk-navbar-nav li.uk-active a, .bl-navbar-contrast .uk-navbar-nav li:hover a, .bl-navbar-contrast .uk-navbar-nav li.uk-open a {
-  color: #e76724;
-  background: none; }
+.bl-tab-left-container .ul-tab-left li a {
+  padding: 10px; }
 
-.bl-navbar-contrast .uk-navbar-nav li a {
-  color: rgba(255, 255, 255, 0.7); }
-  .bl-navbar-contrast .uk-navbar-nav li a:focus {
-    color: #e76724; }
+.bl-tab-left-container .uk-tab-left-content {
+  border: 1px solid #ddd;
+  border-left: none; }
 
 .bl-btn-outline {
   padding: 5px 25px;

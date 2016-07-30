@@ -14,5 +14,10 @@
     @include('frontend.layouts.footer')
     {{ Html::script('assets/frontend/js/dep.js') }}
     @yield('footer')
+    <script type="text/javascript">
+        $(document).on('mouseover', '.hover-to-click', function() {
+            $(this).trigger('click');
+        });
+    </script>
 </body>
 </html>

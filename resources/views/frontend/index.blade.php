@@ -15,8 +15,8 @@
 @section('body')
     @include('frontend.partials.slider')
     @include('frontend.partials.services')
-    @include('frontend.partials.testimonials')
     @include('frontend.partials.news')
+    @include('frontend.partials.testimonials')
     @include('frontend.partials.clients')
 @stop
 
@@ -33,10 +33,6 @@
 
             $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function(event, element){
                 $('#news').css('background-image',"url('" + $(element).data('bg') +"')");
-            });
-
-            $(document).on('mouseover', '.hover-to-click', function() {
-                $(this).trigger('click');
             });
         });
     </script>

@@ -100,6 +100,42 @@
                         </div>
                     </li>
                     <li><a href="{{ route('contact::index') }}">Contact Us</a></li>
+                    @if( auth()->check() )
+                        <li><a href="{{ route('user::dashboard') }}">{{ auth()->user()->first_name }}</a></li>
+                    @else
+                        <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
+                            <a href="##" class="hover-to-click">Log In</a>
+                            <div class="uk-dropdown">
+                                <div class="uk-grid uk-dropdown-grid">
+                                    <div class="uk-width-2-5">
+                                        <form class="uk-panel uk-panel-box uk-form" action="{{ url('/login') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <div class="uk-form-row">
+                                                <input class="uk-width-1-1 uk-form-large" type="text" name="email" placeholder="Email">
+                                            </div>
+                                            <div class="uk-form-row">
+                                                <input class="uk-width-1-1 uk-form-large" type="password" name="password" placeholder="Password">
+                                            </div>
+                                            <div class="uk-form-row">
+                                                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit">Submit</a>
+                                            </div>
+                                            <div class="uk-form-row uk-text-small">
+                                                <label class="uk-float-left"><input type="checkbox" name="remember_me"> Remember Me</label>
+                                                <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot Password?</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="uk-width-3-5 uk-vertical-align">
+                                        <div class="uk-vertical-align-middle">
+                                            <h2>Not a member ?</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt voluptate sequi hic dignissimos vel? Sed veniam deleniti dolor, voluptas. Aliquam.</p>
+                                            <a href="{{ url('register') }}">Sign Up Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
                 <a href="#" class="uk-navbar-toggle uk-visible-small"></a>
             </div>

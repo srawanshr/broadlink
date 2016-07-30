@@ -12,6 +12,50 @@ Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 
 /*
 |--------------------------------------------------------------------------
+| Logging In/Out Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::post('login', 'Auth\AuthController@login');
+Route::get('logout', 'Auth\AuthController@logout');
+
+Route::get('admin/login', 'AdminAuth\AuthController@showLoginForm');
+Route::post('admin/login', 'AdminAuth\AuthController@login');
+Route::get('admin/logout', 'AdminAuth\AuthController@logout');
+
+Route::get('register', 'Auth\AuthController@showLoginForm');
+Route::post('register', 'Auth\AuthController@store');
+
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/admin', function () {
+    return redirect('/admin/dashboard');
+});
+
+$router->group([
+    'namespace' => 'Frontend',
+    'middleware' => 'auth',
+    'prefix' => 'user',
+    'as' => 'user::'
+], function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Various Admin Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/', function () {
+        return redirect('user/dashboard');
+    });
+    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+
+});
+
+/*
+|--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
 */
@@ -181,16 +225,3 @@ $router->group([
     Route::post('contact', 'ContactController@contactList')->name('contact.list');
     Route::post('contact-type', 'ContactController@contactTypeList')->name('contact.type.list');
 });
-
-/*
-|--------------------------------------------------------------------------
-| Logging In/Out Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('auth/login', 'Auth\AuthController@showLoginForm');
-Route::post('auth/login', 'Auth\AuthController@login');
-Route::get('auth/logout', 'Auth\AuthController@logout');
-
-Route::get('admin/login', 'AdminAuth\AuthController@showLoginForm');
-Route::post('admin/login', 'AdminAuth\AuthController@login');
-Route::get('admin/logout', 'AdminAuth\AuthController@logout');

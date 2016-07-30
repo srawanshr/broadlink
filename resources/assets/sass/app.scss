@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-section > h1 {
+section:not(.banner) > h1 {
   background: url(/assets/frontend/img/border_img2.png) no-repeat bottom center;
   padding: 0 0 35px 0;
 }
@@ -69,10 +69,10 @@ input, textarea {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
-    padding: 40px;
+    padding: 20px;
     border: 5px solid white;
     background-color: #f1f1f1;
-    top: 45px !important;
+    top: 58px !important;
     .uk-panel {
       background: white;
     }
@@ -134,18 +134,20 @@ input, textarea {
 }
 
 .uk-navbar-nav {
+  >li.uk-open {
+    > a {
+      color: $primary-color;
+      background-color: transparent;
+      border-bottom: 3px solid $primary-color;
+    }
+  }
   >li {
-    &:hover {
+    &:hover, &.uk-active  {
       >a {
         background-color: transparent;
         color: $primary-color;
         outline: none;
-      }
-    }
-    &.uk-active {
-      a {
-        background-color: transparent;
-        color: $primary-color;
+        border-bottom: 3px solid $primary-color;
       }
     }
     >a {
@@ -155,9 +157,9 @@ input, textarea {
       // line-height: 80px;
       box-sizing: initial;
       font-size: 1em;
-      color: $text-color-light;
+      color: $primary-color;
+      background-color: transparent;
       &:focus {
-        background-color: transparent;
         color: $primary-color;
         outline: none;
       }
@@ -179,22 +181,18 @@ input, textarea {
   }
 }
 
-.bl-navbar-contrast {
-  .uk-navbar-nav {
+.bl-tab-left-container {
+  .ul-tab-left {
     li {
-      &.uk-active, &:hover, &.uk-open {
-        a {
-          color: $primary-color;
-          background: none;
-        }
-      }
       a {
-        &:focus {
-          color: $primary-color;
-        }
-        color: rgba(255, 255, 255, 0.7);
+        padding: 10px;
       }
     }
+  }
+
+  .uk-tab-left-content {
+    border: 1px solid #ddd;
+    border-left: none;
   }
 }
 

@@ -1,66 +1,91 @@
-@extends('layouts.app')
+@extends('frontend.layouts.master')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+@section('title', 'Broadlink :: Customer Login')
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+@section('body')
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+    @include('frontend.partials.banner', ['title' => 'Login'])
+    <section class="uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                    @include('shared.errors')
+                </div>
+            </div>
+            <div class="uk-grid data-uk-grid-match uk-grid-divider">
+                <div class="uk-width-1-3">
+                    <div class="uk-panel">
+                        <h1 class="uk-article-title">Login</h1>
+                        {{ Form::open(['url' => 'login', 'class' => 'uk-form' ]) }}
+                            <div class="uk-form-row">
+                                {{ Form::text('email', old('email'), ['class' => 'uk-width-1-1 uk-form-large', 'placeholder' => 'Email']) }}
+                            </div>
+                            <div class="uk-form-row">
+                                {{ Form::password('password', ['class' => 'uk-width-1-1 uk-form-large', 'placeholder' => 'password']) }}
+                            </div>
+                            <div class="uk-form-row">
+                                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit">Login</button>
+                            </div>
+                            <div class="uk-form-row uk-text-small">
+                                <label class="uk-float-left"><input type="checkbox" name="remember_me"> Remember Me</label>
+                                <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot Password?</a>
+                            </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+                <div class="uk-width-2-3">
+                    {{ Form::open(['url' => '/register', 'class' => 'uk-form uk-panel' ]) }}
+                        <h1 class="uk-article-title">Sign Up</h1>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="uk-grid">
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">First Name</label>
+                                {{ Form::text('first_name', old('first_name'), [ 'class' => 'uk-width-1-1'.($errors->has('first_name') ? ' uk-form-danger':'')]) }}
+                            </div>
+                            
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">Last Name</label>
+                                {{ Form::text('last_name', old('last_name'), [ 'class' => 'uk-width-1-1'.($errors->has('last_name') ? ' uk-form-danger':'')]) }}
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        <div class="uk-grid">
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">Email</label>
+                                {{ Form::email('email', old('email'), [ 'class' => 'uk-width-1-1'.($errors->has('email') ? ' uk-form-danger':'')]) }}
+                            </div>
+                        
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">Email</label>
+                                {{ Form::text('username', old('username'), [ 'class' => 'uk-width-1-1'.($errors->has('username') ? ' uk-form-danger':'')]) }}
+                            </div>
+                        </div>
+                        
+                        <div class="uk-grid">
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">Password</label>
+                                {{ Form::password('password', [ 'class' => 'uk-width-1-1'.($errors->has('password') ? ' uk-form-danger':'')]) }}
+                            </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label">Confirm Password</label>
+                                {{ Form::password('password_confirmation', [ 'class' => 'uk-width-1-1'.($errors->has('password') ? ' uk-form-danger':'')]) }}
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
+                        <div class="uk-grid">
+                            <label><input type="checkbox" name="terms" class="uk-margin-small-right{{ $errors->has('terms') ? ' uk-form-danger':'' }}">I agrees to the terms and conditions</label>
+                        </div>
+                        
+                        <div class="uk-grid">
+                            <div class="uk-width-1-3">
+                                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit">Sign Up</button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection
