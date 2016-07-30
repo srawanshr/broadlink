@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Service;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
@@ -17,7 +18,8 @@ class FrontController extends Controller
 
     public function contact()
     {
-    	return view('frontend.contact.index');
+        $page = Page::contact();
+    	return view('frontend.contact.index', compact('page'));
     }
 
     public function help()

@@ -18,7 +18,7 @@
                         <h1 class="uk-article-title">Login</h1>
                         {{ Form::open(['url' => 'login', 'class' => 'uk-form' ]) }}
                             <div class="uk-form-row">
-                                {{ Form::text('email', old('email'), ['class' => 'uk-width-1-1 uk-form-large', 'placeholder' => 'Email']) }}
+                                {{ Form::text('login', old('login'), ['class' => 'uk-width-1-1 uk-form-large', 'placeholder' => 'Email/Username']) }}
                             </div>
                             <div class="uk-form-row">
                                 {{ Form::password('password', ['class' => 'uk-width-1-1 uk-form-large', 'placeholder' => 'password']) }}

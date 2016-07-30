@@ -7,28 +7,12 @@
 @stop
 
 @section('body')
-    @include('frontend.partials.banner', ['title' => 'Contact Us'])
+    @include('frontend.partials.banner', ['title' => 'Contact Us', 'images' => $page->banners])
     <section class="uk-block uk-block-default uk-block-large">
         <div class="uk-container uk-container-center">
             <div class="uk-grid">
                 <div class="uk-width-medium-1-2">
-                    <h2>Get In Touch</h2>
-                    <p>
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                    </p>
-                    <hr>
-                    <p>
-                        438 Marine Parade
-                        <br> Elwood, Victoria
-                        <br> P.O Box 3184
-                    </p>
-                    <hr>
-                    <p>
-                        <strong>E:</strong> hello@foundry.net
-                        <br>
-                        <strong>P:</strong> +614 3948 2726
-                        <br>
-                    </p>
+                    {!! $page->content_html !!}
                 </div>
                 <div class="uk-width-medium-1-2">
                     <form class="form-email" class="uk-form" >

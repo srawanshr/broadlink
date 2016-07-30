@@ -10,6 +10,8 @@ class Page extends Model {
 
     use SoftDeletes;
 
+    const CONTACT_PAGE_ID = 2;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -153,5 +155,10 @@ class Page extends Model {
         }
 
         return parent::delete($options);
+    }
+
+    public function scopeContact($query)
+    {
+        return $query->findOrFail(self::CONTACT_PAGE_ID);
     }
 }

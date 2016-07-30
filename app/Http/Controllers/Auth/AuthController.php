@@ -6,6 +6,7 @@ use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -22,7 +23,9 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers { login as traitLogin; }
+
+    use ThrottlesLogins;
 
     /**
      * Where to redirect users after login / registration.
@@ -76,5 +79,14 @@ class AuthController extends Controller
         ]);
 
         return redirect()->back()->withSuccess('Registration Successful');
+    }
+
+    public function login(Request $request)
+    {
+        $field = filter_var($request->get('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([$field => $request->get('login')]);
+        $this->username = $field;
+
+        return $this->traitLogin($request);
     }
 }

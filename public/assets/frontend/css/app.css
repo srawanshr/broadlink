@@ -407,9 +407,10 @@ h3 {
 
 .bl-icon-description {
   position: relative;
-  margin: 15px a;
-    margin-display: inline-block;
-    margin-position: absolute; }
+  margin: 15px; }
+  .bl-icon-description a.uk-icon-button {
+    display: inline-block;
+    position: absolute; }
   .bl-icon-description p {
     padding-left: 50px; }
 
@@ -437,6 +438,8 @@ ul.bl-tab {
   font-size: 1.3em; }
   .bl-package h3, .bl-package p, .bl-package button {
     padding: 10px; }
+  .bl-package .uk-panel > * {
+    background: #f1f1f1; }
   .bl-package .bl-package-title h3 {
     background-color: #0c94dc;
     padding: 10px 0;

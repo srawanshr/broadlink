@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="uk-width-medium-6-10">
                                     <div class="uk-panel">
-                                        <div class="uk-grid">
+                                        <div class="uk-grid bl-tab-left-container">
                                             <div class="uk-width-medium-1-2">
 
                                                 <ul class="uk-tab uk-tab-left" data-uk-tab="{connect:'#bl-nav-services'}">
@@ -31,11 +31,14 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="uk-width-medium-1-2">
+                                            <div class="uk-width-medium-1-2 uk-tab-left-content">
 
                                                 <ul id="bl-nav-services" class="uk-switcher">
                                                     @foreach(services() as $service)
-                                                        <li>{!! str_limit($service->meta_description, 200) !!}</li>
+                                                        <li>
+                                                            <p>{!! str_limit($service->meta_description, 200) !!}</p>
+                                                            <a href="{{ route('service::show', $service->slug)}}">Read More</a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
 
@@ -111,7 +114,7 @@
                                         <form class="uk-panel uk-panel-box uk-form" action="{{ url('/login') }}" method="POST">
                                             {{ csrf_field() }}
                                             <div class="uk-form-row">
-                                                <input class="uk-width-1-1 uk-form-large" type="text" name="email" placeholder="Email">
+                                                <input class="uk-width-1-1 uk-form-large" type="text" name="login" placeholder="Email\Username">
                                             </div>
                                             <div class="uk-form-row">
                                                 <input class="uk-width-1-1 uk-form-large" type="password" name="password" placeholder="Password">
