@@ -7,7 +7,7 @@
 @stop
 
 @section('body')
-    @include('frontend.partials.banner-slider', ['service' => $service])
+    @include('frontend.partials.banner', ['title' => $service->name, 'images' => $service->banners])
     <section class="uk-block services uk-block-default">
         <div class="uk-container uk-container-center">
             <ul class="uk-tab bl-tab" data-uk-tab="{connect:'#services'}">

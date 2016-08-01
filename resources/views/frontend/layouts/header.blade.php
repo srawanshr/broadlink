@@ -12,7 +12,7 @@
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="##" class="hover-to-click">Services</a>
+                        <a href="{{ route('service::index') }}" class="hover-to-click">Services</a>
                         <div class="uk-dropdown">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
@@ -24,7 +24,7 @@
                                         <div class="uk-grid bl-tab-left-container">
                                             <div class="uk-width-medium-1-2">
 
-                                                <ul class="uk-tab uk-tab-left" data-uk-tab="{connect:'#bl-nav-services'}">
+                                                <ul class="uk-tab uk-tab-left uk-tab-hover" data-uk-tab="{connect:'#bl-nav-services', mode: 'hover'}">
                                                     @foreach(services() as $service)
                                                         <li><a href="#" class="hover-to-click">{{ $service->name }}</a></li>
                                                     @endforeach
@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="##" class="hover-to-click">Help Center</a>{{--{{ route('help::index') }}--}}
+                        <a href="{{ url('help') }}" class="hover-to-click">Help Center</a>{{--{{ route('help::index') }}--}}
                         <div class="uk-dropdown">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-3-10 uk-width-small-2-5">
@@ -107,7 +107,7 @@
                         <li><a href="{{ route('user::dashboard') }}">{{ auth()->user()->first_name }}</a></li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                            <a href="##" class="hover-to-click">Log In</a>
+                            <a href="{{ url('register') }}" class="hover-to-click">Log In</a>
                             <div class="uk-dropdown">
                                 <div class="uk-grid uk-dropdown-grid">
                                     <div class="uk-width-2-5">

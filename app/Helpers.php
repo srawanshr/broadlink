@@ -153,3 +153,12 @@ function setting($query)
 
     return $setting ? $setting->value : null;
 }
+
+/**
+ * @param $value
+ * @return boolean
+ */
+function is_even($value)
+{
+    return $value % 2 == 0;
+}

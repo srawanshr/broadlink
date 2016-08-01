@@ -4,6 +4,45 @@ $primary-color: #e76724;
 $alternate-color: #0c94dc;
 $contrast-color: #cd4078;
 $green: #83c42c;
+$light-gray: #ebeff1;
+
+
+/// Gives a card depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
+@mixin card($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    box-shadow: bottom-shadow($depth), top-shadow($depth);  
+  }
+}
+
+/// Computes a top-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function top-shadow($depth) {
+  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+  $color: rgba(black, nth(.12 .16 .19 .25 .30, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth) {
+  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+  $blur: nth(1 3 3 5 6, $depth) * 4px;
+  $color: rgba(black, nth(.24 .23 .23 .22 .22, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
 
 html {height: 100%}
 
@@ -13,6 +52,11 @@ body {
     height: 100%;
     font-size: 16px;
     line-height: 1.5em;
+    background-color: $light-gray;
+}
+
+a {
+  color: $primary-color;
 }
 
 .full-height {
@@ -234,10 +278,27 @@ input, textarea {
 	}
 }
 
-.uk-block-primary {
+.bl-block-default {
+  background-color: white;
+}
+.bl-block-primary {
   background: $primary-color;
+  a, i {
+    color: white;
+  }
 }
 
+.bl-block-primary-light {
+  background: lighten($primary-color, 10);
+}
+
+.bl-block-primary-lighter {
+  background: lighten($primary-color, 20);
+}
+
+.bl-block-primary-lightest {
+  background: lighten($primary-color, 40);
+}
 
 h1 {
   font-size: 3em;
@@ -280,9 +341,8 @@ h3 {
   margin: 10px;
   position: relative;
 
-  -webkit-box-shadow: 0 6px 4px -6px #777;
-  -moz-box-shadow: 0 6px 4px -6px #777;
-  box-shadow: 0 6px 4px -6px #777;
+  @include card(1);
+
   &:hover {
     background: rgba(255, 255, 255, 0.6);
   }
@@ -380,6 +440,12 @@ h3 {
 #customers {
   .bl-quote-slider {
     padding-top: 35px;
+  }
+}
+#our-services-index {
+  .bl-service-description {
+    background: #f8f8f8;
+    padding: 30px 80px;
   }
 }
 
@@ -665,6 +731,89 @@ ul.bl-tab {
   }
   &:hover {
     background: #f1f1f1;
+  }
+}
+
+.bl-padding {
+  padding: 1em;
+}
+
+.bl-padding-2 {
+  padding: 2em;
+}
+
+.bl-padding-lr {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.bl-padding-2-lr {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.bl-padding-tb {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.bl-padding-2-tb {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+  > li {
+      position: relative;
+      margin-bottom: 10px;
+  }
+  .fa-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: 0.14285714em;
+    text-align: center;
+  }
+}
+
+.uk-list {
+  li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+#user-profile {
+  @include card(1);
+  .bl-tile {
+    height: 130px;
+    width: 130px;
+    display: inline-block;
+    background: #eee;
+    color: $primary-color;
+    margin: 5px;
+    @include card(1);
+    i {
+      padding: 35px 52px;
+      font-size: 2em;
+      display: block;
+    }
+    span {
+      font-size: 0.8em;
+      padding: 0 10px;
+    }
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+  .uk-table {
+    tr {
+      border-bottom: 1px solid #f1f1f1
+    }
   }
 }
 

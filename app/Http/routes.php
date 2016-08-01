@@ -7,6 +7,7 @@
 */
 Route::get('/', 'Frontend\FrontController@index')->name('index');
 Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('service::show');
+Route::get('/service', 'Frontend\ServiceController@index')->name('service::index');
 Route::get('/contact', 'Frontend\FrontController@contact')->name('contact::index');
 Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 

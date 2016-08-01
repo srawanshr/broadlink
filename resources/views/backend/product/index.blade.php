@@ -34,7 +34,7 @@
                                                 </a>
                                             </td>
                                             <td class="uk-text-large uk-text-nowrap">{{ $product->name }}</td>
-                                            <td class="uk-text-nowrap">{{ $product->service->name }}</td>
+                                            <td class="uk-text-nowrap">{{ $product->plan->service->name }}</td>
                                             <td class="uk-text-nowrap uk-text-center">
                                                 <span class="uk-badge uk-badge-{{ $product->is_active ? 'Success' : 'Default' }}">
                                                     {{ $product->is_active ? 'Active' : 'Passive' }}
