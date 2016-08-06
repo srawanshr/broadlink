@@ -51,13 +51,15 @@ $router->group([
 ], function () {
     /*
     |--------------------------------------------------------------------------
-    | Various Admin Routes
+    | Frontend User Routes
     |--------------------------------------------------------------------------
     */
     Route::get('/', function () {
         return redirect('user/dashboard');
     });
     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+    Route::get('edit', 'UserController@edit')->name('edit');
+    Route::put('update', 'UserController@update')->name('update');
 
 });
 
