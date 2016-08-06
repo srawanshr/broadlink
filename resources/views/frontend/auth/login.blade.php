@@ -51,13 +51,13 @@
 
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
-                                <label class="uk-form-label">Email</label>
-                                {{ Form::email('email', old('email'), [ 'class' => 'uk-width-1-1'.($errors->has('email') ? ' uk-form-danger':'')]) }}
+                                <label class="uk-form-label">Username</label>
+                                {{ Form::text('username', old('username'), [ 'class' => 'uk-width-1-1'.($errors->has('username') ? ' uk-form-danger':'')]) }}
                             </div>
-                        
+
                             <div class="uk-width-1-2">
                                 <label class="uk-form-label">Email</label>
-                                {{ Form::text('username', old('username'), [ 'class' => 'uk-width-1-1'.($errors->has('username') ? ' uk-form-danger':'')]) }}
+                                {{ Form::email('email', old('email'), [ 'class' => 'uk-width-1-1'.($errors->has('email') ? ' uk-form-danger':'')]) }}
                             </div>
                         </div>
                         

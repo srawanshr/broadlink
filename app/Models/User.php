@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'address', 'city', 'state', 'phone',
-        'gender', 'username', 'email', 'password', 'is_active', 'slug'
+        'first_name', 'last_name', 'address', 'phone',
+        'username', 'email', 'password', 'is_active', 'slug'
     ];
 
     /**
@@ -35,6 +35,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The morph class name for this model.
+     *
+     * @var array
+     */
+    protected $morphClass = 'User';
+
+    /**
      * Set the username attribute and the slug.
      *
      * @param string $value
@@ -42,7 +49,8 @@ class User extends Authenticatable
     public function setUsernameAttribute($value)
     {
         $this->attributes['username'] = $value;
-        if (!$this->exists) {
+        if ( ! $this->exists)
+        {
             $this->setUniqueSlug($value, '');
         }
     }
@@ -56,15 +64,41 @@ class User extends Authenticatable
     protected function setUniqueSlug($username, $extra)
     {
         $slug = str_slug($username . '-' . $extra);
-        if (static::whereSlug($slug)->exists()) {
+        if (static::whereSlug($slug)->exists())
+        {
             $this->setUniqueSlug($username, $extra + 1);
+
             return;
         }
         $this->attributes['slug'] = $slug;
     }
 
+    /**
+     * @return string
+     */
     public function getDisplayNameAttribute()
     {
-        return ucwords($this->first_name. " " .$this->last_name);
+        return ucwords($this->first_name . " " . $this->last_name);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    /**
+     * @param array $options
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function delete(array $options = array())
+    {
+        if($this->image)
+            $this->image->delete();
+
+        return parent::delete($options);
     }
 }
