@@ -11,6 +11,8 @@ Route::get('/service', 'Frontend\ServiceController@index')->name('service::index
 Route::get('/contact', 'Frontend\FrontController@contact')->name('contact::index');
 Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 
+Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
+
 /*
 |--------------------------------------------------------------------------
 | Logging In/Out Routes

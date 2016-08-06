@@ -7,15 +7,11 @@
 @stop
 
 @section('body')
-	@include('frontend.partials.banner', ['title' => 'Services'])
+	@include('frontend.partials.banner', ['title' => 'Services', 'images' => $page->banners ])
 	<section id="our-services-index" class="uk-block uk-block-default uk-margin-remove uk-padding-remove bl-text-dark">
 		<div class="uk-container uk-container-center">
 			<div class="uk-block-default uk-margin-large-bottom">
-				<h1>Some title</h1>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam voluptatibus veritatis consequuntur possimus eaque ea aperiam quam aliquam rem asperiores a distinctio veniam, nesciunt odit itaque repudiandae vel aspernatur tempora?
-				</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, nemo esse deleniti eos neque necessitatibus fugit obcaecati veritatis. Earum illo iure unde, accusamus quos iusto tempora nesciunt dignissimos quibusdam, fuga.</p>
+				<p>{!! $page->content_raw !!}</p>
 			</div>
 			@foreach(services() as $key => $service)
 		        <div class="uk-grid uk-grid-collapse uk-margin-remove" id="internet">

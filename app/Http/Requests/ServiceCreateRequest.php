@@ -24,7 +24,8 @@ class ServiceCreateRequest extends Request {
     public function rules()
     {
         return [
-            'name'             => 'required',
+            'name'             => 'required|max:255',
+            'slogan'           => 'required|max:255',
             'meta_description' => 'required',
             'description_raw'  => 'required',
             'is_active'        => 'boolean',

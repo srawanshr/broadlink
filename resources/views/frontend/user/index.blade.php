@@ -10,7 +10,7 @@
 						<img src="{{ asset('assets/frontend/img/avatar4.png') }}" class="uk-width-1-1">
 					</div>
 					<div class="bl-padding uk-block-default bl-block-primary-lightest">
-						Srawan Shrestha
+						{{ $user->display_name }}
 					</div>
 					<div class="offer bl-padding bl-block-primary-lighter">
 						<ul class="fa-ul">
@@ -42,18 +42,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="uk-width-medium-4-5">
+				<div class="uk-width-4-5">
 					<div class="uk-grid">
 						<div class="uk-width-small-1 uk-margin-large-top">
 							<div class="bl-padding-2-lr">
 								<h2>Welcome to My Account</h2>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos natus illum magni cum vitae quibusdam, tenetur laboriosam mollitia iste distinctio quae ab sunt, fugiat necessitatibus eaque, rem hic. Repellendus, libero!</p>
-								<ul class="uk-list">
-									<li>Update your profile</li>
-									<li>Check the usage</li>
-									<li>Discover more features</li>
-									<li>Manage Subscriptions</li>
-								</ul>
 							</div>
 						</div>
 						<div class="uk-width-medium-1-2 uk-margin-top">
@@ -86,34 +80,6 @@
 									<i class="uk-icon uk-icon-sticky-note"></i>
 									<span>Trouble Ticket</span>
 								</a>
-							</div>
-						</div>
-						<div class="uk-width-small-1-1 uk-margin-top">
-							<div class="bl-padding-2-lr">
-								<h2>Usage (Last 30 days)</h2>
-								<div class="uk-grid">
-									<div class="uk-width-small-1-3">
-										<i class="uk-icon uk-icon-large uk-icon-phone"></i>
-										<span>
-											<b>0</b>
-											<div>mins to mobiles and landlines</div>
-										</span>
-									</div>
-									<div class="uk-width-small-1-3">
-										<i class="uk-icon uk-icon-large uk-icon-lock"></i>
-										<span>
-											<b>1</b>
-											<div>sms messages</div>
-										</span>
-									</div>
-									<div class="uk-width-small-1-3">
-										<i class="uk-icon uk-icon-large uk-icon-signal"></i>
-										<span>
-											<b>2</b>
-											<div>mins of Broadlink Wifi</div>
-										</span>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="uk-width-small-1-1 uk-margin-top">

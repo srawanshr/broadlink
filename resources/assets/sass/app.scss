@@ -817,9 +817,24 @@ ul.bl-tab {
   }
 }
 
- .bl-grid-medium > * {
+.bl-grid-medium > * {
   padding: 10px;
- }
+}
+
+.bl-card {
+  padding: 20px;
+  @include card(1);
+}
+
+.bl-super-badge {
+  position: relative;
+  .uk-badge {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    border-radius: 10px;
+  }
+}
 
 @media(max-width: 767px) {
   #news .pe {

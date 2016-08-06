@@ -24,6 +24,39 @@
                 </div>
             </div>
             <!--end of row-->
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                    <!-- This is the container of the toggling elements -->
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#branches'}">
+                        @foreach( $contactTypes as $type)
+                            <li><a href="javascript:void(0)">{{ strtoupper($type) }}</a></li>
+                        @endforeach
+                    </ul>
+
+                    <!-- This is the container of the content items -->
+                    <ul id="branches" class="uk-switcher">
+                        @foreach( $contactTypes as $id => $type)
+                            <li>
+                                <div class="uk-grid uk-grid-match">
+                                    @foreach( $contacts->get($id, []) as $contact)
+                                        <div class="uk-width-medium-1-2">
+                                            <div class="bl-card">
+                                                <div class="bl-card-heading">
+                                                    {{ $contact->name }}
+                                                </div>
+                                                <div class="bl-card-content">
+                                                    <p>{{ $contact->address }},{{ $contact->phone }},{{ $contact->email }}</p>
+                                                    <p>{{ $contact->description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
         </div>
         <!--end of container-->
     </section>

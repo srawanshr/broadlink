@@ -145,10 +145,10 @@ class ImageManager
 
         if( !file_exists($fileLocation) ) {
 
-            if( ( $width==null && $height==null ) || $file==null ) return;
+            if( ( $width==null && $height==null ) || $image==null ) return;
 
             // create instance
-            $img = Image::make($file);
+            $img = Image::make($image);
 
             // resize the image to a width of 300 and constrain aspect ratio (auto height)
             $img->resize($width, $height, function ($constraint) {

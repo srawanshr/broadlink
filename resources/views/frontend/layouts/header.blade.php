@@ -139,6 +139,23 @@
                             </div>
                         </li>
                     @endif
+                    <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
+                        <a href="#" class="bl-super-badge">
+                            <div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>
+                            <i class="uk-icon uk-icon-shopping-cart"></i>
+                        </a>
+                        <div class="uk-dropdown">
+                            <div class="uk-grid uk-dropdown-grid">
+                                <div class="uk-width-1-1">
+                                    <ul>
+                                        @foreach( Cart::content() as $item )
+                                            <li>{{ $item->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <a href="#" class="uk-navbar-toggle uk-visible-small"></a>
             </div>

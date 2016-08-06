@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
 	public function dashboard() {
-    	return view('frontend.user.index');
+		$user = auth()->user();
+    	return view('frontend.user.index', compact('user'));
 	}
 }

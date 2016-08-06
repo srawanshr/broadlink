@@ -26,6 +26,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'display_name',
+    ];
+
+    /**
      * Set the username attribute and the slug.
      *
      * @param string $value
@@ -52,5 +61,10 @@ class User extends Authenticatable
             return;
         }
         $this->attributes['slug'] = $slug;
+    }
+
+    public function getDisplayNameAttribute()
+    {
+        return ucwords($this->first_name. " " .$this->last_name);
     }
 }
