@@ -8,9 +8,9 @@
 
 @section('body')
 	@include('frontend.partials.banner', ['title' => 'Services', 'images' => $page->banners ])
-	<section id="our-services-index" class="uk-block uk-block-default uk-margin-remove uk-padding-remove bl-text-dark">
-		<div class="uk-container uk-container-center">
-			<div class="uk-block-default uk-margin-large-bottom">
+	<section id="our-services-index" class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
+		<div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
+			<div class="uk-margin-large-bottom">
 				<p>{!! $page->content_raw !!}</p>
 			</div>
 			@foreach(services() as $key => $service)

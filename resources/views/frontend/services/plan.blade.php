@@ -34,7 +34,7 @@
                                     {!! $product->description_html !!}
                                 </div>
                                 <div class="uk-width-1-1">
-                                    <button class="uk-button uk-width-1-1 uk-button-large uk-button-success">Buy Now</button>
+                                    <a class="uk-button uk-width-1-1 uk-button-large uk-button-success" href="{{ route('service::buy', [ $service->slug, $product->slug ]) }}">Buy Now</a>
                                 </div>
                             </div>
                         </div>

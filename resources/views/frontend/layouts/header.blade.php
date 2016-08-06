@@ -120,7 +120,7 @@
                                                 <input class="uk-width-1-1 uk-form-large" type="password" name="password" placeholder="Password">
                                             </div>
                                             <div class="uk-form-row">
-                                                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit">Submit</a>
+                                                <button class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit">Submit</button>
                                             </div>
                                             <div class="uk-form-row uk-text-small">
                                                 <label class="uk-float-left"><input type="checkbox" name="remember_me"> Remember Me</label>
@@ -140,7 +140,7 @@
                         </li>
                     @endif
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="#" class="bl-super-badge">
+                        <a href="{{ route('cart::index') }}" class="bl-super-badge">
                             <div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>
                             <i class="uk-icon uk-icon-shopping-cart"></i>
                         </a>

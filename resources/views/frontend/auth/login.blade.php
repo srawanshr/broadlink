@@ -5,13 +5,9 @@
 @section('body')
 
     @include('frontend.partials.banner', ['title' => 'Login'])
-    <section class="uk-block uk-block-default">
-        <div class="uk-container uk-container-center">
-            <div class="uk-grid">
-                <div class="uk-width-1-1">
-                    @include('shared.errors')
-                </div>
-            </div>
+    <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
+        <div class="uk-container uk-container-center uk-block-default bl-margin-top-ve bl-padding-2-tb">
+            @include('shared.errors')
             <div class="uk-grid data-uk-grid-match uk-grid-divider">
                 <div class="uk-width-1-3">
                     <div class="uk-panel">

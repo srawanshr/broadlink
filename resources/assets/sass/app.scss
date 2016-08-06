@@ -44,7 +44,9 @@ $light-gray: #ebeff1;
   @return 0 $primary-offset $blur $color;
 }
 
-html {height: 100%}
+html {
+  background-color: $light-gray;
+}
 
 body {
     color: $text-color;
@@ -98,18 +100,13 @@ input, textarea {
   width: 150px;
 }
 
-.uk-navbar {
-  background: white;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
 .bl-navbar-overlay:not(.uk-active) {
   position: absolute;
   z-index: 1;
   width: 100%;
 }
 #bl-navbar {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
@@ -760,6 +757,10 @@ ul.bl-tab {
 .bl-padding-2-tb {
   padding-top: 2em;
   padding-bottom: 2em;
+}
+
+.bl-margin-top-ve {
+  margin-top: -70px;
 }
 
 .fa-ul {

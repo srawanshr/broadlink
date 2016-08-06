@@ -8,8 +8,8 @@
 
 @section('body')
     @include('frontend.partials.banner', ['title' => 'Contact Us', 'images' => $page->banners])
-    <section class="uk-block uk-block-default uk-block-large">
-        <div class="uk-container uk-container-center">
+    <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
+        <div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
             <div class="uk-grid">
                 <div class="uk-width-medium-1-2">
                     {!! $page->content_html !!}
@@ -40,14 +40,11 @@
                                 <div class="uk-grid uk-grid-match">
                                     @foreach( $contacts->get($id, []) as $contact)
                                         <div class="uk-width-medium-1-2">
-                                            <div class="bl-card">
-                                                <div class="bl-card-heading">
-                                                    {{ $contact->name }}
-                                                </div>
-                                                <div class="bl-card-content">
-                                                    <p>{{ $contact->address }},{{ $contact->phone }},{{ $contact->email }}</p>
-                                                    <p>{{ $contact->description }}</p>
-                                                </div>
+                                            <hr class="uk-article-divider">
+                                            <h3>{{ $contact->name }}</h3>
+                                            <div>
+                                                <p>{{ $contact->address }},{{ $contact->phone }},{{ $contact->email }}</p>
+                                                <p>{{ $contact->description }}</p>
                                             </div>
                                         </div>
                                     @endforeach

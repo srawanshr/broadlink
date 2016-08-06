@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
-
-use App\Models\Page;
-use App\Http\Requests;
-use App\Models\Service;
+use App\Facades\Cart;
 use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Service;
+use App\Models\Product;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index ()
     {
-    	$page = Page::whereSlug('service')->first();
-    	return view('frontend.services.index', compact('page'));
+        $page = Page::whereSlug ( 'service' )->first ();
+
+        return view ( 'frontend.services.index', compact ( 'page' ) );
     }
 
-    public function show(Service $service)
+    public function show ( Service $service )
     {
-    	return view('frontend.services.show', compact('service'));
+        return view ( 'frontend.services.show', compact ( 'service' ) );
     }
 }

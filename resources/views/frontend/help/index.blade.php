@@ -8,8 +8,8 @@
 
 @section('body')
     @include('frontend.partials.banner', ['title' => 'Help Center'])
-    <section class="uk-block uk-block-default uk-block-large">
-        <div class="uk-container uk-container-center">
+    <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
+        <div class="uk-container uk-block-default uk-container-center bl-margin-top-ve bl-padding-2-tb bl-card">
             <div class="uk-grid">
                 <div class="uk-width-1-1 uk-text-center">
                     <h2>Common questions about Tixy</h2>
