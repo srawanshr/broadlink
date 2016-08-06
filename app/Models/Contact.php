@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    protected $types = [
+    public static $types = [
         0 => 'branch', 1 => 'distributor', 2 => 'reseller'
     ];
 
@@ -38,6 +38,11 @@ class Contact extends Model
      */
     public function getTypes()
     {
-        return $this->types;
+        return self::$types;
+    }
+
+    public static function types()
+    {
+        return self::$types;
     }
 }

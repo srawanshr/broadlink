@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('meta_description');
+            $table->text('slogan');
             $table->text('description_raw');
             $table->text('description_html');
             $table->integer('order');

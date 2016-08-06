@@ -14,5 +14,15 @@
     @include('frontend.layouts.footer')
     {{ Html::script('assets/frontend/js/dep.js') }}
     @yield('footer')
+    <script type="text/javascript">
+        // $(document).on('mouseover', '.hover-to-click', function() {
+        //     $(this).trigger('click');
+        // });
+        jQuery(function($) {
+            $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
+                $(this).trigger('click.uikit.tab');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -42,6 +42,10 @@
                             {{ Form::text( 'name', old('name'), [ 'id' => 'service_name', 'class' => 'md-input', 'required' ] ) }}
                         </div>
                         <div class="uk-form-row">
+                            <label>Slogan</label>
+                            {{ Form::text( 'slogan', old('slogan'), [ 'id' => 'slogan', 'class' => 'md-input', 'required' ] ) }}
+                        </div>
+                        <div class="uk-form-row">
                             <label>Meta Description</label>
                             {{ Form::textarea( 'meta_description', old('meta_description'), [ 'id' => 'service_meta_description', 'class' => 'md-input', 'cols' => '30', 'rows' => '4' ] ) }}
                         </div>

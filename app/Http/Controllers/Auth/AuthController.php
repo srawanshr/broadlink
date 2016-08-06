@@ -6,6 +6,8 @@ use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -21,14 +23,16 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers { login as traitLogin; }
+
+    use ThrottlesLogins;
 
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user/dashboard';
 
     /**
      * Defining guard name.
@@ -58,32 +62,31 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
-    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function store(CreateUserRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        User::create([
+            'slug' => str_slug($request->get('username')),
+            'first_name' => $request->get('first_name'),
+            'username' => $request->get('username'),
+            'last_name' => $request->get('last_name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
         ]);
+
+        return redirect()->back()->withSuccess('Registration Successful');
+    }
+
+    public function login(Request $request)
+    {
+        $field = filter_var($request->get('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([$field => $request->get('login')]);
+        $this->username = $field;
+
+        return $this->traitLogin($request);
     }
 }

@@ -13,7 +13,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name', 'last_name', 'address', 'city', 'state', 'phone',
-        'gender', 'username', 'email', 'password', 'is_active'
+        'gender', 'username', 'email', 'password', 'is_active', 'slug'
     ];
 
     /**
@@ -23,6 +23,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that are appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'display_name',
     ];
 
     /**
@@ -52,5 +61,10 @@ class User extends Authenticatable
             return;
         }
         $this->attributes['slug'] = $slug;
+    }
+
+    public function getDisplayNameAttribute()
+    {
+        return ucwords($this->first_name. " " .$this->last_name);
     }
 }
