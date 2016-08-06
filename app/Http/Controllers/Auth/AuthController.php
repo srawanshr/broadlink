@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserCreateRequest;
+use App\Models\User;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateUserRequest;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -23,7 +23,9 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers { login as traitLogin; }
+    use AuthenticatesAndRegistersUsers {
+        login as traitLogin;
+    }
 
     use ThrottlesLogins;
 
@@ -46,9 +48,9 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct ()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware ( $this->guestMiddleware (), ['except' => 'logout'] );
     }
 
     /**
@@ -56,37 +58,37 @@ class AuthController extends Controller
      *
      * @return view
      */
-    public function showLoginForm()
+    public function showLoginForm ()
     {
-        return view('frontend.auth.login');
+        return view ( 'frontend.auth.login' );
+    }
+
+    public function login ( Request $request )
+    {
+        $field = filter_var ( $request->get ( 'login' ), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
+        $request->merge ( [$field => $request->get ( 'login' )] );
+        $this->username = $field;
+
+        return $this->traitLogin ( $request );
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
-    protected function store(CreateUserRequest $request)
+    protected function store ( UserCreateRequest $request )
     {
-        User::create([
-            'slug' => str_slug($request->get('username')),
-            'first_name' => $request->get('first_name'),
-            'username' => $request->get('username'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
-        ]);
+        User::create ( [
+            'slug'       => str_slug ( $request->get ( 'username' ) ),
+            'first_name' => $request->get ( 'first_name' ),
+            'username'   => $request->get ( 'username' ),
+            'last_name'  => $request->get ( 'last_name' ),
+            'email'      => $request->get ( 'email' ),
+            'password'   => bcrypt ( $request->get ( 'password' ) ),
+        ] );
 
-        return redirect()->back()->withSuccess('Registration Successful');
-    }
-
-    public function login(Request $request)
-    {
-        $field = filter_var($request->get('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $request->merge([$field => $request->get('login')]);
-        $this->username = $field;
-
-        return $this->traitLogin($request);
+        return redirect ()->back ()->withSuccess ( 'Registration Successful' );
     }
 }
