@@ -13,7 +13,7 @@
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                         <a href="{{ route('service::index') }}" class="hover-to-click">Services</a>
-                        <div class="uk-dropdown">
+                        <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
                                     <h2>PRODUCTS AND SERVICES</h2>
@@ -24,9 +24,9 @@
                                         <div class="uk-grid bl-tab-left-container">
                                             <div class="uk-width-medium-1-2">
 
-                                                <ul class="uk-tab uk-tab-left uk-tab-hover" data-uk-tab="{connect:'#bl-nav-services', mode: 'hover'}">
+                                                <ul class="uk-tab uk-tab-left uk-tab-hover" data-uk-tab="{connect:'#bl-nav-services'}">
                                                     @foreach(services() as $service)
-                                                        <li><a href="#" class="hover-to-click">{{ $service->name }}</a></li>
+                                                        <li><a href="{{ route('service::show', $service->slug) }}">{{ $service->name }}</a></li>
                                                     @endforeach
                                                 </ul>
 
@@ -51,7 +51,7 @@
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                         <a href="{{ url('help') }}" class="hover-to-click">Help Center</a>{{--{{ route('help::index') }}--}}
-                        <div class="uk-dropdown">
+                        <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-3-10 uk-width-small-2-5">
                                     <span class="callout">Online Support 24/7</span>
@@ -108,7 +108,7 @@
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                             <a href="{{ url('register') }}" class="hover-to-click">Log In</a>
-                            <div class="uk-dropdown">
+                            <div class="uk-dropdown bl-card">
                                 <div class="uk-grid uk-dropdown-grid">
                                     <div class="uk-width-2-5">
                                         <form class="uk-panel uk-panel-box uk-form" action="{{ url('/login') }}" method="POST">
@@ -144,7 +144,7 @@
                             <div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>
                             <i class="uk-icon uk-icon-shopping-cart"></i>
                         </a>
-                        <div class="uk-dropdown">
+                        {{-- <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-1-1">
                                     <ul>
@@ -154,11 +154,46 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </li>
                 </ul>
-                <a href="#" class="uk-navbar-toggle uk-visible-small"></a>
+                <a href="#bl-responsive-menu" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
             </div>
         </div>
     </div>
 </nav>
+
+<div id="bl-responsive-menu" class="uk-offcanvas">
+
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+
+        <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
+            <li><a href="">Home</a></li>
+            <li class="uk-active"><a href="">Active</a></li>
+
+            <li class="uk-parent">
+                <a href="#"><i class="uk-icon-list-ult"></i> Services</a>
+                <ul class="uk-nav-sub">
+                    @foreach( services() as $service )
+                        <li><a href="{{ route('service::show', $service->slug) }}">{{ $service->name }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+
+            <li class="uk-parent">
+                <a href="#"><i class="uk-icon-question"></i> Help Center</a>
+                <ul class="uk-nav-sub">
+                    <li><a href="">Sub item</a></li>
+                    <li><a href="">Sub item</a></li>
+                </ul>
+            </li>
+
+            <li><a href=""><i class="uk-icon-mobile-phone"></i> Contact Us</a></li>
+
+            <li><a href="{{ route('user::dashboard') }}"><i class="uk-icon-dashboard"></i> My Dashboard</a></li>
+            <li><a href="{{ route('cart::index') }}"><i class="uk-icon-cart-arrow-down"></i> Cart</a></li>
+        </ul>
+
+    </div>
+
+</div>

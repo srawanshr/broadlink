@@ -104,6 +104,10 @@ input, textarea {
   padding: 0 15px;
   float: left; }
 
+.uk-panel > .uk-close {
+  margin: -10px -10px 0 0;
+  float: right; }
+
 .uk-navbar-nav > li.uk-open > a {
   color: #e76724;
   background-color: transparent;
@@ -125,6 +129,8 @@ input, textarea {
   .uk-navbar-nav > li > a:focus {
     color: #e76724;
     outline: none; }
+  .uk-navbar-nav > li > a:focus {
+    background-color: transparent; }
 
 .uk-navbar-nav > li .uk-dropdown {
   background: rgba(255, 255, 255, 0.9);
@@ -569,6 +575,12 @@ ul.bl-tab {
       color: white; }
   #user-profile .uk-table tr {
     border-bottom: 1px solid #f1f1f1; }
+
+#bl-responsive-menu .uk-offcanvas-bar {
+  background: #e76724; }
+
+#bl-responsive-menu a {
+  color: white; }
 
 .bl-grid-medium > * {
   padding: 10px; }

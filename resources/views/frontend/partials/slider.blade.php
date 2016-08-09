@@ -46,6 +46,12 @@
                                         <div class="image image2">
                                             <img src="{{ asset('assets/frontend/img/fg.png') }}" alt="" class="img-responsive">
                                         </div>
+                                        <div class="image image3">
+                                            <img src="{{ asset('assets/frontend/img/signal.png') }}" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="image image4">
+                                            <img src="{{ asset('assets/frontend/img/people.png') }}" alt="" class="img-responsive">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="uk-width-small-1-1 uk-width-medium-4-10 uk-vertical-align bl-text-light">

@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Http\Requests;
 use App\Models\Contact;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
@@ -22,7 +23,8 @@ class FrontController extends Controller
         $page = Page::contact();
         $contacts = Contact::all()->groupBy('type');
         $contactTypes = Contact::types();
-    	return view('frontend.contact.index', compact('page', 'contacts', 'contactTypes'));
+        $settings = Setting::lists('value','slug');
+    	return view('frontend.contact.index', compact('page', 'contacts', 'contactTypes', 'settings'));
     }
 
     public function help()

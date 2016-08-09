@@ -18,11 +18,11 @@
         // $(document).on('mouseover', '.hover-to-click', function() {
         //     $(this).trigger('click');
         // });
-        jQuery(function($) {
-            $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
-                $(this).trigger('click.uikit.tab');
-            });
-        });
+        // (function() {
+        //     $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
+        //         $(this).trigger('click.uk.tab');
+        //     });
+        // })();
     </script>
 </body>
 </html>

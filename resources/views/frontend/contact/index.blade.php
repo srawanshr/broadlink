@@ -12,7 +12,20 @@
         <div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
             <div class="uk-grid">
                 <div class="uk-width-medium-1-2">
-                    {!! $page->content_html !!}
+                    <div class="uk-grid">
+                        <div class="uk-grid-1-1">
+                            {!! $page->content_html !!}
+                        </div>
+                        <div class="uk-grid-1-1">
+                            <div class="uk-panel uk-panel-box">
+                                <p>{!! str_replace('|', '<br>', $settings['address']) !!}</p>
+                                <p>GPO: {!! $settings['gpo'] !!}</p>
+                                <p>Phone: {!! $settings['phone'] !!}</p>
+                                <p>Fax: {!! $settings['fax'] !!}</p>
+                                <p>Email: {!! $settings['email'] !!}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-width-medium-1-2">
                     <form class="form-email" class="uk-form" >
@@ -29,7 +42,7 @@
                     <!-- This is the container of the toggling elements -->
                     <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#branches'}">
                         @foreach( $contactTypes as $type)
-                            <li><a href="javascript:void(0)">{{ strtoupper($type) }}</a></li>
+                            <li><a href="javascript:void(0)" class="uk-button-large">{{ strtoupper($type) }}</a></li>
                         @endforeach
                     </ul>
 

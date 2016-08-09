@@ -4,8 +4,8 @@
 
 @section('body')
     @include('frontend.partials.banner', ['title' => 'Dashboard'])
-    <section class="uk-block bl-block-default uk-block-large">
-        <div class="uk-container uk-container-center uk-width-medium-7-10 uk-padding-remove" id="user-profile">
+    <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
+        <div class="uk-container bl-block-default uk-container-center bl-margin-top-ve uk-width-medium-7-10 uk-padding-remove" id="user-profile">
             <div class="uk-grid uk-grid-collapse">
                 @include('frontend.user.partials.menu')
                 <div class="uk-width-4-5">

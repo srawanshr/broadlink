@@ -28,6 +28,7 @@
                 $('.image1').parallax(-40, e);
                 $('.image2').parallax(-30, e);
                 $('.image3').parallax(-20, e);
+                $('.image4').parallax(-10, e);
                 $('.subtitle').parallax(60, e);
             });
 
