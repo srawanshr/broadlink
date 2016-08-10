@@ -13,16 +13,12 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('page_id')->unsigned();
-            $table->string('title');
-            $table->string('order');
-            $table->string('icon')->nullable();
-            $table->foreign('page_id')
-                ->references('id')
-                ->on('pages')
-                ->onDelete('cascade');
+            $table->string('name');
+            $table->string('slug');
+            $table->integer('type', 1);
+            $table->text('url');
+            $table->string('icon');
             $table->timestamps();
         });
     }

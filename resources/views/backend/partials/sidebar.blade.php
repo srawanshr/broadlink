@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin::menu') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE5D2;</i></span>
+                    <span class="menu_title">Menu</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin::product.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE8F6;</i></span>
                     <span class="menu_title">Products</span>
@@ -74,7 +80,6 @@
                 </a>
                 {{--<ul>--}}
                     {{--<li><a href="{{ route('admin::setting') }}">General</a></li>--}}
-                    {{--<li><a href="{{ route('admin::menu') }}">Menu</a></li>--}}
                 {{--</ul>--}}
             </li>
             <li >

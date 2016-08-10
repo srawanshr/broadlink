@@ -29,15 +29,18 @@ class MenuController extends Controller {
     {
         $menu_items = $this->menu->orderBy('order')->get();
 
-        $iconList = [];
-        $material_icons_json = File::get('assets\backend\icons\material-design-icons\MaterialIcons-Regular.ijmap');
-        $material_icons = json_decode($material_icons_json);
-
-        foreach ($material_icons->icons as $id => $data) {
-            $iconList[$id] = $data->name;
+        $allPages = Page::draft(false)->get();
+        $pages = [];
+        foreach ($allPages as $page) {
+            $pages[route('page::show', $page->slug)] = $page->title;
         }
+        $menuTypes = [
+            0 => 'Single',
+            1 => 'Dropdown',
+            2 => 'Mega Dropdown'
+        ];
 
-        return view('backend.menu.index', compact('menu_items', 'iconList'));
+        return view('backend.menu.index', compact('menu_items', 'pages', 'menuTypes'));
     }
 
     /**
@@ -47,6 +50,8 @@ class MenuController extends Controller {
     public function update(Request $request)
     {
         $inputs = $request->all();
+
+        dd($inputs);
 
         $order = 0;
         foreach ($inputs['menu'] as $id => $item)
