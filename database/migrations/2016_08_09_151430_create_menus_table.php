@@ -16,7 +16,8 @@ class CreateMenusTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            $table->integer('type', 1);
+            $table->tinyInteger('type');
+            $table->integer('order');
             $table->text('url');
             $table->string('icon');
             $table->timestamps();

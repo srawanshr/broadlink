@@ -139,9 +139,13 @@
             var target = this;
             return target.replace(new RegExp(search, 'g'), replacement);
         };
+        var $primaryMenu = $('#primary-menu-list');
+
+        var existingMenus = {!! json_encode($primaryMenus) !!};
+
         var menuTemplate = {
             0: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="text" value="{title}" name="{target}[{id}][title]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
+                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
                     <div class="uk-accordion-content">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
@@ -152,15 +156,15 @@
                             </div>
                             <div class="uk-width-1-2">
                                 <div class="uk-form-stacked">
-                                    <label>Icon</label>
-                                    <input class='md-input' kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
+                                    <label class="uk-form-label">Icon</label>
+                                    <input kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>`,
             1: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="text" value="{title}" name="{target}[{id}][title]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
+                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
                     <div class="uk-accordion-content">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
@@ -171,8 +175,8 @@
                             </div>
                             <div class="uk-width-1-2">
                                 <div class="uk-form-stacked">
-                                    <label>Icon</label>
-                                    <input class='md-input' kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
+                                    <label class="uk-form-label">Icon</label>
+                                    <input kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
                                 </div>
                             </div>
                             <div class="uk-width-1-1">
@@ -187,46 +191,86 @@
                     </div>
                 </div>`,
             2: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="text" value="{title}" name="{target}[{id}][title]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
+                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
                     <div class="uk-accordion-content">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
-                                <div class="uk-form-stacked">
-                                    <label>URL</label>
-                                    <input type="text" value="{url}" class="md-input" name="{target}[{id}][url]">
-                                </div>
-                            </div>
-                            <div class="uk-width-1-2">
-                                <div class="uk-form-stacked">
-                                    <label>Icon</label>
-                                    <input class='md-input' kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
-                                <div>
-                            </div>
-                            <div class="uk-width-1-1">
-                                <div class="uk-form-stacked">
-                                    <label>Image</label>
-                                    <div id="file_upload-drop" class="uk-file-upload">
-                                        <p class="uk-text">Drop file to upload</p>
-                                        <p class="uk-text-muted uk-text-small uk-margin-small-bottom">or</p>
-                                        <a class="uk-form-file md-btn">choose file<input id="file_upload-select" type="file" name="{target}[{id}][image]"></a>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-1">
+                                        <div class="uk-form-stacked">
+                                            <label>URL</label>
+                                            <input type="text" value="{url}" class="md-input" name="{target}[{id}][url]">
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-1">
+                                        <div class="uk-form-stacked">
+                                            <label class="uk-form-label">Icon</label>
+                                            <input kendo-combo-box-icon name="{target}[{id}][icon]" value="{icon}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-width-1-2">
+                                <label>Image</label>
+                                <div class="uk-grid">
+                                    <div class="uk-width-1-2">
+                                        <div class="uk-form-stacked">
+                                            <div id="file_upload-drop" class="uk-file-upload">
+                                                <p class="uk-text">Drop file to upload</p>
+                                                <p class="uk-text-muted uk-text-small uk-margin-small-bottom">or</p>
+                                                <a class="uk-form-file md-btn">choose file<input class="icon-input" type="file" name="{target}[{id}][image]" data-id="{id}"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-2">
+                                        <img src="" id="icon-{id}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-grid">
+                            <div class="uk-width-1-1">
                                 <div class="uk-form-stacked">
                                     <label>Child Menu</label>
-                                    <div class="uk-accordion uk-sortable" data-uk-sortable id="mega-menu-list-{id}">
+                                    <div class="uk-accordion uk-sortable" data-uk-sortable id="dropdown-menu-list-{id}">
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-width-1-1">
-                                <button class="md-btn md-btn-primary button-menu-select" type="button" data-add-target="#mega-menu-list-{id}">Add</button>
+                                <button class="md-btn md-btn-primary button-menu-select" type="button" data-add-target="#dropdown-menu-list-{id}">Add</button>
                             </div>
                         </div>
                     </div>
                 </div>`
         }
         var menuListAccordion = {}, modalList = {};
+
+        $.each(existingMenus, function(k,v) {
+            var menuTemplateClone = menuTemplate[v.type]
+                .replaceAll('{title}', v.name)
+                .replaceAll('{url}', v.url)
+                .replaceAll('{icon}', v.icon)
+                .replaceAll('{target}', $primaryMenu.attr('id'))
+                .replaceAll('{id}', v.id)
+                .replaceAll('{type}', v.type);
+            $primaryMenu.append(menuTemplateClone);
+            if(v.sub_menus.length > 0) {
+                $.each(v.sub_menus, function(sk,sv) {
+                    var $currentMenu = $('#dropdown-menu-list-'+v.id);
+                    var menuTemplateClone = menuTemplate[0]
+                        .replaceAll('{title}', sv.name)
+                        .replaceAll('{url}', sv.url)
+                        .replaceAll('{icon}', sv.icon)
+                        .replaceAll('{target}', $currentMenu.attr('id'))
+                        .replaceAll('{id}', sv.id)
+                        .replaceAll('{type}', 0);
+                    $currentMenu.append(menuTemplateClone);
+                });
+            }
+            if(!(v.image === null))
+                $('#icon-'+v.id).attr('src', '/'+v.image.path)
+        });
+
         $(document).on('click', '.button-menu-select', function(){
             console.log('addoing button');
             modal = '#modal-add-menu';
@@ -252,38 +296,66 @@
 
             if(type===undefined) type=0;
 
-            menuTemplateClone = menuTemplate[type].replaceAll('{title}', title).replaceAll('{url}', url).replaceAll('{icon}', icon).replaceAll('{target}', target.substring(1)).replaceAll('{id}', id);
+            var menuTemplateClone = menuTemplate[type]
+                .replaceAll('{title}', title)
+                .replaceAll('{url}', url)
+                .replaceAll('{icon}', icon)
+                .replaceAll('{target}', target.substring(1))
+                .replaceAll('{id}', id)
+                .replaceAll('{type}', type);
             
             $menuList.append(menuTemplateClone);
 
             refreshAccordion(target);
 
+            refreshComboBox();
+
             // $modal.hide(); 
         });
+
+        refreshComboBox();
 
         $(document).on('click', '.bl-remove-accordion', function() {
             $(this).closest('.bl-accordion-item').detach();
         });
 
-        $('[kendo-combo-box]').each(function() {
-            $(this).kendoComboBox();
+        //image thumbnail
+
+         var readURL = function(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#icon-'+$(input).data('id')).attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $(document).on('change', ".icon-input", function(){
+            readURL(this);
         });
-        $('[kendo-combo-box-icon]').each(function() {
-            $(this).kendoComboBox({
-                dataTextField: "name",
-                dataValueField: "code",
-                template: '<span class="k-state-default"><i class="material-icons">#: data.code #</i></span>' +
-                          '<span class="k-state-default"> #: data.name #</span>',
-                dataSource: {
-                    transport: {
-                        read: {
-                            dataType: "json",
-                            url: "/assets/backend/icons/material-design-icons/codepoints.json"
+
+        function refreshComboBox() {
+            $('[kendo-combo-box]').each(function() {
+                $(this).kendoComboBox();
+            });
+            $('[kendo-combo-box-icon]').each(function() {
+                $(this).kendoComboBox({
+                    dataTextField: "name",
+                    dataValueField: "code",
+                    template: '<span class="k-state-default"><i class="material-icons">#: data.code #</i></span>' +
+                              '<span class="k-state-default"> #: data.name #</span>',
+                    dataSource: {
+                        transport: {
+                            read: {
+                                dataType: "json",
+                                url: "/assets/backend/icons/material-design-icons/codepoints.json"
+                            }
                         }
                     }
-                }
+                });
             });
-        });
+        }
 
         function refreshAccordion(target)
         {
@@ -310,6 +382,8 @@
 
             return text;
         }
+
+
     });
 </script>
 @endpush

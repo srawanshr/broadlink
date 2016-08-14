@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use DB;
 use App\Models\Menu;
+use App\Models\SubMenu;
 use App\Models\Page;
 use App\Http\Requests;
 use File;
@@ -17,9 +19,8 @@ class MenuController extends Controller {
      * MenuController constructor.
      * @param Menu $menu
      */
-    public function __construct(Menu $menu)
+    public function __construct()
     {
-        $this->menu = $menu;
     }
 
     /**
@@ -27,7 +28,7 @@ class MenuController extends Controller {
      */
     public function index()
     {
-        $menu_items = $this->menu->orderBy('order')->get();
+        $primaryMenus = Menu::with('image', 'subMenus')->orderBy('order')->get();
 
         $allPages = Page::draft(false)->get();
         $pages = [];
@@ -40,7 +41,7 @@ class MenuController extends Controller {
             2 => 'Mega Dropdown'
         ];
 
-        return view('backend.menu.index', compact('menu_items', 'pages', 'menuTypes'));
+        return view('backend.menu.index', compact('primaryMenus', 'pages', 'menuTypes'));
     }
 
     /**
@@ -49,21 +50,41 @@ class MenuController extends Controller {
      */
     public function update(Request $request)
     {
-        $inputs = $request->all();
+        DB::transaction(function() use ($request) {
+            $order = 0;
+            foreach ($request->get('primary-menu-list') as $key => $data) {
+                $data['slug'] = str_slug($data['name']);
+                $data['order'] = $order;
+                if($menu = Menu::find($key))
+                    $menu->update($data);
+                else
+                    $menu = Menu::create($data);
 
-        dd($inputs);
+                if($request->hasFile('primary-menu-list.'.$key))
+                {
+                    $image = $request->file('primary-menu-list.'.$key.'.image');
+                    if ($menu->image)
+                        $menu->image->upload($image);
+                    else
+                        $menu->image()->create(['name' => cleanFileName($image)])->upload($image);
+                }
 
-        $order = 0;
-        foreach ($inputs['menu'] as $id => $item)
-        {
-            $menu_item = $menu_item = $this->menu->find($id);
+                // for submenus
+                if ($subMenus = $request->get('dropdown-menu-list-'.$key, false))
+                {
+                    $suborder = 1;
+                    foreach ($subMenus as $key => $subData) {
+                        $subData['slug'] = str_slug($subData['name']);
+                        if($submenu = $menu->subMenus()->find($key))
+                            $submenu->update($subData);
+                        else
+                            $menu->subMenus()->create($subData);
+                    }
+                }
 
-            if ($menu_item)
-            {
-                $menu_item->update(['title' => $item['title'], 'order' => $order, 'icon' => $item['icon']]);
+                $order++;
             }
-            $order++;
-        }
+        });
 
         return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Menu']));
     }

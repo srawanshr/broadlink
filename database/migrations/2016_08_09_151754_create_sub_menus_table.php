@@ -16,6 +16,7 @@ class CreateSubMenusTable extends Migration
             $table->increments('id');
             $table->integer('submenuable_id')->unsigned();
             $table->string('submenuable_type');
+            $table->integer('order');
             $table->string('name');
             $table->string('slug');
             $table->text('url');
