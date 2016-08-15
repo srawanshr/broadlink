@@ -7,6 +7,7 @@
     {{ Html::style('assets/frontend/css/app.css') }}
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/toastr/toastr.css') }}" rel="stylesheet" type="text/css">
     @yield('header')
 </head>
 <body>
@@ -14,6 +15,33 @@
     @yield('body')
     @include('frontend.layouts.footer')
     {{ Html::script('assets/frontend/js/dep.js') }}
+    <script src="{{ asset('assets/plugins/toastr/toastr.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: false,
+                debug: false,
+                positionClass: 'toast-bottom-right',
+                showDuration: 330,
+                hideDuration: 330,
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+                showEasing: 'swing',
+                hideEasing: 'swing',
+                showMethod: 'slideDown',
+                hideMethod: 'slideUp'
+            };
+
+            if(successMsg) { toastr.success(successMsg, ''); }
+
+            if(infoMsg) { toastr.info(infoMsg, ''); }
+
+            if(warningMsg) { toastr.warning(warningMsg, ''); }
+
+            if(dangerMsg) { toastr.error(dangerMsg, ''); }
+        });
+    </script>
     @yield('footer')
     <script type="text/javascript">
         // $(document).on('mouseover', '.hover-to-click', function() {

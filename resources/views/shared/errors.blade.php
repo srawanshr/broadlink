@@ -1,13 +1,12 @@
-@if (count($errors) > 0)
-    <div class="uk-grid">
-        <div class="uk-width-1-1">
-            <div class="uk-alert uk-alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
+@if( !empty( $errors->all() ) )
+    <div class="uk-alert uk-alert-warning" data-uk-alert>
+        <a href="#" class="uk-alert-close uk-close"></a>
+        <?php $dumpErrors = []; ?>
+        @foreach( $errors->all() as $pos => $error )
+            @if( !in_array($error, $dumpErrors) )
+                <li>{{ $error }}</li>
+                <?php $dumpErrors[] = $error; ?>
+            @endif
+        @endforeach
     </div>
 @endif
