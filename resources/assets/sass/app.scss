@@ -59,6 +59,17 @@ body {
 
 a {
   color: $primary-color;
+  > i.material-icons {
+    font-size: 1.3rem;
+    line-height: inherit;
+  }
+}
+
+button {
+  > i.material-icons {
+    font-size: 1.3rem;
+    line-height: inherit;
+  }
 }
 
 .full-height {

@@ -28,6 +28,9 @@
                     <div class="md-card">
                         <div class="md-card-content">
                             <div class="uk-accordion uk-sortable" data-uk-sortable id="primary-menu-list">
+                                <div class="bl-accordion-item">
+                                    <h3 class="uk-accordion-title">Home</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -243,7 +246,7 @@
                     </div>
                 </div>`
         }
-        var menuListAccordion = {}, modalList = {};
+        var menuListAccordion = {}, modalList = {},  menuListSortable = {};
 
         $.each(existingMenus, function(k,v) {
             var menuTemplateClone = menuTemplate[v.type]
@@ -254,6 +257,7 @@
                 .replaceAll('{id}', v.id)
                 .replaceAll('{type}', v.type);
             $primaryMenu.append(menuTemplateClone);
+            refreshAccordion('#'+$primaryMenu.attr('id'));
             if(v.sub_menus.length > 0) {
                 $.each(v.sub_menus, function(sk,sv) {
                     var $currentMenu = $('#dropdown-menu-list-'+v.id);
@@ -265,10 +269,11 @@
                         .replaceAll('{id}', sv.id)
                         .replaceAll('{type}', 0);
                     $currentMenu.append(menuTemplateClone);
+                    refreshAccordion('#'+$currentMenu.attr('id'));
                 });
             }
             if(!(v.image === null))
-                $('#icon-'+v.id).attr('src', '/'+v.image.path)
+                $('#icon-'+v.id).attr('src', '{{ url("/") }}'+v.image.path);
         });
 
         $(document).on('click', '.button-menu-select', function(){
@@ -359,10 +364,14 @@
 
         function refreshAccordion(target)
         {
-            if(menuListAccordion[target.substring(1)] === undefined)
+            if(menuListAccordion[target.substring(1)] === undefined) {
                 menuListAccordion[target.substring(1)] = UIkit.accordion(target, { collapse: true });
-            else
+                menuListSortable[target.substring(1)] = UIkit.sortable(target);
+            }
+            else{
                 menuListAccordion[target.substring(1)].update();
+                menuListSortable[target.substring(1)].update();
+            }
         }
 
         function toggleModal(target)

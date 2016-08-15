@@ -49,60 +49,65 @@
                             </div>
                         </div>
                     </li>
-                    <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="{{ url('help') }}" class="hover-to-click">Help Center</a>{{--{{ route('help::index') }}--}}
-                        <div class="uk-dropdown bl-card">
-                            <div class="uk-grid uk-dropdown-grid">
-                                <div class="uk-width-medium-3-10 uk-width-small-2-5">
-                                    <span class="callout">Online Support 24/7</span>
-                                    <img src="{{ asset('assets/frontend/img/help_customer.png') }}">
+                    @foreach(menus() as $menu)
+                        @if($menu->type == 0)
+                            <li class="uk-active">
+                                <a href="{{ $menu->url }}">
+                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    {{ $menu->name }}
+                                </a>
+                            </li>
+                        @elseif($menu->type == 1)
+                            <li class="uk-parent" data-uk-dropdown>
+                                <a href="{{ $menu->url }}">
+                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    {{ $menu->name }}
+                                </a>
+                                <div class="uk-dropdown uk-dropdown-navbar">
+                                    <ul class="uk-nav uk-nav-navbar">
+                                        @foreach($menu->subMenus as $submenu)
+                                            <li>
+                                                <a href="{{ $submenu->url }}">
+                                                    <i class="material-icons pe-va">{{ $submenu->icon }}</i>
+                                                    {{ $submenu->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                                <div class="uk-width-medium-7-10 uk-width-3-5">
-                                    <div class="uk-panel">
-                                        <div class="uk-grid bl-grid-medium uk-margin-remove">
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
-                                            </div>
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
-                                            </div>
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
-                                            </div>
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
-                                            </div>
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
-                                            </div>
-                                            <div class="uk-width-medium-1-3">
-                                                <a href="#" class="bl-icon-button">
-                                                    <span><i class="uk-icon-television uk-icon-justify"></i></span>
-                                                    <cite>Label</cite>
-                                                </a>
+                            </li>
+                        @elseif($menu->type == 2)
+                            <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
+                                <a href="{{ $menu->url }}" class="hover-to-click">
+                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    {{ $menu->name }}
+                                </a>
+                                <div class="uk-dropdown bl-card">
+                                    <div class="uk-grid uk-dropdown-grid">
+                                        <div class="uk-width-medium-3-10 uk-width-small-2-5">
+                                            <img src="{{ asset($menu->image->path) }}">
+                                        </div>
+                                        <div class="uk-width-medium-7-10 uk-width-3-5">
+                                            <div class="uk-panel">
+                                                <div class="uk-grid bl-grid-medium uk-margin-remove">
+                                                    @forelse($menu->subMenus as $submenu)
+                                                        <div class="uk-width-medium-1-3">
+                                                            <a href="{{ $submenu->url }}" class="bl-icon-button">
+                                                                <span><i class="material-icons pe-va">{{ $submenu->icon }}</i></span>
+                                                                <cite>{{ $submenu->name }}</cite>
+                                                            </a>
+                                                        </div>
+                                                    @empty
+                                                        No Submeny
+                                                    @endforelse
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="{{ route('contact::index') }}">Contact Us</a></li>
+                            </li>
+                        @endif
+                    @endforeach
                     @if( auth()->check() )
                         <li><a href="{{ route('user::dashboard') }}">{{ auth()->user()->first_name }}</a></li>
                     @else
@@ -144,17 +149,6 @@
                             <div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>
                             <i class="uk-icon uk-icon-shopping-cart"></i>
                         </a>
-                        {{-- <div class="uk-dropdown bl-card">
-                            <div class="uk-grid uk-dropdown-grid">
-                                <div class="uk-width-1-1">
-                                    <ul>
-                                        @foreach( Cart::content() as $item )
-                                            <li>{{ $item->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> --}}
                     </li>
                 </ul>
                 <a href="#bl-responsive-menu" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>

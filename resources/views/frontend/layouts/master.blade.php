@@ -6,6 +6,7 @@
     {{ Html::style('assets/frontend/css/dep.css') }}
     {{ Html::style('assets/frontend/css/app.css') }}
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @yield('header')
 </head>
 <body>

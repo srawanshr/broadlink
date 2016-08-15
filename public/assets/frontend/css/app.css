@@ -11,6 +11,13 @@ body {
 
 a {
   color: #e76724; }
+  a > i.material-icons {
+    font-size: 1.3rem;
+    line-height: inherit; }
+
+button > i.material-icons {
+  font-size: 1.3rem;
+  line-height: inherit; }
 
 .full-height {
   height: 680px; }

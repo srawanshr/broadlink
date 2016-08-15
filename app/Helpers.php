@@ -162,3 +162,12 @@ function is_even($value)
 {
     return $value % 2 == 0;
 }
+
+/**
+ * @param $query
+ * @return mixed
+ */
+function menus()
+{
+    return \App\Models\Menu::orderBy('order')->get();
+}
