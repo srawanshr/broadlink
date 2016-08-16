@@ -68,9 +68,15 @@
                 {{--</a>--}}
             {{--</li>--}}
             <li >
-            <a href="{{ route('admin::contact.index') }}">
+                <a href="{{ route('admin::contact.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE0BA;</i></span>
                     <span class="menu_title">Contacts</span>
+                </a>
+            </li>
+            <li >
+                <a href="{{ route('admin::testimonial.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE0B7;</i></span>
+                    <span class="menu_title">Testimonials</span>
                 </a>
             </li>
             <li >
