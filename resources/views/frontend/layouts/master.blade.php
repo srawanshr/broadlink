@@ -18,6 +18,13 @@
     <script src="{{ asset('assets/plugins/toastr/toastr.js') }}"></script>
     <script>
         $(document).ready(function () {
+            //Session messages
+            var successMsg = "{{ session('success') }}";
+            var infoMsg = "{{ session('info') }}";
+            var warningMsg = "{{ session('warning') }}";
+            var dangerMsg = "{{ session('danger') }}";
+            var statusMsg = "{{ session('status') }}";
+
             toastr.options = {
                 closeButton: true,
                 progressBar: false,
@@ -34,6 +41,8 @@
             };
 
             if(successMsg) { toastr.success(successMsg, ''); }
+
+            if(statusMsg) { toastr.success(statusMsg, ''); }
 
             if(infoMsg) { toastr.info(infoMsg, ''); }
 
