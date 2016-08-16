@@ -7,11 +7,6 @@
     <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
         <div class="uk-container uk-container-center uk-block-default bl-margin-top-ve bl-padding-2-tb">
             @include('shared.errors')
-            @if (session('status'))
-                <div class="uk-alert uk-alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
             <div class="uk-grid data-uk-grid-match uk-grid-divider">
                 <div class="uk-width-1-3">
                     <div class="uk-panel">
@@ -119,7 +114,7 @@
                 <div class="uk-grid">
                     <div class="uk-width-1-1">
                         <button type="submit" class="uk-button uk-button-primary uk-float-right">
-                            <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
+                            <i class="material-icons pe-va">&#xE0BE;</i> Send Password Reset Link
                         </button>
                     </div>
                 </div>
