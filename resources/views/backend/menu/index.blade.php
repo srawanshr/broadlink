@@ -12,6 +12,22 @@
             color: #684444;
             font-size: 15px;
         }
+        .uk-accordion-content {
+            background-color: rgba(200,200,200,0.05);
+            border: 1px solid rgba(200,200,200,0.3);
+        }
+        .bl-accordion-item {
+            margin-bottom: 5px;
+        }
+        h3.uk-accordion-title {
+            margin: 0;
+        }
+        .button-menu-select {
+            margin: 10px 0;
+        }
+        .bl-remove-accordion {
+            margin: 0 10px !important;
+        }
     </style>
 @endpush
 
@@ -27,9 +43,30 @@
                 <div class="uk-width-medium-4-5">
                     <div class="md-card">
                         <div class="md-card-content">
-                            <div class="uk-accordion uk-sortable" data-uk-sortable id="primary-menu-list">
+                            <div class="uk-accordion">
                                 <div class="bl-accordion-item">
                                     <h3 class="uk-accordion-title">Home</h3>
+                                    <div class="uk-accordion-content" style="display: none">
+                                        Home Link (Fixed)
+                                    </div>
+                                </div>
+                                <div class="bl-accordion-item">
+                                    <h3 class="uk-accordion-title">Service</h3>
+                                    <div class="uk-accordion-content" style="display: none">
+                                        Services (Fixed)
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="uk-accordion uk-sortable" data-uk-sortable id="primary-menu-list">
+                            </div>
+                            <hr>
+                            <div class="uk-accordion">
+                                <div class="bl-accordion-item">
+                                    <h3 class="uk-accordion-title">User</h3>
+                                    <div class="uk-accordion-content" style="display: none">
+                                        Log In/Out
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -148,8 +185,15 @@
 
         var menuTemplate = {
             0: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
-                    <div class="uk-accordion-content">
+                    <h3 class="uk-accordion-title">
+                        <input type="hidden" value="{type}" name="{target}[{id}][type]">
+                        <input type="text" value="{title}" name="{target}[{id}][name]" class="editable">
+                        <a href="javascript:void(0)" class="uk-float-right">
+                            <i class="material-icons">&#xE25D;</i>
+                        </a>
+                        <span class="uk-close uk-float-right bl-remove-accordion"></span>
+                    </h3>
+                    <div class="uk-accordion-content" style="display: none;">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
                                 <div class="uk-form-stacked">
@@ -167,8 +211,15 @@
                     </div>
                 </div>`,
             1: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
-                    <div class="uk-accordion-content">
+                    <h3 class="uk-accordion-title">
+                        <input type="hidden" value="{type}" name="{target}[{id}][type]">
+                        <input type="text" value="{title}" name="{target}[{id}][name]" class="editable">
+                        <a href="javascript:void(0)" class="uk-float-right">
+                            <i class="material-icons">&#xE25D;</i>
+                        </a>
+                        <span class="uk-close uk-float-right bl-remove-accordion"></span>
+                    </h3>
+                    <div class="uk-accordion-content" style="display: none;">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
                                 <div class="uk-form-stacked">
@@ -194,8 +245,13 @@
                     </div>
                 </div>`,
             2: `<div class="bl-accordion-item">
-                    <h3 class="uk-accordion-title"><input type="hidden" value="{type}" name="{target}[{id}][type]"><input type="text" value="{title}" name="{target}[{id}][name]" class="editable"><span class="uk-close uk-float-right bl-remove-accordion"></span></h3>
-                    <div class="uk-accordion-content">
+                    <h3 class="uk-accordion-title">
+                        <input type="hidden" value="{type}" name="{target}[{id}][type]">
+                        <input type="text" value="{title}" name="{target}[{id}][name]" class="editable">
+                        <a href="javascript:void(0)" class="uk-float-right"><i class="material-icons">&#xE25D;</i></a>
+                        <span class="uk-close uk-float-right bl-remove-accordion"></span>
+                    </h3>
+                    <div class="uk-accordion-content" style="display: none;">
                         <div class="uk-grid">
                             <div class="uk-width-1-2">
                                 <div class="uk-grid">
@@ -362,16 +418,13 @@
             });
         }
 
+        $(document).on('click', '.uk-accordion h3.uk-accordion-title', function(){
+            $el = $(this).closest('.bl-accordion-item').find('.uk-accordion-content').slideToggle();
+        });
+
         function refreshAccordion(target)
         {
-            if(menuListAccordion[target.substring(1)] === undefined) {
-                menuListAccordion[target.substring(1)] = UIkit.accordion(target, { collapse: true });
-                menuListSortable[target.substring(1)] = UIkit.sortable(target);
-            }
-            else{
-                menuListAccordion[target.substring(1)].update();
-                menuListSortable[target.substring(1)].update();
-            }
+            menuListAccordion[target.substring(1)] = UIkit.sortable(target);
         }
 
         function toggleModal(target)

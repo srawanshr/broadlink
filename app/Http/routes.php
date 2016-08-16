@@ -208,6 +208,21 @@ $router->group([
 
     /*
     |--------------------------------------------------------------------------
+    | Client Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'client', 'as' => 'client.' ], function () {
+        Route::get('/', 'ClientController@index')->name('index');
+        Route::get('create', 'ClientController@create')->name('create');
+        Route::post('/', 'ClientController@store')->name('store');
+        Route::get('{product_slug}/edit', 'ClientController@edit')->name('edit');
+        Route::put('{product_slug}', 'ClientController@update')->name('update');
+        Route::delete('{product_slug}', 'ClientController@destroy')->name('destroy');
+        Route::post('sort/order', 'ClientController@updateSortOrder')->name('sort.order');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | Contact CRUD Routes
     |--------------------------------------------------------------------------
     */
