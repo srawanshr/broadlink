@@ -1,31 +1,31 @@
 @extends('backend.layout')
 
-@section('title', 'Product')
+@section('title', 'Client')
 
 @section('content')
     <div id="page_content">
         <div id="page_content_inner">
-            <h3 class="heading_b uk-margin-bottom">All Products</h3>
+            <h3 class="heading_b uk-margin-bottom">All Clients</h3>
 
             <div class="md-card">
                 <div class="md-card-content">
                     <div class="uk-grid" data-uk-grid-margin>
                         <div class="uk-width-1-1">
                             <div class="uk-overflow-container">
-                                <table id="dt_default" class="uk-table" data-sort-order-url="{{ route('admin::product.sort.order') }}">
+                                <table id="dt_default" class="uk-table" data-sort-order-url="{{ route('admin::client.sort.order') }}">
                                     <thead>
                                     <tr>
                                         <th class="uk-width-1-6 uk-text-center"><i class="material-icons">&#xE164;</i></th>
                                         <th class="uk-width-1-6">Name</th>
-                                        <th class="uk-width-1-6">Service</th>
+                                        <th class="uk-width-1-6">Image</th>
                                         <th class="uk-width-1-6 uk-text-center">Status</th>
                                         <th class="uk-width-2-6 uk-text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($products as $key => $product)
+                                    @foreach($clients as $key => $client)
                                         <tr>
-                                            <td class="uk-text-center sort_item" data-id="{{ $product->id }}">
+                                            <td class="uk-text-center sort_item" data-id="{{ $client->id }}">
                                                 <a class="move_item_up" data-uk-tooltip="{pos:'left'}" title="Move Up">
                                                     <i class="material-icons md-24">&#xE5C7;</i>
                                                 </a>
@@ -33,18 +33,18 @@
                                                     <i class="material-icons md-24">&#xE5C5;</i>
                                                 </a>
                                             </td>
-                                            <td class="uk-text-large uk-text-nowrap">{{ $product->name }}</td>
-                                            <td class="uk-text-nowrap">{{ $product->plan->service->name }}</td>
+                                            <td class="uk-text-large uk-text-nowrap">{{ $client->name }}</td>
+                                            <td class="uk-text-nowrap">{{ $client->image->thumbnail() }}</td>
                                             <td class="uk-text-nowrap uk-text-center">
-                                                <span class="uk-badge uk-badge-{{ $product->is_active ? 'Success' : 'Default' }}">
-                                                    {{ $product->is_active ? 'Active' : 'Inactive' }}
+                                                <span class="uk-badge uk-badge-{{ $client->is_active ? 'Success' : 'Default' }}">
+                                                    {{ $client->is_active ? 'Active' : 'Inactive' }}
                                                 </span>
                                             </td>
                                             <td class="uk-text-nowrap uk-text-center">
-                                                <a href="{{ route('admin::product.edit', $product->slug) }}" data-uk-tooltip="{pos:'left'}" title="Edit Product">
+                                                <a href="{{ route('admin::client.edit', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Edit Client">
                                                     <i class="material-icons md-24">&#xE254;</i>
                                                 </a>
-                                                <a class="item_delete" data-source="{{ route('admin::product.destroy', $product->slug) }}" data-uk-tooltip="{pos:'left'}" title="Delete Product">
+                                                <a class="item_delete" data-source="{{ route('admin::client.destroy', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Delete Client">
                                                     <i class="material-icons md-24">&#xE872;</i>
                                                 </a>
                                             </td>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="md-fab-wrapper">
-        <a class="md-fab md-fab-accent" href="{{ route('admin::product.create') }}" id="productAdd" data-uk-tooltip="{pos:'left'}" title="Add Product">
+        <a class="md-fab md-fab-accent" href="{{ route('admin::client.create') }}" id="clientAdd" data-uk-tooltip="{pos:'left'}" title="Add Client">
             <i class="material-icons">&#xE145;</i>
         </a>
     </div>

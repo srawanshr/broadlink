@@ -52,6 +52,8 @@ class MenuController extends Controller {
     {
         DB::transaction(function() use ($request) {
             $order = 0;
+            $menuIds = [];
+            $subMenuIds = [];
             foreach ($request->get('primary-menu-list') as $key => $data) {
                 $data['slug'] = str_slug($data['name']);
                 $data['order'] = $order;
@@ -59,6 +61,8 @@ class MenuController extends Controller {
                     $menu->update($data);
                 else
                     $menu = Menu::create($data);
+
+                array_push($menuIds, $menu->id);
 
                 if($request->hasFile('primary-menu-list.'.$key))
                 {
@@ -78,12 +82,18 @@ class MenuController extends Controller {
                         if($submenu = $menu->subMenus()->find($key))
                             $submenu->update($subData);
                         else
-                            $menu->subMenus()->create($subData);
+                            $submenu = $menu->subMenus()->create($subData);
+
+                        array_push($subMenuIds, $submenu->id);
                     }
                 }
 
                 $order++;
             }
+
+            Menu::whereNotIn('id', $menuIds)->delete();
+            SubMenu::whereNotIn('id', $subMenuIds)->delete();
+
         });
 
         return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Menu']));

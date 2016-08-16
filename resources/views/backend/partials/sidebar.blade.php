@@ -83,6 +83,12 @@
                 {{--</ul>--}}
             </li>
             <li >
+                <a href="{{ route('admin::client.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE885;</i></span>
+                    <span class="menu_title">Clients</span>
+                </a>
+            </li>
+            <li >
                 <a href="{{ route('admin::user.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE7FB;</i></span>
                     <span class="menu_title">Users</span>
