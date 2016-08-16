@@ -399,6 +399,7 @@ h3 {
 .bl-button-image {
   background-color: transparent;
   color: $text-color-light;
+  border: 2px solid transparent;
   span{
     display: block;
     margin-bottom: 10px;
@@ -406,15 +407,17 @@ h3 {
     height: 116px;
     line-height: 116px;
   }
-  &:hover {
+  &:hover, &:active, &:focus {
     background-color: transparent;
+    color: $primary-color;
+    border: 2px solid $primary-color;
   }
 }
 
 #news {
   background-position: 50% -100px;
   transition: background 1s;
-  animation: sks 15s infinite;
+  animation: sks 8s infinite alternate;
 
   li.uk-active {
     button {
@@ -430,13 +433,19 @@ h3 {
 @keyframes sks {
     0% {
       background-position: 50% -100px;
+      animation-timing-function: ease-in;
     }
-    80% {
+    40% {
+      background-position: 50% -100px;
+      animation-timing-function: ease-in;
+    }
+    60% {
       background-position: 25% -100px;
       animation-timing-function: ease-in;
     }
-    0% {
-      background-position: 50% -100px;
+    100% {
+      background-position: 25% -100px;
+      animation-timing-function: ease-in;
     }
 }
 
