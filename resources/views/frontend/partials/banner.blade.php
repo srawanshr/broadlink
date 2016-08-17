@@ -1,6 +1,6 @@
 <section class="banner height-3 text-center uk-position-relative bl-text-light uk-cover" style="background-image: url('{{ asset('assets/frontend/img/bg-service.jpg') }}');" data-uk-parallax="{y: '200'}">
 	@if(isset($images))
-		<ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'scale'}">
+		<ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'scale', height: '300px'}">
 			@foreach($images as $image)
 				<li><img src="{{ asset($image->thumbnail(1280,300)) }}"></li>
 			@endforeach

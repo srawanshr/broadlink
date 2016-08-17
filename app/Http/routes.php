@@ -224,6 +224,21 @@ $router->group([
         Route::post('sort/order', 'ClientController@updateSortOrder')->name('sort.order');
     });
 
+     /*
+    |--------------------------------------------------------------------------
+    | Testimonial Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'testimonial', 'as' => 'testimonial.' ], function () {
+        Route::get('/', 'TestimonialController@index')->name('index');
+        Route::get('create', 'TestimonialController@create')->name('create');
+        Route::post('/', 'TestimonialController@store')->name('store');
+        Route::get('{testimonial}/edit', 'TestimonialController@edit')->name('edit');
+        Route::put('{testimonial}', 'TestimonialController@update')->name('update');
+        Route::delete('{testimonial}', 'TestimonialController@destroy')->name('destroy');
+        Route::post('sort/order', 'TestimonialController@updateSortOrder')->name('sort.order');
+    });
+
     /*
     |--------------------------------------------------------------------------
     | Contact CRUD Routes

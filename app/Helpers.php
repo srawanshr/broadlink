@@ -171,3 +171,12 @@ function menus()
 {
     return \App\Models\Menu::orderBy('order')->get();
 }
+
+/**
+ * @param $query
+ * @return mixed
+ */
+function testimonials()
+{
+    return \App\Models\Testimonial::published()->get();
+}

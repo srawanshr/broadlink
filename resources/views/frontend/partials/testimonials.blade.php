@@ -15,22 +15,16 @@
                 <div data-uk-slider class="uk-slidenav-position">
                     <div class="uk-slider-container bl-quote-slider">
                         <ul class="uk-slider uk-grid-width-small-1-1">
-                            <li>
-                                <div class="quote-author uk-text-center">
-                                    <img alt="Author" class="image-xs" src="{{ asset('assets/frontend/img/avatar3.png') }}">
-                                    <h6 class="uppercase mb0">Natasha Canter</h6>
-                                    <span>Vault</span>
-                                    <p>There is only once choice when it comes to our marketing collateral, Tixy always deliver inspiring work on-time and budget.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="quote-author uk-text-center">
-                                    <img alt="Author" class="image-xs" src="{{ asset('assets/frontend/img/avatar4.png') }}">
-                                    <h6 class="uppercase mb0">Natasha Canter</h6>
-                                    <span>Vault</span>
-                                    <p>There is only once choice when it comes to our marketing collateral, Tixy always deliver inspiring work on-time and budget.</p>
-                                </div>
-                            </li>
+                            @foreach(testimonials() as $testimonial)
+                                <li>
+                                    <div class="quote-author uk-text-center">
+                                        <img alt="Author" class="image-xs" src="{{ asset($testimonial->user->image->thumbnail()) }}">
+                                        <h6 class="uppercase mb0">{{ $testimonial->user->display_name }}</h6>
+                                        {{-- <span>{{ $testimonial->user->display_name }}</span> --}}
+                                        <p>{!! $testimonial->quote !!}</p>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
