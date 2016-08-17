@@ -9,7 +9,6 @@ Route::get('/', 'Frontend\FrontController@index')->name('index');
 Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('service::show');
 Route::get('/service/{service}/product/{product_slug}/buy', 'Frontend\CartController@buy')->name('service::buy');
 Route::get('/service', 'Frontend\ServiceController@index')->name('service::index');
-Route::get('/contact', 'Frontend\FrontController@contact')->name('contact::index');
 Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 
 Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
@@ -17,6 +16,10 @@ Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::
 
 Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
 
+Route::group(['namespace' => 'Frontend', 'prefix' => 'contact', 'as' => 'contact::'], function () {
+    Route::get('/', 'ContactController@index')->name('index');
+    Route::post('feedback', 'ContactController@sendFeedback')->name('feedback');
+});
 /*
 |--------------------------------------------------------------------------
 | Logging In/Out Routes

@@ -18,15 +18,6 @@ class FrontController extends Controller
     	return view('frontend.index');
     }
 
-    public function contact()
-    {
-        $page = Page::contact();
-        $contacts = Contact::all()->groupBy('type');
-        $contactTypes = Contact::types();
-        $settings = Setting::lists('value','slug');
-    	return view('frontend.contact.index', compact('page', 'contacts', 'contactTypes', 'settings'));
-    }
-
     public function help()
     {
     	return view('frontend.help.index');

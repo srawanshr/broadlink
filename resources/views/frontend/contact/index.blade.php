@@ -28,12 +28,27 @@
                     </div>
                 </div>
                 <div class="uk-width-medium-1-2">
-                    <form class="form-email" class="uk-form" >
-                        <input type="text" class="uk-form-large uk-width-1-1" name="name" placeholder="Your Name">
-                        <input type="text" class="uk-form-large uk-width-1-1 validate-email" name="email" placeholder="Email Address">
-                        <textarea class="uk-width-1-1" name="message" rows="8" placeholder="Message"></textarea>
-                        <button type="submit" class="uk-button uk-button-success uk-width-1-1">Send Message</button>
-                    </form>
+                    {{ Form::open(['route'=>'contact::feedback', 'class'=>'uk-form']) }}
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">Your Name</label>
+                            <input type="text" class="uk-width-1-1" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">Your Email</label>
+                            <input type="email" class="uk-width-1-1" name="email" placeholder="john@doe.com" required>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">Subject</label>
+                            <input type="text" class="uk-width-1-1" name="subject" placeholder="Feedback" required>
+                        </div>
+                        <div class="uk-form-row">
+                            <label class="uk-form-label">Message</label>
+                            <textarea class="uk-width-1-1" name="message" rows="4" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="uk-form-row">
+                            <button type="submit" class="uk-button uk-button-success uk-float-right">Send Message</button>
+                        </div>
+                    {{ Form::close() }}
                 </div>
             </div>
             <!--end of row-->
