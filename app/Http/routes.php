@@ -1,25 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Website Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/', 'Frontend\FrontController@index')->name('index');
-Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('service::show');
-Route::get('/service/{service}/product/{product_slug}/buy', 'Frontend\CartController@buy')->name('service::buy');
-Route::get('/service', 'Frontend\ServiceController@index')->name('service::index');
-Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 
-Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
-Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::delete');
-
-Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
-
-Route::group(['namespace' => 'Frontend', 'prefix' => 'contact', 'as' => 'contact::'], function () {
-    Route::get('/', 'ContactController@index')->name('index');
-    Route::post('feedback', 'ContactController@sendFeedback')->name('feedback');
-});
 /*
 |--------------------------------------------------------------------------
 | Logging In/Out Routes
@@ -53,13 +34,30 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 /*
 |--------------------------------------------------------------------------
+| Website Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', 'Frontend\FrontController@index')->name('index');
+Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('service::show');
+Route::get('/service/{service}/product/{product_slug}/buy', 'Frontend\CartController@buy')->name('service::buy');
+Route::get('/service', 'Frontend\ServiceController@index')->name('service::index');
+Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
+
+Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
+Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::delete');
+
+Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
+
+Route::group(['namespace' => 'Frontend', 'prefix' => 'contact', 'as' => 'contact::'], function () {
+    Route::get('/', 'ContactController@index')->name('index');
+    Route::post('feedback', 'ContactController@sendFeedback')->name('feedback');
+});
+
+/*
+|--------------------------------------------------------------------------
 | User Routes
 |--------------------------------------------------------------------------
 */
-
-Route::get('/admin', function () {
-    return redirect('/admin/dashboard');
-});
 
 $router->group([
     'namespace' => 'Frontend',
@@ -218,9 +216,9 @@ $router->group([
         Route::get('/', 'ClientController@index')->name('index');
         Route::get('create', 'ClientController@create')->name('create');
         Route::post('/', 'ClientController@store')->name('store');
-        Route::get('{product_slug}/edit', 'ClientController@edit')->name('edit');
-        Route::put('{product_slug}', 'ClientController@update')->name('update');
-        Route::delete('{product_slug}', 'ClientController@destroy')->name('destroy');
+        Route::get('{client_slug}/edit', 'ClientController@edit')->name('edit');
+        Route::put('{client_slug}', 'ClientController@update')->name('update');
+        Route::delete('{client_slug}', 'ClientController@destroy')->name('destroy');
         Route::post('sort/order', 'ClientController@updateSortOrder')->name('sort.order');
     });
 

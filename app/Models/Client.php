@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
-{
-    const IMAGE_PATH = "images/client-pictures/";
+class Client extends Model {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +25,55 @@ class Client extends Model
     ];
 
     protected $morphClass = 'Client';
+
+    /**
+     * Set the title attribute and the slug.
+     *
+     * @param string $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+
+        if ( ! $this->exists)
+        {
+            $this->setUniqueSlug($value, '');
+        }
+    }
+
+    /**
+     * Recursive routine to set a unique slug.
+     *
+     * @param $name
+     * @param mixed $extra
+     * @internal param string $title
+     */
+    protected function setUniqueSlug($name, $extra)
+    {
+        $slug = str_slug($name . '-' . $extra);
+
+        if (static::whereSlug($slug)->exists())
+        {
+            $this->setUniqueSlug($name, $extra + 1);
+
+            return;
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+    /**
+     * Set the order attribute.
+     *
+     * @param string $value
+     */
+    public function setOrderAttribute($value)
+    {
+        if ( ! $this->exists && empty($value))
+            $this->attributes['order'] = static::max('order') + 1;
+        else
+            $this->attributes['order'] = $value;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne

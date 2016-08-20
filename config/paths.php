@@ -20,7 +20,8 @@ return [
         'Service' => 'images/service-pictures/',
         'Plan'    => 'images/plan-pictures/',
         'Product' => 'images/product-pictures/',
-        'Menu'    => 'images/menu-pictures/'
+        'Menu'    => 'images/menu-pictures/',
+        'Client'  => 'images/client-pictures/'
 
     ],
 

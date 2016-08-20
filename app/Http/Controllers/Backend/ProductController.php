@@ -36,6 +36,10 @@ class ProductController extends Controller {
         return view('backend.product.create', compact('services', 'plans'));
     }
 
+    /**
+     * @param ProductCreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(ProductCreateRequest $request)
     {
         $product = DB::transaction(function () use ($request)
@@ -133,5 +137,26 @@ class ProductController extends Controller {
         $plans = Plan::active()->orderBy('order')->get();
 
         return $plans;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateSortOrder(Request $request)
+    {
+        $order = $request->get('order');
+
+        foreach ($order as $order => $id)
+        {
+            $service = Product::findOrFail($id);
+            $service->order = $order;
+            $service->save();
+        }
+
+        return response()->json([
+            'Result'  => 'OK',
+            'Message' => trans('messages.update_success', ['entity' => 'Order'])
+        ]);
     }
 }

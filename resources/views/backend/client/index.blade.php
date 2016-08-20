@@ -15,11 +15,12 @@
                                 <table id="dt_default" class="uk-table" data-sort-order-url="{{ route('admin::client.sort.order') }}">
                                     <thead>
                                     <tr>
-                                        <th class="uk-width-1-6 uk-text-center"><i class="material-icons">&#xE164;</i></th>
-                                        <th class="uk-width-1-6">Name</th>
-                                        <th class="uk-width-1-6">Image</th>
+                                        <th class="uk-width-1-6 uk-text-center" data-orderable="false">
+                                            Order
+                                        </th>
+                                        <th class="uk-width-3-6">Name</th>
                                         <th class="uk-width-1-6 uk-text-center">Status</th>
-                                        <th class="uk-width-2-6 uk-text-center">Action</th>
+                                        <th class="uk-width-1-6 uk-text-right" data-orderable="false">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -34,17 +35,16 @@
                                                 </a>
                                             </td>
                                             <td class="uk-text-large uk-text-nowrap">{{ $client->name }}</td>
-                                            <td class="uk-text-nowrap">{{ $client->image->thumbnail() }}</td>
                                             <td class="uk-text-nowrap uk-text-center">
-                                                <span class="uk-badge uk-badge-{{ $client->is_active ? 'Success' : 'Default' }}">
-                                                    {{ $client->is_active ? 'Active' : 'Inactive' }}
+                                                <span class="uk-badge uk-badge-{{ $client->is_published ? 'Success' : 'Default' }}">
+                                                    {{ $client->is_active ? 'Published' : 'Unpublished' }}
                                                 </span>
                                             </td>
-                                            <td class="uk-text-nowrap uk-text-center">
-                                                <a href="{{ route('admin::client.edit', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Edit Client">
+                                            <td class="uk-text-nowrap uk-text-right">
+                                                <a href="{{ route('admin::client.edit', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Edit">
                                                     <i class="material-icons md-24">&#xE254;</i>
                                                 </a>
-                                                <a class="item_delete" data-source="{{ route('admin::client.destroy', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Delete Client">
+                                                <a class="item_delete" data-source="{{ route('admin::client.destroy', $client->slug) }}" data-uk-tooltip="{pos:'left'}" title="Delete">
                                                     <i class="material-icons md-24">&#xE872;</i>
                                                 </a>
                                             </td>
@@ -85,7 +85,7 @@
                 type: 'post',
                 url: $('#dt_default').data('sort-order-url'),
                 data: {order: order},
-                success:function (response) {
+                success: function (response) {
                     showNotify('success', response.Message);
                 },
                 error: function () {
@@ -102,7 +102,7 @@
             return order;
         }
 
-        $(document).on('click', '.move_item_up,.move_item_down', function(){
+        $(document).on('click', '.move_item_up,.move_item_down', function () {
             var row = $(this).parents("tr:first");
             if ($(this).is('.move_item_up')) {
                 row.insertBefore(row.prev());
@@ -126,10 +126,10 @@
             });
         }
 
-        $(document).on('click', '.item_delete', function() {
+        $(document).on('click', '.item_delete', function () {
             var item = $(this);
 
-            UIkit.modal.confirm('Are you sure?', function() {
+            UIkit.modal.confirm('Are you sure?', function () {
                 deleteItem(item);
             });
         });

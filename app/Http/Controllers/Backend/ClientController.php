@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Models\Client;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientCreateRequest;
+use App\Http\Requests\ClientUpdateRequest;
 
-class ClientController extends Controller
-{
+class ClientController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-    	$clients = Client::published()->get();
+        $clients = Client::all();
+
         return view('backend.client.index', compact('clients'));
     }
 
@@ -34,23 +37,21 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ClientCreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientCreateRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $inputs = $request->except('image');
-            $inputs['slug'] = str_slug($inputs['name']);
+        DB::transaction(function () use ($request)
+        {
+            $client = Client::create($request->clientFillData());
 
             $image = $request->file('image');
 
-            $client = Client::create($inputs);
-
-            $client->image()->create([])->setPath($image);
+            $client->image()->create(['name' => cleanFileName($image)])->upload($image);
         });
 
-        return redirect()->back()->with('success', 'Client added!');
+        return redirect()->back()->withSuccess(trans('messages.create_success', ['entity' => 'Client']));
     }
 
     /**
@@ -67,35 +68,63 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ClientUpdateRequest $request
      * @param  client $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientUpdateRequest $request, Client $client)
     {
-        DB::transaction(function () use ($request, $client) {
-            $inputs = $request->except('image');
+        DB::transaction(function () use ($request, $client)
+        {
+            $client->update($request->clientFillData());
 
-            $image = $request->file('image');
+            if ($request->hasFile('image'))
+            {
+                $image = $request->file('image');
 
-            $client->update($inputs);
-
-            $client->image->setPath($image);
+                $client->image->upload($image);
+            }
         });
 
-        return redirect()->back()->with('success', 'Client updated!');
+        return redirect()->back()->withSuccess(trans('messages.update_success', ['entity' => 'Client']));
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Client $client
-     * @return \Illuminate\Http\Response
+     * @param Client $client
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Client $client)
     {
-        $client->delete();
+        if ($client->delete())
+        {
+            return response()->json([
+                'Result' => 'OK'
+            ]);
+        }
 
-        return redirect()->back()->with('success', 'Client deleted!');
+        return response()->json([
+            'Result' => 'Error'
+        ], 500);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateSortOrder(Request $request)
+    {
+        $order = $request->get('order');
+
+        foreach ($order as $order => $id)
+        {
+            $service = Client::findOrFail($id);
+            $service->order = $order;
+            $service->save();
+        }
+
+        return response()->json([
+            'Result'  => 'OK',
+            'Message' => trans('messages.update_success', ['entity' => 'Order'])
+        ]);
     }
 }

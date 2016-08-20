@@ -81,6 +81,19 @@ class Plan extends Model {
     }
 
     /**
+     * Set the order attribute.
+     *
+     * @param string $value
+     */
+    public function setOrderAttribute($value)
+    {
+        if ( ! $this->exists && empty($value))
+            $this->attributes['order'] = static::max('order') + 1;
+        else
+            $this->attributes['order'] = $value;
+    }
+
+    /**
      * Scope a query to active or non plans.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

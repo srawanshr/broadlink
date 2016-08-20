@@ -78,6 +78,19 @@ class Product extends Model
     }
 
     /**
+     * Set the order attribute.
+     *
+     * @param string $value
+     */
+    public function setOrderAttribute($value)
+    {
+        if ( ! $this->exists && empty($value))
+            $this->attributes['order'] = static::max('order') + 1;
+        else
+            $this->attributes['order'] = $value;
+    }
+
+    /**
      * Append service id to JSON form
      * @return string
      */
