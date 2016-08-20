@@ -80,18 +80,15 @@
                 </a>
             </li>
             <li >
+                <a href="{{ route('admin::client.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE7F1;</i></span>
+                    <span class="menu_title">Clients</span>
+                </a>
+            </li>
+            <li >
                 <a href="{{ route('admin::setting') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE8C0;</i></span>
                     <span class="menu_title">Settings</span>
-                </a>
-                {{--<ul>--}}
-                    {{--<li><a href="{{ route('admin::setting') }}">General</a></li>--}}
-                {{--</ul>--}}
-            </li>
-            <li >
-                <a href="{{ route('admin::client.index') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE885;</i></span>
-                    <span class="menu_title">Clients</span>
                 </a>
             </li>
             <li >
