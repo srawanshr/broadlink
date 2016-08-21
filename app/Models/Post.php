@@ -13,19 +13,9 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'subtitle', 'content_raw', 'page_image', 'meta_description',
-        'layout', 'is_draft', 'published_at',
+        'title', 'content_raw', 'meta_description',
+        'is_draft', 'published_at', 'admin_id'
     ];
-
-    /**
-     * Get the tags relationship.
-     *
-     * @return BelongsToMany
-     */
-    public function tags()
-    {
-        return $this->belongsToMany('App\Models\Tag', 'post_tag_pivot');
-    }
 
     /**
      * Set the title attribute and the slug.
@@ -95,5 +85,29 @@ class Post extends Model
     public function getContentAttribute($value)
     {
         return $this->content_raw;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'post_tag_pivot');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\Models\Admin', 'admin_id');
     }
 }

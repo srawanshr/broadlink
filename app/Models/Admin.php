@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Authenticatable
-{
+class Admin extends Authenticatable {
+
     use SoftDeletes;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,7 +42,7 @@ class Admin extends Authenticatable
      *
      * @var array
      */
-    protected $dates = [ 'deleted_at' ];
+    protected $dates = ['deleted_at'];
 
     /**
      * The morph class name for this model.
@@ -69,7 +69,8 @@ class Admin extends Authenticatable
     {
         $this->attributes['username'] = $value;
 
-        if (!$this->exists) {
+        if ( ! $this->exists)
+        {
             $this->setUniqueSlug($value, '');
         }
     }
@@ -84,8 +85,10 @@ class Admin extends Authenticatable
     {
         $slug = str_slug($username . '-' . $extra);
 
-        if (static::whereSlug($slug)->exists()) {
+        if (static::whereSlug($slug)->exists())
+        {
             $this->setUniqueSlug($username, $extra + 1);
+
             return;
         }
 
@@ -123,7 +126,7 @@ class Admin extends Authenticatable
      */
     public function delete(array $options = array())
     {
-        if($this->image)
+        if ($this->image)
             $this->image->delete();
 
         return parent::delete($options);

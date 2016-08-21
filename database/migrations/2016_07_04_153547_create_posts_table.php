@@ -23,9 +23,12 @@ class CreatePostsTable extends Migration
             $table->string('featured_image')->nullable();
             $table->string('meta_description');
             $table->boolean('is_draft')->default(false);
-            $table->timestamps();
             $table->timestamp('published_at')->index();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->timestamps();
+            $table->foreign('admin_id')
+                ->references('id')
+                ->on('admins')
+                ->onDelete('cascade');
         });
     }
 

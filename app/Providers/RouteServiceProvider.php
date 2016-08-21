@@ -26,6 +26,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot($router);
 
+        $router->bind( 'post', function ( $slug ) {
+            return \App\Models\Post::where( 'slug', $slug )->first();
+        });
+
         $router->bind( 'page_slug', function ( $slug ) {
             return \App\Models\Page::where( 'slug', $slug )->first();
         });

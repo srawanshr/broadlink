@@ -122,6 +122,20 @@ $router->group([
 
     /*
     |--------------------------------------------------------------------------
+    | Post Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'prefix' => 'post', 'as' => 'post.' ], function () {
+        Route::get('/', 'PostController@index')->name('index');
+        Route::get('create', 'PostController@create')->name('create');
+        Route::post('/', 'PostController@store')->name('store');
+        Route::get('{post}/edit', 'PostController@edit')->name('edit');
+        Route::put('{post}', 'PostController@update')->name('update');
+        Route::delete('{post}', 'PostController@destroy')->name('destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | PIN Management Routes
     |--------------------------------------------------------------------------
     */
@@ -279,4 +293,5 @@ $router->group([
     Route::post('admin-user', 'AdminController@adminList')->name('user.list');
     Route::post('contact', 'ContactController@contactList')->name('contact.list');
     Route::post('contact-type', 'ContactController@contactTypeList')->name('contact.type.list');
+    Route::post('post', 'PostController@postList')->name('post.list');
 });
