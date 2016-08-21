@@ -1,5 +1,5 @@
 <section id="slider" class="uk-height-viewport">
-    <div data-uk-slider class="uk-slidenav-position">
+    <div data-uk-slider="{autoplay: true, pauseOnHover: false}" class="uk-slidenav-position">
         <div class="uk-slider-container">
             <ul class="uk-slider uk-grid-width-small-1-1">
                 <li>
