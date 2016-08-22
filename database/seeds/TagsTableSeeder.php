@@ -18,8 +18,27 @@ class TagsTableSeeder extends Seeder {
             [
                 'tag'              => 'news',
                 'title'            => 'News',
+                'icon'             => '&#xE0E0;;',
                 'meta_description' => 'Broadlink news and announcements',
             ],
+            [
+                'tag'              => 'events',
+                'title'            => 'Events',
+                'icon'             => '&#xE878;',
+                'meta_description' => 'Broadlink news and announcements',
+            ],
+            [
+                'tag'              => 'announcements',
+                'title'            => 'Announcements',
+                'icon'             => '&#xE7F7;',
+                'meta_description' => 'Broadlink news and announcements',
+            ],
+            [
+                'tag'              => 'blog',
+                'title'            => 'Blog',
+                'icon'             => '&#xE060;',
+                'meta_description' => 'Broadlink news and announcements',
+            ]
         ]);
     }
 }

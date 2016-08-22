@@ -100,7 +100,7 @@
                 <div class="uk-grid" data-uk-grid-margin="10">
                     <div class="uk-width-1-1">
                         <label for="tags" class="uk-form-label">Select a category</label>
-                        <select name="tags[]" id="tags" class="selectpicker" multiple>
+                        <select name="tags[]" id="tags" class="selectpicker" multiple style="text-transform: capitalize;">
                             @foreach ($allTags as $tag)
                                 <option @if (isset($tags) && in_array($tag, $tags)) selected @endif value="{{ $tag }}">{{ $tag }}</option>
                             @endforeach
