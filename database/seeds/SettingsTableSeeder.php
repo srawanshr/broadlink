@@ -91,6 +91,21 @@ class SettingsTableSeeder extends Seeder {
                 'slug'  => 'google-plus',
                 'name'  => 'Google Plus',
                 'value' => 'https://www.google.com'
+            ],
+            [
+                'slug'  => 'internet-login',
+                'name'  => 'My Internet Login',
+                'value' => 'http://hotspot.broadlink.com.np'
+            ],
+            [
+                'slug'  => 'self-care-login',
+                'name'  => 'My Self Care Login',
+                'value' => 'https://my.broadlink.com.np:8445'
+            ],
+            [
+                'slug'  => 'self-care-login',
+                'name'  => 'My Self Care Login',
+                'value' => 'https://my.broadlink.com.np:8445'
             ]
         ]);
     }
