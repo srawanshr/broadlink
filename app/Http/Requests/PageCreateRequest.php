@@ -38,7 +38,7 @@ class PageCreateRequest extends Request
     {
         $inputs = $this->all();
 
-        $inputs[ 'is_draft' ] = $this->get( 'is_draft', false );
+        $inputs[ 'is_draft' ] = $this->get( 'is_published') ? false : true;
 
         $inputs[ 'created_by' ] = auth()->guard('admin')->id();
 

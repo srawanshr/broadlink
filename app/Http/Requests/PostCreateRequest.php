@@ -39,10 +39,7 @@ class PostCreateRequest extends Request {
             'published_at'     => Carbon::parse($this->published_at)->toDateTimeString()
         ];
 
-        if ($this->has('is_draft'))
-            $inputs['is_draft'] = 1;
-        else
-            $inputs['is_draft'] = 0;
+        $inputs[ 'is_draft' ] = $this->get( 'is_published') ? false : true;
 
         $inputs['admin_id'] = auth()->guard('admin')->id();
 

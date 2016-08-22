@@ -38,7 +38,7 @@ class PageUpdateRequest extends Request {
     {
         $inputs = $this->all();
 
-        $inputs['is_draft'] = $this->get('is_draft', false);
+        $inputs[ 'is_draft' ] = $this->get( 'is_published') ? false : true;
 
         return $inputs;
     }
