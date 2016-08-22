@@ -36,8 +36,8 @@ class PostController extends Controller {
             })
             ->addColumn('status', function ($post)
             {
-                $badge = $post->is_published ? 'success' : 'default';
-                $status = $post->is_published ? 'Published' : 'Unpublished';
+                $badge = $post->is_draft ? 'default' : 'success';
+                $status = $post->is_draft ? 'Unpublished' : 'Published';
 
                 return '<span class="uk-badge uk-badge-' . $badge . '">' . $status . '</span>';
             })
