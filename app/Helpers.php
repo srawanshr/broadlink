@@ -144,6 +144,15 @@ function services()
 }
 
 /**
+ * @return mixed
+ */
+function clients()
+{
+    return App\Models\Client::published()->get();
+}
+
+
+/**
  * @param $query
  * @return mixed
  */

@@ -26,17 +26,17 @@
 
                                                 <ul class="uk-tab uk-tab-left uk-tab-hover" data-uk-tab="{connect:'#bl-nav-services'}">
                                                     @foreach(services() as $service)
-                                                        <li><a href="{{ route('service::show', $service->slug) }}">{{ $service->name }}</a></li>
+                                                        <li><a href="{{ route('service::show', $service->slug) }}"><img class="" src="{{ $service->icon->thumbnail(32,32) }}"> {{ $service->name }}</a></li>
                                                     @endforeach
                                                 </ul>
 
                                             </div>
                                             <div class="uk-width-medium-1-2 uk-tab-left-content">
-
+                                                
                                                 <ul id="bl-nav-services" class="uk-switcher">
                                                     @foreach(services() as $service)
                                                         <li>
-                                                            <p>{!! str_limit($service->meta_description, 200) !!}</p>
+                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 200) !!}</p>
                                                             <a href="{{ route('service::show', $service->slug)}}">Read More</a>
                                                         </li>
                                                     @endforeach
