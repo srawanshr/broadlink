@@ -49,6 +49,7 @@ elixir(function(mix) {
 		   'vendors/uikit/components/parallax.js',
 		   'vendors/uikit/components/slider.js',
 		   'vendors/uikit/components/slideshow.js',
+		   'vendors/uikit/components/slideset.js',
 		   'vendors/uikit/components/accordion.js',
 		   'vendors/greensock-js/src/minified/TweenMax.min.js',
 		   'vendors/jquery-parallax/jquery-parallax.js'

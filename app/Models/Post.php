@@ -18,6 +18,13 @@ class Post extends Model
     ];
 
     /**
+     * The morph class name for this model.
+     *
+     * @var array
+     */
+    protected $morphClass = 'Post';
+
+    /**
      * Set the title attribute and the slug.
      *
      * @param string $value
@@ -85,6 +92,18 @@ class Post extends Model
     public function getContentAttribute($value)
     {
         return $this->content_raw;
+    }
+
+    /**
+     * Scope a query to get published or non published posts.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param bool $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDraft($query, $type = true)
+    {
+        return $query->whereIsDraft($type);
     }
 
     /**

@@ -46,6 +46,9 @@ Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
 Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::delete');
 
+Route::get('/news', 'Frontend\NewsController@index')->name('news::index');
+Route::get('/news/{post}', 'Frontend\NewsController@show')->name('news::show');
+
 Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
 
 Route::group(['namespace' => 'Frontend', 'prefix' => 'contact', 'as' => 'contact::'], function () {

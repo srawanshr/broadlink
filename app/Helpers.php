@@ -189,3 +189,28 @@ function testimonials()
 {
     return \App\Models\Testimonial::published()->get();
 }
+
+/**
+ * @param $query
+ * @return mixed
+ */
+function posts($tag = null)
+{
+    $tag = \App\Models\Tag::whereTag($tag)->first();
+    $posts = \App\Models\Post::draft(false)->where('published_at', '<=', Carbon\Carbon::now());
+    $posts =  empty($tag) ? $posts->get(): $posts->whereHas('tags', function($q) use ($tag){
+        $q->where('id', $tag->id);
+    })->get;
+    return $posts;
+}
+
+/**
+ * @param $query
+ * @return mixed
+ */
+function tags()
+{
+    return \App\Models\Tag::whereHas('posts', function($q){
+        $q->where('is_draft', false);
+    })->get();
+}

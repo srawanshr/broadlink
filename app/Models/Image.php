@@ -76,7 +76,7 @@ class Image extends Model
     public function getImagePathAttribute()
     {
         $class = $this->imageable_type;
-
+        
         if ( empty($class) ) return self::IMAGE_PATH;
 
         return ltrim(config('paths.image.'.$class), '/');

@@ -18,7 +18,7 @@ class TagsTableSeeder extends Seeder {
             [
                 'tag'              => 'news',
                 'title'            => 'News',
-                'icon'             => '&#xE0E0;;',
+                'icon'             => '&#xE0E0;',
                 'meta_description' => 'Broadlink news and announcements',
             ],
             [

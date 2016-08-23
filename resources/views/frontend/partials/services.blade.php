@@ -29,9 +29,11 @@
                 <div class="uk-container uk-container-center">
                     <div class="uk-grid">
                         <div class="uk-width-medium-1-2">
-                            <h2>{{ $service->slogan }}</h2>
-                            <p>{!! $service->description_html !!}</p>
-                            <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">Buy</a>
+                            <div class="bl-padding">
+                                <h2>{{ $service->slogan }}</h2>
+                                <p>{!! $service->description_html !!}</p>
+                                <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">Buy</a>
+                            </div>
                         </div>
                         <div class="uk-width-medium-1-2">
                             <ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'swipe'}">

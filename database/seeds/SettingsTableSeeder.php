@@ -101,11 +101,6 @@ class SettingsTableSeeder extends Seeder {
                 'slug'  => 'self-care-login',
                 'name'  => 'My Self Care Login',
                 'value' => 'https://my.broadlink.com.np:8445'
-            ],
-            [
-                'slug'  => 'self-care-login',
-                'name'  => 'My Self Care Login',
-                'value' => 'https://my.broadlink.com.np:8445'
             ]
         ]);
     }

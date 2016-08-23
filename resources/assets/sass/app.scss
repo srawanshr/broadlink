@@ -227,18 +227,18 @@ input, textarea {
       }
     }
     .uk-dropdown {
-    	background: rgba(255,255,255,.9);
-    	border-radius: 3px;
-    	>ul {
-    		>li {
-				>a {
-		    		&:focus, &:hover, &:active {
-		    			color: $text-color-light;
-		    			background: $primary-color;
-		    		}
-		    	}
-    		}
-    	}
+      background: rgba(255,255,255,.9);
+      border-radius: 3px;
+      >ul {
+        >li {
+        >a {
+            &:focus, &:hover, &:active {
+              color: $text-color-light;
+              background: $primary-color;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -259,9 +259,9 @@ input, textarea {
 }
 
 .bl-btn-outline {
-	padding: 5px 25px;
-	border-radius: 0;
-	background-color: transparent;
+  padding: 5px 25px;
+  border-radius: 0;
+  background-color: transparent;
 }
 
 .bl-text-light {
@@ -270,14 +270,14 @@ input, textarea {
     color: $text-color-light;
   }
   .bl-btn-outline {
-		border: 2px solid $text-color-light;
-		color: $text-color-light;
-		&:hover {
-		  border: 2px solid $primary-color;
-		  color: $text-color-light;
-		  background-color: $primary-color;
-		}
-	}
+    border: 2px solid $text-color-light;
+    color: $text-color-light;
+    &:hover {
+      border: 2px solid $primary-color;
+      color: $text-color-light;
+      background-color: $primary-color;
+    }
+  }
 }
 
 .bl-text-dark {
@@ -286,14 +286,14 @@ input, textarea {
     color: $text-color;
   }
   .bl-btn-outline {
-		border: 2px solid $text-color;
-		color: $text-color;
-		&:hover {
-		  border: 2px solid $primary-color;
-		  color: $text-color-light;
-		  background-color: $primary-color;
-		}
-	}
+    border: 2px solid $text-color;
+    color: $text-color;
+    &:hover {
+      border: 2px solid $primary-color;
+      color: $text-color-light;
+      background-color: $primary-color;
+    }
+  }
 }
 
 .bl-block-default {
@@ -415,38 +415,31 @@ h3 {
 }
 
 #news {
-  background-position: 50% -100px;
-  transition: background 1s;
-  animation: sks 8s infinite alternate;
-
-  li.uk-active {
-    button {
-      color: $primary-color;
+  .bl-background-slider {
+    position: absolute;
+    width: 100%;
+  }
+  
+  .uk-subnav-pill {
+    li {
+      &.uk-active {
+        a {
+          border: 1px solid $primary-color;
+          background: $primary-color;
+          color: $text-color-light;
+        }
+      }
+      a {
+        padding: 40px 25px 25px 25px;
+        background: transparent;
+        color: $text-color-light;
+        border-bottom-width: 1px;
+        .material-icons {
+          font-size: 4em;
+        }
+      }
     }
   }
-
-  .pe {
-    font-size: 5em;
-  }
-}
-
-@keyframes sks {
-    0% {
-      background-position: 50% -100px;
-      animation-timing-function: ease-in;
-    }
-    40% {
-      background-position: 50% -100px;
-      animation-timing-function: ease-in;
-    }
-    60% {
-      background-position: 25% -100px;
-      animation-timing-function: ease-in;
-    }
-    100% {
-      background-position: 25% -100px;
-      animation-timing-function: ease-in;
-    }
 }
 
 #clients {
@@ -882,9 +875,6 @@ ul.bl-tab {
 }
 
 @media(max-width: 767px) {
-  #news .pe {
-    font-size: 3em;
-  }
   
   #slider {
     .images {

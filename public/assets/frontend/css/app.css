@@ -274,28 +274,22 @@ h3 {
     color: #e76724;
     border: 2px solid #e76724; }
 
-#news {
-  background-position: 50% -100px;
-  transition: background 1s;
-  animation: sks 8s infinite alternate; }
-  #news li.uk-active button {
-    color: #e76724; }
-  #news .pe {
-    font-size: 5em; }
+#news .bl-background-slider {
+  position: absolute;
+  width: 100%; }
 
-@keyframes sks {
-  0% {
-    background-position: 50% -100px;
-    animation-timing-function: ease-in; }
-  40% {
-    background-position: 50% -100px;
-    animation-timing-function: ease-in; }
-  60% {
-    background-position: 25% -100px;
-    animation-timing-function: ease-in; }
-  100% {
-    background-position: 25% -100px;
-    animation-timing-function: ease-in; } }
+#news .uk-subnav-pill li.uk-active a {
+  border: 1px solid #e76724;
+  background: #e76724;
+  color: #eee; }
+
+#news .uk-subnav-pill li a {
+  padding: 40px 25px 25px 25px;
+  background: transparent;
+  color: #eee;
+  border-bottom-width: 1px; }
+  #news .uk-subnav-pill li a .material-icons {
+    font-size: 4em; }
 
 #clients {
   background-size: cover;
@@ -613,8 +607,6 @@ ul.bl-tab {
     border-radius: 10px; }
 
 @media (max-width: 767px) {
-  #news .pe {
-    font-size: 3em; }
   #slider .images {
     text-align: center;
     height: 20vh; }

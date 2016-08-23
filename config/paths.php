@@ -21,7 +21,8 @@ return [
         'Plan'    => 'images/plan-pictures/',
         'Product' => 'images/product-pictures/',
         'Menu'    => 'images/menu-pictures/',
-        'Client'  => 'images/client-pictures/'
+        'Client'  => 'images/client-pictures/',
+        'Post'    => 'images/post-pictures/'
 
     ],
 
@@ -55,7 +56,8 @@ return [
 
         'default' => 'assets/shared/img/placeholder.jpg',
         'avatar'  => 'assets/backend/img/avatars/avatar_11_tn.png',
-        'service' => 'assets/shared/img/placeholder.jpg'
+        'service' => 'assets/shared/img/placeholder.jpg',
+        'post'    => 'assets/shared/img/placeholder.jpg',
 
     ]
 ];

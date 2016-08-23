@@ -35,6 +35,12 @@
             $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function(event, element){
                 $('#news').css('background-image',"url('" + $(element).data('bg') +"')");
             });
+
+            $(window).on('load resize', function() {
+               var height = $('#news').height();
+               $('.bl-background-slider').css('height', height+'px');
+            });
+
         });
     </script>
 @stop

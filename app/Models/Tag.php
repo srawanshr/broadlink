@@ -21,7 +21,7 @@ class Tag extends Model
      */
     public function posts()
     {
-        return $this->belongsToMany('App\Post', 'post_tag_pivot');
+        return $this->belongsToMany('App\Models\Post', 'post_tag_pivot');
     }
 
     /**
