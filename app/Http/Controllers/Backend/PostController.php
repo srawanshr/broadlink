@@ -32,7 +32,7 @@ class PostController extends Controller {
         return Datatables::of($post)
             ->editColumn('title', function ($post)
             {
-                return str_limit($post->title, 12);
+                return str_limit($post->title, 72);
             })
             ->addColumn('status', function ($post)
             {
@@ -115,10 +115,10 @@ class PostController extends Controller {
 
             if ($post->image)
             {
-                $post->image()->create(['name' => cleanFileName($image)])->upload($image);
+                $post->image->upload($image);
             } else
             {
-                $post->image->upload($image);
+                $post->image()->create(['name' => cleanFileName($image)])->upload($image);
             }
         }
     }
