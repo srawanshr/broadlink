@@ -404,7 +404,7 @@
                 $(this).kendoComboBox({
                     dataTextField: "name",
                     dataValueField: "code",
-                    template: '<span class="k-state-default"><i class="material-icons">#: data.code #</i></span>' +
+                    template: '<span class="k-state-default"><i class="material-icons">#: data.slug #</i></span>' +
                               '<span class="k-state-default"> #: data.name #</span>',
                     dataSource: {
                         transport: {

@@ -13,6 +13,7 @@ class CreateSubMenusTable extends Migration
     public function up()
     {
         Schema::create('sub_menus', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('submenuable_id')->unsigned();
             $table->string('submenuable_type');

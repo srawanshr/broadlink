@@ -8,7 +8,7 @@
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
                         <a href="{{ url('/') }}">
-                            <i class="pe-7s-home pe pe-va"></i>
+                            <i class="material-icons">&#xE88A;</i>
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
@@ -26,7 +26,11 @@
 
                                                 <ul class="uk-tab uk-tab-left uk-tab-hover" data-uk-tab="{connect:'#bl-nav-services'}">
                                                     @foreach(services() as $service)
-                                                        <li><a href="{{ route('service::show', $service->slug) }}"><img class="" src="{{ $service->icon->thumbnail(32,32) }}"> {{ $service->name }}</a></li>
+                                                        <li>
+                                                            <a href="{{ route('service::show', $service->slug) }}">
+                                                                <img class="" src="{{ asset($service->icon->thumbnail(32,32)) }}"> {{ $service->name }}
+                                                            </a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
 
@@ -53,14 +57,14 @@
                         @if($menu->type == 0)
                             <li class="uk-active">
                                 <a href="{{ $menu->url }}">
-                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                             </li>
                         @elseif($menu->type == 1)
                             <li class="uk-parent" data-uk-dropdown>
                                 <a href="{{ $menu->url }}">
-                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown uk-dropdown-navbar">
@@ -68,7 +72,7 @@
                                         @foreach($menu->subMenus as $submenu)
                                             <li>
                                                 <a href="{{ $submenu->url }}">
-                                                    <i class="material-icons pe-va">{{ $submenu->icon }}</i>
+                                                    <i class="material-icons uk-vertical-align-middle">{{ $submenu->icon }}</i>
                                                     {{ $submenu->name }}
                                                 </a>
                                             </li>
@@ -79,7 +83,7 @@
                         @elseif($menu->type == 2)
                             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                                 <a href="{{ $menu->url }}" class="hover-to-click">
-                                    <i class="material-icons pe-va">{{ $menu->icon }}</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown bl-card">
@@ -93,7 +97,7 @@
                                                     @forelse($menu->subMenus as $submenu)
                                                         <div class="uk-width-medium-1-3">
                                                             <a href="{{ $submenu->url }}" class="bl-icon-button">
-                                                                <span><i class="material-icons pe-va">{{ $submenu->icon }}</i></span>
+                                                                <span><i class="material-icons uk-vertical-align-middle">{{ $submenu->icon }}</i></span>
                                                                 <cite>{{ $submenu->name }}</cite>
                                                             </a>
                                                         </div>
@@ -146,8 +150,8 @@
                     @endif
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                         <a href="{{ route('cart::index') }}" class="bl-super-badge">
-                            <div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>
-                            <i class="uk-icon uk-icon-shopping-cart"></i>
+                            @if(Cart::count() > 0)<div class="uk-badge uk-badge-success">{{ Cart::count() }}</div>@endif
+                            <i class="material-icons uk-vertical-align-middle">&#xE8CC;</i>
                         </a>
                     </li>
                 </ul>

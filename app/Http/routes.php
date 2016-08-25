@@ -46,6 +46,11 @@ Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
 Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::delete');
 
+Route::get('/cart/payment', 'Frontend\CartController@getCheckout')->name('cart::payment');
+Route::get('/payment/esewa/success', 'Frontend\CartController@esewaRedirect')->name('esewa::success');
+
+Route::post('/cart/checkout', 'Frontend\CartController@postCheckout')->name('cart::checkout');
+
 Route::get('/news', 'Frontend\NewsController@index')->name('news::index');
 Route::get('/news/{post}', 'Frontend\NewsController@show')->name('news::show');
 

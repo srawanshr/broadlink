@@ -70,8 +70,8 @@
                                 </div>
                             </div>
                             <div class="bl-card uk-block-default uk-padding-remove">
-                                <a href="{{ route('service::index') }}" class="uk-button uk-button-default uk-widthi-1-1 uk-button-large">Continue Shopping <i class="uk-icon uk-icon-arrow-right"></i></a>
-                                <a href="javascript:void(0);" class="uk-button uk-button-success uk-widthi-1-1 uk-button-large bl-checkout{{ Cart::content()->count() == 0 ? ' empty':'' }}"><i class="uk-icon uk-icon-cart-arrow-down"></i> Checkout</a>
+                                <a href="{{ route('service::index') }}" class="uk-button uk-button-default uk-widthi-1-1 uk-button-large">Continue Shopping <i class="material-icons uk-vertical-align-middle">&#xE854;</i></a>
+                                <a href="{{ route('cart::payment') }}" class="uk-button uk-button-success uk-widthi-1-1 uk-button-large">Proceed to Checkout <i class="material-icons uk-vertical-align-middle">&#xE8A1;</i></a>
                             </div>
                             <div class="uk-panel uk-panel-box uk-margin-top bl-card uk-text-center uk-block-default">
                             <h3 class="uk-margin-top">Questions?</h3>
@@ -84,16 +84,12 @@
             </div>
         </div>
     </section>
+</div>
 @stop
 
 @section('footer')
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.bl-checkout:not(.empty)').click(function() {
-            UIkit.modal.confirm("Are you sure you want to continue to checkout?", function(){
-                console.log('confirmed');
-            });
-        });
         $('.bl-checkout.empty').click(function() {
             UIkit.modal.alert("Your cart in empty. Please consider buying some service.");
         });

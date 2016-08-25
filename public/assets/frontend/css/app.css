@@ -464,7 +464,17 @@ ul.bl-tab {
     color: #e76724;
     border-bottom: 2px solid #e76724; }
 
-.bl-switcher {
+.payment-options label {
+  text-align: center;
+  display: inline-block;
+  width: 100%; }
+  .payment-options label img {
+    width: 110px; }
+  .payment-options label [type=radio] {
+    height: 25px;
+    width: 25px; }
+
+.bl-plans {
   margin: 30px 0; }
 
 .bl-package {
@@ -605,6 +615,33 @@ ul.bl-tab {
     right: 5px;
     top: 15px;
     border-radius: 10px; }
+
+/* Rules for sizing the icon. */
+.material-icons.md-2 {
+  font-size: 2em; }
+
+.material-icons.md-3 {
+  font-size: 3em; }
+
+.material-icons.md-4 {
+  font-size: 4em; }
+
+.material-icons.md-5 {
+  font-size: 5em; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54); }
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: white; }
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3); }
 
 @media (max-width: 767px) {
   #slider .images {
