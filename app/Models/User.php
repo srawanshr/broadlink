@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
 
     /**
      * The attributes that are mass assignable.
@@ -46,12 +47,11 @@ class User extends Authenticatable {
      *
      * @param string $value
      */
-    public function setUsernameAttribute($value)
+    public function setUsernameAttribute( $value )
     {
-        $this->attributes['username'] = $value;
-        if ( ! $this->exists)
-        {
-            $this->setUniqueSlug($value, '');
+        $this->attributes[ 'username' ] = $value;
+        if ( !$this->exists ) {
+            $this->setUniqueSlug( $value, '' );
         }
     }
 
@@ -61,16 +61,15 @@ class User extends Authenticatable {
      * @param string $username
      * @param mixed $extra
      */
-    protected function setUniqueSlug($username, $extra)
+    protected function setUniqueSlug( $username, $extra )
     {
-        $slug = str_slug($username . '-' . $extra);
-        if (static::whereSlug($slug)->exists())
-        {
-            $this->setUniqueSlug($username, $extra + 1);
+        $slug = str_slug( $username . '-' . $extra );
+        if ( static::whereSlug( $slug )->exists() ) {
+            $this->setUniqueSlug( $username, $extra + 1 );
 
             return;
         }
-        $this->attributes['slug'] = $slug;
+        $this->attributes[ 'slug' ] = $slug;
     }
 
     /**
@@ -78,7 +77,7 @@ class User extends Authenticatable {
      */
     public function getDisplayNameAttribute()
     {
-        return ucwords($this->first_name . " " . $this->last_name);
+        return ucwords( $this->first_name . " " . $this->last_name );
     }
 
     /**
@@ -86,7 +85,23 @@ class User extends Authenticatable {
      */
     public function image()
     {
-        return $this->morphOne('App\Models\Image', 'imageable');
+        return $this->morphOne( 'App\Models\Image', 'imageable' );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invoices()
+    {
+        return $this->hasMany( 'App\Models\Invoice' );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany( 'App\Models\Order' );
     }
 
     /**
@@ -94,11 +109,11 @@ class User extends Authenticatable {
      * @return bool|null|void
      * @throws \Exception
      */
-    public function delete(array $options = array())
+    public function delete( array $options = [] )
     {
-        if($this->image)
+        if ( $this->image )
             $this->image->delete();
 
-        return parent::delete($options);
+        return parent::delete( $options );
     }
 }

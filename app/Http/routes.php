@@ -51,8 +51,8 @@ Route::get('/payment/esewa/success', 'Frontend\CartController@esewaRedirect')->n
 
 Route::post('/cart/checkout', 'Frontend\CartController@postCheckout')->name('cart::checkout');
 
-Route::get('/news', 'Frontend\NewsController@index')->name('news::index');
-Route::get('/news/{post}', 'Frontend\NewsController@show')->name('news::show');
+Route::get('/post', 'Frontend\FrontController@postIndex')->name('post::index');
+Route::get('/post/{post}', 'Frontend\FrontController@post')->name('post::show');
 
 Route::get('/page/{page_slug}', 'Frontend\FrontController@page')->name('page::show');
 

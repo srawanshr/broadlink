@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
@@ -26,5 +27,10 @@ class FrontController extends Controller
     public function page(Page $page)
     {
         return view('frontend.pages.show', compact('page'));
+    }
+
+    public function post(Post $post)
+    {
+        return view('frontend.post.show', compact('post'));
     }
 }

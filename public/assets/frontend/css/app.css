@@ -8,6 +8,8 @@ body {
   font-size: 16px;
   line-height: 1.5em;
   background-color: #ebeff1; }
+  body > section {
+    min-height: 210px; }
 
 a {
   color: #e76724; }
@@ -277,6 +279,12 @@ h3 {
 #news .bl-background-slider {
   position: absolute;
   width: 100%; }
+
+#news .uk-slideset li h4 {
+  min-height: 65px; }
+
+#news .uk-slideset li p {
+  min-height: 90px; }
 
 #news .uk-subnav-pill li.uk-active a {
   border: 1px solid #e76724;

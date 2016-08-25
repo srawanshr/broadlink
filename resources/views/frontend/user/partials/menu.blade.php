@@ -5,32 +5,21 @@
     <div class="bl-padding uk-block-default bl-block-primary-lightest">
         {{ $user->display_name }}
     </div>
-    <div class="offer bl-padding bl-block-primary-lighter">
+    <div class="details bl-padding bl-block-primary-lighter">
         <ul class="fa-ul">
             <li>
-                <i class="fa-li uk-icon uk-icon-star"></i>
-                <a href="#">Get More from Broadlink with a premium account</a>
-            </li>
-        </ul>
-    </div>
-    <div class="details bl-padding bl-block-primary-light">
-        <ul class="fa-ul">
-            <li>
-                <i class="fa-li uk-icon uk-icon-dollar"></i>
-                <a href="#">Earn more Broadlink Credits</a>
+                <a href="{{ route('user::edit') }}">
+                    <i class="fa-li material-icons">&#xE853;</i>
+                    Update your profile
+                </a>
             </li>
             <li>
-                <i class="fa-li uk-icon uk-icon-calendar"></i>
-                <a href="#">Extend Subscription</a>
-            </li>
-            <hr/>
-            <li>
-                <i class="fa-li uk-icon uk-icon-ticket"></i>
-                <a href="#">Redeem your voucher</a>
-            </li>
-            <li>
-                <i class="fa-li uk-icon uk-icon-asterisk"></i>
+                <i class="fa-li material-icons">&#xE0DA;</i>
                 <a href="#">Change password</a>
+            </li>
+            <li>
+                <i class="fa-li material-icons">&#xE5C3;</i>
+                <a href="{{ route('service::index') }}">Discover more features</a>
             </li>
         </ul>
     </div>

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class EsewaPayment extends Model
 {
+    protected $morphClass = 'Esewa';
+
     public function invoice()
     {
-    	return $this->morphOne('App\Models\Invoice', 'payable');
+        return $this->morphOne( 'App\Models\Invoice', 'payable' );
     }
 }
