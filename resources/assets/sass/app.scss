@@ -221,6 +221,7 @@ input, textarea {
       font-size: 1em;
       color: $primary-color;
       background-color: transparent;
+      border-bottom: 3px solid transparent;
       &:focus {
         color: $primary-color;
         outline: none;

@@ -134,7 +134,8 @@ input, textarea {
   box-sizing: initial;
   font-size: 1em;
   color: #e76724;
-  background-color: transparent; }
+  background-color: transparent;
+  border-bottom: 3px solid transparent; }
   .uk-navbar-nav > li > a:focus {
     color: #e76724;
     outline: none; }
