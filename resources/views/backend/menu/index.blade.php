@@ -3,42 +3,49 @@
 @section('title', 'Menu')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/kendo-ui-core/styles/kendo.common-material.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/plugins//kendo-ui-core/styles/kendo.material.min.css') }}"/>
-    <style type="text/css">
-        .editable {
-            background: transparent;
-            border: 0;
-            color: #684444;
-            font-size: 15px;
-        }
-        .uk-accordion-content {
-            background-color: rgba(200,200,200,0.05);
-            border: 1px solid rgba(200,200,200,0.3);
-        }
-        .bl-accordion-item {
-            margin-bottom: 5px;
-        }
-        h3.uk-accordion-title {
-            margin: 0;
-        }
-        .button-menu-select {
-            margin: 10px 0;
-        }
-        .bl-remove-accordion {
-            margin: 0 10px !important;
-        }
-    </style>
+<link rel="stylesheet" href="{{ asset('assets/plugins/kendo-ui-core/styles/kendo.common-material.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('assets/plugins//kendo-ui-core/styles/kendo.material.min.css') }}"/>
+<style type="text/css">
+    .editable {
+        background: transparent;
+        border: 0;
+        color: #684444;
+        font-size: 15px;
+    }
+
+    .uk-accordion-content {
+        background-color: rgba(200, 200, 200, 0.05);
+        border: 1px solid rgba(200, 200, 200, 0.3);
+    }
+
+    .bl-accordion-item {
+        margin-bottom: 5px;
+    }
+
+    h3.uk-accordion-title {
+        margin: 0;
+    }
+
+    .button-menu-select {
+        margin: 10px 0;
+    }
+
+    .bl-remove-accordion {
+        margin: 0 10px !important;
+    }
+</style>
 @endpush
 
 @section('content')
-    {{ Form::open(['route' => 'admin::menu.update', 'files' => true, 'method' => 'put']) }}
+    {{ Form::open(['route' => 'admin::menu.update', 'files' => true, 'method' => 'put', 'class' => 'form_validation']) }}
     <div id="page_content">
         <div id="page_content_inner">
             <h3 class="heading_b uk-margin-bottom">Menu</h3>
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-1-5">
-                    <button class="md-btn md-btn-primary button-menu-select primary-menu" data-add-target="#primary-menu-list" type="button">Add</button>
+                    <button class="md-btn md-btn-primary button-menu-select primary-menu" data-add-target="#primary-menu-list" type="button">
+                        Add
+                    </button>
                 </div>
                 <div class="uk-width-medium-4-5">
                     <div class="md-card">
@@ -120,7 +127,10 @@
                         </div>
                         <div class="uk-grid data-uk-grid-margin">
                             <div class="uk-width-1-1">
-                                <button type="button" class="uk-button uk-button-primary uk-float-right button-menu-add"><i class="material-icons">&#xE145;</i> Add</button>
+                                <button type="button" class="uk-button uk-button-primary uk-float-right button-menu-add">
+                                    <i class="material-icons">&#xE145;</i>
+                                    Add
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +168,10 @@
                         </div>
                         <div class="uk-grid uk-grid-margin">
                             <div class="uk-width-1-1">
-                                <button type="button" class="uk-button uk-button-primary uk-float-right button-menu-add"><i class="material-icons">&#xE145;</i> Add</button>
+                                <button type="button" class="uk-button uk-button-primary uk-float-right button-menu-add">
+                                    <i class="material-icons">&#xE145;</i>
+                                    Add
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -174,11 +187,12 @@
 <script src="{{ asset('assets/backend/js/kendoui.custom.min.js') }}"></script>
 <script src="{{ asset('assets/backend/js/pages/kendoui.min.js') }}"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        String.prototype.replaceAll = function(search, replacement) {
+    $(document).ready(function () {
+        String.prototype.replaceAll = function (search, replacement) {
             var target = this;
             return target.replace(new RegExp(search, 'g'), replacement);
         };
+
         var $primaryMenu = $('#primary-menu-list');
 
         var existingMenus = {!! json_encode($primaryMenus) !!};
@@ -301,10 +315,11 @@
                         </div>
                     </div>
                 </div>`
-        }
-        var menuListAccordion = {}, modalList = {},  menuListSortable = {};
+        };
 
-        $.each(existingMenus, function(k,v) {
+        var menuListAccordion = {}, modalList = {}, menuListSortable = {};
+
+        $.each(existingMenus, function (k, v) {
             var menuTemplateClone = menuTemplate[v.type]
                 .replaceAll('{title}', v.name)
                 .replaceAll('{url}', v.url)
@@ -313,10 +328,10 @@
                 .replaceAll('{id}', v.id)
                 .replaceAll('{type}', v.type);
             $primaryMenu.append(menuTemplateClone);
-            refreshAccordion('#'+$primaryMenu.attr('id'));
-            if(v.sub_menus.length > 0) {
-                $.each(v.sub_menus, function(sk,sv) {
-                    var $currentMenu = $('#dropdown-menu-list-'+v.id);
+            refreshAccordion('#' + $primaryMenu.attr('id'));
+            if (v.sub_menus.length > 0) {
+                $.each(v.sub_menus, function (sk, sv) {
+                    var $currentMenu = $('#dropdown-menu-list-' + v.id);
                     var menuTemplateClone = menuTemplate[0]
                         .replaceAll('{title}', sv.name)
                         .replaceAll('{url}', sv.url)
@@ -325,26 +340,26 @@
                         .replaceAll('{id}', sv.id)
                         .replaceAll('{type}', 0);
                     $currentMenu.append(menuTemplateClone);
-                    refreshAccordion('#'+$currentMenu.attr('id'));
+                    refreshAccordion('#' + $currentMenu.attr('id'));
                 });
             }
-            if(!(v.image === null))
-                $('#icon-'+v.id).attr('src', '{{ url("/") }}'+v.image.path);
+            if (!(v.image === null))
+                $('#icon-' + v.id).attr('src', '{{ url("/") }}' + v.image.path);
         });
 
-        $(document).on('click', '.button-menu-select', function(){
+        $(document).on('click', '.button-menu-select', function () {
             console.log('addoing button');
             modal = '#modal-add-menu';
-            if($(this).hasClass('primary-menu'))
+            if ($(this).hasClass('primary-menu'))
                 $('.menu-type-col').show();
             else
                 $('.menu-type-col').hide();
 
-           $(modal).find('button').data('add-target',$(this).data('add-target'));
-           toggleModal(modal);
+            $(modal).find('button').data('add-target', $(this).data('add-target'));
+            toggleModal(modal);
         });
 
-        $(document).on('click', '.button-menu-add', function() {
+        $(document).on('click', '.button-menu-add', function () {
             $menuitem = $(this).closest('.menu-item');
 
             var title = $menuitem.find('[name=menu-title]').val();
@@ -355,7 +370,7 @@
             var id = makeid();
             var $menuList = $(target);
 
-            if(type===undefined) type=0;
+            if (type === undefined) type = 0;
 
             var menuTemplateClone = menuTemplate[type]
                 .replaceAll('{title}', title)
@@ -364,7 +379,7 @@
                 .replaceAll('{target}', target.substring(1))
                 .replaceAll('{id}', id)
                 .replaceAll('{type}', type);
-            
+
             $menuList.append(menuTemplateClone);
 
             refreshAccordion(target);
@@ -376,36 +391,36 @@
 
         refreshComboBox();
 
-        $(document).on('click', '.bl-remove-accordion', function() {
+        $(document).on('click', '.bl-remove-accordion', function () {
             $(this).closest('.bl-accordion-item').detach();
         });
 
         //image thumbnail
 
-         var readURL = function(input){
+        var readURL = function (input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('#icon-'+$(input).data('id')).attr('src', e.target.result);
+                    $('#icon-' + $(input).data('id')).attr('src', e.target.result);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
         };
 
-        $(document).on('change', ".icon-input", function(){
+        $(document).on('change', ".icon-input", function () {
             readURL(this);
         });
 
         function refreshComboBox() {
-            $('[kendo-combo-box]').each(function() {
+            $('[kendo-combo-box]').each(function () {
                 $(this).kendoComboBox();
             });
-            $('[kendo-combo-box-icon]').each(function() {
+            $('[kendo-combo-box-icon]').each(function () {
                 $(this).kendoComboBox({
                     dataTextField: "name",
                     dataValueField: "code",
                     template: '<span class="k-state-default"><i class="material-icons">#: data.code #</i></span>' +
-                              '<span class="k-state-default"> #: data.name #</span>',
+                    '<span class="k-state-default"> #: data.name #</span>',
                     dataSource: {
                         transport: {
                             read: {
@@ -418,34 +433,29 @@
             });
         }
 
-        $(document).on('click', '.uk-accordion h3.uk-accordion-title', function(){
+        $(document).on('click', '.uk-accordion h3.uk-accordion-title', function () {
             $el = $(this).closest('.bl-accordion-item').find('.uk-accordion-content').slideToggle();
         });
 
-        function refreshAccordion(target)
-        {
+        function refreshAccordion(target) {
             menuListAccordion[target.substring(1)] = UIkit.sortable(target);
         }
 
-        function toggleModal(target)
-        {
-            if(modalList[target.substring(1)] === undefined)
+        function toggleModal(target) {
+            if (modalList[target.substring(1)] === undefined)
                 modalList[target.substring(1)] = UIkit.modal(target);
             modalList[target.substring(1)].show();
         }
 
-        function makeid()
-        {
+        function makeid() {
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-            for( var i=0; i < 5; i++ )
+            for (var i = 0; i < 5; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
             return text;
         }
-
-
     });
 </script>
 @endpush

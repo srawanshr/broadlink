@@ -4,24 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use DB;
 use App\Models\Menu;
-use App\Models\SubMenu;
 use App\Models\Page;
+use App\Models\SubMenu;
 use App\Http\Requests;
-use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MenuController extends Controller {
 
     protected $menu;
-
-    /**
-     * MenuController constructor.
-     * @param Menu $menu
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory
@@ -32,7 +23,8 @@ class MenuController extends Controller {
 
         $allPages = Page::draft(false)->get();
         $pages = [];
-        foreach ($allPages as $page) {
+        foreach ($allPages as $page)
+        {
             $pages[route('page::show', $page->slug)] = $page->title;
         }
         $menuTypes = [
@@ -50,23 +42,25 @@ class MenuController extends Controller {
      */
     public function update(Request $request)
     {
-        DB::transaction(function() use ($request) {
+        DB::transaction(function () use ($request)
+        {
             $order = 0;
             $menuIds = [];
             $subMenuIds = [];
-            foreach ($request->get('primary-menu-list') as $key => $data) {
+            foreach ($request->get('primary-menu-list') as $key => $data)
+            {
                 $data['slug'] = str_slug($data['name']);
                 $data['order'] = $order;
-                if($menu = Menu::find($key))
+                if ($menu = Menu::find($key))
                     $menu->update($data);
                 else
                     $menu = Menu::create($data);
 
                 array_push($menuIds, $menu->id);
 
-                if($request->hasFile('primary-menu-list.'.$key))
+                if ($request->hasFile('primary-menu-list.' . $key))
                 {
-                    $image = $request->file('primary-menu-list.'.$key.'.image');
+                    $image = $request->file('primary-menu-list.' . $key . '.image');
                     if ($menu->image)
                         $menu->image->upload($image);
                     else
@@ -74,12 +68,13 @@ class MenuController extends Controller {
                 }
 
                 // for submenus
-                if ($subMenus = $request->get('dropdown-menu-list-'.$key, false))
+                if ($subMenus = $request->get('dropdown-menu-list-' . $key, false))
                 {
                     $suborder = 1;
-                    foreach ($subMenus as $key => $subData) {
+                    foreach ($subMenus as $key => $subData)
+                    {
                         $subData['slug'] = str_slug($subData['name']);
-                        if($submenu = $menu->subMenus()->find($key))
+                        if ($submenu = $menu->subMenus()->find($key))
                             $submenu->update($subData);
                         else
                             $submenu = $menu->subMenus()->create($subData);
@@ -88,7 +83,7 @@ class MenuController extends Controller {
                     }
                 }
 
-                $order++;
+                $order ++;
             }
 
             Menu::whereNotIn('id', $menuIds)->delete();
