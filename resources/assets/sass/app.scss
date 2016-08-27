@@ -6,6 +6,26 @@ $contrast-color: #cd4078;
 $green: #83c42c;
 $light-gray: #ebeff1;
 
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth) {
+  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+  $blur: nth(1 3 3 5 6, $depth) * 4px;
+  $color: rgba(black, nth(.24 .23 .23 .22 .22, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+/// Computes a top-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function top-shadow($depth) {
+  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+  $color: rgba(black, nth(.12 .16 .19 .25 .30, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
 /// Gives a card depth effect.
 /// @param {Number} $depth - depth level (between 1 and 5)
 /// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
@@ -19,28 +39,6 @@ $light-gray: #ebeff1;
   } @else {
     box-shadow: bottom-shadow($depth), top-shadow($depth);
   }
-}
-
-/// Computes a top-shadow for a card effect.
-/// @param {Number} $depth - depth level
-/// @return {List}
-@function top-shadow($depth) {
-  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
-  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
-  $color: rgba(black, nth(.12 .16 .19 .25 .30, $depth));
-
-  @return 0 $primary-offset $blur $color;
-}
-
-/// Computes a bottom-shadow for a card effect.
-/// @param {Number} $depth - depth level
-/// @return {List}
-@function bottom-shadow($depth) {
-  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
-  $blur: nth(1 3 3 5 6, $depth) * 4px;
-  $color: rgba(black, nth(.24 .23 .23 .22 .22, $depth));
-
-  @return 0 $primary-offset $blur $color;
 }
 
 html {
@@ -83,7 +81,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 section:not(.banner) > h1 {
-  background: url(/assets/frontend/img/border_img2.png) no-repeat bottom center;
+  background: url("/assets/frontend/img/border_img2.png") no-repeat bottom center;
   padding: 0 0 35px 0;
 }
 
@@ -109,8 +107,9 @@ input, textarea {
   text-shadow: none;
 }
 
-.navbar-brand img {
-  width: 150px;
+.uk-navbar-brand img {
+  padding-top: 30px;
+  width: 275px;
 }
 
 .bl-navbar-overlay:not(.uk-active) {
@@ -164,7 +163,6 @@ input, textarea {
         position: absolute;
         top: 14px;
         right: -12px;
-        content: "";
         border-width: 6px 0px 6px 12px;
         border-style: solid;
         border-color: transparent #f1f1f1;
@@ -300,6 +298,10 @@ input, textarea {
   }
 }
 
+.bl-text-primary {
+  color: $primary-color !important;
+}
+
 .bl-block-default {
   background-color: white;
 }
@@ -376,28 +378,32 @@ h3 {
 }
 
 #slider {
-  .uk-slider {
-    height: 100vh;
-  }
   .main-slider {
     /* margin-top: 60px; */
   }
   .images {
     height: 70vh;
     .image {
+      text-align: center;
       position: absolute;
       max-width: 1000px;
       margin: auto;
       left: 0;
       right: 0;
-      top: 15%;
+      top: 10%;
       img {
-        width: 65%;
+        width: 100%;
       }
     }
   }
   a {
     color: $primary-color;
+  }
+  .subtitle-wrap {
+    margin-top: -320px;
+    .subtitle {
+      margin-top: 0px;
+    }
   }
 }
 
@@ -542,7 +548,7 @@ h3 {
     width: 100%;
     float: left;
     position: relative;
-    background: url(/assets/frontend/img/broadtel_footer.jpg) no-repeat top center;
+    background: url("/assets/frontend/img/broadtel_footer.jpg") no-repeat top center;
     background-size: cover;
     .link {
       padding: 26px 0 17px 0;
@@ -751,6 +757,12 @@ ul.bl-tab {
   }
 }
 
+.bl-button {
+  background: $primary-color;
+  border: 0;
+  color: $text-color-light
+}
+
 .bl-icon-button {
   span {
     margin-right: 5px;
@@ -944,13 +956,37 @@ ul.bl-tab {
 @media(max-width: 767px) {
 
   #slider {
-    .images {
-      text-align: center;
-      height: 20vh;
+    .subtitle-wrap {
+      margin-top: 0px;
+      .subtitle {
+        margin-top: 270px;
+      }
     }
   }
 
-  .subtitle {
-    text-align: center;
+  .uk-navbar-brand {
+    img {
+      position: absolute;
+      left: 50%;
+      margin-left: -137px;
+      top: -10px;
+    }
+  }
+
+  #slider {
+    .images {
+      height: 30vh;
+      .image {
+        top: 20%;
+      }
+    }
+  }
+
+  #our-services {
+    .uk-tab {
+      a {
+        padding: 5px;
+      }
+    }
   }
 }

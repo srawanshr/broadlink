@@ -53,14 +53,21 @@
     </script>
     @yield('footer')
     <script type="text/javascript">
-        // $(document).on('mouseover', '.hover-to-click', function() {
-        //     $(this).trigger('click');
-        // });
-        // (function() {
-        //     $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
-        //         $(this).trigger('click.uk.tab');
-        //     });
-        // })();
+        $(document).ready(function(){
+            $('.ajax-modal').on('click', function(){
+                var url = $(this).data('url');
+                var loading = UIkit.modal.blockUI("Loading..."); // modal.hide() to unblock
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                        var closebtn = "<a class='uk-modal-close uk-close' style='float:right'></a>";
+                        loading.hide();
+                        UIkit.modal.blockUI(closebtn+response);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
     <div class="uk-container uk-container-center">
         <div class="bl-navbar-container">
             <a class="uk-navbar-brand">
-                <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}" class="uk-responsive-height">
+                <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}">
             </a>
             <div class="uk-navbar-flip" id="bl-navbar">
                 <ul class="uk-navbar-nav uk-hidden-small uk-hidden-medium">
@@ -13,7 +13,7 @@
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="{{ route('service::index') }}">Services</a>
+                        <a href="{{ route('service::index') }}"><i class="material-icons uk-vertical-align-middle">&#xE5C3;</i> Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
@@ -57,6 +57,11 @@
                                 </div>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <a href="{{ route('voucher::index') }}">
+                            <i class="material-icons uk-vertical-align-middle">&#xE89A;</i> Shop
+                        </a>
                     </li>
                     @foreach(menus() as $menu)
                         @if($menu->type == 0)
@@ -200,6 +205,11 @@
                         </li>
                     @endforeach
                 </ul>
+            </li>
+            <li>
+                <a href="{{ route('voucher::index')  }}">
+                    <i class="material-icons">&#xE89A;</i> Shop
+                </a>
             </li>
             @foreach(menus() as $menu)
                 <li class="{{ $menu->subMenus->count() > 0 ? 'uk-parent' : ''}}">

@@ -10,6 +10,9 @@
     @include('frontend.partials.banner', ['title' => $service->name, 'images' => $service->banners])
     <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark services">
         <div class="uk-container uk-container-center uk-block-default bl-margin-top-ve">
+            <p>{!! $service->description_html !!}</p>
+        </div>
+        <div class="uk-container uk-container-center uk-block-default uk-margin-top">
             <ul class="uk-tab bl-tab" data-uk-tab="{connect:'#services'}">
                 @foreach($service->plans as $plan)
                     <li><a href="javascript:void(0);">{{ $plan->name }}</a></li>

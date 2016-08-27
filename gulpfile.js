@@ -38,6 +38,7 @@ elixir(function(mix) {
 		   'vendors/uikit/components/slider.css',
 		   'vendors/uikit/components/slideshow.css',
 		   'vendors/uikit/components/slidenav.css',
+		   'vendors/uikit/components/dotnav.css',
 		   'vendors/uikit/components/accordion.css',
 	   ], 'public/assets/frontend/css/dep.css')
 	   .scripts([
