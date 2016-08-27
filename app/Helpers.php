@@ -219,5 +219,5 @@ function tags()
  */
 function vouchers()
 {
-    return \App\Models\Pin::distinct()->select('voucher')->get();
+    return \App\Models\Pin::notUsed()->distinct()->select('voucher')->get();
 }

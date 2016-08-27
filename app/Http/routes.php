@@ -44,7 +44,7 @@ Route::get( '/service/{service}/product/{product_slug}/order', 'Frontend\FrontCo
 
 Route::get( '/shop', 'Frontend\VoucherController@index' )->name( 'voucher::index' );
 Route::get( '/voucher/{voucher}', 'Frontend\VoucherController@show' )->name( 'voucher::show' );
-Route::get( '/voucher/{voucher}/buy', 'Frontend\VoucherController@buy' )->name( 'voucher::buy' );
+Route::any( '/voucher/{voucher}/buy', 'Frontend\VoucherController@buy' )->name( 'voucher::buy' );
 
 Route::get( '/service', 'Frontend\ServiceController@index' )->name( 'service::index' );
 Route::get( '/help', 'Frontend\FrontController@help' )->name( 'help::index' );

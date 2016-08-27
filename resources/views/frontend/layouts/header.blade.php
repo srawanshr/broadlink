@@ -2,7 +2,7 @@
     <!--data-uk-sticky="{'media':767,'showup':true,'animation':'uk-animation-slide-top','top':'.uk-sticky-placeholder + *','clsinactive':'bl-navbar-transparent bl-navbar-contrast'}"-->
     <div class="uk-container uk-container-center">
         <div class="bl-navbar-container">
-            <a class="uk-navbar-brand">
+            <a class="uk-navbar-brand" href="{{ url('/') }}">
                 <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}">
             </a>
             <div class="uk-navbar-flip" id="bl-navbar">
@@ -123,7 +123,25 @@
                         @endif
                     @endforeach
                     @if( auth()->check() )
-                        <li><a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">&#xE853;</i> My Profile</a></li>
+                        <li class="uk-parent" data-uk-dropdown>
+                            <a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">&#xE853;</i> My Profile</a>
+                            <div class="uk-dropdown uk-dropdown-navbar">
+                                <ul class="uk-nav uk-nav-navbar">
+                                    <li>
+                                        <a href="{{ route('user::edit') }}">
+                                            <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('\logout') }}">
+                                            <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                             <a href="{{ url('register') }}">Log In</a>
@@ -230,7 +248,23 @@
                 </li>
             @endforeach
             @if( auth()->check() )
-                <li><a href="{{ route('user::dashboard') }}"><i class="material-icons">&#xE853;</i> My Account</a></li>
+                <li class="uk-parent">
+                    <a href="#"><i class="material-icons">&#xE853;</i> My Account</a>
+                    <ul class="uk-nav-sub">
+                        <li>
+                            <a href="{{ route('user::edit') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('\logout') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @else
                 <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                     <a href="{{ url('register') }}">Log In</a>

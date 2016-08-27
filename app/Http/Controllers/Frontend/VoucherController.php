@@ -3,53 +3,59 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Facades\Cart;
+use App\Http\Controllers\Controller;
 use App\Models\Pin;
-use App\Models\Product;
-use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class VoucherController extends Controller
 {
     public function index()
     {
-        return view('frontend.voucher.index');
+        return view( 'frontend.voucher.index' );
     }
 
-    public function show($voucher)
+    public function show( $voucher )
     {
-        $pinsCount = Pin::notUsed()->get()->filter(function($item) use ($voucher){
-           return str_slug($item->voucher) == $voucher;
-        })->count();
-
-        if($pinsCount > 0)
-            return view('frontend.voucher.show', compact('pinsCount', 'voucher'));
+        if ( $this->pinCount( $voucher ) > 0 )
+            return view( 'frontend.voucher.show', compact( 'pinsCount', 'voucher' ) );
         else
-            return redirect()->back()->withWarning('Pins out of stock');
+            return redirect()->back()->withWarning( 'Pins out of stock' );
     }
 
-    public function buy( Service $service, Product $product )
+    public function pinCount( $voucher = FALSE )
+    {
+        if ( $voucher )
+            return Pin::notUsed()->get()->filter( function( $item ) use ( $voucher ) {
+                return str_slug( $item->voucher ) == $voucher;
+            } )->count();
+        else
+            return Pin::notUsed()->count();
+    }
+
+    public function buy( $voucher, Request $request )
     {
         try {
+            $qty = $request->get( 'qty', 1 );
 
-            Cart::add( [
-                'name'     => $product->name,
-                'qty'      => 1,
-                'discount' => 0,
-                'price'    => $product->price,
-                'options'  => [
-                    'service' => $service,
-                    'product' => $product,
-                    'pinId'   => $this->getUnusedPin( $product->price )
-                ]
-            ] );
+            if ( $this->pinCount( $voucher ) > 0 ) {
+                Cart::add( [
+                    'name'     => $voucher,
+                    'qty'      => $qty,
+                    'discount' => 0,
+                    'price'    => $this->voucherPrice( $voucher ),
+                    'options'  => []
+                ] );
+            }
 
-            return redirect()->back()->withSuccess( $product->name . ' added to your cart!' );
+            return redirect()->back()->withSuccess( $voucher . ' voucher added to your cart!' );
         } catch (Exception $e) {
             return redirect()->back()->withWarning( 'Cannot add data to cart. ' . $e->getMessage() );
         }
+    }
+
+    public function voucherPrice( $voucher )
+    {
+        return abs(intval( filter_var( $voucher, FILTER_SANITIZE_NUMBER_INT ) ));
     }
 }

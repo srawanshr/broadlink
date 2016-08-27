@@ -396,13 +396,14 @@ h3 {
       }
     }
   }
-  a {
-    color: $primary-color;
-  }
+
   .subtitle-wrap {
-    margin-top: -320px;
+    margin-top: -415px;
     .subtitle {
-      margin-top: 0px;
+      margin-top: 0;
+      .button-group {
+        padding-top: 250px;
+      }
     }
   }
 }
@@ -576,7 +577,7 @@ h3 {
         }
       }
       ul {
-        margin: 0px;
+        margin: 0;
         list-style: none;
         text-align: center;
         li {
@@ -760,7 +761,11 @@ ul.bl-tab {
 .bl-button {
   background: $primary-color;
   border: 0;
-  color: $text-color-light
+  color: $text-color-light;
+  &:hover {
+    background: lighten($primary-color, 5);
+    color: $text-color-light;
+  }
 }
 
 .bl-icon-button {
@@ -957,9 +962,12 @@ ul.bl-tab {
 
   #slider {
     .subtitle-wrap {
-      margin-top: 0px;
+      margin-top: 0;
       .subtitle {
-        margin-top: 270px;
+        margin-top: 220px;
+        .button-group {
+          padding: 0;
+        }
       }
     }
   }

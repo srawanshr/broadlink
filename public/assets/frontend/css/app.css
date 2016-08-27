@@ -260,13 +260,12 @@ h3 {
     #slider .images .image img {
       width: 100%; }
 
-#slider a {
-  color: #e76724; }
-
 #slider .subtitle-wrap {
-  margin-top: -320px; }
+  margin-top: -415px; }
   #slider .subtitle-wrap .subtitle {
-    margin-top: 0px; }
+    margin-top: 0; }
+    #slider .subtitle-wrap .subtitle .button-group {
+      padding-top: 250px; }
 
 .bl-button-image {
   background-color: transparent;
@@ -393,7 +392,7 @@ h3 {
           padding: 15px 19.9px;
           text-align: center; }
       #footerWrapper .footerArea .link ul {
-        margin: 0px;
+        margin: 0;
         list-style: none;
         text-align: center; }
         #footerWrapper .footerArea .link ul li {
@@ -521,6 +520,9 @@ ul.bl-tab {
   background: #e76724;
   border: 0;
   color: #eee; }
+  .bl-button:hover {
+    background: #ea773b;
+    color: #eee; }
 
 .bl-icon-button span {
   margin-right: 5px;
@@ -665,9 +667,11 @@ ul.bl-tab {
 
 @media (max-width: 767px) {
   #slider .subtitle-wrap {
-    margin-top: 0px; }
+    margin-top: 0; }
     #slider .subtitle-wrap .subtitle {
-      margin-top: 270px; }
+      margin-top: 220px; }
+      #slider .subtitle-wrap .subtitle .button-group {
+        padding: 0; }
   .uk-navbar-brand img {
     position: absolute;
     left: 50%;

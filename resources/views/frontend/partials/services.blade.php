@@ -32,7 +32,7 @@
                             <div class="bl-padding">
                                 <h2>{{ $service->slogan }}</h2>
                                 <p>{!! $service->description_html !!}</p>
-                                <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">Buy</a>
+                                <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
                             </div>
                         </div>
                         <div class="uk-width-medium-1-2">

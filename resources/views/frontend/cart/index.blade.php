@@ -25,14 +25,13 @@
                                         <button type="button" class="uk-close bl-confirm-submit"></button>
                                         <div class="uk-grid bl-padding">
                                             <div class="uk-width-1-6 uk-text-center">
-                                                <img src="{{ asset($item->options->product->image->thumbnail(100,100)) }}" class="img-icon">
+                                                <img src="{{ asset('assets/frontend/img/'.$item->name.'.png') }}" class="img-icon">
                                             </div>
                                             <div class="uk-width-2-6">
                                                 <div class="uk-text-large">{{ str_limit($item->name, 25) }}</div>
                                                 <div class="uk-text-medium">
-                                                    {{ $item->options->service->name }}
+                                                    Recharge Voucher
                                                 </div>
-                                                </dl>
                                             </div>
                                             <div class="uk-width-3-6 uk-text-right">
                                                 <p class="uk-text-medium uk-text-bold">
