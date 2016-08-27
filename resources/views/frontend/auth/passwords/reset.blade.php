@@ -52,7 +52,7 @@
 
                             <div class="uk-form-row uk-text-center">
                                 <button type="submit" class="uk-button uk-button-primary">
-                                    <i class="material-icons pe-va">&#xE5D5;</i> Reset Password
+                                    <i class="material-icons uk-vertical-align-middle">&#xE5D5;</i> Reset Password
                                 </button>
                             </div>
                         </form>

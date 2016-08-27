@@ -81,6 +81,7 @@ class AppMailer
      */
     public function sendInvoiceMailTo(User $user)
     {
+        return true;
         $images = $this->images;
         $this->to = $user->email;
         $this->view = 'emails.invoice';

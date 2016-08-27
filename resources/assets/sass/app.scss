@@ -6,7 +6,6 @@ $contrast-color: #cd4078;
 $green: #83c42c;
 $light-gray: #ebeff1;
 
-
 /// Gives a card depth effect.
 /// @param {Number} $depth - depth level (between 1 and 5)
 /// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
@@ -18,7 +17,7 @@ $light-gray: #ebeff1;
   } @else if $depth > 5 {
     @warn "Invalid $depth `#{$depth}` for mixin `card`.";
   } @else {
-    box-shadow: bottom-shadow($depth), top-shadow($depth);  
+    box-shadow: bottom-shadow($depth), top-shadow($depth);
   }
 }
 
@@ -49,12 +48,15 @@ html {
 }
 
 body {
-    color: $text-color;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    height: 100%;
-    font-size: 16px;
-    line-height: 1.5em;
-    background-color: $light-gray;
+  color: $text-color;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5em;
+  background-color: $light-gray;
+  > section {
+    min-height: 210px;
+  }
 }
 
 a {
@@ -77,7 +79,7 @@ button {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 section:not(.banner) > h1 {
@@ -116,8 +118,9 @@ input, textarea {
   z-index: 1;
   width: 100%;
 }
+
 #bl-navbar {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
@@ -155,7 +158,7 @@ input, textarea {
   }
 
   .uk-tab {
-    .uk-active{
+    .uk-active {
       &:before {
         content: '';
         position: absolute;
@@ -193,23 +196,23 @@ input, textarea {
 }
 
 .uk-navbar-nav {
-  >li.uk-open {
+  > li.uk-open {
     > a {
       color: $primary-color;
       background-color: transparent;
       border-bottom: 3px solid $primary-color;
     }
   }
-  >li {
-    &:hover, &.uk-active  {
-      >a {
+  > li {
+    &:hover, &.uk-active {
+      > a {
         background-color: transparent;
         color: $primary-color;
         outline: none;
         border-bottom: 3px solid $primary-color;
       }
     }
-    >a {
+    > a {
       display: block;
       // height: 80px;
       padding: 10px 15px;
@@ -218,6 +221,7 @@ input, textarea {
       font-size: 1em;
       color: $primary-color;
       background-color: transparent;
+      border-bottom: 3px solid transparent;
       &:focus {
         color: $primary-color;
         outline: none;
@@ -227,11 +231,11 @@ input, textarea {
       }
     }
     .uk-dropdown {
-      background: rgba(255,255,255,.9);
+      background: rgba(255, 255, 255, .9);
       border-radius: 3px;
-      >ul {
-        >li {
-        >a {
+      > ul {
+        > li {
+          > a {
             &:focus, &:hover, &:active {
               color: $text-color-light;
               background: $primary-color;
@@ -299,6 +303,7 @@ input, textarea {
 .bl-block-default {
   background-color: white;
 }
+
 .bl-block-primary {
   background: $primary-color;
   a, i {
@@ -372,14 +377,14 @@ h3 {
 
 #slider {
   .uk-slider {
-    height:100vh;
+    height: 100vh;
   }
   .main-slider {
     /* margin-top: 60px; */
   }
-  .images  {
+  .images {
     height: 70vh;
-   .image {
+    .image {
       position: absolute;
       max-width: 1000px;
       margin: auto;
@@ -400,7 +405,7 @@ h3 {
   background-color: transparent;
   color: $text-color-light;
   border: 2px solid transparent;
-  span{
+  span {
     display: block;
     margin-bottom: 10px;
     max-width: 100%;
@@ -419,7 +424,18 @@ h3 {
     position: absolute;
     width: 100%;
   }
-  
+
+  .uk-slideset {
+    li {
+      h4 {
+        min-height: 65px;
+      }
+      p {
+        min-height: 90px;
+      }
+    }
+  }
+
   .uk-subnav-pill {
     li {
       &.uk-active {
@@ -462,6 +478,7 @@ h3 {
     padding-top: 35px;
   }
 }
+
 #our-services-index {
   .bl-service-description {
     background: #f8f8f8;
@@ -481,7 +498,7 @@ h3 {
     }
   }
   .uk-tab {
-    border:0;
+    border: 0;
     li {
     }
     li.uk-active {
@@ -676,7 +693,22 @@ ul.bl-tab {
   }
 }
 
-.bl-switcher {
+.payment-options {
+  label {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    img {
+      width: 110px;
+    }
+    [type=radio] {
+      height: 25px;
+      width: 25px;
+    }
+  }
+}
+
+.bl-plans {
   margin: 30px 0;
 }
 
@@ -720,7 +752,7 @@ ul.bl-tab {
 }
 
 .bl-icon-button {
-  span{
+  span {
     margin-right: 5px;
     width: 45px;
     height: 39px;
@@ -796,8 +828,8 @@ ul.bl-tab {
   margin-left: 2.14285714em;
   list-style-type: none;
   > li {
-      position: relative;
-      margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
   }
   .fa-li {
     position: absolute;
@@ -874,8 +906,43 @@ ul.bl-tab {
   }
 }
 
+/* Rules for sizing the icon. */
+.material-icons.md-2 {
+  font-size: 2em;
+}
+
+.material-icons.md-3 {
+  font-size: 3em;
+}
+
+.material-icons.md-4 {
+  font-size: 4em;
+}
+
+.material-icons.md-5 {
+  font-size: 5em;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
 @media(max-width: 767px) {
-  
+
   #slider {
     .images {
       text-align: center;

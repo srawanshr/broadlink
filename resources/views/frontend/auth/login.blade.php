@@ -114,7 +114,7 @@
                 <div class="uk-grid">
                     <div class="uk-width-1-1">
                         <button type="submit" class="uk-button uk-button-primary uk-float-right">
-                            <i class="material-icons pe-va">&#xE0BE;</i> Send Password Reset Link
+                            <i class="material-icons uk-vertical-align-middle">&#xE0BE;</i> Send Password Reset Link
                         </button>
                     </div>
                 </div>

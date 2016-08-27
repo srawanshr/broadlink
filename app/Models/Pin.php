@@ -23,14 +23,14 @@ class Pin extends Model
     protected $casts = [
         'is_used' => 'boolean'
     ];
-    
-    public function scopeUsed($query)
+
+    public function scopeUsed( $query )
     {
-    	return $query->where('is_used', 1);
+        return $query->where( 'is_used', 1 );
     }
 
-    public function scopeNotUsed($query)
+    public function scopeNotUsed( $query )
     {
-    	return $query->where('is_used', 0);
+        return $query->where( 'is_used', 0 );
     }
 }

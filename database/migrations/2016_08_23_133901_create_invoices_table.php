@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestimonialsTable extends Migration
+class CreateInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,21 @@ class CreateTestimonialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->text('quote');
-            $table->boolean('is_published')->default(0);
+            $table->date('date');
+            $table->double('sub_total', 15, 4);
+            $table->double('vat', 10, 4);
+            $table->double('total', 15, 4);
+            $table->integer('payable_id')->unsigned();
+            $table->string('payable_type');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +38,6 @@ class CreateTestimonialsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('testimonials');
+        Schema::drop('invoices');
     }
 }

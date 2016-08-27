@@ -1,10 +1,10 @@
 <section id="our-services" class="uk-block uk-block-muted uk-text-center-small">
     <h1 class="uk-text-center">Our Services</h1>
     <div class="uk-container uk-container-center">
-        <ul class="uk-tab uk-grid" data-uk-tab="{connect:'#service-switcher', animation: 'scale' }" data-uk-scrollspy="{cls:'uk-animation-scale-up uk-invisible', target:' >li>a', delay:300, topoffset:-50}">
+        <ul class="uk-tab uk-grid" data-uk-tab="{connect:'#service-switcher', animation: 'scale' }">
             @forelse( services()->take(4) as $service )
                 <li class="uk-width-small-1-2 uk-width-medium-1-4 uk-text-center">
-                    <a class="uk-button-large bl-button-image uk-invisible" href="#">
+                    <a class="uk-button-large bl-button-image" href="#">
                         <span>
                             <img src="{{ $service->icon ? asset($service->icon->resize(110,null)) : '' }}">
                         </span>
