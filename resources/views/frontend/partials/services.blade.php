@@ -54,7 +54,12 @@
                         <div class="uk-width-medium-1-2">
                             <h3>Get In The Game with</h3>
                             <h2>NFL Sunday Ticket</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolorem quasi corporis ipsa, impedit sapiente, blanditiis repudiandae voluptatibus odio suscipit magnam reiciendis necessitatibus maxime voluptates ipsam! Praesentium aliquam vitae aperiam quaerat nobis quas repudiandae necessitatibus accusamus. Libero necessitatibus nemo quibusdam excepturi, dolores, incidunt iste autem facilis natus deserunt corporis, eaque.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolorem quasi
+                               corporis ipsa, impedit sapiente, blanditiis repudiandae voluptatibus odio suscipit magnam
+                               reiciendis necessitatibus maxime voluptates ipsam! Praesentium aliquam vitae aperiam
+                               quaerat nobis quas repudiandae necessitatibus accusamus. Libero necessitatibus nemo
+                               quibusdam excepturi, dolores, incidunt iste autem facilis natus deserunt corporis,
+                               eaque.</p>
                         </div>
                         <div class="uk-width-medium-1-2">
                             <img src="{{ asset('assets/frontend/img/service_img1.png') }}">

@@ -12,26 +12,22 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create( 'orders', function( Blueprint $table ) {
-            $table->increments( 'id' );
-            $table->integer( 'product_id' )->unsigned();
-            $table->integer( 'invoice_id' )->unsigned();
-            $table->integer( 'user_id' )->unsigned();
-            $table->string( 'pin' );
-            $table->foreign( 'user_id' )
-                ->references( 'id' )
-                ->on( 'users' )
-                ->onDelete( 'restrict' );
-            $table->foreign( 'invoice_id' )
-                ->references( 'id' )
-                ->on( 'invoices' )
-                ->onDelete( 'restrict' );
-            $table->foreign( 'product_id' )
-                ->references( 'id' )
-                ->on( 'products' )
-                ->onDelete( 'restrict' );
+        Schema::create('orders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('invoice_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('pin_id')->unsigned()->nullable();
+            $table->boolean('status');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
+            $table->foreign('invoice_id')
+                ->references('id')
+                ->on('invoices')
+                ->onDelete('restrict');
             $table->timestamps();
-        } );
+        });
     }
 
     /**
@@ -41,6 +37,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop( 'orders' );
+        Schema::drop('orders');
     }
 }

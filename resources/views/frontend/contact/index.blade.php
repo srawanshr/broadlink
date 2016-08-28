@@ -51,8 +51,8 @@
                                         @foreach( $contacts->get($id, []) as $contact)
                                             <div class="uk-width-medium-1-2">
                                                 <div class="uk-panel uk-panel-box uk-panel-header">
-                                                    <h3 class="uk-panel-title" data-uk-toggle="{target:'#contact-{{ $contact->id }}', animation:'uk-animation-scale-up, uk-animation-fade'}">{{ $contact->name }}</h3>
-                                                    <div id="contact-{{ $contact->id }}" class="uk-hidden">
+                                                    <h3 class="uk-panel-title">{{ $contact->name }}</h3>
+                                                    <div id="contact-{{ $contact->id }}">
                                                         <p>{{ $contact->address }},{{ $contact->phone }},{{ $contact->email }}</p>
                                                         <p>{{ $contact->description }}</p>
                                                     </div>
