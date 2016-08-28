@@ -48,4 +48,12 @@ class Setting extends Model
     {
         return $query->whereIsActive($type);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
 }

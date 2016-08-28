@@ -138,6 +138,14 @@ class Service extends Model {
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function group()
+    {
+        return $this->belongsToMany(Group::class, 'service_groups');
+    }
+
+    /**
      * @param array $options
      * @return bool|null|void
      * @throws \Exception

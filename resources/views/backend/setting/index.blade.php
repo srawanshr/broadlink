@@ -2,12 +2,18 @@
 
 @section('title', 'Settings')
 
+@push('styles')
+<link href="{{ asset('assets/backend/skins/dropify/css/dropify.css') }}" rel="stylesheet" type="text/css" />
+@endpush
+
 @section('content')
     <div id="page_content">
         <div id="page_content_inner">
             <h4 class="heading_a uk-margin-bottom">Settings</h4>
-            {{ Form::open(['route' => 'admin::setting.update', 'class' => 'uk-form-stacked', 'id' => 'site_settings', 'method' => 'put']) }}
+            {{ Form::open(['route' => 'admin::setting.update', 'class' => 'uk-form-stacked', 'id' => 'site_settings', 'method' => 'put', 'files' => true]) }}
                 <div class="uk-grid" data-uk-grid-margin>
+
+                    <!-- Contacts Section -->
                     <div class="uk-width-large-1-3 uk-width-medium-1-1">
                         <div class="md-card">
                             <div class="md-card-toolbar">
@@ -39,6 +45,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Business Hours and Pop Up Section -->
                     <div class="uk-width-large-1-3 uk-width-medium-1-2">
                         <div class="md-card">
                             <div class="md-card-toolbar">
@@ -61,7 +69,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="md-card">
+                            <div class="md-card-toolbar">
+                                <h3 class="md-card-toolbar-heading-text">
+                                    Pop Up
+                                </h3>
+                            </div>
+                            <div class="md-card-content">
+                                @if(! is_null(setting('pop-up')) && file_exists(public_path(setting('pop-up'))))
+                                    <input type="file" name="pop-up" id="pop_up_file" class="dropify" data-default-file="{{ asset(setting('pop-up')) }}" />
+                                @else
+                                    <input type="file" name="pop-up" id="pop_up_file" class="dropify" />
+                                @endif
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Social Links Section -->
                     <div class="uk-width-large-1-3 uk-width-medium-1-2">
                         <div class="md-card">
                             <div class="md-card-toolbar">
@@ -113,3 +138,8 @@
         </div>
     </div>
 @stop
+
+@push('scripts')
+<script src="{{ asset('assets/plugins/dropify/js/dropify.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/backend/js/pages/forms_file_input.min.js') }}" type="text/javascript"></script>
+@endpush

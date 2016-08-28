@@ -43,6 +43,17 @@ class SettingController extends Controller {
             if ($setting) $setting->update(['value' => $value]);
         }
 
+        if ($request->hasFile('pop-up'))
+        {
+            $image = $request->file('pop-up');
+
+            $setting = $this->setting->fetch(str_slug('pop-up'))->first();
+
+            $setting->image->upload($image);
+
+            $setting->update(['value' => $setting->image->path]);
+        }
+
         return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Setting']));
     }
 }

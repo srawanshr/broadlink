@@ -9,7 +9,7 @@ class ImageManager
     private static $THUMB_PATH = 'images/thumbnails/';
 
     /**
-     * @param $file
+     * @param $image
      * @param $path
      * @param null $name
      * @return string

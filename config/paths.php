@@ -22,7 +22,8 @@ return [
         'Product' => 'images/product-pictures/',
         'Menu'    => 'images/menu-pictures/',
         'Client'  => 'images/client-pictures/',
-        'Post'    => 'images/post-pictures/'
+        'Post'    => 'images/post-pictures/',
+        'Setting' => 'images/'
 
     ],
 

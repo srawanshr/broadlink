@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 class PagesTableSeeder extends Seeder
 {
     /**
-     * Run the Admin model database seed.
+     * Run the Page model database seed.
      *
      * @return void
      */
