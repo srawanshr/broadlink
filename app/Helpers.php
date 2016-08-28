@@ -205,7 +205,6 @@ function posts($tag = null)
 }
 
 /**
- * @param $query
  * @return mixed
  */
 function tags()
@@ -213,4 +212,12 @@ function tags()
     return \App\Models\Tag::whereHas('posts', function($q){
         $q->where('is_draft', false);
     })->get();
+}
+
+/**
+ * @return mixed
+ */
+function vouchers()
+{
+    return \App\Models\Pin::notUsed()->distinct()->select('voucher')->get();
 }

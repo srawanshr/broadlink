@@ -1,8 +1,8 @@
 <?php
 namespace App\Models;
 
-use Carbon\Carbon;
 use App\Services\Parsedowner;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -29,11 +29,11 @@ class Post extends Model
      *
      * @param string $value
      */
-    public function setTitleAttribute($value)
+    public function setTitleAttribute( $value )
     {
-        $this->attributes['title'] = $value;
-        if (!$this->exists) {
-            $this->setUniqueSlug($value, '');
+        $this->attributes[ 'title' ] = $value;
+        if ( !$this->exists ) {
+            $this->setUniqueSlug( $value, '' );
         }
     }
 
@@ -43,14 +43,15 @@ class Post extends Model
      * @param string $title
      * @param mixed $extra
      */
-    protected function setUniqueSlug($title, $extra)
+    protected function setUniqueSlug( $title, $extra )
     {
-        $slug = str_slug($title . '-' . $extra);
-        if (static::whereSlug($slug)->exists()) {
-            $this->setUniqueSlug($title, $extra + 1);
+        $slug = str_slug( $title . '-' . $extra );
+        if ( static::whereSlug( $slug )->exists() ) {
+            $this->setUniqueSlug( $title, $extra + 1 );
+
             return;
         }
-        $this->attributes['slug'] = $slug;
+        $this->attributes[ 'slug' ] = $slug;
     }
 
     /**
@@ -58,11 +59,11 @@ class Post extends Model
      *
      * @param string $value
      */
-    public function setContentRawAttribute($value)
+    public function setContentRawAttribute( $value )
     {
         $markdown = new Parsedowner();
-        $this->attributes['content_raw'] = $value;
-        $this->attributes['content_html'] = $markdown->toHTML($value);
+        $this->attributes[ 'content_raw' ] = $value;
+        $this->attributes[ 'content_html' ] = $markdown->toHTML( $value );
     }
 
     /**
@@ -70,16 +71,25 @@ class Post extends Model
      *
      * @param array $tags
      */
-    public function syncTags(array $tags)
+    public function syncTags( array $tags )
     {
-        Tag::addNeededTags($tags);
-        if (count($tags)) {
+        Tag::addNeededTags( $tags );
+        if ( count( $tags ) ) {
             $this->tags()->sync(
-                Tag::whereIn('tag', $tags)->lists('id')->all()
+                Tag::whereIn( 'tag', $tags )->lists( 'id' )->all()
             );
+
             return;
         }
         $this->tags()->detach();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany( 'App\Models\Tag', 'post_tag_pivot' );
     }
 
     /**
@@ -89,7 +99,7 @@ class Post extends Model
      *
      * @return Carbon|\Illuminate\Support\Collection|int|mixed|static
      */
-    public function getContentAttribute($value)
+    public function getContentAttribute( $value )
     {
         return $this->content_raw;
     }
@@ -101,17 +111,9 @@ class Post extends Model
      * @param bool $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeDraft($query, $type = true)
+    public function scopeDraft( $query, $type = TRUE )
     {
-        return $query->whereIsDraft($type);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
-    {
-        return $this->belongsToMany('App\Models\Tag', 'post_tag_pivot');
+        return $query->whereIsDraft( $type );
     }
 
     /**
@@ -119,7 +121,7 @@ class Post extends Model
      */
     public function image()
     {
-        return $this->morphOne('App\Models\Image', 'imageable');
+        return $this->morphOne( 'App\Models\Image', 'imageable' );
     }
 
     /**
@@ -127,6 +129,6 @@ class Post extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\Models\Admin', 'admin_id');
+        return $this->belongsTo( 'App\Models\Admin', 'admin_id' );
     }
 }

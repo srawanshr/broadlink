@@ -23,28 +23,6 @@ class CartController extends URLCrawler
         return view( 'frontend.cart.index' );
     }
 
-    public function buy( Service $service, Product $product )
-    {
-        try {
-
-            Cart::add( [
-                'name'     => $product->name,
-                'qty'      => 1,
-                'discount' => 0,
-                'price'    => $product->price,
-                'options'  => [
-                    'service' => $service,
-                    'product' => $product,
-                    'pinId'   => $this->getUnusedPin( $product->price )
-                ]
-            ] );
-
-            return redirect()->back()->withSuccess( $product->name . ' added to your cart!' );
-        } catch (Exception $e) {
-            return redirect()->back()->withWarning( 'Cannot add data to cart. ' . $e->getMessage() );
-        }
-    }
-
     public function getUnusedPin( $price )
     {
         $pin = Pin::notUsed()->get()->filter( function( $item ) use ( $price ) {

@@ -2,8 +2,8 @@
     <!--data-uk-sticky="{'media':767,'showup':true,'animation':'uk-animation-slide-top','top':'.uk-sticky-placeholder + *','clsinactive':'bl-navbar-transparent bl-navbar-contrast'}"-->
     <div class="uk-container uk-container-center">
         <div class="bl-navbar-container">
-            <a class="uk-navbar-brand">
-                <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}" class="uk-responsive-height">
+            <a class="uk-navbar-brand" href="{{ url('/') }}">
+                <img alt="Brand" src="{{ asset('assets/frontend/img/logo_.png') }}">
             </a>
             <div class="uk-navbar-flip" id="bl-navbar">
                 <ul class="uk-navbar-nav uk-hidden-small uk-hidden-medium">
@@ -13,7 +13,7 @@
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="{{ route('service::index') }}">Services</a>
+                        <a href="{{ route('service::index') }}"><i class="material-icons uk-vertical-align-middle">&#xE5C3;</i> Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
@@ -57,6 +57,11 @@
                                 </div>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <a href="{{ route('voucher::index') }}">
+                            <i class="material-icons uk-vertical-align-middle">&#xE89A;</i> Shop
+                        </a>
                     </li>
                     @foreach(menus() as $menu)
                         @if($menu->type == 0)
@@ -118,7 +123,25 @@
                         @endif
                     @endforeach
                     @if( auth()->check() )
-                        <li><a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">&#xE853;</i> My Profile</a></li>
+                        <li class="uk-parent" data-uk-dropdown>
+                            <a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">&#xE853;</i> My Profile</a>
+                            <div class="uk-dropdown uk-dropdown-navbar">
+                                <ul class="uk-nav uk-nav-navbar">
+                                    <li>
+                                        <a href="{{ route('user::edit') }}">
+                                            <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('\logout') }}">
+                                            <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                             <a href="{{ url('register') }}">Log In</a>
@@ -201,6 +224,11 @@
                     @endforeach
                 </ul>
             </li>
+            <li>
+                <a href="{{ route('voucher::index')  }}">
+                    <i class="material-icons">&#xE89A;</i> Shop
+                </a>
+            </li>
             @foreach(menus() as $menu)
                 <li class="{{ $menu->subMenus->count() > 0 ? 'uk-parent' : ''}}">
                     <a href="#">
@@ -220,7 +248,23 @@
                 </li>
             @endforeach
             @if( auth()->check() )
-                <li><a href="{{ route('user::dashboard') }}"><i class="material-icons">&#xE853;</i> My Account</a></li>
+                <li class="uk-parent">
+                    <a href="#"><i class="material-icons">&#xE853;</i> My Account</a>
+                    <ul class="uk-nav-sub">
+                        <li>
+                            <a href="{{ route('user::edit') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('\logout') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @else
                 <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                     <a href="{{ url('register') }}">Log In</a>

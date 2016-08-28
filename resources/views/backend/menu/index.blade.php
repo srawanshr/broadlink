@@ -63,6 +63,12 @@
                                         Services (Fixed)
                                     </div>
                                 </div>
+                                <div class="bl-accordion-item">
+                                    <h3 class="uk-accordion-title">Shop</h3>
+                                    <div class="uk-accordion-content" style="display: none">
+                                        ShopM (Fixed)
+                                    </div>
+                                </div>
                             </div>
                             <hr>
                             <div class="uk-accordion uk-sortable" data-uk-sortable id="primary-menu-list">

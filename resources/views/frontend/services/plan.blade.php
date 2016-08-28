@@ -29,7 +29,7 @@
                                 {!! $product->description_html !!}
                             </div>
                             <div class="uk-width-1-1">
-                                <a class="uk-button uk-width-1-1 uk-button-large uk-button-success" href="{{ route('service::buy', [ $service->slug, $product->slug ]) }}">Buy Now</a>
+                                <button type="button" class="uk-button uk-width-1-1 uk-button-large uk-button-success ajax-modal" data-url="{{ route('service::order', [ $service->slug, $product->slug ]) }}">Get Now</button>
                             </div>
                         </div>
                     </div>

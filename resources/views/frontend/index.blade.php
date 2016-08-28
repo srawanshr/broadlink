@@ -5,8 +5,12 @@
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
     <style>
-        body:after{
-            position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+        body:after {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            z-index: -1;
             content: url({{ asset('assets/frontend/img/bg-broadtv.jpg') }}) url({{ asset('assets/frontend/img/bg-internet.jpg') }}) url({{ asset('assets/frontend/img/bg-broadtel.jpg') }}) url({{ asset('assets/frontend/img/bg-bundle.jpg') }});
         }
     </style>
@@ -32,13 +36,13 @@
                 $('.subtitle').parallax(60, e);
             });
 
-            $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function(event, element){
-                $('#news').css('background-image',"url('" + $(element).data('bg') +"')");
+            $('ul[data-uk-switcher][data-bg-switcher]').on('show.uk.switcher', function (event, element) {
+                $('#news').css('background-image', "url('" + $(element).data('bg') + "')");
             });
 
-            $(window).on('load resize', function() {
-               var height = $('#news').height();
-               $('.bl-background-slider').css('height', height+'px');
+            $(window).on('load resize', function () {
+                var height = $('#news').height();
+                $('.bl-background-slider').css('height', height + 'px');
             });
 
         });
