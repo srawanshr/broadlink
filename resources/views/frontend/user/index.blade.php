@@ -9,7 +9,7 @@
              id="user-profile">
             <div class="uk-grid uk-grid-collapse">
                 @include('frontend.user.partials.menu')
-                <div class="uk-width-4-5">
+                <div class="uk-width-medium-3-4 uk-width-small-2-3">
                     <div class="uk-grid">
                         <div class="uk-width-small-1 uk-margin-large-top">
                             <div class="bl-padding-2-lr">
