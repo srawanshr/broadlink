@@ -5,64 +5,49 @@ namespace App\Http\Controllers\Frontend;
 use App\Facades\Cart;
 use App\Http\Controllers\URLCrawler;
 use App\Http\Requests\CheckoutRequest;
-use App\Http\Requests\Request;
 use App\Mailers\AppMailer;
 use App\Models\EsewaPayment;
 use App\Models\Invoice;
+use App\Models\Order;
 use App\Models\Pin;
-use App\Models\Product;
-use App\Models\Service;
 use DB;
-use Exception;
+use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
 
 class CartController extends URLCrawler
 {
     public function index()
     {
-        return view( 'frontend.cart.index' );
+        return view('frontend.cart.index');
     }
 
-    public function getUnusedPin( $price )
+    public function delete($id)
     {
-        $pin = Pin::notUsed()->get()->filter( function( $item ) use ( $price ) {
-            return intval( filter_var( $item->voucher, FILTER_SANITIZE_NUMBER_INT ) ) == $price;
-        } );
+        Cart::remove($id);
 
-        if ( $pin->isEmpty() ) {
-            throw new Exception( 'Product out of stock. Please contact support!.' );
-        } else {
-            return $pin->random()->id;
-        }
-    }
-
-    public function delete( $id )
-    {
-        Cart::remove( $id );
-
-        return redirect()->back()->withSuccess( 'Item removed!' );
+        return redirect()->back()->withSuccess('Item removed!');
     }
 
     public function getCheckout()
     {
-        if ( Cart::count() == 0 )
-            return redirect()->back()->withWarning( 'No Item in Cart!' );
+        if (Cart::count() == 0)
+            return redirect()->back()->withWarning('No Item in Cart!');
 
-        if ( auth()->guard( 'user' )->check() )
-            return view( 'frontend.cart.payment' );
+        if (auth()->guard('user')->check())
+            return view('frontend.cart.payment');
 
-        return redirect()->guest( 'login' )->withWarning( trans( 'auth.required' ) );
+        return redirect()->guest('login')->withWarning(trans('auth.required'));
     }
 
-    public function postCheckout( CheckoutRequest $request )
+    public function postCheckout(CheckoutRequest $request)
     {
-        $cartTotal = Cart::discountedTotal() + Cart::vatTotal( config( 'broadlink.vat' ) );
+        $cartTotal = Cart::discountedTotal() + Cart::vatTotal(config('broadlink.vat'));
 
-        $method = 'payVia' . ucwords( $request->get( 'method' ) );
+        $method = 'payVia' . ucwords($request->get('method'));
 
         $this->verifyCartPin();
 
-        $this->{$method}( $cartTotal );
+        $this->{$method}($cartTotal);
     }
 
     public function verifyCartPin()
@@ -84,15 +69,28 @@ class CartController extends URLCrawler
         }
     }
 
+    public function getUnusedPin($price)
+    {
+        $pin = Pin::notUsed()->get()->filter(function ($item) use ($price) {
+            return intval(filter_var($item->voucher, FILTER_SANITIZE_NUMBER_INT)) == $price;
+        });
+
+        if ($pin->isEmpty()) {
+            return false;
+        } else {
+            return $pin->random();
+        }
+    }
+
     /**
      * @param $id
      * @return mixed
      */
-    public function destroy( $id )
+    public function destroy($id)
     {
-        Cart::remove( $id );
+        Cart::remove($id);
 
-        return redirect()->back()->withSuccess( 'Item removed!' );
+        return redirect()->back()->withSuccess('Item removed!');
     }
 
     /**
@@ -100,38 +98,36 @@ class CartController extends URLCrawler
      * @param AppMailer $mailer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function esewaRedirect( Request $request, AppMailer $mailer )
+    public function esewaRedirect(Request $request, AppMailer $mailer)
     {
-        $paidAmt = $request->get( 'amt', FALSE );
+        DB::beginTransaction();
+
+        $paidAmt = $request->get('amt', false);
         $principleAmt = Cart::total();
 
-        $totalAmt = $principleAmt + config( 'broadlink.vat' ) * $principleAmt;
+//        $totalAmt = $principleAmt + config('broadlink.vat') * $principleAmt;
 
-        $refId = $request->get( 'refId', FALSE );
+        $refId = $request->get('refId', false);
 
-        $payment = EsewaPayment::create( [
+        $payment = EsewaPayment::create([
             'ref_id' => $refId
-        ] );
+        ]);
 
-        if ( $paidAmt == $totalAmt && $this->verifyEsewaTransaction( $paidAmt, $refId ) && auth()->guard( 'user' )->check() ) {
+        if ($paidAmt == $principleAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
 
-            $user = auth()->guard( 'user' )->user();
+            $invoice = $this->generateInvoice($payment);
 
-            $invoice = DB::transaction( function() use ( $user, $payment, $mailer ) {
-                $invoice = $this->generateInvoice( $user, $payment );
+            $this->createOrders($invoice, Cart::content());
 
-                $this->createOrders( $invoice, Cart::content() );
+            $mailer->sendInvoiceMail($invoice);
+            Cart::destroy();
+            DB::commit();
 
-                $mailer->sendInvoiceMailTo( $user );
-
-                Cart::destroy();
-
-                return $invoice;
-            } );
-
-            return redirect()->route( 'invoice.show', $invoice->code );
+            return redirect()->route('invoice::show', $invoice->slug);
         } else {
-            return redirect()->route( 'cart.index' )->withWarning( 'Payment Unsuccessful. Please try again later' );
+            DB::rollBack();
+
+            return redirect()->route('cart::index')->withWarning('Payment Unsuccessful. Please try again later');
         }
     }
 
@@ -140,21 +136,23 @@ class CartController extends URLCrawler
      * @param $rfId
      * @return bool
      */
-    public function verifyEsewaTransaction( $amt, $rfId )
+    public function verifyEsewaTransaction($amt, $rfId)
     {
+        return true;
         //create array of data to be posted
-        $post_data[ 'amt' ] = $amt;
-        $post_data[ 'scd' ] = config( 'broadlink.esewa.' . config( 'broadlink.esewa.mode' ) . '.merchant_id' );
-        $post_data[ 'pid' ] = $this->getProductId();
-        $post_data[ 'rid' ] = $rfId;
+        $post_data['amt'] = $amt;
+        $post_data['scd'] = config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.merchant_id');
+        $post_data['pid'] = $this->getProductId();
+        $post_data['rid'] = $rfId;
 
-        $request = $this->httpPost( config( 'broadlink.esewa.' . config( 'broadlink.esewa.mode' ) . '.verification_url' ), $post_data );
-        $crawler = new Crawler( $request );
-        $response = strtoupper( trim( $crawler->filter( 'response_code' )->first()->text() ) );
-        if ( strcmp( 'SUCCESS', $response ) == 0 )
-            return TRUE;
+        $request = $this->httpPost(config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.verification_url'), $post_data);
+
+        $crawler = new Crawler($request);
+        $response = strtoupper(trim($crawler->filter('response_code')->first()->text()));
+        if (strcmp('SUCCESS', $response) == 0)
+            return true;
         else
-            return FALSE;
+            return false;
     }
 
     /**
@@ -162,65 +160,74 @@ class CartController extends URLCrawler
      */
     public function getProductId()
     {
-        $timestamp = date( 'YmdHis' );
-        $suffix = Cart::content()->implode( 'options.service.name', '-' );
+        $timestamp = date('YmdHis');
+        $suffix = Cart::content()->implode('name', '-');
 
         return $timestamp . '-' . $suffix;
     }
 
     /**
-     * @param $user
      * @param $payment
      * @return mixed
      */
-    public function generateInvoice( $user, $payment )
+    public function generateInvoice($payment)
     {
-        $payment->update( ['is_verified' => 1] );
-        Cart::content()->each( function( $item ) {
-            Pin::find( $item->options->pinId )->update( ['is_used' => 1] );
-        } );
+        $payment->update(['is_verified' => 1]);
 
-        $invoice = $payment->invoice()->create( [
-            'user_id'    => $user->id,
+        $invoice = $payment->invoice()->create([
             'payable_id' => $payment->id,
             'sub_total'  => Cart::total(),
-            'vat'        => config( 'broadlink.vat' ) * Cart::total(),
-            'total'      => Cart::total() * (1 + config( 'broadlink.vat' )),
-            'date'       => date( 'Y-m-d' ),
-        ] );
+            'vat'        => config('broadlink.vat') * Cart::total(),
+            'total'      => Cart::total() * (1 + config('broadlink.vat')),
+        ]);
 
         return $invoice;
     }
 
-    private function createOrders( Invoice $invoice, $content )
+    private function createOrders(Invoice $invoice, $content)
     {
         foreach ($content as $order) {
-            $invoice->orders()->create( [
-                'user_id'    => $invoice->user->id,
-                'product_id' => $order->options->product->id,
-                'pin_id'     => $order->options->pinId
-            ] );;
+            $pin = $this->getUnusedPin($order->price);
+
+            if ($pin) {
+                $invoice->orders()->create([
+                    'name'  => 'Broadlink Voucher - '.$order->price,
+                    'user_id' => $invoice->user->id,
+                    'pin_id'  => $pin->id,
+                    'price'=>$order->price,
+                    'status'  => Order::COMPLETED
+                ]);
+                $pin->update(['is_used' => true]);
+            } else {
+                $invoice->orders()->create([
+                    'name'  => 'Broadlink Voucher - '.$order->price,
+                    'user_id' => $invoice->user->id,
+                    'pin_id'  => null,
+                    'price'=>$order->price,
+                    'status'  => Order::ERROR
+                ]);
+            }
         }
     }
 
     /**
      * @param Float $amount
      */
-    private function payViaEsewa( $amount = 0.0 )
+    private function payViaEsewa($amount = 0.0)
     {
-        $principle = round( $amount / (1 + config( 'broadlink.vat' )), 2 ); // total = amt + vat * amt
-        $vatAmt = $amount - $principle;
+//        $principle = round($amount / (1 + config('broadlink.vat')), 2); // total = amt + vat * amt
+//        $vatAmt = $amount - $principle;
 
-        $html = "<form id='esewa' action='" . config( 'broadlink.esewa.' . config( 'broadlink.esewa.mode' ) . '.url' ) . "' method='POST'>" .
+        $html = "<form id='esewa' action='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.url') . "' method='POST'>" .
             "<input value='$amount' name='tAmt' type='hidden'>" .
-            "<input value='$principle'  name='amt' type='hidden'>" .
-            "<input value='$vatAmt' name='txAmt' type='hidden'>" .
+            "<input value='$amount'  name='amt' type='hidden'>" .
+            "<input value='0' name='txAmt' type='hidden'>" .
             "<input value='0' name='psc' type='hidden'>" .
             "<input value='0' name='pdc' type='hidden'>" .
-            "<input value='" . config( 'broadlink.esewa.' . config( 'broadlink.esewa.mode' ) . '.merchant_id' ) . "' name='scd' type='hidden'>" .
+            "<input value='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.merchant_id') . "' name='scd' type='hidden'>" .
             "<input value='" . $this->getProductId() . "' name='pid' type='hidden'>" .
-            "<input value='" . route( 'esewa::success' ) . "' type='hidden' name='su'>" .
-            "<input value='" . route( 'esewa::success' ) . "' type='hidden' name='fu'>" .
+            "<input value='" . route('esewa::success') . "' type='hidden' name='su'>" .
+            "<input value='" . route('esewa::success') . "' type='hidden' name='fu'>" .
             "</form>" .
             "<script type=\"text/javascript\">" .
             "document.getElementById('esewa').submit();" .

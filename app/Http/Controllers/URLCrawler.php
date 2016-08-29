@@ -40,8 +40,8 @@ class URLCrawler extends Controller
         curl_setopt($ch, CURLOPT_USERAGENT, $this->getRandomUserAgent());
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
         curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
-
         $output = curl_exec($ch);
+
         curl_close($ch);
         unset($ch);
 

@@ -2,7 +2,6 @@
 
 use App\Models\Setting;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 |
 */
 
-class SettingsTableSeeder extends Seeder {
+class SettingsTableSeeder extends Seeder
+{
 
     /**
      * Run the Admin model database seed.
@@ -28,9 +28,14 @@ class SettingsTableSeeder extends Seeder {
 
         DB::table('settings')->insert([
             [
+                'slug'  => 'name',
+                'name'  => 'Name',
+                'value' => 'BroadLink Network and Communication Pvt. Ltd.'
+            ],
+            [
                 'slug'  => 'address',
                 'name'  => 'Address',
-                'value' => 'BroadLink Network and Communication Pvt. Ltd.|Indreni Heights, Sanepa (RingRoad)|Lalitpur, Nepal',
+                'value' => 'Indreni Heights, Sanepa (RingRoad)|Lalitpur, Nepal',
             ],
             [
                 'slug'  => 'phone',

@@ -6,14 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['product_id', 'invoice_id', 'user_id', 'pin_id'];
+    protected $fillable = [ 'name', 'invoice_id', 'user_id', 'pin_id', 'status', 'price'];
+
+    const COMPLETED = 1, ERROR = 0;
 
     protected $dates = ['created_at'];
-
-    public function product()
-    {
-        return $this->belongsTo( 'App\Models\Product' );
-    }
 
     public function invoice()
     {

@@ -15,6 +15,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('slug')->unique();
             $table->integer('user_id')->unsigned();
             $table->date('date');
             $table->double('sub_total', 15, 4);

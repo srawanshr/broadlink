@@ -1,6 +1,7 @@
 <?php
 namespace App\Mailers;
 
+use App\Models\Invoice;
 use Illuminate\Contracts\Mail\Mailer;
 
 class AppMailer
@@ -76,10 +77,10 @@ class AppMailer
     /**
      * Deliver the email confirmation.
      *
-     * @param  FreeDns $freeDns
-     * @return void
+     * @param Invoice $invoice
+     * @return bool
      */
-    public function sendInvoiceMailTo(User $user)
+    public function sendInvoiceMail(Invoice $invoice)
     {
         return true;
         $images = $this->images;

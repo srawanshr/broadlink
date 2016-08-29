@@ -3,8 +3,8 @@
 return [
 	'esewa' => [
 		'test' => [
-			'url' => 'http://dev.esewa.com.np/epay/main ',
-		    'verification_url' => 'http://dev.esewa.com.np/epay/transrec',
+			'url' => 'https://dev.esewa.com.np/epay/main ',
+		    'verification_url' => 'https://dev.esewa.com.np/epay/transrec',
 		    'merchant_id' => "broad"
 		],
 		'live' => [

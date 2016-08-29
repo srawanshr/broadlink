@@ -33,7 +33,12 @@
                                                     Recharge Voucher
                                                 </div>
                                             </div>
-                                            <div class="uk-width-3-6 uk-text-right">
+                                            <div class="uk-width-2-6 uk-text-right">
+                                                <div class="uk-text-large">
+                                                    {{ $item->qty }} x
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-1-6 uk-text-right">
                                                 <p class="uk-text-medium uk-text-bold">
                                                    Rs. {{ $item->price }}
                                                 </p>
