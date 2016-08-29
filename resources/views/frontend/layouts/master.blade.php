@@ -1,13 +1,33 @@
 <!doctype html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
     <title>@yield('title')</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/backend/img/favicon-16x16.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ asset('assets/backend/img/favicon-32x32.png') }}" sizes="32x32">
+
     {{ Html::style('assets/frontend/css/dep.css') }}
     {{ Html::style('assets/frontend/css/app.css') }}
+
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('assets/plugins/toastr/toastr.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- matchMedia polyfill for testing media queries in JS -->
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="{{ asset('assets/plugins/matchMedia/matchMedia.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/matchMedia/matchMedia.addListener.js') }}"></script>
+    <![endif]-->
+    
     @yield('header')
 </head>
 <body>
