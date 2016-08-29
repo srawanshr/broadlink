@@ -34,6 +34,12 @@
             </div>
         </div>
     </div>
+
+    <div class="md-fab-wrapper">
+        <a class="md-fab md-fab-accent" href="{{ route('admin::pin.create') }}" id="pinAdd"  data-uk-tooltip="{pos:'left'}" title="Import Pin">
+            <i class="material-icons">&#xE145;</i>
+        </a>
+    </div>
 @stop
 
 @push('scripts')
