@@ -530,6 +530,10 @@ h3 {
       padding-left: 40px;
       padding-right: 40px;
       background-color: transparent;
+      &:hover {
+        border: 2px solid darken($green, 5);
+        border-bottom: none;
+      }
     }
   }
   .uk-subnav-pill {

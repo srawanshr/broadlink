@@ -41,7 +41,7 @@ class CartController extends URLCrawler
 
     public function postCheckout(CheckoutRequest $request)
     {
-        $cartTotal = Cart::discountedTotal() + Cart::vatTotal(config('broadlink.vat'));
+        $cartTotal = Cart::discountedTotal();
 
         $method = 'payVia' . ucwords($request->get('method'));
 
@@ -123,7 +123,7 @@ class CartController extends URLCrawler
             Cart::destroy();
             DB::commit();
 
-            return redirect()->route('invoice::show', $invoice->slug);
+            return redirect()->route('user::dashboard')->withSuccess('Purchase Successful. Order details can be viewed in Purchase History.');
         } else {
             DB::rollBack();
 
@@ -177,7 +177,7 @@ class CartController extends URLCrawler
         $invoice = $payment->invoice()->create([
             'payable_id' => $payment->id,
             'sub_total'  => Cart::total(),
-            'vat'        => config('broadlink.vat') * Cart::total(),
+            'vat'        => 0,
             'total'      => Cart::total() * (1 + config('broadlink.vat')),
         ]);
 

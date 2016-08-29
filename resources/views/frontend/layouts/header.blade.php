@@ -128,13 +128,13 @@
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
                                     <li>
-                                        <a href="{{ route('user::edit') }}">
+                                        <a href="{{ route('user::dashboard') }}">
                                             <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
                                             Profile
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('\logout') }}">
+                                        <a href="{{ url('logout') }}">
                                             <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
                                             Logout
                                         </a>
@@ -144,7 +144,10 @@
                         </li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                            <a href="{{ url('register') }}">Log In</a>
+                            <a href="{{ url('register') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                Log In
+                            </a>
                             <div class="uk-dropdown bl-card">
                                 <div class="uk-grid uk-dropdown-grid">
                                     <div class="uk-width-2-5">
@@ -267,7 +270,10 @@
                 </li>
             @else
                 <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                    <a href="{{ url('register') }}">Log In</a>
+                    <a href="{{ url('register') }}">
+                        <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                        Log In
+                    </a>
                 </li>
             @endif
             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
