@@ -285,12 +285,12 @@ $router->group([
     | Contact CRUD Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['as' => 'contact.'], function ()
+    Route::group(['prefix' => 'contact', 'as' => 'contact.'], function ()
     {
-        Route::get('contact', 'ContactController@index')->name('index');
-        Route::post('contact', 'ContactController@store')->name('store');
-        Route::post('contact/update', 'ContactController@update')->name('update');
-        Route::post('contact/delete', 'ContactController@destroy')->name('destroy');
+        Route::get('/', 'ContactController@index')->name('index');
+        Route::post('/', 'ContactController@store')->name('store');
+        Route::post('update', 'ContactController@update')->name('update');
+        Route::post('delete', 'ContactController@destroy')->name('destroy');
     });
 
     /*
@@ -305,6 +305,16 @@ $router->group([
         Route::delete('file', 'UploadController@deleteFile');
         Route::post('folder', 'UploadController@createFolder');
         Route::delete('folder', 'UploadController@deleteFolder');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Order Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function ()
+    {
+        Route::get('/', 'OrderController@index')->name('index');
     });
 });
 
@@ -326,4 +336,5 @@ $router->group([
     Route::post('contact', 'ContactController@contactList')->name('contact.list');
     Route::post('contact-type', 'ContactController@contactTypeList')->name('contact.type.list');
     Route::post('post', 'PostController@postList')->name('post.list');
+    Route::post('order', 'OrderController@orderList')->name('order.list');
 });
