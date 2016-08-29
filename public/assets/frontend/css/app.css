@@ -355,6 +355,9 @@ h3 {
       padding-left: 40px;
       padding-right: 40px;
       background-color: transparent; }
+      #our-services .uk-tab a:hover {
+        border: 2px solid #75af27;
+        border-bottom: none; }
   #our-services .uk-subnav-pill .uk-active * {
     background: #e76724; }
 

@@ -15,7 +15,8 @@
             <tr>
                 <td>
                     <table class="uk-table uk-table-condensed">
-                        <tr><td>{!! str_replace('|', '<br>', setting('address')) !!}</td></tr>
+                        <tr><td>{!! setting('name') !!}</td></tr>
+                        <tr><td>{!! setting('address') !!}</td></tr>
                         <tr><td>GPO: {!! setting('gpo') !!}</td></tr>
                         <tr><td>Phone: {!! setting('phone') !!}</td></tr>
                         <tr><td>Fax: {!! setting('fax') !!}</td></tr>

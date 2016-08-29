@@ -144,7 +144,10 @@
                         </li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                            <a href="{{ url('register') }}">Log In</a>
+                            <a href="{{ url('register') }}">
+                                <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                                Log In
+                            </a>
                             <div class="uk-dropdown bl-card">
                                 <div class="uk-grid uk-dropdown-grid">
                                     <div class="uk-width-2-5">
@@ -267,7 +270,10 @@
                 </li>
             @else
                 <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                    <a href="{{ url('register') }}">Log In</a>
+                    <a href="{{ url('register') }}">
+                        <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
+                        Log In
+                    </a>
                 </li>
             @endif
             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">

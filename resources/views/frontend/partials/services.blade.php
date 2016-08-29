@@ -3,7 +3,7 @@
     <div class="uk-container uk-container-center">
         <ul class="uk-tab uk-grid" data-uk-tab="{connect:'#service-switcher', animation: 'scale' }">
             @forelse( services()->take(4) as $service )
-                <li class="uk-width-small-1-4 uk-width-medium-1-4 uk-text-center">
+                <li class="uk-width-1-4 uk-text-center">
                     <a class="uk-button-large bl-button-image" href="#">
                         <span>
                             <img src="{{ $service->icon ? asset($service->icon->resize(110,null)) : '' }}">
