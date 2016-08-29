@@ -26,7 +26,7 @@ class OrderController extends Controller {
         return Datatables::of(Order::all())
             ->addColumn('customer', function ($order)
             {
-                return $order->user->name;
+                return $order->user->display_name;
             })
             ->addColumn('pin', function ($order)
             {
@@ -39,6 +39,12 @@ class OrderController extends Controller {
             ->editColumn('status', function ($order)
             {
                 return $order->status ? 'Completed' : 'Pending';
+            })
+            ->addColumn('action', function ($order)
+            {
+                $button = '<a href="' . route('invoice::show', $order->invoice->slug) . '" data-uk-tooltip="{pos:\'left\'}" title="View Invoice" target="_blank"><i class="material-icons">&#xE8AD;</i></a>';
+
+                return $button;
             })
             ->make(true);
     }

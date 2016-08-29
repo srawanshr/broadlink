@@ -28,8 +28,9 @@
                         {data: 'name'},
                         {data: 'customer'},
                         {data: 'pin'},
-                        {data: 'status'},
-                        {data: 'created_at'}
+                        {data: 'status', class: 'uk-text-center'},
+                        {data: 'created_at', class: 'uk-text-center'},
+                        {data: 'action', class: 'uk-text-center'}
                     ]
                 });
 
