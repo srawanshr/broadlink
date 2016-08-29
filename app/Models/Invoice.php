@@ -9,6 +9,7 @@ class Invoice extends Model
     protected $fillable = ['user_id', 'date', 'sub_total', 'vat', 'total', 'payable_id', 'payable_type', 'slug'];
 
     protected $dates = ['created_at'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -25,6 +26,9 @@ class Invoice extends Model
         return $this->morphTo();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
