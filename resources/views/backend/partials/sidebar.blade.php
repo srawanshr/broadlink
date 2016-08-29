@@ -34,9 +34,15 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('admin::order.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE85D;</i></span>
+                    <span class="menu_title">Orders</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin::post.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE060;</i></span>
-                    <span class="menu_title">Post</span>
+                    <span class="menu_title">Posts</span>
                 </a>
             </li>
             <li>

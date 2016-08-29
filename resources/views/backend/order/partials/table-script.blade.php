@@ -1,17 +1,17 @@
 <script>
     $(function () {
-        // pin datatable
-        altair_datatables.dt_pin();
+        // order datatable
+        altair_datatables.dt_order();
     });
 
     altair_datatables = {
-        dt_pin: function () {
-            var $dt_pin = $('#dt_pin');
-            if ($dt_pin.length) {
+        dt_order: function () {
+            var $dt_order = $('#dt_order');
+            if ($dt_order.length) {
 
                 // Setup - add a text input to each footer cell
-                $dt_pin.find('tfoot th').each(function () {
-                    var title = $dt_pin.find('tfoot th').eq($(this).index()).text();
+                $dt_order.find('tfoot th').each(function () {
+                    var title = $dt_order.find('tfoot th').eq($(this).index()).text();
                     $(this).html('<input type="text" class="md-input" placeholder="' + title + '" />');
                 });
 
@@ -19,21 +19,18 @@
                 altair_md.inputs();
 
                 // DataTable
-                var pin_table = $dt_pin.DataTable({
+                var pin_table = $dt_order.DataTable({
                     ajax: {
                         type: 'POST',
-                        url: '{!! route('admin::pin.list') !!}'
+                        url: $dt_order.data('source')
                     },
                     columns: [
-                        {data: 'sno'},
+                        {data: 'name'},
+                        {data: 'customer'},
                         {data: 'pin'},
-                        {data: 'voucher'},
-                        {
-                            data: 'is_used', render: function (data) {
-                            return data == 0 ? 'No' : 'Yes'
-                        }
-                        },
-                    ],
+                        {data: 'status'},
+                        {data: 'created_at'}
+                    ]
                 });
 
                 // Apply the search
@@ -51,7 +48,7 @@
                     "sSwfPath": window.sSwfPath
                 });
 
-                $(tt.fnContainer()).insertBefore($dt_pin.closest('.dt-uikit').find('.dt-uikit-header'));
+                $(tt.fnContainer()).insertBefore($dt_order.closest('.dt-uikit').find('.dt-uikit-header'));
 
                 $body.on('click', function (e) {
                     if ($body.hasClass('DTTT_Print')) {
