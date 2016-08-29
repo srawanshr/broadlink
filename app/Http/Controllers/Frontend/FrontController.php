@@ -30,23 +30,4 @@ class FrontController extends Controller
     {
         return view( 'frontend.post.show', compact( 'post' ) );
     }
-
-    public function order(Service $service, Product $product)
-    {
-        $user = auth()->guard('user')->user();
-
-        if($user)
-            $formData = [
-                'name' => $user->display_name,
-                'email' => $user->email,
-                'subject' => 'Service Inquiry',
-                'message' => "I would like to get the $product->name service of $service->name service. My phone number is 98xxxxxxxx."
-            ];
-        else
-            $formData = [
-                'subject' => 'Service Inquiry',
-                'message' => "I would like to get the $product->name service of $service->name service. My phone number is 98xxxxxxxx."
-            ];
-        return view('frontend.partials.contactform', compact('formData'));
-    }
 }

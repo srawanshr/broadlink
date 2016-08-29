@@ -4,6 +4,12 @@
 
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 @stop
 
 @section('body')
@@ -13,25 +19,45 @@
             <div class="bl-padding-2">
                 <div class="uk-grid">
                     <div class="uk-width-medium-1-2">
-                        <div class="uk-grid">
-                            <div class="uk-grid-1-1">
-                                {!! $page->content_html !!}
-                            </div>
-                            <div class="uk-grid-1-1">
-                                <p>Corporate Office</p>
-                                <hr>
-                                <p>{{ $settings['name'] }}</p>
-                                <p>{!! str_replace('|', '<br>', $settings['address']) !!}</p>
-                                <p>GPO: {!! $settings['gpo'] !!}</p>
-                                <p>Phone: {!! $settings['phone'] !!}</p>
-                                <p>Fax: {!! $settings['fax'] !!}</p>
-                                <p>Email: {!! $settings['email'] !!}</p>
-                            </div>
-                        </div>
+                        <div id="map"></div>
+                    </div>
+                    <div class="uk-width-medium-1-2">
+                        <p>Corporate Office</p>
+                        <hr>
+                        <p>{{ $settings['name'] }}</p>
+                        <p>{!! str_replace('|', '<br>', $settings['address']) !!}</p>
+                        <p>GPO: {!! $settings['gpo'] !!}</p>
+                        <p>Phone: {!! $settings['phone'] !!}</p>
+                        <p>Fax: {!! $settings['fax'] !!}</p>
+                        <p>Email: {!! $settings['email'] !!}</p>
+                    </div>
+                </div>
+
+                <div class="uk-grid">
+                    <div class="uk-width-medium-1-2">
+                        {!! $page->content_html !!}
                     </div>
                     <div class="uk-width-medium-1-2">
                         <div class="uk-panel uk-panel-box">
-                            @include('frontend.partials.contactform')
+                            {{ Form::open(['route'=>'contact::feedback', 'class'=>'uk-form']) }}
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label">Your Name</label>
+                                    <input type="text" class="uk-width-1-1" name="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label">Your Email</label>
+                                    <input type="email" class="uk-width-1-1" name="email" placeholder="john@doe.com" required>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label">Subject</label>
+                                    <input type="text" class="uk-width-1-1" name="subject" placeholder="Feedback" required>
+                                </div>
+                                <div class="uk-form-row">
+                                    <label class="uk-form-label">Message</label>
+                                    <textarea class="uk-width-1-1" name="message" rows="4" placeholder="Message" required></textarea>
+                                </div>
+                                <button type="submit" class="uk-button uk-button-success uk-float-right">Send Message</button>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -41,7 +67,8 @@
                         <!-- This is the container of the toggling elements -->
                         <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#branches'}">
                             @foreach( $contactTypes as $type)
-                                <li><a href="javascript:void(0)" class="uk-button-large">{{ strtoupper($type) }}</a></li>
+                                <li><a href="javascript:void(0)" class="uk-button-large">{{ strtoupper($type) }}</a>
+                                </li>
                             @endforeach
                         </ul>
 
@@ -55,7 +82,8 @@
                                                 <div class="uk-panel uk-panel-box uk-panel-header">
                                                     <h3 class="uk-panel-title">{{ $contact->name }}</h3>
                                                     <div id="contact-{{ $contact->id }}">
-                                                        <p>{{ $contact->address }},{{ $contact->phone }},{{ $contact->email }}</p>
+                                                        <p>{{ $contact->address }},{{ $contact->phone }}
+                                                                                  ,{{ $contact->email }}</p>
                                                         <p>{{ $contact->description }}</p>
                                                     </div>
                                                 </div>
@@ -71,4 +99,20 @@
         </div>
         <!--end of container-->
     </section>
+@stop
+
+@section('footer')
+    <script>
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+                center: {lat: 27.68108, lng: 85.30170},
+                zoom: 17
+            });
+        }
+    </script>
+    <script async
+            defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw8YWCFSFe4plsU7xT8UUNehWwhnizUSM&callback=initMap">
+    </script>
 @stop

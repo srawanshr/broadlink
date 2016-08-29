@@ -1,4 +1,4 @@
-<section class="note">
+<section class="note uk-margin-large-top">
     <div class="uk-container bl-padding-2-tb uk-container-center uk-block uk-block-muted bl-card">
         <h2>PLEASE NOTE</h2>
         <div class="uk-grid" data-uk-scrollspy="{cls:'uk-animation-fade uk-invisible', target:'>div>.bl-icon-description', delay:300, topoffset:-50, repeat: true}">

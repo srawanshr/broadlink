@@ -25,7 +25,7 @@
                                         <button type="button" class="uk-close bl-confirm-submit"></button>
                                         <div class="uk-grid bl-padding">
                                             <div class="uk-width-1-6 uk-text-center">
-                                                <img src="{{ asset('assets/frontend/img/'.$item->name.'.png') }}" class="img-icon">
+                                                <img src="{{ image('assets/frontend/img/'.$item->name.'.png') }}" class="img-icon">
                                             </div>
                                             <div class="uk-width-2-6">
                                                 <div class="uk-text-large">{{ str_limit($item->name, 25) }}</div>

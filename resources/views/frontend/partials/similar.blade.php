@@ -1,4 +1,9 @@
 <section class="uk-block uk-margin-top uk-padding-remove bl-text-dark services" xmlns="http://www.w3.org/1999/html">
+    @if(isset($title))
+        <div class="uk-container uk-container-center bl-padding">
+            <h2>{{ $title }}</h2>
+        </div>
+    @endif
     <div class="uk-container uk-container-center uk-block-default bl-padding">
         <div data-uk-slideset="{small:1, medium: 4}">
             <div class="uk-slidenav-position">
@@ -6,7 +11,7 @@
                     @foreach( vouchers() as $voucher)
                         <li>
                             <a href="{{ route('voucher::show', str_slug($voucher->voucher)) }}">
-                                <img src="{{ asset('assets/frontend/img/'.$voucher->voucher.'.png') }}" class="uk-width-1-1">
+                                <img src="{{ image('assets/frontend/img/'.str_slug($voucher->voucher).'.png') }}" class="uk-width-1-1">
                                 <div class="uk-float-left">
                                     {{ $voucher->voucher }}
                                 </div>

@@ -221,3 +221,8 @@ function vouchers()
 {
     return \App\Models\Pin::notUsed()->distinct()->select('voucher')->get();
 }
+
+function image($path)
+{
+    return File::exists($path) ? asset($path) : asset(config('paths.placeholder.default'));
+}

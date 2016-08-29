@@ -39,7 +39,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('/', 'Frontend\FrontController@index')->name('index');
 Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('service::show');
 
-Route::get('/service/{service}/product/{product_slug}/order', 'Frontend\FrontController@order')->name('service::order');
+Route::get('/service/{service}/product/{product_slug}/order', 'Frontend\ServiceController@orderForm')->name('service::orderForm');
+Route::post('/order', 'Frontend\ServiceController@order')->name('service::order');
 
 Route::get('/shop', 'Frontend\VoucherController@index')->name('voucher::index');
 Route::get('/voucher/{voucher}', 'Frontend\VoucherController@show')->name('voucher::show');

@@ -57,7 +57,7 @@ return [
 
         'default' => 'assets/shared/img/placeholder.jpg',
         'avatar'  => 'assets/backend/img/avatars/avatar_11_tn.png',
-        'service' => 'assets/shared/img/placeholder.jpg',
+        'service' => 'assets/shared/img/placeholder_service.jpg',
         'post'    => 'assets/shared/img/placeholder_post.jpg',
 
     ]

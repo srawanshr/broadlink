@@ -9,7 +9,7 @@
     <title>Invoice</title>
 </head>
 <body>
-    <div class="uk-container uk-container-center">
+    <div class="uk-container uk-container-center uk-margin-large-top">
         <table class="uk-table uk-table-condensed">
             <tr><td colspan="2"><h2 class="uk-margin-remove">{{ setting('name') }}</h2></td></tr>
             <tr>
