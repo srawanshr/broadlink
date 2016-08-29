@@ -186,8 +186,6 @@
         altair_invoices.init();
     });
 
-    var $invoice_card = $('#invoice');
-
     altair_invoices = {
         init: function () {
             // print invoice btn
