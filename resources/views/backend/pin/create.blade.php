@@ -1,6 +1,6 @@
 @extends('backend.layout')
 
-@section('title', 'User')
+@section('title', 'Pin')
 
 @push('styles')
     <link href="{{ asset('assets/backend/skins/dropify/css/dropify.css') }}" rel="stylesheet" type="text/css" />
