@@ -14,10 +14,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->integer('invoice_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('pin_id')->unsigned()->nullable();
             $table->boolean('status');
+            $table->float('price');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

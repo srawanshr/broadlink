@@ -61,6 +61,10 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind( 'banner_id', function ( $id ) {
             return \App\Models\Image::find($id);
         });
+
+        $router->bind( 'invoice_slug', function ( $slug ) {
+            return \App\Models\Invoice::where('slug', $slug)->first();
+        });
     }
 
     /**

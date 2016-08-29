@@ -23,19 +23,19 @@
                             <div class="bl-padding-2-lr">
                                 <h2>Quick Links</h2>
                                 <a href="{{ setting('internet-login') }}" class="uk-panel bl-tile">
-                                    <i class="uk-icon uk-icon-user"></i>
+                                    <i class="material-icons">&#xE853;</i>
                                     <span>My Internet Login</span>
                                 </a>
                                 <a href="{{ setting('self-care-login') }}" class="uk-panel bl-tile">
-                                    <i class="uk-icon uk-icon-send"></i>
+                                    <i class="material-icons">&#xE163;</i>
                                     <span>My Self Care Login</span>
                                 </a>
-                                <a href="{{ route('service::index') }}" class="uk-panel bl-tile">
-                                    <i class="uk-icon uk-icon-dollar"></i>
+                                <a href="{{ route('voucher::index') }}" class="uk-panel bl-tile">
+                                    <i class="material-icons">&#xE638;</i>
                                     <span>Recharge Account</span>
                                 </a>
                                 <a href="{{ route('contact::index') }}" class="uk-panel bl-tile">
-                                    <i class="uk-icon uk-icon-sticky-note"></i>
+                                    <i class="material-icons">&#xE06F;</i>
                                     <span>Trouble Ticket</span>
                                 </a>
                             </div>
@@ -61,6 +61,7 @@
                                                 <th>Date</th>
                                                 <th>Paid Via</th>
                                                 <th>Total</th>
+                                                <th>Invoice</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -69,6 +70,11 @@
                                                     <td>{{ $invoice->date }}</td>
                                                     <td>{{ $invoice->payable_type }}</td>
                                                     <td>{{ $invoice->total }}</td>
+                                                    <td>
+                                                        <a href="{{ route('invoice::show', $invoice->slug) }}" target="_blank">
+                                                            <i class="material-icons">&#xE619;</i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -83,7 +89,6 @@
                                             <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>Product Name</th>
                                                 <th>PIN</th>
                                                 <th>Value</th>
                                             </tr>
@@ -92,7 +97,6 @@
                                             @forelse($user->orders as $order)
                                                 <tr>
                                                     <td>{{ $order->created_at->format('Y-m-d') }}</td>
-                                                    <td>{{ $order->product->name }}</td>
                                                     <td>{{ $order->pin->pin }}</td>
                                                     <td>
                                                         {{ $order->pin->voucher }}

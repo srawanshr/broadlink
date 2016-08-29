@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Requests;
-use DB;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Invoice;
+use DB;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     public function dashboard()
     {
@@ -28,24 +28,25 @@ class UserController extends Controller {
     {
         $user = auth()->guard('user')->user();
 
-        DB::transaction(function () use ($request, $user)
-        {
+        DB::transaction(function () use ($request, $user) {
             $user->update($request->userFillData());
 
-            if ($request->hasFile('image'))
-            {
+            if ($request->hasFile('image')) {
                 $image = $request->file('image');
 
-                if ($user->image)
-                {
+                if ($user->image) {
                     $user->image->upload($image);
-                } else
-                {
+                } else {
                     $user->image()->create(['name' => cleanFileName($image)])->upload($image);
                 }
             }
         });
 
         return redirect()->back()->withSuccess(trans('messages.update_success', ['entity' => 'Profile']));
+    }
+
+    public function invoice(Invoice $invoice)
+    {
+        return view('frontend.invoice.show', compact('invoice'));
     }
 }

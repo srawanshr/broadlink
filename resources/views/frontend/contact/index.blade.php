@@ -19,6 +19,7 @@
                             </div>
                             <div class="uk-grid-1-1">
                                 <h2>Corporate Office</h2>
+                                <h1>{{ $settings['name'] }}</h1>
                                 <p>{!! str_replace('|', '<br>', $settings['address']) !!}</p>
                                 <p>GPO: {!! $settings['gpo'] !!}</p>
                                 <p>Phone: {!! $settings['phone'] !!}</p>

@@ -50,6 +50,25 @@ class CartController extends URLCrawler
         $this->{$method}($cartTotal);
     }
 
+    public function verifyCartPin()
+    {
+        foreach (Cart::content() as $id => $item) {
+            if ( !empty($item->options) ) {
+                if ( !empty($item->options->pinId) ) {
+                    if ( $pin = Pin::find( $item->options->pinId ) ) {
+                        if ( $pin->is_used ) {
+                            Cart::update( $id, [
+                                'options' => [
+                                    'pinId' => $this->getUnusedPin( $item->options->product->price )
+                                ]
+                            ] );
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public function getUnusedPin($price)
     {
         $pin = Pin::notUsed()->get()->filter(function ($item) use ($price) {
@@ -86,7 +105,7 @@ class CartController extends URLCrawler
         $paidAmt = $request->get('amt', false);
         $principleAmt = Cart::total();
 
-        $totalAmt = $principleAmt + config('broadlink.vat') * $principleAmt;
+//        $totalAmt = $principleAmt + config('broadlink.vat') * $principleAmt;
 
         $refId = $request->get('refId', false);
 
@@ -94,10 +113,9 @@ class CartController extends URLCrawler
             'ref_id' => $refId
         ]);
 
-        if ($paidAmt == $totalAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
-            $user = auth()->guard('user')->user();
+        if ($paidAmt == $principleAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
 
-            $invoice = $this->generateInvoice($user, $payment);
+            $invoice = $this->generateInvoice($payment);
 
             $this->createOrders($invoice, Cart::content());
 
@@ -105,7 +123,7 @@ class CartController extends URLCrawler
             Cart::destroy();
             DB::commit();
 
-            return redirect()->route('invoice.show', $invoice->code);
+            return redirect()->route('invoice::show', $invoice->slug);
         } else {
             DB::rollBack();
 
@@ -149,21 +167,18 @@ class CartController extends URLCrawler
     }
 
     /**
-     * @param $user
      * @param $payment
      * @return mixed
      */
-    public function generateInvoice($user, $payment)
+    public function generateInvoice($payment)
     {
         $payment->update(['is_verified' => 1]);
 
         $invoice = $payment->invoice()->create([
-            'user_id'    => $user->id,
             'payable_id' => $payment->id,
             'sub_total'  => Cart::total(),
             'vat'        => config('broadlink.vat') * Cart::total(),
             'total'      => Cart::total() * (1 + config('broadlink.vat')),
-            'date'       => date('Y-m-d'),
         ]);
 
         return $invoice;
@@ -176,15 +191,19 @@ class CartController extends URLCrawler
 
             if ($pin) {
                 $invoice->orders()->create([
+                    'name'  => 'Broadlink Voucher - '.$order->price,
                     'user_id' => $invoice->user->id,
                     'pin_id'  => $pin->id,
+                    'price'=>$order->price,
                     'status'  => Order::COMPLETED
                 ]);
                 $pin->update(['is_used' => true]);
             } else {
                 $invoice->orders()->create([
+                    'name'  => 'Broadlink Voucher - '.$order->price,
                     'user_id' => $invoice->user->id,
                     'pin_id'  => null,
+                    'price'=>$order->price,
                     'status'  => Order::ERROR
                 ]);
             }
@@ -196,13 +215,13 @@ class CartController extends URLCrawler
      */
     private function payViaEsewa($amount = 0.0)
     {
-        $principle = round($amount / (1 + config('broadlink.vat')), 2); // total = amt + vat * amt
-        $vatAmt = $amount - $principle;
+//        $principle = round($amount / (1 + config('broadlink.vat')), 2); // total = amt + vat * amt
+//        $vatAmt = $amount - $principle;
 
         $html = "<form id='esewa' action='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.url') . "' method='POST'>" .
             "<input value='$amount' name='tAmt' type='hidden'>" .
-            "<input value='$principle'  name='amt' type='hidden'>" .
-            "<input value='$vatAmt' name='txAmt' type='hidden'>" .
+            "<input value='$amount'  name='amt' type='hidden'>" .
+            "<input value='0' name='txAmt' type='hidden'>" .
             "<input value='0' name='psc' type='hidden'>" .
             "<input value='0' name='pdc' type='hidden'>" .
             "<input value='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.merchant_id') . "' name='scd' type='hidden'>" .

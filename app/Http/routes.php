@@ -55,6 +55,7 @@ Route::get('/cart/payment', 'Frontend\CartController@getCheckout')->name('cart::
 Route::get('/payment/esewa/success', 'Frontend\CartController@esewaRedirect')->name('esewa::success');
 
 Route::post('/cart/checkout', 'Frontend\CartController@postCheckout')->name('cart::checkout');
+Route::get('/invoice/{invoice_slug}', 'Frontend\UserController@invoice')->name('invoice::show');
 
 Route::get('/post', 'Frontend\FrontController@postIndex')->name('post::index');
 Route::get('/post/{post}', 'Frontend\FrontController@post')->name('post::show');
