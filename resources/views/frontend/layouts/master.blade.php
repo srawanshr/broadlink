@@ -27,7 +27,7 @@
     <script type="text/javascript" src="{{ asset('assets/plugins/matchMedia/matchMedia.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/plugins/matchMedia/matchMedia.addListener.js') }}"></script>
     <![endif]-->
-    
+
     @yield('header')
 </head>
 <body>
