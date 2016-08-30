@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mailers\AppMailer;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Mail;
 
-class ServiceController extends Controller
-{
+class ServiceController extends Controller {
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $page = Page::whereSlug('service')->first();
@@ -18,11 +22,20 @@ class ServiceController extends Controller
         return view('frontend.services.index', compact('page'));
     }
 
+    /**
+     * @param Service $service
+     * @return \Illuminate\View\View
+     */
     public function show(Service $service)
     {
         return view('frontend.services.show', compact('service'));
     }
 
+    /**
+     * @param Service $service
+     * @param Product $product
+     * @return \Illuminate\View\View
+     */
     public function orderForm(Service $service, Product $product)
     {
         $user = auth()->guard('user')->user();
@@ -44,7 +57,11 @@ class ServiceController extends Controller
         return view('frontend.services.order', compact('formData'));
     }
 
-    public function order(Request $request)
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function order(Request $request, AppMailer $mailer)
     {
         $data = [
             'name'      => $request->get('name'),
@@ -55,11 +72,7 @@ class ServiceController extends Controller
             'latitude'  => $request->get('latitude'),
         ];
 
-        Mail::send('frontend.emails.order', $data, function ($message) use ($request) {
-            $message->from($request->get('email'));
-            $message->subject('Service Request');
-            $message->to(setting('email'));
-        });
+        $mailer->sendOrderNotification($data);
 
         return redirect()->back()->withSuccess('Your request has been received. Our representatives will contact you very soon!');
     }

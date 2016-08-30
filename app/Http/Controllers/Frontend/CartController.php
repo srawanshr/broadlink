@@ -14,13 +14,20 @@ use DB;
 use Illuminate\Http\Request;
 use Symfony\Component\DomCrawler\Crawler;
 
-class CartController extends URLCrawler
-{
+class CartController extends URLCrawler {
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         return view('frontend.cart.index');
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function delete($id)
     {
         Cart::remove($id);
@@ -28,6 +35,9 @@ class CartController extends URLCrawler
         return redirect()->back()->withSuccess('Item removed!');
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function getCheckout()
     {
         if (Cart::count() == 0)
@@ -39,45 +49,34 @@ class CartController extends URLCrawler
         return redirect()->guest('login')->withWarning(trans('auth.required'));
     }
 
+    /**
+     * @param CheckoutRequest $request
+     */
     public function postCheckout(CheckoutRequest $request)
     {
         $cartTotal = Cart::discountedTotal() + Cart::vatTotal(config('broadlink.vat'));;
 
         $method = 'payVia' . ucwords($request->get('method'));
 
-        $this->verifyCartPin();
-
         $this->{$method}($cartTotal);
     }
 
-    public function verifyCartPin()
-    {
-        foreach (Cart::content() as $id => $item) {
-            if ( !empty($item->options) ) {
-                if ( !empty($item->options->pinId) ) {
-                    if ( $pin = Pin::find( $item->options->pinId ) ) {
-                        if ( $pin->is_used ) {
-                            Cart::update( $id, [
-                                'options' => [
-                                    'pinId' => $this->getUnusedPin( $item->options->product->price )
-                                ]
-                            ] );
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    /**
+     * @param $price
+     * @return bool
+     */
     public function getUnusedPin($price)
     {
-        $pin = Pin::notUsed()->get()->filter(function ($item) use ($price) {
+        $pin = Pin::notUsed()->get()->filter(function ($item) use ($price)
+        {
             return intval(filter_var($item->voucher, FILTER_SANITIZE_NUMBER_INT)) == $price;
         });
 
-        if ($pin->isEmpty()) {
+        if ($pin->isEmpty())
+        {
             return false;
-        } else {
+        } else
+        {
             return $pin->random();
         }
     }
@@ -113,7 +112,8 @@ class CartController extends URLCrawler
             'ref_id' => $refId
         ]);
 
-        if ($paidAmt == $totalAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
+        if ($paidAmt == $totalAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check())
+        {
 
             $invoice = $this->generateInvoice($payment);
 
@@ -124,7 +124,8 @@ class CartController extends URLCrawler
             DB::commit();
 
             return redirect()->route('user::dashboard')->withSuccess('Purchase Successful. Order details can be viewed in Purchase History.');
-        } else {
+        } else
+        {
             DB::rollBack();
 
             return redirect()->route('cart::index')->withWarning('Payment Unsuccessful. Please try again later');
@@ -186,24 +187,27 @@ class CartController extends URLCrawler
 
     private function createOrders(Invoice $invoice, $content)
     {
-        foreach ($content as $order) {
+        foreach ($content as $order)
+        {
             $pin = $this->getUnusedPin($order->price);
 
-            if ($pin) {
+            if ($pin)
+            {
                 $invoice->orders()->create([
-                    'name'  => 'Broadlink Voucher - '.$order->price,
+                    'name'    => 'Broadlink Voucher - ' . $order->price,
                     'user_id' => $invoice->user->id,
                     'pin_id'  => $pin->id,
-                    'price'=>$order->price,
+                    'price'   => $order->price,
                     'status'  => Order::COMPLETED
                 ]);
                 $pin->update(['is_used' => true]);
-            } else {
+            } else
+            {
                 $invoice->orders()->create([
-                    'name'  => 'Broadlink Voucher - '.$order->price,
+                    'name'    => 'Broadlink Voucher - ' . $order->price,
                     'user_id' => $invoice->user->id,
                     'pin_id'  => null,
-                    'price'=>$order->price,
+                    'price'   => $order->price,
                     'status'  => Order::ERROR
                 ]);
             }

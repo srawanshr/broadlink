@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
+    <title>Broadlink - @yield('title')</title>
     <style type="text/css" rel="stylesheet" media="all">
         /* Media Queries */
         @media only screen and (max-width: 500px) {
@@ -58,6 +59,7 @@ $style = [
     'button--red'   => 'background-color: #dc4d2f;',
     'button--blue'  => 'background-color: #3869D4;',
 ];
+
 ?>
 
 <?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
@@ -118,7 +120,7 @@ $style = [
                                 <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
                                     <p style="{{ $style['paragraph-sub'] }}">
                                         &copy; {{ date('Y') }}
-                                        <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('website.name') }}</a>
+                                        <a style="{{ $style['anchor'] }}" href="{{ config('website.url') }}" target="_blank">{{ config('website.name') }}</a>
                                         . All rights reserved.
                                     </p>
                                 </td>

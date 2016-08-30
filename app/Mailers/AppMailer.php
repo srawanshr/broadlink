@@ -27,7 +27,12 @@ class AppMailer
      */
     protected $to;
 
-    protected $bcc;
+    /**
+     * The bcc recipient of the email.
+     *
+     * @var string
+     */
+    protected $bcc = [];
 
     /**
      * The subject of the email.
@@ -51,13 +56,6 @@ class AppMailer
     protected $data = [];
 
     /**
-     * The images associated with the view for the email.
-     *
-     * @var array
-     */
-    protected $images = [];
-
-    /**
      * Create a new app mailer instance.
      *
      * @param Mailer $mailer
@@ -65,13 +63,6 @@ class AppMailer
     public function __construct(Mailer $mailer)
     {
         $this->mailer = $mailer;
-
-        $this->images = [
-            'logo' => public_path()."/assets/img/logo_100x100.png",
-            'facebook' => public_path()."/assets/img/facebook.png",
-            'twitter' => public_path()."/assets/img/twitter.png",
-            'google' => public_path()."/assets/img/google-plus.png"
-        ];
     }
 
     /**
@@ -82,13 +73,27 @@ class AppMailer
      */
     public function sendInvoiceMail(Invoice $invoice)
     {
-        return true;
-        $images = $this->images;
-        $this->to = $user->email;
+        $this->to = $invoice->user->email;
         $this->view = 'emails.invoice';
-        $this->data = compact('freeDns', 'images');
-        $this->subject = 'Purchase Successful';
-        $this->bcc = ['sales@broadlink.com.np'];
+        $this->data = compact('invoice');
+        $this->subject = '[Broadlink] Invoice';
+        $this->bcc = setting('email');
+        $this->deliver();
+    }
+
+    /**
+     * @param $data
+     */
+    public function sendOrderNotification($data)
+    {
+        $this->to = setting('email');
+        $this->view = 'emails.inquiry';
+        $this->data = compact('data');
+        $this->subject = '[Broadlink] Service Inquiry';
+        $this->deliver();
+
+        $this->to = $data['email'];
+        $this->view = 'emails.inquiry-confirmation';
         $this->deliver();
     }
 
@@ -100,11 +105,10 @@ class AppMailer
     public function deliver()
     {
         $this->mailer->send($this->view, $this->data, function ($message) {
-            if(!empty($this->bcc))
-                $message->bcc($this->bcc);
             $message->from($this->from, 'AccessWorld Tech.');
             $message->subject($this->subject);
             $message->to($this->to);
+            $message->bcc($this->bcc);
         });
     }
 }

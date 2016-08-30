@@ -66,7 +66,7 @@
             @empty
                 <div class="md-card">
                     <div class="md-card-content">
-                        <h4 class="heading_b uk-text-center">{{ trans('messages.empty', ['entity' => 'services']) }}</h4>
+                        <h4 class="heading_b uk-text-center">{{ trans('messages.empty', ['entity' => 'plans']) }}</h4>
                     <div>
                 </div>
             @endforelse

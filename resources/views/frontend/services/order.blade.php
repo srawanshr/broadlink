@@ -44,7 +44,7 @@
                     <div class="uk-width-medium-1-2">
                         <div class="gllpLatlonPicker" id="custom_id">
                             <input type="text" class="gllpSearchField" placeholder="Search Location">
-                            <button type="button" class="gllpSearchButton uk-button uk-button-default">
+                            <button type="button" class="gllpSearchButton uk-button uk-button-default uk-margin-bottom">
                                 <i class="material-icons">&#xE8B6;</i>
                             </button>
                             <div class="gllpMap">Google Maps</div>
