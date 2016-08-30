@@ -1,17 +1,17 @@
 <script>
     $(function () {
-        // post datatable
-        altair_datatables.dt_post();
+        // customer datatable
+        altair_datatables.dt_customer();
     });
 
     altair_datatables = {
-        dt_post: function () {
-            var $dt_post = $('#dt_post');
-            if ($dt_post.length) {
+        dt_customer: function () {
+            var $dt_customer = $('#dt_customer');
+            if ($dt_customer.length) {
 
                 // Setup - add a text input to each footer cell
-                $dt_post.find('tfoot th').each(function () {
-                    var title = $dt_post.find('tfoot th').eq($(this).index()).text();
+                $dt_customer.find('tfoot th').each(function () {
+                    var title = $dt_customer.find('tfoot th').eq($(this).index()).text();
                     $(this).html('<input type="text" class="md-input" placeholder="' + title + '" />');
                 });
 
@@ -19,24 +19,24 @@
                 altair_md.inputs();
 
                 // DataTable
-                var post_table = $dt_post.DataTable({
+                var customer_table = $dt_customer.DataTable({
                     ajax: {
                         type: 'POST',
-                        url: $('#dt_post').data('source')
+                        url: $('#dt_customer').data('source')
                     },
                     columns: [
-                        {'data': 'title', 'class': 'uk-text-nowrap uk-text-left'},
-                        {'data': 'status', 'class': 'uk-text-nowrap uk-text-center'},
-                        {'data': 'author', 'class': 'uk-text-nowrap uk-text-center'},
-                        {'data': 'action', 'class': 'uk-text-nowrap uk-text-right'}
+                        {'data': 'display_name', 'class': 'uk-text-nowrap uk-text-left'},
+                        {'data': 'address', 'class': 'uk-text-nowrap uk-text-center'},
+                        {'data': 'phone', 'class': 'uk-text-nowrap uk-text-center'},
+                        {'data': 'email', 'class': 'uk-text-nowrap uk-text-center'}
                     ]
                 });
 
-                var tt = new $.fn.dataTable.TableTools(post_table, {
+                var tt = new $.fn.dataTable.TableTools(customer_table, {
                     "sSwfPath": window.sSwfPath
                 });
 
-                $(tt.fnContainer()).insertBefore($dt_post.closest('.dt-uikit').find('.dt-uikit-header'));
+                $(tt.fnContainer()).insertBefore($dt_customer.closest('.dt-uikit').find('.dt-uikit-header'));
 
                 $body.on('click', function (e) {
                     if ($body.hasClass('DTTT_Print')) {

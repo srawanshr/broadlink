@@ -117,6 +117,12 @@
                     <span class="menu_title">Users</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin::customer.index') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE7FC;</i></span>
+                    <span class="menu_title">Customers</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

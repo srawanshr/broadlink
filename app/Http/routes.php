@@ -318,6 +318,16 @@ $router->group([
     {
         Route::get('/', 'OrderController@index')->name('index');
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Customer Management Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group(['prefix' => 'customer', 'as' => 'customer.'], function ()
+    {
+        Route::get('/', 'CustomerController@index')->name('index');
+    });
 });
 
 /*
@@ -339,4 +349,5 @@ $router->group([
     Route::post('contact-type', 'ContactController@contactTypeList')->name('contact.type.list');
     Route::post('post', 'PostController@postList')->name('post.list');
     Route::post('order', 'OrderController@orderList')->name('order.list');
+    Route::post('customer', 'CustomerController@customerList')->name('customer.list');
 });
