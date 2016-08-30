@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $router->bind( 'user_slug', function ( $slug ) {
-            return \App\Models\Admin::where( 'slug', $slug )->first();
+            return \App\Models\User::where( 'slug', $slug )->first();
         });
 
         $router->bind( 'banner_id', function ( $id ) {

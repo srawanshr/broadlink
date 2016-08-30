@@ -15,8 +15,8 @@
                             <div class="bl-padding-2-lr">
                                 <h2>Welcome to My Account</h2>
                                 <p>This is your dashboard. Here, you can view or edit your profile details, update your
-                                   password, view your payment history and pins and get access to other useful links. If
-                                   you have any problems you can drop a trouble ticket too.</p>
+                                    password, view your payment history and pins and get access to other useful links.
+                                    If you have any problems you can drop a trouble ticket too.</p>
                             </div>
                         </div>
                         <div class="uk-width-medium-1-1 uk-margin-top">
@@ -59,26 +59,26 @@
                                             <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>Paid Via</th>
-                                                <th>Total</th>
-                                                <th>Invoice</th>
+                                                <th class="uk-text-center">Paid Via</th>
+                                                <th class="uk-text-center">Total</th>
+                                                <th class="uk-text-center">Invoice</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @forelse( $user->invoices as $invoice )
                                                 <tr>
                                                     <td>{{ $invoice->date }}</td>
-                                                    <td>{{ $invoice->payable_type }}</td>
-                                                    <td>{{ $invoice->total }}</td>
-                                                    <td>
+                                                    <td class="uk-text-center">{{ $invoice->payable_type }}</td>
+                                                    <td class="uk-text-center">{{ 'Rs.'.$invoice->total }}</td>
+                                                    <td class="uk-text-center">
                                                         <a href="{{ route('invoice::show', $invoice->slug) }}" target="_blank">
-                                                            <i class="material-icons">&#xE619;</i>
+                                                            <i class="material-icons">&#xE8AD;</i>
                                                         </a>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="3">No Orders</td>
+                                                    <td class="uk-text-center" colspan="4">No Orders</td>
                                                 </tr>
                                             @endforelse
                                             </tbody>
@@ -89,16 +89,16 @@
                                             <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>PIN</th>
-                                                <th>Value</th>
+                                                <th class="uk-text-center">PIN</th>
+                                                <th class="uk-text-center">Price</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @forelse($user->orders as $order)
                                                 <tr>
                                                     <td>{{ $order->created_at->format('Y-m-d') }}</td>
-                                                    <td>{{ $order->pin->pin }}</td>
-                                                    <td>
+                                                    <td class="uk-text-center">{{ $order->pin->pin }}</td>
+                                                    <td class="uk-text-center">
                                                         {{ $order->pin->voucher }}
                                                     </td>
                                                 </tr>

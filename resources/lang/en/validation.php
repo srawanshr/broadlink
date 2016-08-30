@@ -93,7 +93,8 @@ return [
     |
     */
 
-    'custom' => [
+    'old_password' => 'The current password is incorrect.',
+    'custom'       => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],

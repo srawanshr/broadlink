@@ -94,6 +94,7 @@ $router->group([
     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
     Route::get('edit', 'UserController@edit')->name('edit');
     Route::put('update', 'UserController@update')->name('update');
+    Route::put('change/{user_slug}/password', 'UserController@changePassword')->name('changePassword');
 
 });
 

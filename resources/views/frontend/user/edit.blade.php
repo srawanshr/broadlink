@@ -12,11 +12,12 @@
                     <div class="uk-grid">
                         <div class="uk-width-small-1 uk-margin-large-top">
                             <div class="bl-padding-2-lr">
+                                @include('shared.errors')
                                 <h2>My Profile</h2>
                                 <p>{{ trans('information.profile_edit') }}</p>
                             </div>
                         </div>
-                        <div class="uk-width-1 uk-margin-top">
+                        <div class="uk-width-1-1 uk-margin-top">
                             <div class="bl-padding-2-lr">
                                 {{ Form::model($user, ['route' => 'user::update', 'class' => 'uk-form', 'method' => 'put', 'files' => 'true']) }}
                                 <div class="uk-form-row">

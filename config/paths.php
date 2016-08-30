@@ -23,7 +23,8 @@ return [
         'Menu'    => 'images/menu-pictures/',
         'Client'  => 'images/client-pictures/',
         'Post'    => 'images/post-pictures/',
-        'Setting' => 'images/'
+        'Setting' => 'images/',
+        'Group'   => 'images/',
 
     ],
 

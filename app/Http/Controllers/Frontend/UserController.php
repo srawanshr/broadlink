@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Invoice;
+use App\Models\User;
 use DB;
 
 class UserController extends Controller {
@@ -20,7 +22,7 @@ class UserController extends Controller {
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
     public function edit()
     {
@@ -60,10 +62,24 @@ class UserController extends Controller {
 
     /**
      * @param Invoice $invoice
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
     public function invoice(Invoice $invoice)
     {
         return view('shared.invoice', compact('invoice'));
+    }
+
+    /**
+     * @param ChangePasswordRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changePassword(ChangePasswordRequest $request, User $user)
+    {
+        $password = bcrypt($request->get('password'));
+
+        $user->update(['password' => $password]);
+
+        return redirect()->back()->withSuccess(trans('messages.update_success', ['entity' => 'Password']));
     }
 }

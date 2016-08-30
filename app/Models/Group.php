@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     /**
+     * The morph class name for this model.
+     *
+     * @var array
+     */
+    protected $morphClass = 'Group';
+    
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function services()
