@@ -9,7 +9,7 @@
 @section('body')
     @include('frontend.partials.banner', ['title' => $service->name, 'images' => $service->banners])
     <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark services">
-        <div class="uk-container uk-container-center uk-block-default bl-margin-top-ve">
+        <div class="uk-container uk-container-center uk-block-default bl-margin-top-ve bl-padding-2-tb">
             <p>{!! $service->description_html !!}</p>
         </div>
         <div class="uk-container uk-container-center uk-block-default uk-margin-top">

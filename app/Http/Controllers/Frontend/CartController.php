@@ -41,7 +41,7 @@ class CartController extends URLCrawler
 
     public function postCheckout(CheckoutRequest $request)
     {
-        $cartTotal = Cart::discountedTotal();
+        $cartTotal = Cart::discountedTotal() + Cart::vatTotal(config('broadlink.vat'));;
 
         $method = 'payVia' . ucwords($request->get('method'));
 
@@ -105,7 +105,7 @@ class CartController extends URLCrawler
         $paidAmt = $request->get('amt', false);
         $principleAmt = Cart::total();
 
-//        $totalAmt = $principleAmt + config('broadlink.vat') * $principleAmt;
+        $totalAmt = $principleAmt + config('broadlink.vat') * $principleAmt;
 
         $refId = $request->get('refId', false);
 
@@ -113,7 +113,7 @@ class CartController extends URLCrawler
             'ref_id' => $refId
         ]);
 
-        if ($paidAmt == $principleAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
+        if ($paidAmt == $totalAmt && $this->verifyEsewaTransaction($paidAmt, $refId) && auth()->guard('user')->check()) {
 
             $invoice = $this->generateInvoice($payment);
 
@@ -177,7 +177,7 @@ class CartController extends URLCrawler
         $invoice = $payment->invoice()->create([
             'payable_id' => $payment->id,
             'sub_total'  => Cart::total(),
-            'vat'        => 0,
+            'vat'        => config('broadlink.vat') * Cart::total(),
             'total'      => Cart::total() * (1 + config('broadlink.vat')),
         ]);
 
@@ -215,13 +215,13 @@ class CartController extends URLCrawler
      */
     private function payViaEsewa($amount = 0.0)
     {
-//        $principle = round($amount / (1 + config('broadlink.vat')), 2); // total = amt + vat * amt
-//        $vatAmt = $amount - $principle;
+        $principle = round($amount / (1 + config('broadlink.vat')), 2); // total = amt + vat * amt
+        $vatAmt = $amount - $principle;
 
         $html = "<form id='esewa' action='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.url') . "' method='POST'>" .
             "<input value='$amount' name='tAmt' type='hidden'>" .
-            "<input value='$amount'  name='amt' type='hidden'>" .
-            "<input value='0' name='txAmt' type='hidden'>" .
+            "<input value='$principle'  name='amt' type='hidden'>" .
+            "<input value='$vatAmt' name='txAmt' type='hidden'>" .
             "<input value='0' name='psc' type='hidden'>" .
             "<input value='0' name='pdc' type='hidden'>" .
             "<input value='" . config('broadlink.esewa.' . config('broadlink.esewa.mode') . '.merchant_id') . "' name='scd' type='hidden'>" .

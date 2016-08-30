@@ -22,6 +22,13 @@
     @include('frontend.partials.news')
     @include('frontend.partials.testimonials')
     @include('frontend.partials.clients')
+
+    <div id="popup" class="uk-modal">
+        <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+            <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
+            <img src="{{ asset(setting('pop-up')) }}" alt="Broadlink">
+        </div>
+    </div>
 @stop
 
 @section('footer')
@@ -44,6 +51,12 @@
                 var height = $('#news').height();
                 $('.bl-background-slider').css('height', height + 'px');
             });
+
+            @if(!empty(setting('pop-up')))
+                $(window).load(function() {
+                    UIkit.modal("#popup").show();
+                });
+            @endif
 
         });
     </script>
