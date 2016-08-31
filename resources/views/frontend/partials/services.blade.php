@@ -1,43 +1,45 @@
-<section id="our-services" class="uk-block uk-block-muted uk-text-center-small">
+<section id="our-services" class="uk-block uk-block-muted uk-text-center-small uk-text-center">
     <h1 class="uk-text-center">Our Services</h1>
     <div class="uk-container uk-container-center">
         <ul class="uk-tab uk-grid" data-uk-tab="{connect:'#service-switcher', animation: 'scale' }">
-            @forelse( services()->take(4) as $service )
+            @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
                 <li class="uk-width-1-4 uk-text-center">
                     <a class="uk-button-large bl-button-image" href="#">
                         <span>
-                            <img src="{{ $service->icon ? asset($service->icon->resize(110,null)) : '' }}">
+                            <img src="{{ asset($group->first()->group->first()->image->resize(110,null)) }}">
                         </span>
-                        <div class="uk-hidden-small">{{ strtoupper($service->name) }}</div>
+                        <div class="uk-hidden-small">{{ strtoupper( $group->first()->group->first()->name ) }}</div>
                     </a>
                 </li>
-            @empty
-                <li class="uk-active uk-width-small-1-2 uk-width-medium-1-4 uk-text-center">
-                    <a class="uk-button-large bl-button-image uk-invisible" href="#">
-                        <span>
-                            <img src="{{ asset('assets/frontend/img/internet.png') }}">
-                        </span>
-                        INTERNET
+            @endforeach
+            @foreach(servicesWithGroups(false) as $service)
+                <li class="uk-width-1-4 uk-text-center">
+                    <a class="uk-button-large bl-button-image" href="#">
+                    <span>
+                        <img src="{{ asset($service->icon->resize(110,null)) }}">
+                    </span>
+                        <div class="uk-hidden-small">{{ strtoupper( $service->name ) }}</div>
                     </a>
                 </li>
-            @endforelse
+            @endforeach
         </ul>
     </div>
-    <ul class="uk-switcher height-2 bl-text-light" id="service-switcher">
-        @forelse (services()->take(4) as $service)
+    <ul class="uk-switcher height-2 bl-text-light uk-text-center" id="service-switcher">
+        @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
             <li>
                 <div class="uk-container uk-container-center">
                     <div class="uk-grid">
                         <div class="uk-width-medium-1-2">
-                            <div class="bl-padding">
-                                <h2>{{ $service->slogan }}</h2>
-                                <p>{!! $service->description_html !!}</p>
-                                <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
-                            </div>
+                            @foreach($group as $service)
+                                <div class="bl-padding">
+                                    <h2>{{ $service->slogan }}</h2>
+                                    <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="uk-width-medium-1-2">
                             <ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'swipe'}">
-                                @forelse($service->banners as $banner)
+                                @forelse($group->pluck('banners')->flatten() as $banner)
                                     <li><img src="{{ asset($banner->thumbnail(600,300)) }}"></li>
                                 @empty
                                     <li><img src="{{ asset('assets/frontend/img/service_img1.png') }}"></li>
@@ -47,26 +49,30 @@
                     </div>
                 </div>
             </li>
-        @empty
-            <li>
-                <div class="uk-container uk-container-center">
-                    <div class="uk-grid">
-                        <div class="uk-width-medium-1-2">
-                            <h3>Get In The Game with</h3>
-                            <h2>NFL Sunday Ticket</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolorem quasi
-                               corporis ipsa, impedit sapiente, blanditiis repudiandae voluptatibus odio suscipit magnam
-                               reiciendis necessitatibus maxime voluptates ipsam! Praesentium aliquam vitae aperiam
-                               quaerat nobis quas repudiandae necessitatibus accusamus. Libero necessitatibus nemo
-                               quibusdam excepturi, dolores, incidunt iste autem facilis natus deserunt corporis,
-                               eaque.</p>
-                        </div>
-                        <div class="uk-width-medium-1-2">
-                            <img src="{{ asset('assets/frontend/img/service_img1.png') }}">
+        @endforeach
+        @foreach(servicesWithGroups(false) as $service)
+                <li>
+                    <div class="uk-container uk-container-center">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-1-2">
+                                <div class="bl-padding">
+                                    <h2>{{ $service->slogan }}</h2>
+                                    <p>{!! str_limit($service->description_html,500) !!}</p>
+                                    <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                <ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'swipe'}">
+                                    @forelse($service->banners as $banner)
+                                        <li><img src="{{ asset($banner->thumbnail(600,300)) }}"></li>
+                                    @empty
+                                        <li><img src="{{ asset('assets/frontend/img/service_img1.png') }}"></li>
+                                    @endforelse
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        @endforelse
+                </li>
+        @endforeach
     </ul>
 </section>

@@ -18,11 +18,11 @@
                             <figcaption class="uk-overlay-panel uk-overlay-slide-bottom uk-overlay-bottom uk-overlay-background uk-text-center bl-text-light">
                                 <h2>{{ $voucher->voucher }}</h2>
                                 <a href="{{ route('voucher::show', str_slug($voucher->voucher)) }}" class="uk-button uk-button-large bl-button">
-                                    <i class="material-icons">&#xE88E;</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#xE88E;</i>
                                     View
                                 </a>
                                 <a href="{{ route('voucher::buy', str_slug($voucher->voucher)) }}" class="uk-button uk-button-large bl-button">
-                                    <i class="material-icons">&#xE854;</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#xE854;</i>
                                     Add to Cart
                                 </a>
                             </figcaption>

@@ -170,6 +170,14 @@ input, textarea {
       }
     }
   }
+
+  ul#bl-nav-services {
+    > li {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 159px;
+    }
+  }
 }
 
 .bl-navbar-transparent {

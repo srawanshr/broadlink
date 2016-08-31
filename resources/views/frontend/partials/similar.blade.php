@@ -5,31 +5,25 @@
         </div>
     @endif
     <div class="uk-container uk-container-center uk-block-default bl-padding">
-        <div data-uk-slideset="{small:1, medium: 4}">
-            <div class="uk-slidenav-position">
-                <ul class="uk-grid uk-slideset">
-                    @foreach( vouchers() as $voucher)
-                        <li>
-                            <a href="{{ route('voucher::show', str_slug($voucher->voucher)) }}">
-                                <img src="{{ image('assets/frontend/img/'.str_slug($voucher->voucher).'.png') }}" class="uk-width-1-1">
-                                <div class="uk-float-left">
-                                    {{ $voucher->voucher }}
-                                </div>
+        <ul class="uk-grid">
+            @foreach( vouchers()->take(4) as $voucher)
+                <li>
+                    <figure class="uk-overlay uk-overlay-hover uk-hover">
+                        <img src="{{ image('assets/frontend/img/'.str_slug($voucher->voucher).'.png') }}" class="uk-overlay-spin">
+                        <figcaption class="uk-overlay-panel uk-overlay-slide-bottom uk-overlay-bottom uk-overlay-background uk-text-center bl-text-light">
+                            <h2>{{ $voucher->voucher }}</h2>
+                            <a href="{{ route('voucher::show', str_slug($voucher->voucher)) }}" class="uk-button uk-button-large bl-button">
+                                <i class="material-icons uk-vertical-align-middle">&#xE88E;</i>
+                                View
                             </a>
-                            <div class="uk-float-right">
-                                <a href="{{ route('voucher::show', str_slug($voucher->voucher)) }}">
-                                    <i class="material-icons">&#xE88E;</i>
-                                </a>
-                                <a href="{{ route('voucher::buy', str_slug($voucher->voucher)) }}">
-                                    <i class="material-icons">&#xE854;</i>
-                                </a>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-                <a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
-                <a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
-            </div>
-        </div>
+                            <a href="{{ route('voucher::buy', str_slug($voucher->voucher)) }}" class="uk-button uk-button-large bl-button">
+                                <i class="material-icons uk-vertical-align-middle">&#xE854;</i>
+                                Add to Cart
+                            </a>
+                        </figcaption>
+                    </figure>
+                </li>
+            @endforeach
+        </ul>
     </div>
 </section>

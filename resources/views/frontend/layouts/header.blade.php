@@ -13,7 +13,8 @@
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="{{ route('service::index') }}"><i class="material-icons uk-vertical-align-middle">&#xE5C3;</i> Services</a>
+                        <a href="{{ route('service::index') }}"><i class="material-icons uk-vertical-align-middle">
+                                &#xE5C3;</i> Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
@@ -29,9 +30,16 @@
 
                                                 <ul class="uk-tab uk-tab-left uk-tab-hover"
                                                     data-uk-tab="{connect:'#bl-nav-services'}">
-                                                    @foreach(services() as $service)
+                                                    @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
                                                         <li>
-                                                            <a href="{{ route('service::show', $service->slug) }}">
+                                                            <a href="#">
+                                                                <img src="{{ asset($group->first()->group->first()->image->thumbnail(32,32)) }}"> {{ $group->first()->group->first()->name }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                    @foreach(servicesWithGroups(false) as $service)
+                                                        <li>
+                                                            <a href="#">
                                                                 <img src="{{ asset($service->icon->thumbnail(32,32)) }}"> {{ $service->name }}
                                                             </a>
                                                         </li>
@@ -42,11 +50,24 @@
                                             <div class="uk-width-medium-1-2 uk-tab-left-content">
 
                                                 <ul id="bl-nav-services" class="uk-switcher">
-                                                    @foreach(services() as $service)
+                                                    @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
                                                         <li>
-                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 200) !!}</p>
-                                                            <a href="{{ route('service::show', $service->slug)}}">Read
-                                                                                                                  More</a>
+                                                            @foreach($group as $service)
+                                                                <p class="bl-padding-tb">{{ $service->name  }}</p>
+                                                                <p>
+                                                                    {!! str_limit($service->meta_description, 100) !!}
+                                                                    <a href="{{ route('service::show', $service->slug)}}">Read
+                                                                                                                          More</a>
+                                                                </p>
+                                                            @endforeach
+                                                        </li>
+                                                    @endforeach
+                                                    @foreach(servicesWithGroups(false) as $service)
+                                                        <li>
+                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 200) !!}
+                                                                <a href="{{ route('service::show', $service->slug)}}">Read
+                                                                                                                      More</a>
+                                                            </p>
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -124,17 +145,18 @@
                     @endforeach
                     @if( auth()->check() )
                         <li class="uk-parent" data-uk-dropdown>
-                            <a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">&#xE853;</i> My Profile</a>
+                            <a href="{{ route('user::dashboard') }}"><i class="material-icons uk-vertical-align-middle">
+                                    &#xE853;</i> My Profile</a>
                             <div class="uk-dropdown uk-dropdown-navbar">
                                 <ul class="uk-nav uk-nav-navbar">
                                     <li>
-                                        <a href="{{ route('user::dashboard') }}">
+                                        <a href="{{ route('user::edit') }}">
                                             <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
                                             Profile
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('logout') }}">
+                                        <a href="{{ url('\logout') }}">
                                             <i class="material-icons uk-vertical-align-middle">&#xE879;</i>
                                             Logout
                                         </a>
@@ -144,10 +166,7 @@
                         </li>
                     @else
                         <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                            <a href="{{ url('register') }}">
-                                <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
-                                Log In
-                            </a>
+                            <a href="{{ url('register') }}">Log In</a>
                             <div class="uk-dropdown bl-card">
                                 <div class="uk-grid uk-dropdown-grid">
                                     <div class="uk-width-2-5">
@@ -270,10 +289,7 @@
                 </li>
             @else
                 <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                    <a href="{{ url('register') }}">
-                        <i class="material-icons uk-vertical-align-middle">&#xE853;</i>
-                        Log In
-                    </a>
+                    <a href="{{ url('register') }}">Log In</a>
                 </li>
             @endif
             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">

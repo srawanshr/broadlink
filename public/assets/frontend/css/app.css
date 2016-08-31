@@ -102,6 +102,10 @@ input, textarea {
     border-style: solid;
     border-color: transparent #f1f1f1;
     z-index: 2; }
+  #bl-navbar ul#bl-nav-services > li {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 159px; }
 
 .bl-navbar-transparent.uk-navbar {
   background: none; }

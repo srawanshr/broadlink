@@ -19,6 +19,8 @@ class Service extends Model {
         'name', 'slogan', 'meta_description', 'description_raw', 'description_html', 'order', 'is_active'
     ];
 
+    protected $appends = [ 'group_id' ];
+
     /**
      * The attributes that should be typecast into boolean.
      *
@@ -166,5 +168,13 @@ class Service extends Model {
         }
 
         return parent::delete($options);
+    }
+
+    /**
+     * @return integer
+     */
+    public function getGroupIdAttribute()
+    {
+        return $this->group->count() == 0 ? '' : $this->group->first()->id;
     }
 }

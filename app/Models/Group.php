@@ -26,6 +26,6 @@ class Group extends Model
      */
     public function image()
     {
-        return $this->morphOne('App\Models\Icon', 'imageable');
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 }
