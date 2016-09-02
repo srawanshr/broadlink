@@ -119,7 +119,12 @@ input, textarea {
 }
 
 #bl-navbar {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.5s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transition: background 0.5s;
+  }
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
@@ -420,6 +425,7 @@ h3 {
   background-color: transparent;
   color: $text-color-light;
   border: 2px solid transparent;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   span {
     display: block;
     margin-bottom: 10px;
@@ -539,8 +545,8 @@ h3 {
       padding-right: 40px;
       background-color: transparent;
       &:hover {
-        border: 2px solid darken($green, 5);
-        border-bottom: none;
+        border: 2px solid transparent;
+        transform: scale(1.05);
       }
     }
   }

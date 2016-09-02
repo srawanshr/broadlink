@@ -62,9 +62,13 @@ input, textarea {
   width: 100%; }
 
 #bl-navbar {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.5s;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; }
+  #bl-navbar:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transition: background 0.5s; }
   #bl-navbar .uk-dropdown {
     padding: 20px;
     border: 5px solid white;
@@ -274,7 +278,8 @@ h3 {
 .bl-button-image {
   background-color: transparent;
   color: #eee;
-  border: 2px solid transparent; }
+  border: 2px solid transparent;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   .bl-button-image span {
     display: block;
     margin-bottom: 10px;
@@ -360,8 +365,8 @@ h3 {
       padding-right: 40px;
       background-color: transparent; }
       #our-services .uk-tab a:hover {
-        border: 2px solid #75af27;
-        border-bottom: none; }
+        border: 2px solid transparent;
+        transform: scale(1.05); }
   #our-services .uk-subnav-pill .uk-active * {
     background: #e76724; }
 

@@ -13,8 +13,7 @@
                         </a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                        <a href="{{ route('service::index') }}"><i class="material-icons uk-vertical-align-middle">
-                                &#xE5C3;</i> Services</a>
+                        <a href="{{ route('service::index') }}">Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
@@ -81,21 +80,19 @@
                     </li>
                     <li>
                         <a href="{{ route('voucher::index') }}">
-                            <i class="material-icons uk-vertical-align-middle">&#xE89A;</i> Shop
+                            Vouchers
                         </a>
                     </li>
                     @foreach(menus() as $menu)
                         @if($menu->type == 0)
                             <li>
                                 <a href="{{ $menu->url }}">
-                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                             </li>
                         @elseif($menu->type == 1)
                             <li class="uk-parent" data-uk-dropdown>
                                 <a href="{{ $menu->url }}">
-                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown uk-dropdown-navbar">
@@ -114,7 +111,6 @@
                         @elseif($menu->type == 2)
                             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
                                 <a href="{{ $menu->url }}">
-                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $menu->icon }};</i>
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown bl-card">

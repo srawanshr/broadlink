@@ -18,7 +18,7 @@
                             @foreach(testimonials() as $testimonial)
                                 <li>
                                     <div class="quote-author uk-text-center">
-                                        <img alt="Author" class="image-xs" src="{{ asset($testimonial->user->image->thumbnail()) }}">
+                                        <img alt="Author" class="image-xs" src="{{ is_null($testimonial->user->image) ? 'https://placehold.it/64x64?text=user' : asset($testimonial->user->image->thumbnail()) }}">
                                         <h6 class="uppercase mb0">{{ $testimonial->user->display_name }}</h6>
                                         {{-- <span>{{ $testimonial->user->display_name }}</span> --}}
                                         <p>{!! $testimonial->quote !!}</p>

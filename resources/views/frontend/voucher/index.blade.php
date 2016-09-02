@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Broadlink :: Shop')
+@section('title', 'Broadlink :: Vouchers')
 
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
 @stop
 
 @section('body')
-    @include('frontend.partials.banner', ['title' => 'Shop'])
+    @include('frontend.partials.banner', ['title' => 'Vouchers'])
     <section id="our-services-index" class="uk-block uk-margin-remove uk-padding-remove">
         <div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
             <div class="uk-grid">
