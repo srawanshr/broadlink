@@ -100,7 +100,7 @@
                                         @foreach($menu->subMenus as $submenu)
                                             <li>
                                                 <a href="{{ $submenu->url }}">
-                                                    <i class="material-icons uk-vertical-align-middle">{{ $submenu->icon }}</i>
+                                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i>
                                                     {{ $submenu->name }}
                                                 </a>
                                             </li>

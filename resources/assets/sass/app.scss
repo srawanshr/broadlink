@@ -119,7 +119,12 @@ input, textarea {
 }
 
 #bl-navbar {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.5s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transition: background 0.5s;
+  }
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
@@ -168,6 +173,14 @@ input, textarea {
         border-color: transparent #f1f1f1;
         z-index: 2;
       }
+    }
+  }
+
+  ul#bl-nav-services {
+    > li {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 159px;
     }
   }
 }
@@ -361,16 +374,9 @@ h3 {
 .tile {
   height: 150px;
   width: 150px;
-  background: rgba(255, 255, 255, 0.3);
   display: inline-block;
   margin: 10px;
   position: relative;
-
-  @include card(1);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.6);
-  }
 }
 
 .image-xs {
@@ -412,6 +418,7 @@ h3 {
   background-color: transparent;
   color: $text-color-light;
   border: 2px solid transparent;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
   span {
     display: block;
     margin-bottom: 10px;
@@ -468,16 +475,6 @@ h3 {
 #clients {
   background-size: cover;
   background: #d8d8d8 fixed;
-  img {
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    &:hover {
-      filter: grayscale(0%);
-      -webkit-filter: grayscale(0%);
-      -o-filter: grayscale(0%);
-    }
-  }
 }
 
 #customers {
@@ -531,8 +528,8 @@ h3 {
       padding-right: 40px;
       background-color: transparent;
       &:hover {
-        border: 2px solid darken($green, 5);
-        border-bottom: none;
+        border: 2px solid transparent;
+        transform: scale(1.05);
       }
     }
   }
@@ -602,6 +599,10 @@ h3 {
 }
 
 #footer {
+  background: linear-gradient( rgb(216, 216, 216), rgba(246, 133, 37, 0.17) ),url('/assets/frontend/img/connect_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
   .logo {
     img {
       height: 150px;
@@ -639,7 +640,7 @@ h3 {
   }
   .bl-copyrights {
     a {
-      color: lighten($text-color, 20);
+      color: $text-color-light;
     }
   }
   input {
