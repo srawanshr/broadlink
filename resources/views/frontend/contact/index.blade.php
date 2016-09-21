@@ -76,20 +76,23 @@
                         <ul id="branches" class="uk-switcher">
                             @foreach( $contactTypes as $id => $type)
                                 <li>
-                                    <div class="uk-grid">
-                                        @foreach( $contacts->get($id, []) as $contact)
-                                            <div class="uk-width-medium-1-2">
-                                                <div class="uk-panel uk-panel-box uk-panel-header">
-                                                    <h3 class="uk-panel-title">{{ $contact->name }}</h3>
-                                                    <div id="contact-{{ $contact->id }}">
-                                                        <p>{{ $contact->address }},{{ $contact->phone }}
-                                                                                  ,{{ $contact->email }}</p>
-                                                        <p>{{ $contact->description }}</p>
+                                    @foreach( collect($contacts->get($id, []))->chunk(2) as $chunk)
+                                        <div class="uk-grid">
+                                            @foreach($chunk as $contact)
+                                                <div class="uk-width-medium-1-2">
+                                                    <div class="uk-panel uk-panel-box uk-panel-header">
+                                                        <h3 class="uk-panel-title">{{ $contact->name }}</h3>
+                                                        <div id="contact-{{ $contact->id }}">
+                                                            <p>{{ empty($contact->address) ? '': 'Address: '.$contact->address }}</p>
+                                                            <p>{{ empty($contact->phone) ? '': 'Phone: '.$contact->phone }}</p>
+                                                            <p>{{ empty($contact->email) ? '': 'Email: '.$contact->email }}</p>
+                                                            <p>{{ empty($contact->description) ? '': 'Note: '.$contact->description }}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                            @endforeach
+                                        </div>
+                                    @endforeach
                                 </li>
                             @endforeach
                         </ul>

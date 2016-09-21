@@ -22,7 +22,7 @@ class AdminProfileUpdateRequest extends Request {
     public function rules()
     {
         return [
-            'email'      => 'required|email|unique:admins,email,' . $this->user_slug->id,
+            'email'      => 'required|email|unique:admins,email,' . $this->admin_slug->id,
             'password'   => 'min:8|confirmed',
             'image'      => 'image|max:1024'
         ];

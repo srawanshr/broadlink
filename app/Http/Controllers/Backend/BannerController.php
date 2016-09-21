@@ -51,13 +51,11 @@ class BannerController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
+     * @param Image $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Image $banner)
     {
-        $banner = Image::find($request->get('id'));
-
         if ($banner->delete())
         {
             return response()->json([

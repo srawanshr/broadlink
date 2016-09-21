@@ -42,7 +42,7 @@ Route::get('/service/{service}', 'Frontend\ServiceController@show')->name('servi
 Route::get('/service/{service}/product/{product_slug}/order', 'Frontend\ServiceController@orderForm')->name('service::orderForm');
 Route::post('/order', 'Frontend\ServiceController@order')->name('service::order');
 
-Route::get('/shop', 'Frontend\VoucherController@index')->name('voucher::index');
+Route::get('/voucher', 'Frontend\VoucherController@index')->name('voucher::index');
 Route::get('/voucher/{voucher}', 'Frontend\VoucherController@show')->name('voucher::show');
 Route::any('/voucher/{voucher}/buy', 'Frontend\VoucherController@buy')->name('voucher::buy');
 
@@ -138,8 +138,8 @@ $router->group([
         Route::post('user', 'AdminController@store')->name('store');
         Route::post('user/update', 'AdminController@update')->name('update');
         Route::post('user/delete', 'AdminController@destroy')->name('destroy');
-        Route::get('user/{user_slug}', 'AdminController@show')->name('show');
-        Route::put('user/{user_slug}', 'AdminController@updateProfile')->name('profile.update');
+        Route::get('user/{admin_slug}', 'AdminController@show')->name('show');
+        Route::put('user/{admin_slug}', 'AdminController@updateProfile')->name('profile.update');
     });
 
     /*

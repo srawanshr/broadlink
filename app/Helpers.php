@@ -143,6 +143,14 @@ function services()
     return App\Models\Service::active()->get();
 }
 
+function servicesWithGroups($has=true)
+{
+    if($has)
+        return App\Models\Service::active()->with('group')->has('group')->get();
+    else
+        return App\Models\Service::active()->with('group')->doesntHave('group')->get();
+}
+
 /**
  * @return mixed
  */

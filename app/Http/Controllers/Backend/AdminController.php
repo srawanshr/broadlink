@@ -104,7 +104,7 @@ class AdminController extends Controller {
     public function show(Admin $admin)
     {
         if ($admin->slug != auth()->guard('admin')->user()->slug)
-            return redirect()->route('admin::user.show', auth()->guard('admin')->user()->slug);
+            return redirect()->route('admin::user.index')->withWarning('Unauthorized!');
 
         return view('backend.profile.index', compact('admin'));
     }

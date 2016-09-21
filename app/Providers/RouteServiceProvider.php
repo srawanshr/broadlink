@@ -58,6 +58,10 @@ class RouteServiceProvider extends ServiceProvider
             return \App\Models\User::where( 'slug', $slug )->first();
         });
 
+        $router->bind( 'admin_slug', function ( $slug ) {
+            return \App\Models\Admin::where( 'slug', $slug )->first();
+        });
+
         $router->bind( 'banner_id', function ( $id ) {
             return \App\Models\Image::find($id);
         });
