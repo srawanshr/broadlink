@@ -100,7 +100,7 @@
                                         @foreach($menu->subMenus as $submenu)
                                             <li>
                                                 <a href="{{ $submenu->url }}">
-                                                    <i class="material-icons uk-vertical-align-middle">{{ $submenu->icon }}</i>
+                                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i>
                                                     {{ $submenu->name }}
                                                 </a>
                                             </li>
@@ -124,7 +124,7 @@
                                                     @forelse($menu->subMenus as $submenu)
                                                         <div class="uk-width-medium-1-3">
                                                             <a href="{{ $submenu->url }}" class="bl-icon-button">
-                                                                <span><i class="material-icons uk-vertical-align-middle">{{ $submenu->icon }}</i></span>
+                                                                <span><i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i></span>
                                                                 <cite>{{ $submenu->name }}</cite>
                                                             </a>
                                                         </div>
@@ -257,7 +257,7 @@
                         @foreach($menu->subMenus as $subMenu)
                             <li>
                                 <a href="{{ $subMenu->url }}">
-                                    <i class="material-icons uk-vertical-align-middle">{{ $subMenu->icon }}</i>
+                                    <i class="material-icons uk-vertical-align-middle">&#x{{ $subMenu->icon }};</i>
                                     {{ $subMenu->name }}
                                 </a>
                             </li>
