@@ -37,7 +37,7 @@
                                             <div class="uk-width-medium-1-2">
                                                 <div class="bl-padding">
                                                     <h2>{{ $service->slogan }}</h2>
-                                                    <p>{!! str_limit($service->description_html,500) !!}</p>
+                                                    <p>{!! str_limit(strip_tags($service->description_html),700) !!}</p>
                                                     <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@
                             <div class="uk-width-medium-1-2">
                                 <div class="bl-padding">
                                     <h2>{{ $service->slogan }}</h2>
-                                    <p>{!! str_limit($service->description_html,500) !!}</p>
+                                    <p>{!! str_limit(strip_tags($service->description_html),700) !!}</p>
                                     <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
                                 </div>
                             </div>

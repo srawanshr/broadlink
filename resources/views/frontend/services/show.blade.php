@@ -4,6 +4,24 @@
 
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
+    <style type="text/css">
+        .bl-package .uk-panel:after {
+            content: "\f067";
+            font-family: FontAwesome;
+            display: block;
+            font-weight: 400;
+            position: absolute;
+            background: white;
+            left: 50%;
+            padding: 4px;
+            bottom: -6px;
+            border-radius: 50%;
+            margin-left: -5px;
+            font-style: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
 @stop
 
 @section('body')

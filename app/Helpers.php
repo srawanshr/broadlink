@@ -109,9 +109,9 @@ function thumbnail($path, array $wh = array())
  * @param $width
  * @return mixed
  */
-function user_avatar($guard, $width)
+function avatar($width)
 {
-    if ($image = auth()->guard($guard)->user()->image)
+    if ($image = auth()->user()->image)
     {
         return asset($image->thumbnail($width, $width));
     } else
