@@ -22,7 +22,7 @@ class ImagesTableSeeder extends Seeder {
             $service->icon()->create([
                 'name' => $service->slug,
                 'path' => 'images/icons/service-icons/'.$service->slug.'.png',
-                'size' => File::size(public_path('images\icons\service-icons\\'.$service->slug.'.png')),
+                'size' => File::size(public_path('images/icons/service-icons/'.$service->slug.'.png')),
                 'created_at' => Carbon\Carbon::now(),
                 'updated_at' => Carbon\Carbon::now()
             ]);
@@ -31,17 +31,17 @@ class ImagesTableSeeder extends Seeder {
         $popUp->image()->create([
             'name' => $popUp->slug,
             'path' => 'images/'.$popUp->slug.'.jpg',
-            'size' => File::size(public_path('images\\'.$popUp->slug.'.jpg')),
+            'size' => File::size(public_path('images/'.$popUp->slug.'.jpg')),
             'created_at' => Carbon\Carbon::now(),
             'updated_at' => Carbon\Carbon::now()
         ]);
 
-        $group->image()->create([
-            'name' => $group->slug,
-            'path' => 'images/'.$group->slug.'.png',
-            'size' => File::size(public_path('images\\'.$group->slug.'.png')),
-            'created_at' => Carbon\Carbon::now(),
-            'updated_at' => Carbon\Carbon::now()
-        ]);
+        // $group->image()->create([
+        //     'name' => $group->slug,
+        //     'path' => 'images/'.$group->slug.'.png',
+        //     'size' => File::size(public_path('images/'.$group->slug.'.png')),
+        //     'created_at' => Carbon\Carbon::now(),
+        //     'updated_at' => Carbon\Carbon::now()
+        // ]);
     }
 }
