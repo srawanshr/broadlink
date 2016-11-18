@@ -2,10 +2,10 @@
 
     <div class="sidebar_main_header">
         <div class="sidebar_logo">
-            <a href="{{ route('admin::dashboard') }}" class="sSidebar_hide">
+            <a href="{{ url('/') }}" target="_blank" class="sSidebar_hide">
                 <img src="{{ asset('assets/backend/img/logo_main.png') }}" alt="" height="15" width="71"/>
             </a>
-            <a href="{{ route('admin::dashboard') }}" class="sSidebar_show">
+            <a href="{{ url('/') }}" target="_blank" class="sSidebar_show">
                 <img src="{{ asset('assets/backend/img/logo_main_small.png') }}" alt="" height="32" width="32"/>
             </a>
         </div>

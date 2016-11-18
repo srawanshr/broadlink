@@ -18,9 +18,9 @@
                             <div class="uk-grid uk-dropdown-grid">
                                 <div class="uk-width-medium-4-10">
                                     <h2>PRODUCTS AND SERVICES</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quibusdam deserunt
-                                       suscipit repellat magni quam earum, debitis neque vitae ipsam quas explicabo ex
-                                       aliquam totam molestias alias, quod dicta aut!</p>
+                                    <p>
+                                        Broadlink offers various range of products and services under one roof. Bundle with our internet, TV and voice services and get more for less!
+                                    </p>
                                 </div>
                                 <div class="uk-width-medium-6-10">
                                     <div class="uk-panel">
@@ -198,9 +198,10 @@
                                     <div class="uk-width-3-5 uk-vertical-align">
                                         <div class="uk-vertical-align-middle">
                                             <h2>Not a member ?</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
-                                               voluptate sequi hic dignissimos vel? Sed veniam deleniti dolor, voluptas.
-                                               Aliquam.</p>
+                                            <p>
+                                                Login to your Broadlink account via various payment gateways available with us to buy vouchers and pins online.
+                                                If you do not have an account with us for online purchasing, please register with us now.
+                                            </p>
                                             <a href="{{ url('register') }}">Sign Up Here</a>
                                         </div>
                                     </div>
