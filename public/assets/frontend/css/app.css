@@ -106,10 +106,12 @@ input, textarea {
     border-style: solid;
     border-color: transparent #f1f1f1;
     z-index: 2; }
-  #bl-navbar ul#bl-nav-services > li {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 159px; }
+
+.stroke-white {
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; }
+
+.stroke-black {
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; }
 
 .bl-navbar-transparent.uk-navbar {
   background: none; }
