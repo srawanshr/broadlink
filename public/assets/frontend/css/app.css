@@ -348,6 +348,7 @@ h3 {
       border-top: 2px solid transparent;
       border-right: 2px solid transparent;
       border-left: 2px solid transparent;
+      border-bottom: 0;
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
       margin: 0;

@@ -45,7 +45,7 @@
                                                 <div data-uk-slideshow="{autoplay:true, animation:'swipe'}" class="height-4">
                                                     <ul class="uk-slideshow height-4">
                                                         @forelse($group->pluck('banners')->flatten() as $banner)
-                                                            <li class="height-4"><img src="{{ asset($banner->thumbnail(600,300)) }}" class="height-4"></li>
+                                                            <li class="height-4"><img src="{{ asset($banner->resize(600, null)) }}" class="height-4"></li>
                                                         @empty
                                                             <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
                                                         @endforelse
@@ -78,7 +78,7 @@
                                 <div data-uk-slideshow="{autoplay:true, animation:'swipe'}" class="height-4">
                                     <ul class="uk-slideshow height-4">
                                         @forelse($service->banners as $banner)
-                                            <li class="height-4"><img src="{{ asset($banner->thumbnail(600,300)) }}" class="height-4"></li>
+                                            <li class="height-4"><img src="{{ asset($banner->resize(110, null)) }}" class="height-4"></li>
                                         @empty
                                             <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
                                         @endforelse
