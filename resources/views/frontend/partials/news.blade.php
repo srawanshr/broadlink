@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="uk-container uk-container-center bl-padding-2-tb bl-text-light">
-    	<div class="uk-margin" data-uk-slideset="{animation: 'scale', medium:4, small:3}">
+    	<div data-uk-slideset="{animation: 'scale', medium:4, small:3}">
 	        <div class="uk-slidenav-position uk-margin">
 	            <ul class="uk-slideset uk-grid uk-flex-center">
 	            	@foreach(tags()->pluck('posts')->flatten()->unique('id') as $post)

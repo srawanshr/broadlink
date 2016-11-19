@@ -22,7 +22,7 @@
 <script src="{{ asset('assets/backend/js/custom/uikit_fileinput.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(document).on('click', 'item_delete', function() {
+        $(document).on('click', '.item_delete', function() {
             var p = $(this);
 
             UIkit.modal.confirm('Are you sure?', function() {

@@ -400,7 +400,7 @@ h3 {
 
 #slider {
   .main-slider {
-    /* margin-top: 60px; */
+    position: relative;
   }
   .images {
     height: 70vh;
@@ -419,7 +419,8 @@ h3 {
   }
 
   .subtitle-wrap {
-    margin-top: -415px;
+    top: 100px;
+    position: absolute;
     .subtitle {
       margin-top: 0;
       .button-group {
@@ -542,10 +543,9 @@ h3 {
       padding-left: 40px;
       padding-right: 40px;
       background-color: transparent;
-      &:hover {
-        border: 2px solid transparent;
-        transform: scale(1.05);
-      }
+      //&:hover {
+      //  border: 2px solid transparent;
+      //}
     }
   }
   .uk-subnav-pill {
@@ -631,7 +631,7 @@ h3 {
     display: inline;
     a {
       color: $text-color-light;
-      padding: 10px 0;
+      padding: 10px 15px;
       border-bottom: 1px solid rgba($text-color-light, 0.1);
       &:hover {
         color: $primary-color;

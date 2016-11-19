@@ -251,7 +251,7 @@ h3 {
   max-height: 50px; }
 
 #slider .main-slider {
-  /* margin-top: 60px; */ }
+  position: relative; }
 
 #slider .images {
   height: 70vh; }
@@ -267,7 +267,8 @@ h3 {
       width: 100%; }
 
 #slider .subtitle-wrap {
-  margin-top: -415px; }
+  top: 100px;
+  position: absolute; }
   #slider .subtitle-wrap .subtitle {
     margin-top: 0; }
     #slider .subtitle-wrap .subtitle .button-group {
@@ -354,9 +355,6 @@ h3 {
       padding-left: 40px;
       padding-right: 40px;
       background-color: transparent; }
-      #our-services .uk-tab a:hover {
-        border: 2px solid transparent;
-        transform: scale(1.05); }
   #our-services .uk-subnav-pill .uk-active * {
     background: #e76724; }
 
@@ -421,7 +419,7 @@ h3 {
     display: inline; }
     #footer ul a {
       color: #eee;
-      padding: 10px 0;
+      padding: 10px 15px;
       border-bottom: 1px solid rgba(238, 238, 238, 0.1); }
       #footer ul a:hover {
         color: #e76724; }

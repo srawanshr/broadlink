@@ -135,7 +135,7 @@
     <script src="{{ asset('assets/backend/js/pages/forms_file_input.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(document).on('click', 'item_deleteve', function() {
+            $(document).on('click', 'item_delete', function() {
                 var p = $(this);
 
                 UIkit.modal.confirm('Are you sure?', function() {
