@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="uk-width-small-1-1 subtitle-wrap">
                                         <div class="subtitle bl-text-light uk-text-center-small uk-text-right">
-                                            <h1 class="bl-text-primary">Wherever you are</h1>
+                                            <h1 class="bl-text-primary stroke-white">Wherever you are</h1>
                                             <h2>We are with you</h2>
                                             <div class="button-group">
                                                 <a class="uk-button bl-button" href="{{ route('voucher::index') }}">
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="uk-width-small-1-1 subtitle-wrap">
                                         <div class="subtitle bl-text-light uk-text-center-small uk-text-right">
-                                            <h1 class="bl-text-primary">The best there is</h1>
+                                            <h1 class="bl-text-primary stroke-white">The best there is</h1>
                                             <h2>At affordable cost</h2>
                                             <div class="button-group">
                                                 <a class="uk-button bl-button" href="{{ route('voucher::index') }}">
