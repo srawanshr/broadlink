@@ -46,7 +46,7 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="uk-width-medium-1-2 uk-tab-left-content">
+                                            <div class="uk-width-medium-1-2 uk-tab-left-content bl-padding-2-tb">
 
                                                 <ul id="bl-nav-services" class="uk-switcher">
                                                     @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
