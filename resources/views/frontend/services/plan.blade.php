@@ -19,7 +19,7 @@
                                         <h3 data-uk-sticky="{animation: 'uk-animation-slide-top', boundary: '#sticky-boundary'}">{{ $product->name }}</h3>
                                     </div>
                                     {{-- <div class="uk-width-1-1 bl-package-featured-image">
-                                        <img src="{{ asset($product->image->thumbnail(342,209)) }}">
+                                        <img src="{{ $product->image ? asset($product->image->thumbnail(342,209)): "" }}">
                                     </div> --}}
                                     {{-- <div class="uk-width-1-1 bl-package-price">
                                         <span>Rs. {{ $product->price }}</span>
