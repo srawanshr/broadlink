@@ -25,7 +25,7 @@ class PlanCreateRequest extends Request {
     {
         return [
             'service_id'       => 'required|exists:services,id',
-            // 'name'             => 'required',
+            'name'             => 'required',
             'meta_description' => 'required',
             'description_raw'  => 'required',
             'image'            => 'image|max:2048',

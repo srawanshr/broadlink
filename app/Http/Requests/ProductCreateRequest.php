@@ -28,7 +28,7 @@ class ProductCreateRequest extends Request {
             'name'            => 'required',
             'description_raw' => 'required',
             'price'           => 'required',
-            'image'           => 'required|image|max:2048',
+            'image'           => 'image|max:2048',
             'is_active'       => 'boolean'
         ];
     }
