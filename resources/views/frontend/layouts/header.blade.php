@@ -39,7 +39,7 @@
                                                     @foreach(servicesWithGroups(false) as $service)
                                                         <li>
                                                             <a href="#">
-                                                                <img src="{{ asset($service->icon->thumbnail(32,32)) }}"> {{ $service->name }}
+                                                                <img src="{{ asset($service->icon->resize(null,32)) }}"> {{ $service->name }}
                                                             </a>
                                                         </li>
                                                     @endforeach
@@ -56,16 +56,16 @@
                                                                 <p>
                                                                     {!! str_limit($service->meta_description, 100) !!}
                                                                     <a href="{{ route('service::show', $service->slug)}}">Read
-                                                                                                                          More</a>
+                                                                        More</a>
                                                                 </p>
                                                             @endforeach
                                                         </li>
                                                     @endforeach
                                                     @foreach(servicesWithGroups(false) as $service)
                                                         <li>
-                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 200) !!}
+                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 500) !!}
                                                                 <a href="{{ route('service::show', $service->slug)}}">Read
-                                                                                                                      More</a>
+                                                                    More</a>
                                                             </p>
                                                         </li>
                                                     @endforeach
@@ -191,7 +191,7 @@
                                                 <label class="uk-float-left"><input type="checkbox" name="remember_me">
                                                     Remember Me</label>
                                                 <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot
-                                                                                                         Password?</a>
+                                                    Password?</a>
                                             </div>
                                         </form>
                                     </div>

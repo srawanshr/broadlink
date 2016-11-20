@@ -87,10 +87,8 @@
                     }
                 });
             });
-            jQuery(function($) {
-                $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
-                    $(this).trigger('click.uikit.tab');
-                });
+            $('.uk-tab-hover >li:not(.uk-tab-responsive, .uk-disabled)').hover(function () {
+                $(this).click();
             });
         });
     </script>
