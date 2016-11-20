@@ -10,7 +10,7 @@
     <div class="uk-grid">
         <div class="uk-width-small-1-1 {{ $plan->image ? 'uk-width-medium-7-10' : ''}}">
             <div class="uk-grid uk-grid-large">
-                @foreach($plan->products as $product)
+                @foreach($plan->products()->active()->get() as $product)
                     <div class="uk-width-small-1-1 uk-width-medium-1-{{ $plan->products->count() }}">
                         <div class="uk-panel">
                             <div class="bl-package">

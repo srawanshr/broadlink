@@ -55,6 +55,7 @@
                                                                 <p class="bl-padding-tb">{{ $service->name  }}</p>
                                                                 <p>
                                                                     {!! str_limit($service->meta_description, 100) !!}
+                                                                    <br>
                                                                     <a href="{{ route('service::show', $service->slug)}}">Read
                                                                         More</a>
                                                                 </p>
@@ -64,6 +65,7 @@
                                                     @foreach(servicesWithGroups(false) as $service)
                                                         <li>
                                                             <p class="bl-padding-tb">{!! str_limit($service->meta_description, 500) !!}
+                                                                <br>
                                                                 <a href="{{ route('service::show', $service->slug)}}">Read
                                                                     More</a>
                                                             </p>

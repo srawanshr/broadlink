@@ -14,14 +14,14 @@
                         </h3>
                         <div class="uk-form-row">
                             <div class="uk-grid">
-                                <div class="uk-width-medium-1-2">
+                                <div class="uk-width-medium-1-1">
                                     <label>Name</label>
                                     {{ Form::text( 'name', old('name'), [ 'id' => 'product_name', 'class' => 'md-input', 'required' ] ) }}
                                 </div>
-                                <div class="uk-width-medium-1-2">
+                                {{-- <div class="uk-width-medium-1-2">
                                     <label>Price</label>
                                     {{ Form::number( 'price', old('price'), [ 'id' => 'product_price', 'class' => 'md-input', 'step' => 'any', 'required' ] ) }}
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

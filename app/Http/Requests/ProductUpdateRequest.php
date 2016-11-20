@@ -27,7 +27,7 @@ class ProductUpdateRequest extends Request {
             'plan_id'         => 'required|exists:plans,id',
             'name'            => 'required',
             'description_raw' => 'required',
-            'price'           => 'required',
+            // 'price'           => 'required',
             'image'           => 'image|max:2048',
             'is_active'       => 'boolean'
         ];
@@ -41,6 +41,7 @@ class ProductUpdateRequest extends Request {
         $inputs = $this->all();
 
         $inputs['is_active'] = $this->get('is_active', false);
+        $inputs['price'] = $this->get('price', 0);
 
         return $inputs;
     }

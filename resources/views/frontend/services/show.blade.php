@@ -37,7 +37,7 @@
                 @endforeach
             </ul>
             <ul class="uk-switcher bl-switcher" id="services">
-                @foreach($service->plans as $plan)
+                @foreach($service->plans()->active()->get() as $plan)
                     <li>@include('frontend.services.plan', compact('plan'))</li>
                 @endforeach
             </ul>
