@@ -86,7 +86,7 @@
                                                             <p>{{ empty($contact->address) ? '': 'Address: '.$contact->address }}</p>
                                                             <p>{{ empty($contact->phone) ? '': 'Phone: '.$contact->phone }}</p>
                                                             <p>{{ empty($contact->email) ? '': 'Email: '.$contact->email }}</p>
-                                                            <p>{{ empty($contact->description) ? '': 'Note: '.$contact->description }}</p>
+                                                            <p>{{ empty($contact->description) ? '': $contact->description }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
