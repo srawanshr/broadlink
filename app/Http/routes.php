@@ -167,6 +167,7 @@ $router->group([
         Route::get('pin', 'PinController@index')->name('index');
         Route::get('pin/import', 'PinController@create')->name('create');
         Route::post('pin', 'PinController@store')->name('store');
+        Route::delete('{pin}', 'PinController@destroy')->name('destroy');
     });
 
     /*

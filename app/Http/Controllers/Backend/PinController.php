@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PinImportRequest;
 
-class PinController extends Controller
-{
+class PinController extends Controller {
+
     /**
      * The pin model instance.
      */
@@ -57,13 +57,16 @@ class PinController extends Controller
 
         $validator = $request->validateRows($rows);
 
-        if($validator->fails()) {
+        if ($validator->fails())
+        {
 
             return redirect()->back()->withErrors($validator);
 
-        } else {
+        } else
+        {
 
-            foreach($rows as $row) {
+            foreach ($rows as $row)
+            {
 
                 $pin = Pin::create($row);
 
@@ -71,7 +74,7 @@ class PinController extends Controller
 
             return redirect()
                 ->route('admin::pin.index')
-                ->withSuccess( trans('messages.create_success', [ 'entity' => 'Pins' ]) );
+                ->withSuccess(trans('messages.create_success', ['entity' => 'Pins']));
         }
 
     }
@@ -85,6 +88,30 @@ class PinController extends Controller
     {
         $pins = Pin::query();
 
-        return Datatables::of($pins)->make(true);
+        return Datatables::of($pins)
+            ->addColumn('action', function ($pin)
+            {
+                $button = '<a data-source="' . route('admin::pin.destroy', $pin->id) . '" data-uk-tooltip="{pos:\'left\'}" title="Delete"><i class="material-icons md-24">&#xE872;</i></a>';
+
+                return $button;
+            })->make(true);
+    }
+
+    /**
+     * @param Pin $pin
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Pin $pin)
+    {
+        if ($pin->delete())
+        {
+            return response()->json([
+                'Result' => 'OK'
+            ]);
+        }
+
+        return response()->json([
+            'Result' => 'Error'
+        ], 500);
     }
 }

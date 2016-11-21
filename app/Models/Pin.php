@@ -24,6 +24,13 @@ class Pin extends Model
         'is_used' => 'boolean'
     ];
 
+    /**
+     * The morph class name for this model.
+     *
+     * @var array
+     */
+    protected $morphClass = 'Pin';
+
     public function scopeUsed( $query )
     {
         return $query->where( 'is_used', 1 );

@@ -24,6 +24,7 @@
                             <th>Pin</th>
                             <th>Voucher</th>
                             <th>Used</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
 
@@ -51,4 +52,29 @@
     <script src="{{ asset('assets/backend/js/custom/datatables_uikit.min.js') }}"></script>
 
     @include('backend.pin.partials.table-script')
+
+    <script>
+        function deleteItem(item) {
+            var $row = item.closest("tr");
+            $.ajax({
+                type: 'post',
+                url: item.data('source'),
+                data: {_method: 'delete'},
+                success: function () {
+                    $row.addClass("danger").fadeOut();
+                },
+                error: function () {
+                    UIkit.modal.alert('Remove failed!');
+                }
+            });
+        }
+
+        $(document).on('click', '.item_delete', function() {
+            var item = $(this);
+
+            UIkit.modal.confirm('Are you sure?', function() {
+                deleteItem(item);
+            });
+        });
+    </script>
 @endpush

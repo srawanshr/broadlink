@@ -29,11 +29,13 @@
                         {data: 'pin'},
                         {data: 'voucher'},
                         {
-                            data: 'is_used', render: function (data) {
-                            return data == 0 ? 'No' : 'Yes'
-                        }
+                            data: 'is_used',
+                            render: function (data) {
+                                return data == 0 ? 'No' : 'Yes'
+                            }
                         },
-                    ],
+                        {data: 'action', searchable: false, orderable: false, class: 'text-right'}
+                    ]
                 });
 
                 // Apply the search
