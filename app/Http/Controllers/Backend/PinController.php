@@ -91,7 +91,7 @@ class PinController extends Controller {
         return Datatables::of($pins)
             ->addColumn('action', function ($pin)
             {
-                $button = '<a data-source="' . route('admin::pin.destroy', $pin->id) . '" data-uk-tooltip="{pos:\'left\'}" title="Delete"><i class="material-icons md-24">&#xE872;</i></a>';
+                $button = '<a class="item_delete" data-source="' . route('admin::pin.destroy', $pin->id) . '" data-uk-tooltip="{pos:\'left\'}" title="Delete"><i class="material-icons md-24">&#xE872;</i></a>';
 
                 return $button;
             })->make(true);
