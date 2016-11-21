@@ -5,8 +5,8 @@ namespace App\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-class RouteServiceProvider extends ServiceProvider
-{
+class RouteServiceProvider extends ServiceProvider {
+
     /**
      * This namespace is applied to your controller routes.
      *
@@ -19,62 +19,78 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
         parent::boot($router);
 
-        $router->bind( 'post', function ( $slug ) {
-            return \App\Models\Post::where( 'slug', $slug )->first();
+        $router->bind('post', function ($slug)
+        {
+            return \App\Models\Post::where('slug', $slug)->first();
         });
 
-        $router->bind( 'page_slug', function ( $slug ) {
-            return \App\Models\Page::where( 'slug', $slug )->first();
+        $router->bind('page_slug', function ($slug)
+        {
+            return \App\Models\Page::where('slug', $slug)->first();
         });
 
-        $router->bind( 'sub_page_slug', function ( $slug ) {
-            return \App\Models\SubPage::where( 'slug', $slug )->first();
+        $router->bind('sub_page_slug', function ($slug)
+        {
+            return \App\Models\SubPage::where('slug', $slug)->first();
         });
 
-        $router->bind( 'service_slug', function ( $slug ) {
-            return \App\Models\Service::where( 'slug', $slug )->first();
+        $router->bind('service_slug', function ($slug)
+        {
+            return \App\Models\Service::where('slug', $slug)->first();
         });
 
-        $router->bind( 'plan_slug', function ( $slug ) {
-            return \App\Models\Plan::where( 'slug', $slug )->first();
+        $router->bind('plan_slug', function ($slug)
+        {
+            return \App\Models\Plan::where('slug', $slug)->first();
         });
 
-        $router->bind( 'product_slug', function ( $slug ) {
-            return \App\Models\Product::where( 'slug', $slug )->first();
+        $router->bind('product_slug', function ($slug)
+        {
+            return \App\Models\Product::where('slug', $slug)->first();
         });
 
-        $router->bind( 'client_slug', function ( $slug ) {
-            return \App\Models\Client::where( 'slug', $slug )->first();
+        $router->bind('client_slug', function ($slug)
+        {
+            return \App\Models\Client::where('slug', $slug)->first();
         });
 
-        $router->bind( 'user_slug', function ( $slug ) {
-            return \App\Models\User::where( 'slug', $slug )->first();
+        $router->bind('user_slug', function ($slug)
+        {
+            return \App\Models\User::where('slug', $slug)->first();
         });
 
-        $router->bind( 'admin_slug', function ( $slug ) {
-            return \App\Models\Admin::where( 'slug', $slug )->first();
+        $router->bind('admin_slug', function ($slug)
+        {
+            return \App\Models\Admin::where('slug', $slug)->first();
         });
 
-        $router->bind( 'banner_id', function ( $id ) {
+        $router->bind('banner_id', function ($id)
+        {
             return \App\Models\Image::find($id);
         });
 
-        $router->bind( 'invoice_slug', function ( $slug ) {
+        $router->bind('invoice_slug', function ($slug)
+        {
             return \App\Models\Invoice::where('slug', $slug)->first();
+        });
+
+        $router->bind('pin', function ($id)
+        {
+            return \App\Models\Pin::find($id);
         });
     }
 
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
@@ -89,14 +105,15 @@ class RouteServiceProvider extends ServiceProvider
      *
      * These routes all receive session state, CSRF protection, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     protected function mapWebRoutes(Router $router)
     {
         $router->group([
             'namespace' => $this->namespace, 'middleware' => 'web',
-        ], function ($router) {
+        ], function ($router)
+        {
             require app_path('Http/routes.php');
         });
     }

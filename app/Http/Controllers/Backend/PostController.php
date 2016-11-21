@@ -48,7 +48,7 @@ class PostController extends Controller {
             ->addColumn('action', function ($post)
             {
                 $buttons = '<a href="' . route('admin::post.edit', $post->slug) . '" data-uk-tooltip="{pos:\'left\'}" title="Edit"><i class="material-icons md-24">&#xE254;</i></a>';
-                $buttons .= '<a data-source="' . route('admin::plan.destroy', $post->slug) . '" data-uk-tooltip="{pos:\'left\'}" title="Delete"><i class="material-icons md-24">&#xE872;</i></a>';
+                $buttons .= '<a data-source="' . route('admin::post.destroy', $post->slug) . '" data-uk-tooltip="{pos:\'left\'}" title="Delete"><i class="material-icons md-24">&#xE872;</i></a>';
 
                 return $buttons;
             })
