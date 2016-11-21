@@ -15,6 +15,7 @@
                             <th>Pin</th>
                             <th>Voucher</th>
                             <th>Used</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
 
