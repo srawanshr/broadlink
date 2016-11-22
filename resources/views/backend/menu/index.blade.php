@@ -4,7 +4,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/plugins/kendo-ui-core/styles/kendo.common-material.min.css') }}"/>
-<link rel="stylesheet" href="{{ asset('assets/plugins//kendo-ui-core/styles/kendo.material.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('assets/plugins/kendo-ui-core/styles/kendo.material.min.css') }}"/>
 <style type="text/css">
     .editable {
         background: transparent;
@@ -63,12 +63,12 @@
                                         Services (Fixed)
                                     </div>
                                 </div>
-                                <div class="bl-accordion-item">
+                                {{-- <div class="bl-accordion-item">
                                     <h3 class="uk-accordion-title">Shop</h3>
                                     <div class="uk-accordion-content" style="display: none">
-                                        ShopM (Fixed)
+                                        Shop (Fixed)
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <hr>
                             <div class="uk-accordion uk-sortable" data-uk-sortable id="primary-menu-list">

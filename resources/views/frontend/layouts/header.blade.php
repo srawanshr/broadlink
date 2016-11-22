@@ -80,11 +80,11 @@
                             </div>
                         </div>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('voucher::index') }}">
                             Vouchers
                         </a>
-                    </li>
+                    </li> --}}
                     @foreach(menus() as $menu)
                         @if($menu->type == 0)
                             <li>
