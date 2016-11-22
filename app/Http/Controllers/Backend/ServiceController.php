@@ -86,6 +86,21 @@ class ServiceController extends Controller {
                     $service->icon()->create(['name' => cleanFileName($icon)])->upload($icon);
                 }
             }
+
+            if ($request->hasFile('image'))
+            {
+                $image = $request->file('image');
+
+                $service->serviceImage()->firstOrCreate([]);
+
+                if ($service->serviceImage->image)
+                {
+                    $service->serviceImage->image->upload($image);
+                } else
+                {
+                    $service->serviceImage->image()->create(['name' => cleanFileName($image)])->upload($image);
+                }
+            }
         });
 
         return redirect()->back()->with('success', trans('messages.update_success', ['entity' => 'Service']));

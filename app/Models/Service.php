@@ -19,7 +19,7 @@ class Service extends Model {
         'name', 'slogan', 'meta_description', 'description_raw', 'description_html', 'order', 'is_active'
     ];
 
-    protected $appends = [ 'group_id' ];
+    protected $appends = ['group_id'];
 
     /**
      * The attributes that should be typecast into boolean.
@@ -98,9 +98,12 @@ class Service extends Model {
     public function setOrderAttribute($value)
     {
         if ( ! $this->exists && empty($value))
+        {
             $this->attributes['order'] = static::max('order') + 1;
-        else
+        } else
+        {
             $this->attributes['order'] = $value;
+        }
     }
 
     /**
@@ -121,6 +124,11 @@ class Service extends Model {
     public function banners()
     {
         return $this->morphMany('App\Models\Image', 'imageable');
+    }
+
+    public function serviceImage()
+    {
+        return $this->hasOne('App\Models\ServiceImage');
     }
 
     /**

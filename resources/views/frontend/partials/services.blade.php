@@ -44,8 +44,12 @@
                                             <div class="uk-width-medium-1-2">
                                                 <div data-uk-slideshow="{autoplay:true, animation:'swipe'}" class="height-4">
                                                     <ul class="uk-slideshow height-4">
-                                                        @forelse($group->pluck('banners')->flatten() as $banner)
-                                                            <li class="height-4"><img src="{{ asset($banner->resize(600, null)) }}" class="height-4"></li>
+                                                        @forelse($group->pluck('serviceImage')->flatten() as $serviceImage)
+                                                            @if($serviceImage->image)
+                                                                <li class="height-4"><img src="{{ asset($serviceImage->image->resize(600, null)) }}" class="height-4"></li>
+                                                            @else
+                                                                <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
+                                                            @endif
                                                         @empty
                                                             <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
                                                         @endforelse
@@ -77,11 +81,11 @@
                             <div class="uk-width-medium-1-2">
                                 <div data-uk-slideshow="{autoplay:true, animation:'swipe'}" class="height-4">
                                     <ul class="uk-slideshow height-4">
-                                        @forelse($service->banners as $banner)
-                                            <li class="height-4"><img src="{{ asset($banner->resize(600, null)) }}" class="height-4"></li>
-                                        @empty
+                                        @if($service->serviceImage && $service->serviceImage->image)
+                                            <li class="height-4"><img src="{{ asset($service->serviceImage->image->resize(600, null)) }}" class="height-4"></li>
+                                        @else
                                             <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
-                                        @endforelse
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

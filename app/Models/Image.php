@@ -6,6 +6,7 @@ use File;
 use App\Services\ImageManager;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Database\Eloquent\Builder;
 
 class Image extends Model
 {   
@@ -37,7 +38,7 @@ class Image extends Model
             
             $this->size = File::size($image);
 
-            $this->path = ImageManager::upload( $image, $this->image_path, $this->name );
+            $this->path = ImageManager::upload( $image, $this->image_path, cleanFileName($image) );
 
             $this->save();
         }
