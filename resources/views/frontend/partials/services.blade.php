@@ -79,15 +79,11 @@
                                 </div>
                             </div>
                             <div class="uk-width-medium-1-2">
-                                <div data-uk-slideshow="{autoplay:true, animation:'swipe'}" class="height-4">
-                                    <ul class="uk-slideshow height-4">
-                                        @if($service->serviceImage && $service->serviceImage->image)
-                                            <li class="height-4"><img src="{{ asset($service->serviceImage->image->resize(600, null)) }}" class="height-4"></li>
-                                        @else
-                                            <li class="height-4"><img src="{{ asset('assets/frontend/img/service_img1.png') }}" class="height-4"></li>
-                                        @endif
-                                    </ul>
-                                </div>
+                                @if($service->serviceImage && $service->serviceImage->image)
+                                    <img src="{{ asset($service->serviceImage->image->resize(600, null)) }}">
+                                @else
+                                    <img src="{{ asset('assets/frontend/img/service_img1.png') }}">
+                                @endif
                             </div>
                         </div>
                     </div>

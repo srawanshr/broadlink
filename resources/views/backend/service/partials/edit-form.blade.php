@@ -54,7 +54,7 @@
                             <br>
                             <br>
                             @if($service->serviceImage && $service->serviceImage->image)
-                                <img src="{{ asset($service->serviceImage->image->thumbnail(200,200)) }}">
+                                <img src="{{ asset($service->serviceImage->image->resize(200,null)) }}">
                             @endif
                             {{ Form::file( 'image', old('image'), [ 'id' => 'service_image', 'class' => 'md-input', 'required' ] ) }}
                         </div>
