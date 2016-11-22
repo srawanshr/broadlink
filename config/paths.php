@@ -14,17 +14,18 @@ return [
 
     'image' => [
 
-        'Admin'   => 'images/profile-pictures/',
-        'User'    => 'images/profile-pictures/',
-        'Page'    => 'images/page-pictures/',
-        'Service' => 'images/service-pictures/',
-        'Plan'    => 'images/plan-pictures/',
-        'Product' => 'images/product-pictures/',
-        'Menu'    => 'images/menu-pictures/',
-        'Client'  => 'images/client-pictures/',
-        'Post'    => 'images/post-pictures/',
-        'Setting' => 'images/',
-        'Group'   => 'images/',
+        'Admin'        => 'images/profile-pictures/',
+        'User'         => 'images/profile-pictures/',
+        'Page'         => 'images/page-pictures/',
+        'Service'      => 'images/service-pictures/',
+        'ServiceImage' => 'images/service-pictures/',
+        'Plan'         => 'images/plan-pictures/',
+        'Product'      => 'images/product-pictures/',
+        'Menu'         => 'images/menu-pictures/',
+        'Client'       => 'images/client-pictures/',
+        'Post'         => 'images/post-pictures/',
+        'Setting'      => 'images/',
+        'Group'        => 'images/',
 
     ],
 

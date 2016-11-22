@@ -49,6 +49,15 @@
                             <label>Meta Description</label>
                             {{ Form::textarea( 'meta_description', old('meta_description'), [ 'id' => 'service_meta_description', 'class' => 'md-input', 'cols' => '30', 'rows' => '4' ] ) }}
                         </div>
+                        <div class="uk-form-row">
+                            <label>Featured Image</label>
+                            <br>
+                            <br>
+                            @if($service->serviceImage && $service->serviceImage->image)
+                                <img src="{{ asset($service->serviceImage->image->thumbnail(200,200)) }}">
+                            @endif
+                            {{ Form::file( 'image', old('image'), [ 'id' => 'service_image', 'class' => 'md-input', 'required' ] ) }}
+                        </div>
                     </div>
                 </div>
             </div>
