@@ -88,20 +88,20 @@
                     @foreach(menus() as $menu)
                         @if($menu->type == 0)
                             <li>
-                                <a href="{{ $menu->url }}">
+                                <a href="{{ asset($menu->url) }}">
                                     {{ $menu->name }}
                                 </a>
                             </li>
                         @elseif($menu->type == 1)
                             <li class="uk-parent" data-uk-dropdown>
-                                <a href="{{ $menu->url }}">
+                                <a href="{{ asset($menu->url) }}">
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown uk-dropdown-navbar">
                                     <ul class="uk-nav uk-nav-navbar">
                                         @foreach($menu->subMenus as $submenu)
                                             <li>
-                                                <a href="{{ $submenu->url }}">
+                                                <a href="{{ asset($submenu->url) }}">
                                                     <i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i>
                                                     {{ $submenu->name }}
                                                 </a>
@@ -112,7 +112,7 @@
                             </li>
                         @elseif($menu->type == 2)
                             <li class="uk-parent" data-uk-dropdown="{justify:'.bl-navbar-container'}">
-                                <a href="{{ $menu->url }}">
+                                <a href="{{ asset($menu->url) }}">
                                     {{ $menu->name }}
                                 </a>
                                 <div class="uk-dropdown bl-card">
@@ -125,7 +125,7 @@
                                                 <div class="uk-grid bl-grid-medium uk-margin-remove">
                                                     @forelse($menu->subMenus as $submenu)
                                                         <div class="uk-width-medium-1-3">
-                                                            <a href="{{ $submenu->url }}" class="bl-icon-button">
+                                                            <a href="{{ asset($submenu->url) }}" class="bl-icon-button">
                                                                 <span><i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i></span>
                                                                 <cite>{{ $submenu->name }}</cite>
                                                             </a>
@@ -259,7 +259,7 @@
                     <ul class="uk-nav-sub">
                         @foreach($menu->subMenus as $subMenu)
                             <li>
-                                <a href="{{ $subMenu->url }}">
+                                <a href="{{ asset($subMenu->url) }}">
                                     <i class="material-icons uk-vertical-align-middle">&#x{{ $subMenu->icon }};</i>
                                     {{ $subMenu->name }}
                                 </a>
