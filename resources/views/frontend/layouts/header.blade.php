@@ -125,7 +125,7 @@
                                         <div class="{{ $image ? 'uk-width-medium-7-10 uk-width-3-5' : 'uk-width-1-1' }}">
                                             <div class="uk-panel">
                                                 <div class="uk-grid bl-grid-medium uk-margin-remove">
-                                                    @forelse($menu->subMenus as $submenu)
+                                                    @forelse($menu->subMenus()->orderBy('order')->get() as $submenu)
                                                         <div class="uk-width-medium-1-3">
                                                             <a href="{{ asset($submenu->url) }}" class="bl-icon-button">
                                                                 <span><i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i></span>
@@ -247,11 +247,11 @@
                     @endforeach
                 </ul>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('voucher::index')  }}">
                     <i class="material-icons">&#xE89A;</i> Shop
                 </a>
-            </li>
+            </li> --}}
             @foreach(menus() as $menu)
                 <li class="{{ $menu->subMenus->count() > 0 ? 'uk-parent' : ''}}">
                     <a href="#">
