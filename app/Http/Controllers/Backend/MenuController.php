@@ -44,7 +44,7 @@ class MenuController extends Controller {
     {
         DB::transaction(function () use ($request)
         {
-            $order = 0;
+            $order = 1;
             $menuIds = [];
             $subMenuIds = [];
             foreach ($request->get('primary-menu-list') as $key => $data)
@@ -74,11 +74,13 @@ class MenuController extends Controller {
                     foreach ($subMenus as $key => $subData)
                     {
                         $subData['slug'] = str_slug($subData['name']);
+                        $subData['order'] = $suborder;
                         if ($submenu = $menu->subMenus()->find($key))
                             $submenu->update($subData);
                         else
                             $submenu = $menu->subMenus()->create($subData);
 
+                        $suborder ++;
                         array_push($subMenuIds, $submenu->id);
                     }
                 }
