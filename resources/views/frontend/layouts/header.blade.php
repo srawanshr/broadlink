@@ -99,7 +99,7 @@
                                 </a>
                                 <div class="uk-dropdown uk-dropdown-navbar">
                                     <ul class="uk-nav uk-nav-navbar">
-                                        @foreach($menu->subMenus as $submenu)
+                                        @foreach($menu->subMenus()->orderBy('order')->get() as $submenu)
                                             <li>
                                                 <a href="{{ asset($submenu->url) }}">
                                                     <i class="material-icons uk-vertical-align-middle">&#x{{ $submenu->icon }};</i>
@@ -117,10 +117,12 @@
                                 </a>
                                 <div class="uk-dropdown bl-card">
                                     <div class="uk-grid uk-dropdown-grid">
-                                        <div class="uk-width-medium-3-10 uk-width-small-2-5">
-                                            <img src="{{ asset($menu->image->path) }}">
-                                        </div>
-                                        <div class="uk-width-medium-7-10 uk-width-3-5">
+                                        @if($image = $menu->image)
+                                            <div class="uk-width-medium-3-10 uk-width-small-2-5">
+                                                <img src="{{ asset($image->path) }}">
+                                            </div>
+                                        @endif
+                                        <div class="{{ $image ? 'uk-width-medium-7-10 uk-width-3-5' : 'uk-width-1-1' }}">
                                             <div class="uk-panel">
                                                 <div class="uk-grid bl-grid-medium uk-margin-remove">
                                                     @forelse($menu->subMenus as $submenu)
@@ -257,7 +259,7 @@
                         {{ $menu->name }}
                     </a>
                     <ul class="uk-nav-sub">
-                        @foreach($menu->subMenus as $subMenu)
+                        @foreach($menu->subMenus()->orderBy('order')->get() as $subMenu)
                             <li>
                                 <a href="{{ asset($subMenu->url) }}">
                                     <i class="material-icons uk-vertical-align-middle">&#x{{ $subMenu->icon }};</i>
