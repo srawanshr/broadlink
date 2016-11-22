@@ -19,7 +19,9 @@ class MenuController extends Controller {
      */
     public function index()
     {
-        $primaryMenus = Menu::with('image', 'subMenus')->orderBy('order')->get();
+        $primaryMenus = Menu::with(['image', 'subMenus' => function($q) {
+            $q->orderBy('order');
+        }])->orderBy('order')->get();
 
         $allPages = Page::draft(false)->get();
         $pages = [];
