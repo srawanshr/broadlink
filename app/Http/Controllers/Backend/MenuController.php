@@ -45,6 +45,7 @@ class MenuController extends Controller {
         DB::transaction(function () use ($request)
         {
             $order = 1;
+            $suborder = 1;
             $menuIds = [];
             $subMenuIds = [];
             foreach ($request->get('primary-menu-list') as $key => $data)
@@ -70,7 +71,6 @@ class MenuController extends Controller {
                 // for submenus
                 if ($subMenus = $request->get('dropdown-menu-list-' . $key, false))
                 {
-                    $suborder = 1;
                     foreach ($subMenus as $key => $subData)
                     {
                         $subData['slug'] = str_slug($subData['name']);
