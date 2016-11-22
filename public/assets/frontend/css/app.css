@@ -358,6 +358,10 @@ h3 {
       background-color: transparent; }
   #our-services .uk-subnav-pill .uk-active * {
     background: #e76724; }
+  #our-services #service-switcher h2 {
+    line-height: 1.1em; }
+  #our-services #service-switcher p {
+    text-align: justify; }
 
 #footerWrapper {
   width: 100%;
