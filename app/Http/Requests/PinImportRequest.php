@@ -47,7 +47,11 @@ class PinImportRequest extends Request
 
             foreach($sheet as $row) {
 
-                array_push($rows, $row->all());
+                array_push($rows, [
+                    'sno' => $row->sno,
+                    'pin' => $row->pin,
+                    'voucher' => extractIntval($row->voucher)
+                ]);
 
             }
 

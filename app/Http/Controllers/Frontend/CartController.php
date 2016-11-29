@@ -69,7 +69,7 @@ class CartController extends URLCrawler {
     {
         $pin = Pin::notUsed()->get()->filter(function ($item) use ($price)
         {
-            return intval(filter_var($item->voucher, FILTER_SANITIZE_NUMBER_INT)) == $price;
+            return extractIntval($item->voucher) == $price;
         });
 
         if ($pin->isEmpty())

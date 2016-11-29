@@ -234,3 +234,8 @@ function image($path)
 {
     return File::exists($path) ? asset($path) : asset(config('paths.placeholder.default'));
 }
+
+function extractIntval($str)
+{
+    return intval(filter_var($str, FILTER_SANITIZE_NUMBER_INT));
+}

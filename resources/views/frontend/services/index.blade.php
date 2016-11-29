@@ -28,10 +28,10 @@
                         <div class="uk-vertical-align-middle">
                             <h1>{{ $service->name }}</h1>
                             <p>
-                                {!! str_limit($service->description_html, 150) !!}
+                                {!! str_limit($service->meta_description, 150) !!}
                             </p>
                             <a href="{{ route('service::show', $service->slug) }}"
-                               class="uk-button bl-btn-outline">Buy</a>
+                               class="uk-button bl-btn-outline">Subscribe</a>
                         </div>
                     </div>
                 </div>

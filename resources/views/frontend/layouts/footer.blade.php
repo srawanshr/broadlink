@@ -52,8 +52,8 @@
     </div>
     <hr class="divider">
     <div class="uk-container-center uk-container">
-        <div class="uk-text-muted uk-text-center bl-copyrights">
-            <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Security</a> | <a href="#" class="copyright">© Broadlink Inc {{ date('Y') }}</a>
+        <div class="uk-text-muted uk-text-center bl-copyrights uk-text-small">
+            <a href="#" class="copyright">© Broadlink Inc {{ date('Y') }}</a>
         </div>
     </div>
 </footer>
