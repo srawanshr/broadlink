@@ -15,15 +15,13 @@
             </div>
             @foreach(services() as $key => $service)
                 <div class="uk-grid uk-grid-collapse uk-margin-remove" id="internet">
-                    <div class="uk-width-medium-1-2 uk-cover {{ is_even($key) ? 'uk-push-1-2':'' }}"
+                    <div class="uk-width-medium-1-2 uk-text-center uk-cover {{ is_even($key) ? 'uk-push-1-2':'' }}"
                          data-uk-scrollspy="{cls:'uk-animation-slide-{{ $direction = $key %2 == 0 ? 'right': 'left' }}', topoffset: -100, repeat: true}">
-                        <ul class="uk-slideshow" data-uk-slideshow="{autoplay:true, animation:'swipe'}">
-                            @forelse($service->banners as $banner)
-                                <li><img src="{{ asset($banner->thumbnail(565, 330)) }}" class="" alt=""></li>
-                            @empty
-                                <li><img src="{{ asset(config('paths.placeholder.service')) }}" class="" alt=""></li>
-                            @endforelse
-                        </ul>
+                        @if($service->serviceImage && $service->serviceImage->image)
+                            <img src="{{ asset($service->serviceImage->image->resize(null, 330)) }}">
+                        @else
+                            <img src="{{ asset(config('paths.placeholder.service')) }}">
+                        @endif
                     </div>
                     <div class="uk-width-medium-1-2 uk-vertical-align bl-service-description uk-text-medium-left {{ is_even($key) ? 'uk-pull-1-2':'' }}"
                          data-uk-scrollspy="{cls:'uk-animation-slide-{{ $direction = $key %2 == 0 ? 'left': 'right' }}', topoffset: -100, repeat: true}">

@@ -78,11 +78,11 @@
                                     <a href="{{ route('service::show', $service->slug) }}" class="uk-button bl-btn-outline">View</a>
                                 </div>
                             </div>
-                            <div class="uk-width-medium-1-2">
+                            <div class="uk-width-medium-1-2 uk-container-center">
                                 @if($service->serviceImage && $service->serviceImage->image)
                                     <img src="{{ asset($service->serviceImage->image->resize(600, null)) }}">
                                 @else
-                                    <img src="{{ asset('assets/frontend/img/service_img1.png') }}">
+                                    <img src="{{ asset(config('paths.placeholder.service')) }}">
                                 @endif
                             </div>
                         </div>
