@@ -111,6 +111,10 @@ class SettingsTableSeeder extends Seeder
                 'slug'  => 'pop-up',
                 'name'  => 'Pop Up',
                 'value' => 'images/pop-up.jpg'
+            ],[
+                'slug'  => 'pop-up-enabled',
+                'name'  => 'Enable Popup',
+                'value' => '1'
             ]
         ]);
     }

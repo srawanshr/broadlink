@@ -36,7 +36,10 @@ class SettingController extends Controller {
      */
     public function update(Request $request)
     {
-        foreach ($request->get('setting') as $slug => $value)
+        $inputs = $request->get('setting');
+        $inputs['pop-up-enabled'] = $request->get('setting.pop-up-enabled', 0);
+        
+        foreach ($inputs as $slug => $value)
         {
             $setting = $this->setting->fetch(str_slug($slug))->first();
 

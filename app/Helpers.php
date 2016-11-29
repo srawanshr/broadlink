@@ -164,11 +164,11 @@ function clients()
  * @param $query
  * @return mixed
  */
-function setting($query)
+function setting($query, $default = null)
 {
     $setting = \App\Models\Setting::fetch($query)->first();
 
-    return $setting ? $setting->value : null;
+    return $setting ? $setting->value : $default;
 }
 
 /**

@@ -75,6 +75,9 @@
                                 <h3 class="md-card-toolbar-heading-text">
                                     Pop Up
                                 </h3>
+                                <div class="md-card-toolbar-actions">
+                                    <input type="checkbox" name="setting['pop-up-enabled']" value="1" data-switchery id="popup_switch"{{ setting('pop-up-enabled') == 1 ? ' checked': '' }}/>
+                                </div>
                             </div>
                             <div class="md-card-content">
                                 @if(! is_null(setting('pop-up')) && file_exists(public_path(setting('pop-up'))))
