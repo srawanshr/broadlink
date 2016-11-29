@@ -23,14 +23,14 @@
     @include('frontend.partials.testimonials')
     @include('frontend.partials.clients')
 
-    @unless(empty(setting('pop-up')))
+    @if(setting('pop-up-enabled') == 1)
     <div id="popup" class="uk-modal">
         <div class="uk-modal-dialog uk-modal-dialog-lightbox">
             <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
             <img src="{{ asset(setting('pop-up')) }}" alt="Broadlink">
         </div>
     </div>
-    @endunless
+    @endif
 @stop
 
 @section('footer')
