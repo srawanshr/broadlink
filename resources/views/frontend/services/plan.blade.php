@@ -15,7 +15,7 @@
                         <div class="uk-panel">
                             <div class="bl-package">
                                 <div class="uk-grid">
-                                    <div class="uk-width-1-1 bl-package-title uk-panel">
+                                    <div class="uk-width-1-1 bl-package-title">
                                         <h3 id="header-{{ $product->id }}" data-uk-sticky="{boundary: '#sticky-boundary-{{ $plan->id }}'}">{{ $product->name }}</h3>
                                     </div>
                                     {{-- <div class="uk-width-1-1 bl-package-featured-image">
