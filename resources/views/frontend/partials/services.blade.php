@@ -18,7 +18,7 @@
                         <span>
                             <img src="{{ asset($service->icon->resize(110,null)) }}">
                         </span>
-                        <div class="uk-hidden-small">{{ strtoupper( $service->name ) }}</div>
+                        {{-- <div class="uk-hidden-small">{{ strtoupper( $service->name ) }}</div> --}}
                     </a>
                 </li>
             @endforeach
@@ -80,7 +80,7 @@
                             </div>
                             <div class="uk-width-medium-1-2 uk-container-center">
                                 @if($service->serviceImage && $service->serviceImage->image)
-                                    <img src="{{ asset($service->serviceImage->image->resize(600, null)) }}">
+                                    <img src="{{ asset($service->serviceImage->image->resize(590, null)) }}">
                                 @else
                                     <img src="{{ asset(config('paths.placeholder.service')) }}">
                                 @endif
