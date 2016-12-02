@@ -80,7 +80,7 @@
                             </div>
                             <div class="uk-width-medium-1-2 uk-container-center">
                                 @if($service->serviceImage && $service->serviceImage->image)
-                                    <img src="{{ asset($service->serviceImage->image->resize(590, null)) }}">
+                                    <img src="{{ asset($service->serviceImage->image->resize(575, null)) }}">
                                 @else
                                     <img src="{{ asset(config('paths.placeholder.service')) }}">
                                 @endif

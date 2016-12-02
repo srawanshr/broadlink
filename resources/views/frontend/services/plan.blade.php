@@ -15,8 +15,8 @@
                         <div class="uk-panel">
                             <div class="bl-package">
                                 <div class="uk-grid">
-                                    <div class="uk-width-1-1 bl-package-title">
-                                        <h3 data-uk-sticky="{animation: 'uk-animation-slide-top', boundary: '#sticky-boundary'}">{{ $product->name }}</h3>
+                                    <div class="uk-width-1-1 bl-package-title" data-uk-sticky="{animation: 'uk-animation-slide-top', boundary: true}">
+                                        <h3>{{ $product->name }}</h3>
                                     </div>
                                     {{-- <div class="uk-width-1-1 bl-package-featured-image">
                                         <img src="{{ $product->image ? asset($product->image->thumbnail(342,209)): "" }}">

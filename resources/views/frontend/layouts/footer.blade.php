@@ -13,6 +13,7 @@
                         <ul class="uk-nav uk-nav-side">
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ route('service::index') }}">Services</a></li>
+                            <li><a href="{{ route('page::show','about') }}">About Us</a></li>
                             <li><a href="{{ route('voucher::index' )}}">Vouchers</a></li>
                             <li><a href="{{ route('contact::index' )}}">Contact</a></li>
                         </ul>
