@@ -1,4 +1,4 @@
-<footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light">
+<footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light uk-margin-top">
     <div class="uk-container-center uk-container">
         <div class="top-footer uk-grid">
             <div class="uk-width-small-1-1 uk-width-medium-2-10 uk-text-center-small">

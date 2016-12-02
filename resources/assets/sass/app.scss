@@ -128,7 +128,7 @@ input, textarea {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   .uk-dropdown {
-    padding: 20px;
+    padding: 10px;
     border: 5px solid white;
     background-color: #f1f1f1;
     top: 58px !important;
@@ -749,6 +749,9 @@ ul.bl-tab {
 }
 
 .bl-package {
+  .uk-sticky-placeholder {
+    height: 50px !important;
+  }
   font-size: 1.3em;
   h3, p, button {
     padding: 10px;

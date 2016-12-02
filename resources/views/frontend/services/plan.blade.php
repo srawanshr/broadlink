@@ -15,8 +15,8 @@
                         <div class="uk-panel">
                             <div class="bl-package">
                                 <div class="uk-grid">
-                                    <div class="uk-width-1-1 bl-package-title" data-uk-sticky="{animation: 'uk-animation-slide-top', boundary: true}">
-                                        <h3>{{ $product->name }}</h3>
+                                    <div class="uk-width-1-1 bl-package-title uk-panel">
+                                        <h3 id="header-{{ $product->id }}" data-uk-sticky="{boundary: '#sticky-boundary-{{ $plan->id }}'}">{{ $product->name }}</h3>
                                     </div>
                                     {{-- <div class="uk-width-1-1 bl-package-featured-image">
                                         <img src="{{ $product->image ? asset($product->image->thumbnail(342,209)): "" }}">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div id="sticky-boundary"></div>
+                <div id="sticky-boundary-{{ $plan->id }}"></div>
             </div>
         </div>
         @if($plan->image)
