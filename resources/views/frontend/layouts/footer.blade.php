@@ -1,14 +1,14 @@
-<footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light uk-margin-top">
+<footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light">
     <div class="uk-container-center uk-container">
         <div class="top-footer uk-grid">
             <div class="uk-width-small-1-1 uk-width-medium-1-3">
                 <div class="uk-panel">
                     <h3>Stay Connected</h3>
-                    <div class="uk-width-1-1">
+                    <div class="uk-width-1-1 uk-margin">
                         <form action="{{ url('subscribe') }}" method="post" class="uk-form">
                             {{ csrf_field() }}
-                            <input type="email" name="email" class="footer-input" placeholder="Your awesome email" required>
-                            <button type="submit" class="uk-button uk-button-primary">Subscribe</button>
+                            <input type="email" name="email" class="uk-form-large footer-input" placeholder="Your awesome email" required>
+                            <button type="submit" class="uk-button uk-button-primary uk-button-large">Subscribe</button>
                         </form>
                     </div>
                     <div class="uk-width-1-1 social">
@@ -51,8 +51,9 @@
             </div>
             <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center">
                 <img src="{{ asset('assets/frontend/img/callus.png') }}">
-                <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ str_replace('+977 ','',setting('phone')) }}</h3>
-                <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ str_replace('+977 ','',setting('fax')) }}</h3>
+                @foreach(explode("|",str_replace('+977','',setting('phone'))) as $phone)
+                    <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ $phone }}</h3>
+                @endforeach
             </div>
         </div>
     </div>
