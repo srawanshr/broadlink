@@ -16,6 +16,7 @@ Route::get('admin/logout', 'AdminAuth\AuthController@logout');
 Route::get('register', 'Auth\AuthController@showLoginForm');
 Route::post('register', 'Auth\AuthController@store');
 
+Route::post('subscribe', 'Frontend\ContactController@subscribe');
 /*
 |--------------------------------------------------------------------------
 | Password reset link request routes

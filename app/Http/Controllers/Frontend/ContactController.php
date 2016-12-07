@@ -39,4 +39,15 @@ class ContactController extends Controller {
 
         return redirect()->back()->withSuccess('Thank you for your feedback!');
     }
+
+    public function subscribe(Request $request)
+    {
+        Mail::raw($request->get('email').' wants to subscribe to the newsletter. ', function ($message) {
+            $message->from('no-reply@broadlink.com');
+            $message->subject("Subscription Notification");
+            $message->to(setting('email'));
+        });
+
+        return redirect()->back()->withSuccess('Thank you for subscribing!');
+    }
 }

@@ -1,45 +1,14 @@
 <footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light uk-margin-top">
     <div class="uk-container-center uk-container">
         <div class="top-footer uk-grid">
-            <div class="uk-width-small-1-1 uk-width-medium-2-10 uk-text-center-small">
-                <div class="uk-panel logo">
-                    <a href="{{ url('/') }}"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
-                </div>
-            </div>
-            <div class="uk-width-small-1-1 uk-width-medium-3-10 uk-text-center-small">
+            <div class="uk-width-small-1-1 uk-width-medium-1-3">
                 <div class="uk-panel">
-                    <h3 class="uk-panel-title">Company</h3>
-                    <div class="uk-margin">
-                        <ul class="uk-nav uk-nav-side">
-                            <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ route('service::index') }}">Services</a></li>
-                            <li><a href="{{ route('page::show','about') }}">About Us</a></li>
-                            <li><a href="{{ route('voucher::index' )}}">Vouchers</a></li>
-                            <li><a href="{{ route('contact::index' )}}">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-width-small-1-1 uk-width-medium-3-10 uk-text-center-small">
-                <div class="uk-panel">
-                    <h3 class="uk-panel-title">Services</h3>
-                    <div class="uk-margin">
-                        <ul class="uk-nav uk-nav-side">
-                        	@foreach(services() as $service)
-                            	<li><a href="{{ route('service::show', $service->slug) }}">{{ $service->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-width-small-1-1 uk-width-medium-2-10 uk-text-center-small">
-                <div class="uk-panel uk-text-center">
-                    <h3 class="uk-panel-title">Connect</h3>
+                    <h3>Stay Connected</h3>
                     <div class="uk-width-1-1">
-                        <form action="#" method="post" class="uk-form">
-                            <input type="email" name="email" placeholder="Your awesome email" class="uk-width-1-1">
-                            <br>
-                            <button type="submit" class="uk-button bl-btn-outline">Subscribe</button>
+                        <form action="{{ url('subscribe') }}" method="post" class="uk-form">
+                            {{ csrf_field() }}
+                            <input type="email" name="email" class="footer-input" placeholder="Your awesome email" required>
+                            <button type="submit" class="uk-button uk-button-primary">Subscribe</button>
                         </form>
                     </div>
                     <div class="uk-width-1-1 social">
@@ -49,12 +18,56 @@
                     </div>
                 </div>
             </div>
+            <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center-small">
+                <h4>Navigate</h4>
+                <div class="uk-grid">
+                    <div class="uk-grid-1-2">
+                        <div class="uk-panel">
+                            <div class="uk-margin">
+                                <ul class="uk-nav uk-nav-side">
+                                    <li><a href="{{ url('/') }}"><i class="material-icons">&#xE5CC;</i> Home</a></li>
+                                    <li><a href="{{ route('service::index') }}"><i class="material-icons">&#xE5CC;</i> Services</a></li>
+                                    <li><a href="{{ route('page::show','about') }}"><i class="material-icons">&#xE5CC;</i> About Us</a></li>
+                                    <li><a href="{{ route('voucher::index') }}"><i class="material-icons">&#xE5CC;</i> Vouchers</a></li>
+                                    <li><a href="{{ route('contact::index') }}"><i class="material-icons">&#xE5CC;</i> Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-grid-1-2">
+                        <div class="uk-panel">
+                            <div class="uk-margin">
+                                <ul class="uk-nav uk-nav-side">
+                                    @foreach(services() as $service)
+                                        <li>
+                                            <a href="{{ route('service::show', $service->slug) }}"><i class="material-icons">&#xE5CC;</i> {{ $service->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center">
+                <img src="{{ asset('assets/frontend/img/callus.png') }}">
+                <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ str_replace('+977 ','',setting('phone')) }}</h3>
+                <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ str_replace('+977 ','',setting('fax')) }}</h3>
+            </div>
         </div>
     </div>
     <hr class="divider">
-    <div class="uk-container-center uk-container">
-        <div class="uk-text-muted uk-text-center bl-copyrights uk-text-small">
-            <a href="#" class="copyright">© Broadlink Network and Communication Pvt. Ltd., {{ date('Y') }}</a>
+    <div class="uk-container-center uk-container bl-copyrights">
+        <div class="uk-text-muted uk-text-center">
+            © Broadlink Network and Communication Pvt. Ltd., {{ str_replace('|',', ', setting('address')) }}
+        </div>
+    </div>
+    <hr class="divider">
+    <div class="uk-container-center uk-container uk-margin-large">
+        <div class="uk-grid uk-grid-divider uk-grid-large uk-text-muted uk-text-center uk-text-small">
+            <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
+            <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
+            <div class="uk-width-1-3"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
         </div>
     </div>
 </footer>
