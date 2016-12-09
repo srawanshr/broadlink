@@ -1,4 +1,4 @@
-<footer id="footer" class="bl-block-footer uk-block-secondary bl-text-light">
+<footer id="footer" class="bl-block-footer bl-text-light">
     <div class="uk-container-center uk-container">
         <div class="top-footer uk-grid">
             <div class="uk-width-small-1-1 uk-width-medium-1-3">
@@ -8,7 +8,7 @@
                         <form action="{{ url('subscribe') }}" method="post" class="uk-form">
                             {{ csrf_field() }}
                             <input type="email" name="email" class="uk-form-large footer-input" placeholder="Your awesome email" required>
-                            <button type="submit" class="uk-button uk-button-primary uk-button-large">Subscribe</button>
+                            <button type="submit" class="uk-button uk-button-primary uk-button-large">Sign Up</button>
                         </form>
                     </div>
                     <div class="uk-width-1-1 social">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center-small">
-                <h4>Navigate</h4>
+                <h3>Navigate</h3>
                 <div class="uk-grid">
                     <div class="uk-grid-1-2">
                         <div class="uk-panel">
@@ -51,20 +51,17 @@
             </div>
             <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center">
                 <img src="{{ asset('assets/frontend/img/callus.png') }}">
-                @foreach(explode("|",str_replace('+977','',setting('phone'))) as $phone)
-                    <h3 class="uk-text-primary"><span class="uk-text-dark">+977</span> {{ $phone }}</h3>
-                @endforeach
             </div>
         </div>
     </div>
-    <hr class="divider">
+    <span class="fading-line"></span>
     <div class="uk-container-center uk-container bl-copyrights">
         <div class="uk-text-muted uk-text-center">
             © Broadlink Network and Communication Pvt. Ltd., {{ str_replace('|',', ', setting('address')) }}
         </div>
     </div>
-    <hr class="divider">
-    <div class="uk-container-center uk-container uk-margin-large">
+    <span class="fading-line"></span>
+    <div class="uk-container-center uk-container uk-margin">
         <div class="uk-grid uk-grid-divider uk-grid-large uk-text-muted uk-text-center uk-text-small">
             <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
             <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>

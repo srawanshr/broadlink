@@ -47,6 +47,11 @@ html {
   background-color: $light-gray;
 }
 
+@font-face {
+  font-family: Bebas;
+  src: url("/assets/frontend/fonts/BebasNeue.otf");
+}
+
 body {
   color: $text-color;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -579,69 +584,21 @@ h3 {
   }
 }
 
-#footerWrapper {
-  width: 100%;
-  float: left;
-  .footerArea {
-    padding: 0 0 3px 0;
-    width: 100%;
-    float: left;
-    position: relative;
-    background: #383737;
-    .link {
-      padding: 26px 0 17px 0;
-      width: 100%;
-      float: left;
-      position: relative;
-      border-bottom: 1px solid #f5b37f;
-      .sub-menu {
-        background: #324663 none repeat scroll 0 0;
-        border: 1px solid #fff;
-        border-radius: 5px;
-        display: none;
-        float: left;
-        left: 0;
-        margin: 0 auto;
-        position: absolute;
-        top: 46px;
-        z-index: 9;
-        li {
-          border-right: medium none;
-          display: block;
-          float: left;
-          padding: 15px 19.9px;
-          text-align: center;
-        }
-      }
-      ul {
-        margin: 0;
-        list-style: none;
-        text-align: center;
-        li {
-          padding: 0 24px;
-          display: inline-block;
-          border-right: 1px solid #fff;
-          line-height: 12px;
-          a {
-            color: $text-color-light;
-          }
-          &:hover > .sub-menu {
-            display: block;
-          }
-        }
-      }
-    }
-  }
-}
-
 #footer {
-  .logo {
-    img {
-      height: 150px;
-    }
-  }
+  background: #383737;
   .top-footer {
     margin: 35px 0;
+  }
+  h1,h2,h3,h4,h5 {
+    font-family: 'Bebas';
+  }
+  .fading-line {
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background: #484646;
+    background: -webkit-gradient(radial, 50% 50%, 124, 50% 50%, 531, from(#484646), to(rgba(255, 255, 255, 0)));
   }
   ul {
     list-style: none;
@@ -649,10 +606,15 @@ h3 {
     a {
       color: $text-color-light;
       padding: 0 15px;
+      font-size: 0.8em;
       &:hover {
         color: $primary-color;
       }
     }
+  }
+  .bl-copyrights {
+    text-transform: uppercase;
+    font-size: 0.9em;
   }
   .social {
     padding: 15px 0;
