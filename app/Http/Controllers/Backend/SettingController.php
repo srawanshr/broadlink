@@ -37,7 +37,7 @@ class SettingController extends Controller {
     public function update(Request $request)
     {
         $inputs = $request->get('setting');
-        $inputs['pop-up-enabled'] = $request->get('setting.pop-up-enabled', 0);
+        $inputs['pop-up-enabled'] = $request->input('setting.pop-up-enabled', 0);
         
         foreach ($inputs as $slug => $value)
         {

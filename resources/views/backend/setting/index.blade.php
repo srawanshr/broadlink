@@ -24,23 +24,23 @@
                             <div class="md-card-content">
                                 <div class="uk-form-row">
                                     <label for="settings_address">Address</label>
-                                    <textarea class="md-input" name="setting['address']" id="settings_address" cols="30" rows="3">{{ setting('address') }}</textarea>
+                                    <textarea class="md-input" name="setting[address]" id="settings_address" cols="30" rows="3">{{ setting('address') }}</textarea>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_phone">Phone</label>
-                                    <input class="md-input" type="text" id="settings_phone" name="setting['phone']" value="{{ setting('phone') }}"/>
+                                    <input class="md-input" type="text" id="settings_phone" name="setting[phone]" value="{{ setting('phone') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_fax">Fax</label>
-                                    <input class="md-input" type="text" id="settings_fax" name="setting['fax']" value="{{ setting('fax') }}"/>
+                                    <input class="md-input" type="text" id="settings_fax" name="setting[fax]" value="{{ setting('fax') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_email">Email</label>
-                                    <input class="md-input" type="text" id="settings_email" name="setting['email']" value="{{ setting('email') }}"/>
+                                    <input class="md-input" type="text" id="settings_email" name="setting[email]" value="{{ setting('email') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_gpo">GPO</label>
-                                    <input class="md-input" type="text" id="settings_gpo" name="setting['gpo']" value="{{ setting('gpo') }}"/>
+                                    <input class="md-input" type="text" id="settings_gpo" name="setting[gpo]" value="{{ setting('gpo') }}"/>
                                 </div>
                             </div>
                         </div>
@@ -57,15 +57,15 @@
                             <div class="md-card-content">
                                 <div class="uk-form-row">
                                     <label for="settings_bh_sales">Sales</label>
-                                    <textarea class="md-input" name="setting['bh-sales']" id="settings_bh_sales" cols="30" rows="2">{{ setting('bh-sales') }}</textarea>
+                                    <textarea class="md-input" name="setting[bh-sales]" id="settings_bh_sales" cols="30" rows="2">{{ setting('bh-sales') }}</textarea>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_customer_care">Customer Care</label>
-                                    <textarea class="md-input" name="setting['bh-customer-care']" id="settings_customer_care" cols="30" rows="2">{{ setting('bh-customer-care') }}</textarea>
+                                    <textarea class="md-input" name="setting[bh-customer-care]" id="settings_customer_care" cols="30" rows="2">{{ setting('bh-customer-care') }}</textarea>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_technical_support">Technical Support</label>
-                                    <textarea class="md-input" name="setting['bh-technical-support']" id="settings_technical_support" cols="30" rows="2">{{ setting('bh-technical-support') }}</textarea>
+                                    <textarea class="md-input" name="setting[bh-technical-support]" id="settings_technical_support" cols="30" rows="2">{{ setting('bh-technical-support') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                     Pop Up
                                 </h3>
                                 <div class="md-card-toolbar-actions">
-                                    <input type="checkbox" name="setting['pop-up-enabled']" value="1" data-switchery id="popup_switch"{{ setting('pop-up-enabled') == 1 ? ' checked': '' }}/>
+                                    <input type="checkbox" name="setting[pop-up-enabled]" value="1" data-switchery id="popup_switch"{{ setting('pop-up-enabled') == 1 ? ' checked': '' }}/>
                                 </div>
                             </div>
                             <div class="md-card-content">
@@ -100,15 +100,15 @@
                             <div class="md-card-content">
                                 <div class="uk-form-row">
                                     <label for="settings_facebook">Facebook</label>
-                                    <input class="md-input" type="text" id="settings_facebook" name="setting['facebook']" value="{{ setting('facebook') }}"/>
+                                    <input class="md-input" type="text" id="settings_facebook" name="setting[facebook]" value="{{ setting('facebook') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_twitter">Twitter</label>
-                                    <input class="md-input" type="text" id="settings_twitter" name="setting['twitter']" value="{{ setting('twitter') }}"/>
+                                    <input class="md-input" type="text" id="settings_twitter" name="setting[twitter]" value="{{ setting('twitter') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_google_plus">Google Plus</label>
-                                    <input class="md-input" type="text" id="settings_google_plus" name="setting['google-plus']" value="{{ setting('google-plus') }}"/>
+                                    <input class="md-input" type="text" id="settings_google_plus" name="setting[google-plus]" value="{{ setting('google-plus') }}"/>
                                 </div>
                             </div>
                         </div>
@@ -121,11 +121,11 @@
                             <div class="md-card-content">
                                 <div class="uk-form-row">
                                     <label for="settings_broad_tel_messenger_users">Broadtel Messenger Users</label>
-                                    <input class="md-input" type="text" id="settings_broad_tel_messenger_users" name="setting['broad-tel-messenger-users']" value="{{ setting('broad-tel-messenger-users') }}"/>
+                                    <input class="md-input" type="text" id="settings_broad_tel_messenger_users" name="setting[broad-tel-messenger-users]" value="{{ setting('broad-tel-messenger-users') }}"/>
                                 </div>
                                 <div class="uk-form-row">
                                     <label for="settings_phone_technical_support">Technical Support</label>
-                                    <input class="md-input" type="text" id="settings_phone_technical_support" name="setting['technical-support']" value="{{ setting('phone-technical-support') }}"/>
+                                    <input class="md-input" type="text" id="settings_phone_technical_support" name="setting[technical-support]" value="{{ setting('phone-technical-support') }}"/>
                                 </div>
                             </div>
                         </div>
