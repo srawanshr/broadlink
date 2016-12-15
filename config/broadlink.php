@@ -10,9 +10,9 @@ return [
 		'live' => [
 			'url' => 'https://esewa.com.np/epay/main',
 		    'verification_url' => 'https://esewa.com.np/epay/transrec',
-		    'merchant_id' => "broad"
+		    'merchant_id' => "esewa@broadlink.com.np"
 		],
-		'mode' => 'test'
+		'mode' => 'live'
 	],
 	'vat' => '0.13'
 ];
