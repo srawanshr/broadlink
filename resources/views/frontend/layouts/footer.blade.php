@@ -1,4 +1,4 @@
-<footer id="footer" class="bl-block-footer bl-text-light">
+<footer id="footer" class="bl-block-footer bl-text-light uk-margin-large-top">
     <div class="uk-container-center uk-container">
         <div class="top-footer uk-grid">
             <div class="uk-width-small-1-1 uk-width-medium-1-3">
@@ -61,11 +61,13 @@
         </div>
     </div>
     <span class="fading-line"></span>
-    <div class="uk-container-center uk-container uk-margin">
-        <div class="uk-grid uk-grid-divider uk-grid-large uk-text-muted uk-text-center uk-text-small">
-            <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
-            <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
-            <div class="uk-width-1-3"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
+    <div class="uk-grid uk-margin">
+        <div class="uk-container-center uk-width-1-3">
+            <div class="uk-grid uk-grid-divider uk-text-muted uk-text-center uk-text-small">
+                <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
+                <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
+                <div class="uk-width-1-3"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
+            </div>
         </div>
     </div>
 </footer>

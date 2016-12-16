@@ -11,10 +11,10 @@
     <section id="our-services-index" class="uk-block uk-margin-remove uk-padding-remove">
         <div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
             <div class="uk-grid">
-                <div class="uk-width-8-10 uk-push-1-10">
+                <div class="uk-width-8-10 uk-container-center">
                     <div class="uk-grid">
                         @foreach(vouchers() as $voucher )
-                            <div class="uk-width-small-1-2 uk-width-medium-1-3 uk-margin-large-bottom">
+                            <div class="uk-width-small-1-2 uk-width-medium-1-4 uk-margin-large-bottom">
                                 <figure class="uk-overlay uk-overlay-hover uk-hover">
                                     <img src="{{ image('assets/frontend/img/'.str_slug($voucher->voucher).'.png') }}">
                                     <figcaption class="uk-overlay-panel uk-overlay-slide-bottom uk-overlay-bottom uk-overlay-background uk-text-center bl-text-light">
