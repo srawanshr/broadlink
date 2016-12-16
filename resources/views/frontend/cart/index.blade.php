@@ -59,18 +59,10 @@
                         <div data-uk-sticky="{boundary:'#boundary', 'top': 50}">
                             <div class="bl-card uk-block-default">
                                 <h2>Summary</h2>
-                                <div class="uk-grid">
-                                    <div class="uk-width-1-2">Sub Total</div>
-                                    <div class="uk-width-1-2 uk-text-right uk-text-bold uk-text-large">Rs. {{ number_format(Cart::total(), 2) }}</div>
-                                </div>
-                                <div class="uk-grid">
-                                    <div class="uk-width-1-2">VAT (13%)</div>
-                                    <div class="uk-width-1-2 uk-text-right uk-text-bold uk-text-large">Rs. {{ number_format(Cart::total() * 0.13, 2) }}</div>
-                                </div>
                                 <hr class="uk-grid-divider">
                                 <div class="uk-grid">
                                     <div class="uk-width-1-2">Total</div>
-                                    <div class="uk-width-1-2 uk-text-right uk-text-bold uk-text-large">Rs. {{ number_format(Cart::total() * 1.13, 2) }}</div>
+                                    <div class="uk-width-1-2 uk-text-right uk-text-bold uk-text-large">Rs. {{ number_format(Cart::total(), 2) }}</div>
                                 </div>
                             </div>
                             <div class="bl-card uk-block-default uk-padding-remove">
