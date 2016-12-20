@@ -15,21 +15,21 @@
                             </div>
                             <span class="uk-text-muted uk-text-small">Available Total Pin</span>
                             <h2 class="uk-margin-remove">
-                                <span>{{ $availablePin }}</span>
+                                <span>{{ $availablePins }}</span>
                             </h2>
                         </div>
                     </div>
                 </div>
-                @foreach($usedPins as $voucher => $usedPin)
+                @foreach($vouchers as $key => $data)
                     <div>
                         <div class="md-card">
                             <div class="md-card-content">
                                 <div class="uk-float-right uk-margin-top uk-margin-small-right">
-                                    <i class="material-icons md-48">&#xE06A;</i>
+                                    Available: {{ $data['available'] }}
                                 </div>
-                                <span class="uk-text-muted uk-text-small">{{ $voucher }}</span>
+                                <span class="uk-text-muted uk-text-small">Voucher: {{ $data['voucher'] }}</span>
                                 <h2 class="uk-margin-remove">
-                                    <span>{{ $usedPin }}</span>
+                                    <span><small>Used: {{ $data['used'] }}</small></span>
                                 </h2>
                             </div>
                         </div>

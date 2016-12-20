@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Datatables;
 use App\Models\Pin;
 use App\Http\Requests;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PinImportRequest;
@@ -32,13 +33,23 @@ class PinController extends Controller {
      */
     public function index()
     {
-        $availablePin = $this->pin->notUsed()->count();
+        $vouchers = [];
+        $availablePins = $this->pin->notUsed()->count();
 
-        $usedPins = $this->pin->used()->get()->groupBy('voucher')->map(function ($pin) {
-            return $pin->count();
-        });
+        $voucherLabels = Pin::select('voucher')->distinct()->get()->toArray();
 
-        return view('backend.pin.index', compact('availablePin', 'usedPins'));
+        foreach ($voucherLabels as $value)
+        {
+            $used = DB::table('pins')->select(DB::raw('voucher, count(\'voucher\') as \'count\''))->where('is_used', 1)->groupBy('voucher')->having('voucher', '=', $value['voucher'])->first();
+            $available = DB::table('pins')->select(DB::raw('voucher, count(\'voucher\') as \'count\''))->where('is_used', 0)->groupBy('voucher')->having('voucher', '=', $value['voucher'])->first();
+            array_push($vouchers, [
+                'voucher'   => $value['voucher'],
+                'used'      => $used ? $used->count : 0,
+                'available' => $available ? $available->count : 0
+            ]);
+        }
+
+        return view('backend.pin.index', compact('availablePins', 'vouchers'));
     }
 
     /**
