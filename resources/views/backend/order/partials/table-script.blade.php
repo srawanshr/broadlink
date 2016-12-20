@@ -25,7 +25,6 @@
                         url: $dt_order.data('source')
                     },
                     columns: [
-                        {data: 'id'},
                         {data: 'invoice_id'},
                         {data: 'name'},
                         {data: 'customer'},

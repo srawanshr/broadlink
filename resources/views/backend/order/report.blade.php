@@ -59,7 +59,7 @@
                     <table id="dt_report" class="uk-table" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th class="uk-width-1-10">Order ID</th>
+                            <th class="uk-width-1-10">Invoice ID</th>
                             <th class="uk-width-3-10">Name</th>
                             <th class="uk-width-2-10">Customer</th>
                             <th class="uk-width-1-10">Serial</th>
@@ -71,7 +71,7 @@
                         <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->invoice_id }}</td>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ $order->user->display_name }}</td>
                                 <td>{{ $order->pin->sno }}</td>
