@@ -24,7 +24,7 @@ class OrderController extends Controller {
      */
     public function orderList()
     {
-        return Datatables::of(Order::all())
+        return Datatables::of(Order::select('id', 'name', 'invoice_id', 'user_id', 'pin_id', 'status', 'price', 'created_at'))
             ->addColumn('customer', function ($order)
             {
                 return $order->user->display_name;

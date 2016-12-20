@@ -26,6 +26,7 @@
                     },
                     columns: [
                         {data: 'id'},
+                        {data: 'invoice_id'},
                         {data: 'name'},
                         {data: 'customer'},
                         {data: 'sno'},
@@ -62,6 +63,6 @@
                     }
                 })
             }
-        },
+        }
     };
 </script>
