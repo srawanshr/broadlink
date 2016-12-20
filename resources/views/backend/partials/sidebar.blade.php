@@ -34,10 +34,18 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('admin::order.index') }}">
+                <a href="#">
                     <span class="menu_icon"><i class="material-icons">&#xE85D;</i></span>
                     <span class="menu_title">Orders</span>
                 </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('admin::order.report') }}">Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin::order.index') }}">All Orders</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="{{ route('admin::post.index') }}">
