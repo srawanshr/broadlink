@@ -26,7 +26,7 @@
                     },
                     columns: [
                         {data: 'sno'},
-                        {data: 'pin'},
+                        {data: 'pin', visible: false},
                         {data: 'voucher'},
                         {
                             data: 'is_used',
@@ -34,7 +34,7 @@
                                 return data == 0 ? 'No' : 'Yes'
                             }
                         },
-                        {data: 'action', searchable: false, orderable: false, class: 'text-right'}
+                        {data: 'action', searchable: false, orderable: false, class: 'text-right', visible: false}
                     ]
                 });
 
