@@ -132,6 +132,7 @@
                                         {{ $invoice->payable_type }}
                                     </p>
                                     <p class="uk-text-small">Payment Complete</p>
+                                    <p class="uk-text-small">Invoice ID: {{ $invoice->slug }}</p>
                                 </div>
                             </div>
                         </div>
