@@ -88,6 +88,7 @@
                                     <table class="uk-table">
                                         <thead>
                                         <tr class="uk-text-upper">
+                                            <th>Order ID</th>
                                             <th>Product</th>
                                             <th class="uk-text-center">Price</th>
                                             <th class="uk-text-center">Quantity</th>
@@ -97,6 +98,9 @@
                                         <tbody>
                                         @foreach($invoice->orders->groupBy('name') as $key => $order)
                                             <tr class="uk-table-middle">
+                                                <td>
+                                                    {{ $order->implode('id', ',') }}
+                                                </td>
                                                 <td>
                                                     {{ $key }}
                                                 </td>
@@ -114,7 +118,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <td colspan="3" class="uk-text-right">Total:</td>
+                                            <td colspan="4" class="uk-text-right">Total:</td>
                                             <td class="uk-text-center">{{ 'Rs.'.$invoice->orders->sum('price') }}</td>
                                         </tr>
                                         </tfoot>

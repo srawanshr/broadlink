@@ -32,7 +32,13 @@ class PinController extends Controller {
      */
     public function index()
     {
-        return view('backend.pin.index');
+        $availablePin = $this->pin->notUsed()->count();
+
+        $usedPins = $this->pin->used()->get()->groupBy('voucher')->map(function ($pin) {
+            return $pin->count();
+        });
+
+        return view('backend.pin.index', compact('availablePin', 'usedPins'));
     }
 
     /**

@@ -11,9 +11,11 @@
                     <table id="dt_order" class="uk-table" cellspacing="0" width="100%" data-source="{{ route('admin::order.list') }}">
                         <thead>
                         <tr>
-                            <th class="uk-width-3-10">Name</th>
+                            <th class="uk-width-1-10">Order ID</th>
+                            <th class="uk-width-2-10">Name</th>
                             <th class="uk-width-2-10">Customer</th>
-                            <th class="uk-width-2-10">Pin</th>
+                            <th class="uk-width-1-10">Serial</th>
+                            <th class="uk-width-1-10">Payment</th>
                             <th class="uk-width-1-10 uk-text-center">Status</th>
                             <th class="uk-width-1-10 uk-text-center">Date</th>
                             <th class="uk-width-1-10 uk-text-center">Action</th>

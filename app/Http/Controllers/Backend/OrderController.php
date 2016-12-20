@@ -32,6 +32,14 @@ class OrderController extends Controller {
             {
                 return $order->pin->pin;
             })
+            ->addColumn('sno', function ($order)
+            {
+                return $order->pin->sno;
+            })
+            ->addColumn('payment_method', function ($order)
+            {
+                return $order->invoice ? $order->invoice->payable_type : 'NA';
+            })
             ->editColumn('created_at', function ($order)
             {
                 return $order->created_at->format('Y-m-d');
