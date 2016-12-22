@@ -8,7 +8,7 @@
         <div class="uk-grid">
             <div class="uk-width-8-10 uk-container-center">
                 <ul class="uk-grid">
-            @foreach( vouchers()->take(4) as $voucher)
+            @foreach( vouchers()->take(3) as $voucher)
                 <li>
                     <figure class="uk-overlay uk-overlay-hover uk-hover">
                         <img src="{{ image('assets/frontend/img/'.str_slug($voucher->voucher).'.png') }}">
