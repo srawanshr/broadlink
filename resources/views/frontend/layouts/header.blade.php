@@ -37,7 +37,7 @@
                                                         </li>
                                                     @endforeach
                                                     @foreach(servicesWithGroups(false) as $service)
-                                                        <li>
+                                                        <li class="uk-text-center">
                                                             <a href="#">
                                                                 <img src="{{ asset($service->icon->resize(null,32)) }}"> {{ $service->name }}
                                                             </a>
