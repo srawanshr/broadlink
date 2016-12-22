@@ -16,16 +16,16 @@
                         <a href="{{ route('service::index') }}">Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
-                                <div class="uk-width-medium-4-10">
+                                <div class="uk-width-medium-5-10 uk-padding-large">
                                     <h2>PRODUCTS AND SERVICES</h2>
                                     <p>
                                         Broadlink offers various range of products and services under one roof. Bundle with our internet, TV and voice services and get more for less!
                                     </p>
                                 </div>
-                                <div class="uk-width-medium-6-10">
+                                <div class="uk-width-medium-5-10">
                                     <div class="uk-panel">
                                         <div class="uk-grid bl-tab-left-container">
-                                            <div class="uk-width-medium-1-2">
+                                            <div class="uk-width-medium-1-3">
 
                                                 <ul class="uk-tab uk-tab-left uk-tab-hover"
                                                     data-uk-tab="{connect:'#bl-nav-services'}">
@@ -46,7 +46,7 @@
                                                 </ul>
 
                                             </div>
-                                            <div class="uk-width-medium-1-2 uk-tab-left-content bl-padding-2-tb">
+                                            <div class="uk-width-medium-2-3 uk-tab-left-content uk-padding bl-padding-2-tb">
 
                                                 <ul id="bl-nav-services" class="uk-switcher">
                                                     @foreach(servicesWithGroups()->groupBy('group_id') as $name => $group)
