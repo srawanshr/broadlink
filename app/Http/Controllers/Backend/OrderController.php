@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use Datatables;
 use App\Models\Order;
 use App\Http\Requests;
@@ -23,7 +24,7 @@ class OrderController extends Controller {
      */
     public function orderList()
     {
-        return Datatables::of(Order::all())
+        return Datatables::of(Order::select('id', 'name', 'invoice_id', 'user_id', 'pin_id', 'status', 'price', 'created_at'))
             ->addColumn('customer', function ($order)
             {
                 return $order->user->display_name;
@@ -31,6 +32,14 @@ class OrderController extends Controller {
             ->addColumn('pin', function ($order)
             {
                 return $order->pin->pin;
+            })
+            ->addColumn('sno', function ($order)
+            {
+                return $order->pin->sno;
+            })
+            ->addColumn('payment_method', function ($order)
+            {
+                return $order->invoice ? $order->invoice->payable_type : 'NA';
             })
             ->editColumn('created_at', function ($order)
             {
@@ -47,5 +56,20 @@ class OrderController extends Controller {
                 return $button;
             })
             ->make(true);
+    }
+
+    /**
+     * Report Generate by date range
+     * @param Request $request
+     * @return mixed
+     */
+    public function report(Request $request)
+    {
+        $from = Carbon::createFromFormat('d.m.Y H:i:s', $request->get('from', date('d.m.Y')) . '00:00:00');
+        $to = Carbon::createFromFormat('d.m.Y H:i:s', $request->get('to', date('d.m.Y')) . '23:59:59');
+
+        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+
+        return view('backend.order.report', compact('orders', 'from', 'to'));
     }
 }

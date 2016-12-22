@@ -45,7 +45,7 @@
                                 <i class="md-icon material-icons" id="invoice_print">&#xE8ad;</i>
                             </div>
                             <h3 class="md-card-toolbar-heading-text large" id="invoice_name">
-                                Invoice {{ $invoice->slug }}
+                                Invoice ID {{ $invoice->id }}
                             </h3>
                         </div>
                         <div class="md-card-content">
@@ -88,6 +88,7 @@
                                     <table class="uk-table">
                                         <thead>
                                         <tr class="uk-text-upper">
+                                            <th>S.N.</th>
                                             <th>Product</th>
                                             <th class="uk-text-center">Price</th>
                                             <th class="uk-text-center">Quantity</th>
@@ -95,8 +96,12 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php $count = 1; ?>
                                         @foreach($invoice->orders->groupBy('name') as $key => $order)
                                             <tr class="uk-table-middle">
+                                                <td>
+                                                    {{ $count++ }}
+                                                </td>
                                                 <td>
                                                     {{ $key }}
                                                 </td>
@@ -114,7 +119,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <td colspan="3" class="uk-text-right">Total:</td>
+                                            <td colspan="4" class="uk-text-right">Total:</td>
                                             <td class="uk-text-center">{{ 'Rs.'.$invoice->orders->sum('price') }}</td>
                                         </tr>
                                         </tfoot>
@@ -128,6 +133,7 @@
                                         {{ $invoice->payable_type }}
                                     </p>
                                     <p class="uk-text-small">Payment Complete</p>
+                                    <p class="uk-text-small">Invoice Code: {{ $invoice->slug }}</p>
                                 </div>
                             </div>
                         </div>

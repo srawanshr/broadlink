@@ -6,6 +6,36 @@
     <div id="page_content">
         <div id="page_content_inner">
             <h3 class="heading_b uk-margin-bottom">All Pins</h3>
+            <div class="uk-grid uk-grid-width-large-1-4 uk-grid-width-medium-1-2 uk-grid-medium uk-sortable sortable-handler" data-uk-sortable data-uk-grid-margin>
+                <div>
+                    <div class="md-card">
+                        <div class="md-card-content">
+                            <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                                <i class="material-icons md-48">&#xE06A;</i>
+                            </div>
+                            <span class="uk-text-muted uk-text-small">Available Total Pin</span>
+                            <h2 class="uk-margin-remove">
+                                <span>{{ $availablePins }}</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                @foreach($vouchers as $key => $data)
+                    <div>
+                        <div class="md-card">
+                            <div class="md-card-content">
+                                <div class="uk-float-right uk-margin-top uk-margin-small-right">
+                                    Available: {{ $data['available'] }}
+                                </div>
+                                <span class="uk-text-muted uk-text-small">Voucher: {{ $data['voucher'] }}</span>
+                                <h2 class="uk-margin-remove">
+                                    <span><small>Used: {{ $data['used'] }}</small></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
             <div class="md-card uk-margin-medium-bottom">
                 <div class="md-card-content">
                     <table id="dt_pin" class="uk-table" cellspacing="0" width="100%">

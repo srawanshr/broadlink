@@ -25,9 +25,11 @@
                         url: $dt_order.data('source')
                     },
                     columns: [
+                        {data: 'invoice_id'},
                         {data: 'name'},
                         {data: 'customer'},
-                        {data: 'pin'},
+                        {data: 'sno'},
+                        {data: 'payment_method'},
                         {data: 'status', class: 'uk-text-center'},
                         {data: 'created_at', class: 'uk-text-center'},
                         {data: 'action', class: 'uk-text-center'}
@@ -60,6 +62,6 @@
                     }
                 })
             }
-        },
+        }
     };
 </script>

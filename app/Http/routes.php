@@ -319,6 +319,8 @@ $router->group([
     Route::group(['prefix' => 'order', 'as' => 'order.'], function ()
     {
         Route::get('/', 'OrderController@index')->name('index');
+
+        Route::get('report', 'OrderController@report')->name('report');
     });
 
     /*
