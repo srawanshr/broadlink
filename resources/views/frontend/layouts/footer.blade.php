@@ -38,11 +38,18 @@
                         <div class="uk-panel">
                             <div class="uk-margin">
                                 <ul class="uk-nav uk-nav-side">
-                                    @foreach(services() as $service)
-                                        <li>
-                                            <a href="{{ route('service::show', $service->slug) }}"><i class="material-icons">&#xE5CC;</i> {{ $service->name }}</a>
-                                        </li>
-                                    @endforeach
+                                    <li>
+                                        <a href="{{ setting('internet-login') }}"><i class="material-icons">&#xE5CC;</i> Internet Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ setting('self-care-login') }}"><i class="material-icons">&#xE5CC;</i> Self Care Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('voucher::index') }}"><i class="material-icons">&#xE5CC;</i> Recharge Account</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('contact::index') }}"><i class="material-icons">&#xE5CC;</i> Trouble Ticket</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
