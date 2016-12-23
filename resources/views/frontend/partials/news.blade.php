@@ -25,7 +25,7 @@
 	            <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
 	        </div>
 	        <ul class="uk-slideset-nav uk-dotnav uk-flex-center"></ul>
-	        <div class="uk-tab-center uk-hidden-small">
+	        <div class="uk-tab-center">
 		        <ul class="uk-subnav uk-subnav-pill uk-tab">
 		        	@foreach(tags() as $key => $tag)
 		            	<li data-uk-filter="{{ $tag->tag }}">
