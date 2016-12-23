@@ -25,12 +25,11 @@
                         <div class="uk-panel">
                             <div class="uk-margin">
                                 <ul class="uk-nav uk-nav-side">
-                                    <li><a href="{{ route('page::show','about') }}"><i class="material-icons">&#xE5CC;</i> Broadlink</a></li>
+                                    <li><a href="{{ route('page::show','about') }}"><i class="material-icons">&#xE5CC;</i> BROADLINK</a></li>
                                     <li><a href="#"><i class="material-icons">&#xE5CC;</i> Blog</a></li>
                                     <li><a href="{{ route('page::show','faq') }}"><i class="material-icons">&#xE5CC;</i> FAQ</a></li>
                                     <li><a href="{{ route('page::show','newsroom') }}"><i class="material-icons">&#xE5CC;</i> News Room</a></li>
                                     <li><a href="{{ route('page::show','career') }}"><i class="material-icons">&#xE5CC;</i> Career & Jobs</a></li>
-                                    <li><a href="{{ route('page::show','terms') }}"><i class="material-icons">&#xE5CC;</i> Terms & Condition</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -71,10 +70,10 @@
     <span class="fading-line"></span>
     <div class="uk-grid uk-margin">
         <div class="uk-container-center uk-width-2-3">
-            <div class="uk-grid uk-grid-divider uk-text-muted uk-text-center uk-text-small">
-                <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
-                <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
-                <div class="uk-width-1-3"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
+            <div class="uk-grid uk-grid-collapse uk-grid-divider uk-text-muted uk-text-center uk-text-small">
+                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
+                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
+                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
             </div>
         </div>
     </div>
