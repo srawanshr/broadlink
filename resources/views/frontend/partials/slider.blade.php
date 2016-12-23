@@ -29,9 +29,9 @@
                                             <h1 class="bl-text-primary stroke-white">Wherever you are</h1>
                                             <h2>We are with you</h2>
                                             <div class="button-group">
-                                                <a class="uk-button bl-button" href="{{ route('voucher::index') }}">
+                                                <a class="uk-button bl-button" href="{{ route('service::show','broad-wifi') }}">
                                                     <i class="material-icons uk-vertical-align-middle">&#xE89A;</i>
-                                                    Buy Now
+                                                    Subscribe
                                                 </a>
                                                 <a class="uk-button uk-button-primary" href="{{ route('service::index') }}">
                                                     View Services
@@ -68,9 +68,9 @@
                                             <h1 class="bl-text-primary stroke-white">The best there is</h1>
                                             <h2>At affordable cost</h2>
                                             <div class="button-group">
-                                                <a class="uk-button bl-button" href="{{ route('voucher::index') }}">
+                                                <a class="uk-button bl-button" href="{{ route('service::show','broad-wifi') }}">
                                                     <i class="material-icons uk-vertical-align-middle">&#xE89A;</i>
-                                                    Buy Now
+                                                    Subscribe
                                                 </a>
                                                 <a class="uk-button uk-button-primary" href="{{ route('service::index') }}">
                                                     View Services
