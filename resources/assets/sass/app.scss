@@ -588,14 +588,14 @@ h3 {
   .top-footer {
     margin: 35px 0;
   }
-  h1,h2,h3,h4,h5 {
+  h1, h2, h3, h4, h5 {
     font-family: 'Bebas';
   }
   .fading-line {
-    display:block;
-    border:none;
-    color:white;
-    height:1px;
+    display: block;
+    border: none;
+    color: white;
+    height: 1px;
     background: #484646;
     background: -webkit-gradient(radial, 50% 50%, 124, 50% 50%, 531, from(#484646), to(rgba(255, 255, 255, 0)));
   }
@@ -998,6 +998,18 @@ ul.bl-tab {
     .uk-tab {
       a {
         padding: 5px;
+      }
+    }
+  }
+
+  #news {
+    .uk-subnav-pill {
+      li {
+        a {
+          .material-icons {
+            font-size: 2em;
+          }
+        }
       }
     }
   }

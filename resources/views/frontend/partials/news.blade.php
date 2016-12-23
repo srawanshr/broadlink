@@ -17,7 +17,7 @@
                             <img src="{{ $post->image ? asset($post->image->thumbnail(300,200)) : asset(config('paths.placeholder.post')) }}" width="300" height="200" alt="{{ $post->title }}" class="uk-thumbnail">
                             <h4>{{ str_limit($post->title, 50) }}</h4>
                             <p class="uk-hidden-small">{{ str_limit(strip_tags($post->content_html), 100)}}</p>
-                            <a href="{{ route('post::show', $post->slug) }}" class="bl-btn-outline">Read More</a>
+							<a href="{{ route('post::show', $post->slug) }}" class="bl-btn-outline">Read <span class="uk-hidden-small">More</span></a>
                         </li>
 	                @endforeach
 	            </ul>

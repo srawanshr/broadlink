@@ -664,6 +664,8 @@ ul.bl-tab {
     #slider .images .image {
       top: 20%; }
   #our-services .uk-tab a {
-    padding: 5px; } }
+    padding: 5px; }
+  #news .uk-subnav-pill li a .material-icons {
+    font-size: 2em; } }
 
 /*# sourceMappingURL=app.css.map */
