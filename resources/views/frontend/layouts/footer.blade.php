@@ -45,7 +45,7 @@
                                         <a href="{{ setting('self-care-login') }}"><i class="material-icons">&#xE5CC;</i> Self Care Login</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('voucher::index') }}"><i class="material-icons">&#xE5CC;</i> Recharge Account</a>
+                                        <a href="{{ route('voucher::index') }}"><i class="material-icons">&#xE5CC;</i> Online Recharge</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('contact::index') }}"><i class="material-icons">&#xE5CC;</i> Trouble Ticket</a>
