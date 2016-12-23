@@ -457,7 +457,7 @@ h3 {
     display: block;
     margin-bottom: 10px;
     max-width: 100%;
-    height: 116px;
+    height: 135px;
     line-height: 116px;
   }
   &:hover, &:active, &:focus {
@@ -508,7 +508,6 @@ h3 {
 
 #clients {
   background-size: cover;
-  background: #d8d8d8 fixed;
 }
 
 #customers {
@@ -609,6 +608,10 @@ h3 {
       font-size: 0.8em;
       &:hover {
         color: $primary-color;
+      }
+      .material-icons {
+        position: absolute;
+        left: -3px;
       }
     }
   }

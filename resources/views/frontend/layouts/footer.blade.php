@@ -21,20 +21,21 @@
             <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-text-center-small">
                 <h3>Navigate</h3>
                 <div class="uk-grid">
-                    <div class="uk-grid-1-2">
+                    <div class="uk-width-1-2">
                         <div class="uk-panel">
                             <div class="uk-margin">
                                 <ul class="uk-nav uk-nav-side">
-                                    <li><a href="{{ url('/') }}"><i class="material-icons">&#xE5CC;</i> Home</a></li>
-                                    <li><a href="{{ route('service::index') }}"><i class="material-icons">&#xE5CC;</i> Services</a></li>
-                                    <li><a href="{{ route('page::show','about') }}"><i class="material-icons">&#xE5CC;</i> About Us</a></li>
-                                    <li><a href="{{ route('voucher::index') }}"><i class="material-icons">&#xE5CC;</i> Vouchers</a></li>
-                                    <li><a href="{{ route('contact::index') }}"><i class="material-icons">&#xE5CC;</i> Contact</a></li>
+                                    <li><a href="{{ route('page::show','about') }}"><i class="material-icons">&#xE5CC;</i> Broadlink</a></li>
+                                    <li><a href="#"><i class="material-icons">&#xE5CC;</i> Blog</a></li>
+                                    <li><a href="{{ route('page::show','faq') }}"><i class="material-icons">&#xE5CC;</i> FAQ</a></li>
+                                    <li><a href="{{ route('page::show','newsroom') }}"><i class="material-icons">&#xE5CC;</i> News Room</a></li>
+                                    <li><a href="{{ route('page::show','career') }}"><i class="material-icons">&#xE5CC;</i> Career & Jobs</a></li>
+                                    <li><a href="{{ route('page::show','terms') }}"><i class="material-icons">&#xE5CC;</i> Terms & Condition</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="uk-grid-1-2">
+                    <div class="uk-width-1-2">
                         <div class="uk-panel">
                             <div class="uk-margin">
                                 <ul class="uk-nav uk-nav-side">
@@ -69,7 +70,7 @@
     </div>
     <span class="fading-line"></span>
     <div class="uk-grid uk-margin">
-        <div class="uk-container-center uk-width-1-3">
+        <div class="uk-container-center uk-width-2-3">
             <div class="uk-grid uk-grid-divider uk-text-muted uk-text-center uk-text-small">
                 <div class="uk-width-1-3"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
                 <div class="uk-width-1-3"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>

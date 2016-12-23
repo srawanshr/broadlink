@@ -16,11 +16,13 @@
                         <a href="{{ route('service::index') }}">Services</a>
                         <div class="uk-dropdown bl-card">
                             <div class="uk-grid uk-dropdown-grid">
-                                <div class="uk-width-medium-5-10 uk-padding-large">
-                                    <h2>PRODUCTS AND SERVICES</h2>
-                                    <p>
-                                        Broadlink offers various range of products and services under one roof. Bundle with our internet, TV and voice services and get more for less!
-                                    </p>
+                                <div class="uk-width-medium-5-10">
+                                    <div class="bl-padding-2">
+                                        <h2>PRODUCTS AND SERVICES</h2>
+                                        <p>
+                                            Broadlink offers various range of products and services under one roof. Bundle with our internet, TV and voice services and get more for less!
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="uk-width-medium-5-10">
                                     <div class="uk-panel">
@@ -37,7 +39,7 @@
                                                         </li>
                                                     @endforeach
                                                     @foreach(servicesWithGroups(false) as $service)
-                                                        <li class="uk-text-center">
+                                                        <li>
                                                             <a href="#">
                                                                 <img src="{{ asset($service->icon->resize(null,32)) }}"> {{ $service->name }}
                                                             </a>
@@ -64,7 +66,7 @@
                                                     @endforeach
                                                     @foreach(servicesWithGroups(false) as $service)
                                                         <li>
-                                                            <p class="bl-padding-tb">{!! str_limit($service->meta_description, 500) !!}
+                                                            <p class="bl-padding">{!! str_limit($service->meta_description, 500) !!}
                                                                 <br>
                                                                 <a href="{{ route('service::show', $service->slug)}}">Read
                                                                     More</a>

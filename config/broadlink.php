@@ -12,7 +12,7 @@ return [
 		    'verification_url' => 'https://esewa.com.np/epay/transrec',
 		    'merchant_id' => "broadlink"
 		],
-		'mode' => 'test'
+		'mode' => 'live'
 	],
 	'vat' => '0'
 ];
