@@ -71,9 +71,11 @@
     <div class="uk-grid uk-margin">
         <div class="uk-container-center uk-width-2-3">
             <div class="uk-grid uk-grid-collapse uk-grid-divider uk-text-muted uk-text-center uk-text-small">
-                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','terms') }}" class="uk-text-muted">Terms & Condition</a></div>
-                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','privacy') }}" class="uk-text-muted">Privacy Policy</a></div>
-                <div class="uk-width-1-3 uk-padding-remove"><a href="{{ route('page::show','sitemap') }}" class="uk-text-muted">Sitemap</a></div>
+                <div class="uk-width-1-1 uk-padding-remove uk-text-center">
+                    <a href="{{ route('page::show','terms') }}" class="uk-text-muted bl-padding">Terms & Condition</a> |
+                    <a href="{{ route('page::show','privacy') }}" class="uk-text-muted bl-padding">Privacy Policy</a> |
+                    <a href="{{ route('page::show','sitemap') }}" class="uk-text-muted bl-padding">Sitemap</a>
+                </div>
             </div>
         </div>
     </div>
