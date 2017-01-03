@@ -20,7 +20,7 @@
     @include('frontend.partials.slider')
     @include('frontend.partials.services')
     @include('frontend.partials.news')
-    @include('frontend.partials.testimonials')
+    {{--@include('frontend.partials.testimonials')--}}
     @include('frontend.partials.clients')
 
     @if(setting('pop-up-enabled') == 1)

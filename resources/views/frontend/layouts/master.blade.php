@@ -92,5 +92,9 @@
             });
         });
     </script>
+<!-- livezilla.net code (PLEASE PLACE IN BODY TAG) -->
+<div style="text-align:center;width:200px;position:fixed;bottom:0;right:50px;"><div id="livezilla_tracking" style="display:none"></div><script type="text/javascript">
+var script = document.createElement("script");script.async=true;script.type="text/javascript";var src = "http://www.broadlink.com.np/zilla/server.php?a=3b4c7&rqst=track&output=jcrpt&nse="+Math.random();setTimeout("script.src=src;document.getElementById('livezilla_tracking').appendChild(script)",1);</script><noscript><img src="http://www.broadlink.com.np/zilla/server.php?a=3b4c7&amp;rqst=track&amp;output=nojcrpt" width="0" height="0" style="visibility:hidden;" alt=""></noscript><a href="javascript:void(window.open('http://www.broadlink.com.np/zilla/chat.php?a=20f58&amp;epc=I2Y1ODIyMw__&amp;etc=I2ZjYzQ4MQ__','','width=610,height=760,left=0,top=0,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))" class="lz_cbl"><img src="http://www.broadlink.com.np/zilla/image.php?a=91322&amp;id=2&amp;type=inlay" width="200" height="55" style="border:0px;" alt="LiveZilla Live Chat Software"></a></div>
+<!-- http://www.livezilla.net -->
 </body>
 </html>
