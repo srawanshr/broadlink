@@ -15,5 +15,5 @@
 				<p>{!! $page->content_html !!}</p>
 			</div>
 		</div>
-	</section>	
+	</section>
 @stop
