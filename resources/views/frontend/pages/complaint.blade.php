@@ -1,4 +1,8 @@
-@section('content')
+@extends('frontend.layouts.master')
+
+@section('title', 'Broadlink :: '.$page->title)
+
+@section('body')
 <form method="POST" action="/complaint">
 	<div align="center">
 		<table class="uk-table uk-table-hover" style="overflow-y: auto;text-align: left;padding-left: 10px;">

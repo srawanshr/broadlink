@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Broadlink :: Services')
+@section('title', 'Broadlink :: '.$page->title)
 
 @section('header')
     {{ Html::style('assets/frontend/css/style.css')}}
