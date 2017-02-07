@@ -26,7 +26,6 @@ class PageUpdateRequest extends Request {
         return [
             'title'       => 'required',
             'content_raw' => 'required',
-            'view'        => 'required',
             'is_draft'    => 'boolean'
         ];
     }

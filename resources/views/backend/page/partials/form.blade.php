@@ -1,4 +1,4 @@
-<input type="hidden" name="view" value="frontend/page/index" />
+<input type="hidden" name="view" value="frontend.page.show" />
 <div class="uk-grid" data-uk-grid-margin>
     <div class="uk-width-large-7-10">
         <div class="uk-grid uk-grid-width-1-1" data-uk-grid="{gutter:24}">

@@ -23,7 +23,10 @@ class FrontController extends Controller
 
     public function page( Page $page )
     {
-        return view( 'frontend.pages.show', compact( 'page' ) );
+        if(view()->exists($page->view)) {
+            return view($page->view, compact('page'));
+        }
+        return view('frontend.pages.show', compact( 'page' ) );
     }
 
     public function post( Post $post )
