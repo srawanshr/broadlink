@@ -1,16 +1,16 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Broadlink :: '.$page->title)
 
 @section('body')
-@include('frontend.partials.banner', ['title' => $page->title, 'images' => $page->banners ])
+
 
 <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
 	<div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
 		<div class="uk-block-default uk-margin-large-bottom">
 			<form method="POST" action="/forms">
+			{{ csrf_field() }}
 				<div align="center"> 
-					<table id=signupform class="uk-table uk-table-hover" style="overflow-y: auto;padding-left: 10px;text-align: left;">
+					<table id=signupform class="uk-table uk-table-hover" style="overflow-y: auto;padding-left: 10px;text-align: left;margin-top: 200px;">
 						<tbody>
 							<tr>
 								<th class="uk-table-shrink"><label>BLD Partners Type</label></th>
@@ -41,7 +41,7 @@
 								<td><input type="text" name="investment_history"></td>
 							</tr>
 							<tr>
-								<thclass="uk-table-shrink"><label>Turnover per year</label></th>
+								<th class="uk-table-shrink"><label>Turnover per year</label></th>
 								<td><input type="text" name="turnover"></td>
 							</tr>
 							<tr>

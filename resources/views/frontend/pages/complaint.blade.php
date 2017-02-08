@@ -1,16 +1,15 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Broadlink :: '.$page->title)
 
 @section('body')
-@include('frontend.partials.banner', ['title' => $page->title, 'images' => $page->banners ])
 
 <section class="uk-block uk-margin-remove uk-padding-remove bl-text-dark">
 	<div class="uk-container uk-container-center bl-margin-top-ve uk-block-default bl-padding-2-tb bl-card">
 		<div class="uk-block-default uk-margin-large-bottom">
 			<form method="POST" action="/complaint">
+			{{ csrf_field() }}
 				<div align="center">
-					<table class="uk-table uk-table-hover" style="overflow-y: auto;text-align: left;padding-left: 10px;">
+					<table class="uk-table uk-table-hover" style="overflow-y: auto;text-align: left;padding-left: 10px;margin-top: 200px;">
 						<tbody>
 							<tr>
 								<th class="uk-table-shrink"><label>Name:</label></th>

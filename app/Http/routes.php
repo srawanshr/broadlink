@@ -50,11 +50,11 @@ Route::any('/voucher/{voucher}/buy', 'Frontend\VoucherController@buy')->name('vo
 Route::get('/service', 'Frontend\ServiceController@index')->name('service::index');
 Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 
-Route::get('/forms','pageController@index');
-Route::post('/forms','pageController@forms');
+Route::get('/forms','Frontend\PageController@index');
+Route::post('/forms','Frontend\PageController@forms');
 
-Route::get('/complaint','pageController@complain');
-Route::post('/complaint','pageController@registercomplaint');
+Route::get('/complaint','Frontend\pageController@complain');
+Route::post('/complaint','Frontend\PageController@registercomplaint');
 
 Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
 Route::delete('/cart/{item_id}', 'Frontend\CartController@delete')->name('cart::delete');
