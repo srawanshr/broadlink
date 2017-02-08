@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use Mail;
 
-class pageController extends Controller
+class PageController extends Controller
 {
     public function index()
     {
-
+        //return the view for form
     }
     public function complain()
     {
-
+        //return the view for form
     }
     public function forms(Request $request)
     {
@@ -22,6 +22,8 @@ class pageController extends Controller
     		$m->from($data['email'],'$message');
     		$m->to('bod@broadlink.com.np')->subject('Request For Partnership');
     	});
+
+        //redirect affter this
     }
     public function registercomplaint(Request $request)
     {
@@ -31,5 +33,6 @@ class pageController extends Controller
     		$m->to('bod@broadlink.com.np')->subject('Complaint');
     	});
 
+        //redirect affter this
     }
 }
