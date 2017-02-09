@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Mail;
 use View;
+use Session;
 
 class PageController extends Controller
 {
@@ -46,11 +47,21 @@ class PageController extends Controller
     }
     public function registercomplaint(Request $request)
     {
-    	$data=$request->all();
-    	Mail::send('emails.complaintreply',$data,function($m) use ($data){
+    	$data1 = array(
+            'custname' => $request->name,
+            'contact_number' => $request->contact,
+            'complaint_email' => $request->comp_email,
+            'custadd' => $request->address,
+            'complaint_message' => $request->c_message);
+        Mail::send('emails.complaint',$data1,function($message) use ($data1){
+            $message->from($data1['complaint_email']);
+            $message->to('bod@broadlink.com.np')->subject('Complaint');
+        });
+    	Mail::send('emails.complaintreply',$data1,function($m) use ($data1){
     		$m->from('bod@broadlink.com.np');
-    		$m->to($data['email1'])->subject('Complaint');
+    		$m->to($data1['complaint_email'])->subject('Complaint');
     	});
-        return view('frontend.pages.complaint')->withSuccess('Your complaint has been submitted. Thank you!');
+        Session::flash('Success','Your complaint has been submitted. Thank you!');
+        return view('frontend.pages.complaint');
     }
 }

@@ -16,6 +16,10 @@
 								<td><input type="text" name="name"></td>
 							</tr>
 							<tr>
+								<th class="uk-table-shrink"><label>Email:</label></th>
+								<td><input type="text" name="comp_email"></td>
+							</tr>
+							<tr>
 								<th class="uk-table-shrink"><label>Contact Number:</label></th>
 								<td><input type="text" name="contact"></td>
 							</tr>
@@ -25,7 +29,7 @@
 							</tr>
 							<tr>
 								<th class="uk-table-shrink"><label>Your messaage:</label></th>
-								<td><textarea name="name" rows="3" cols="25" maxlength="500" placeholder="Do not type more than 500 characters" required></textarea></td>
+								<td><textarea name="c_message" rows="3" cols="25" maxlength="500" placeholder="Do not type more than 500 characters" required></textarea></td>
 							</tr>
 						</tbody>
 					</table><br><br>
