@@ -53,7 +53,7 @@ Route::get('/help', 'Frontend\FrontController@help')->name('help::index');
 Route::get('/forms','Frontend\PageController@index');
 Route::post('/forms','Frontend\PageController@forms');
 
-Route::get('/complaint','Frontend\pageController@complain');
+Route::get('/complaint','Frontend\PageController@complain');
 Route::post('/complaint','Frontend\PageController@registercomplaint');
 
 Route::get('/cart', 'Frontend\CartController@index')->name('cart::index');
